@@ -12,7 +12,7 @@ public class Arlong extends Boss {
         goldReward = 90_000L;
         ironReward = 75_000L;
         stoneReward = 75_000L;
-        woodReward = 752_000L;
+        woodReward = 75_000L;
     }
 
 }

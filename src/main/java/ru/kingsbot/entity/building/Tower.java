@@ -38,6 +38,10 @@ public class Tower extends Building implements Protection {
     public void upgrade() {
         super.upgrade();
         defense = 100 + (level - 1) * 2000;
+        goldUpgradeCost = 2000 + (level - 1) * (260 + (level - 1) * 260);
+        ironUpgradeCost = 2000 + (level - 1) * (260 + (level - 1) * 260);
+        stoneUpgradeCost = 2000 + (level - 1) * (250 + (level - 1) * 250);
+        woodUpgradeCost = 2000 + (level - 1) * (250 + (level - 1) * 250);
     }
 
 }

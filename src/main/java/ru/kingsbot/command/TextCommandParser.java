@@ -91,9 +91,9 @@ public class TextCommandParser {
                             sb.append(Emoji.ACCEPT).append("Клан <").append(words[2]).append("> успешно создан");
                         }else{
                             sb.append(Emoji.RED_EXCLAMATION_MARK)
-                                    .append("Для создания клана необходимо 10кк золота\n")
+                                    .append("Для создания клана необходимо 10кк").append(Emoji.GOLD).append("\n")
                                     .append("Тебе не хватает ")
-                                    .append(NumberConverter.toString(10_000_000 - storage.getGold()));
+                                    .append(NumberConverter.toString(10_000_000 - storage.getGold())).append(Emoji.GOLD);
                         }
                         bot.sendMessage(player.getId(), sb.toString(), bot.getKeyboard());
                         break;
@@ -176,13 +176,13 @@ public class TextCommandParser {
                 String[] t = message.split(" ");
                 switch(t[0].substring(1)) {
                     case "setres":
-//                        if(!player.isAdmin()) {
-//                            return;
-//                        }
+                        if(!player.isAdmin()) {
+                            return;
+                        }
                         if(t.length < 2) {
                             return;
                         }
-                        int amount = Integer.parseInt(t[1]);
+                        long amount = Long.parseLong(t[1]);
                         Storage storage = player.getStorage();
                         if(amount > storage.getMaxFood() + storage.getFood()) {
                             storage.setMaxFood(amount);
@@ -211,9 +211,9 @@ public class TextCommandParser {
 
                         break;
                     case "setarmy":
-//                        if(!player.isAdmin()) {
-//                            return;
-//                        }
+                        if(!player.isAdmin()) {
+                            return;
+                        }
                         if(t.length < 2) {
                             return;
                         }

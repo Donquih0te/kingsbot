@@ -29,7 +29,7 @@ public class DonateParser extends Thread {
         List<String > lines = null;
         while(true) {
             try {
-                Thread.sleep(30000);
+                Thread.sleep(10000);
             }catch(InterruptedException ignore) {
 
             }
@@ -42,6 +42,9 @@ public class DonateParser extends Thread {
                     case "addgold": {
                         int amount = Integer.parseInt(words[1]);
                         Player player = bot.getPlayerRepository().get(id);
+                        if(player == null) {
+                            return;
+                        }
                         player.getStorage().setGold(amount + player.getStorage().getGold());
                         bot.sendMessage(id, "На склад добавлено " + amount + Emoji.GOLD, null);
                         break;
@@ -50,6 +53,9 @@ public class DonateParser extends Thread {
                         double attack = Double.parseDouble(words[1]);
                         int hours = Integer.parseInt(words[2]);
                         Player player = bot.getPlayerRepository().get(id);
+                        if(player == null) {
+                            return;
+                        }
                         Perk perk = player.getPerk();
                         perk.setAttack(attack);
                         perk.setAttackCancel(Instant.now().plusSeconds(60 * 60 * hours).getEpochSecond());
@@ -59,6 +65,9 @@ public class DonateParser extends Thread {
                     case "setshield": {
                         int hours = Integer.parseInt(words[1]);
                         Player player = bot.getPlayerRepository().get(id);
+                        if(player == null) {
+                            return;
+                        }
                         Perk perk = player.getPerk();
                         perk.setShieldCancel(Instant.now().plusSeconds(60 * 60 * hours).getEpochSecond());
                         bot.sendMessage(id, "Активирован щит на " + hours + "часа(ов).\n Не нападайте на другие королевства, чтобы щит не пропал!", null);
@@ -67,6 +76,9 @@ public class DonateParser extends Thread {
                     case "setresourcebonus": {
                         double bonus = Double.parseDouble(words[1]);
                         Player player = bot.getPlayerRepository().get(id);
+                        if(player == null) {
+                            return;
+                        }
                         Perk perk = player.getPerk();
                         perk.setResourceBonus(bonus);
                         perk.setResourceBonusCancel(Instant.now().plusSeconds(60 * 60 * 24).getEpochSecond());

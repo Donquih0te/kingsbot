@@ -1,11 +1,12 @@
 package ru.kingsbot.command.group.building.armory;
 
-import ru.kingsbot.api.keyboard.Action;
+import ru.kingsbot.Emoji;
 import ru.kingsbot.api.keyboard.Button;
 import ru.kingsbot.api.keyboard.Color;
 import ru.kingsbot.api.keyboard.Keyboard;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
+import ru.kingsbot.utils.Utils;
 
 import java.util.List;
 import java.util.Map;
@@ -18,28 +19,84 @@ public class BuyWarriorCommand extends Command {
 
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
         if(payload.get("warrior") == null) {
             return;
         }
 
         keyboard = Keyboard.newKeyboard()
                 .row(List.of(
-                        new Button(new Action("100", Map.of("command", "buy_warrior_amount", "warrior", payload.get("warrior"), "amount", "100")), Color.WHITE),
-                        new Button(new Action("500", Map.of("command", "buy_warrior_amount", "warrior", payload.get("warrior"), "amount", "500")), Color.WHITE),
-                        new Button(new Action("1000", Map.of("command", "buy_warrior_amount", "warrior", payload.get("warrior"), "amount", "1000")), Color.WHITE),
-                        new Button(new Action("5000", Map.of("command", "buy_warrior_amount", "warrior", payload.get("warrior"), "amount", "5000")), Color.WHITE)
-                    )
-                )
+                        Button.newButton()
+                                .label("100")
+                                .payload("command", "buy_warrior_amount")
+                                .payload("warrior", payload.get("warrior"))
+                                .payload("amount", "100")
+                                .color(Color.WHITE)
+                                .create(),
+                        Button.newButton()
+                                .label("500")
+                                .payload("command", "buy_warrior_amount")
+                                .payload("warrior", payload.get("warrior"))
+                                .payload("amount", "500")
+                                .color(Color.WHITE)
+                                .create(),
+                        Button.newButton()
+                                .label("1000")
+                                .payload("command", "buy_warrior_amount")
+                                .payload("warrior", payload.get("warrior"))
+                                .payload("amount", "1000")
+                                .color(Color.WHITE)
+                                .create(),
+                        Button.newButton()
+                                .label("5000")
+                                .payload("command", "buy_warrior_amount")
+                                .payload("warrior", payload.get("warrior"))
+                                .payload("amount", "5000")
+                                .color(Color.WHITE)
+                                .create()
+                ))
                 .row(List.of(
-                        new Button(new Action("10k", Map.of("command", "buy_warrior_amount", "warrior", payload.get("warrior"), "amount", "10000")), Color.WHITE),
-                        new Button(new Action("50k", Map.of("command", "buy_warrior_amount", "warrior", payload.get("warrior"), "amount", "50000")), Color.WHITE),
-                        new Button(new Action("100k", Map.of("command", "buy_warrior_amount", "warrior", payload.get("warrior"), "amount", "100000")), Color.WHITE),
-                        new Button(new Action("500k", Map.of("command", "buy_warrior_amount", "warrior", payload.get("warrior"), "amount", "500000")), Color.WHITE)
-                    )
-                )
+                        Button.newButton()
+                                .label("10k")
+                                .payload("command", "buy_warrior_amount")
+                                .payload("warrior", payload.get("warrior"))
+                                .payload("amount", "10000")
+                                .color(Color.WHITE)
+                                .create(),
+                        Button.newButton()
+                                .label("50k")
+                                .payload("command", "buy_warrior_amount")
+                                .payload("warrior", payload.get("warrior"))
+                                .payload("amount", "50000")
+                                .color(Color.WHITE)
+                                .create(),
+                        Button.newButton()
+                                .label("100k")
+                                .payload("command", "buy_warrior_amount")
+                                .payload("warrior", payload.get("warrior"))
+                                .payload("amount", "100000")
+                                .color(Color.WHITE)
+                                .create(),
+                        Button.newButton()
+                                .label("500k")
+                                .payload("command", "buy_warrior_amount")
+                                .payload("warrior", payload.get("warrior"))
+                                .payload("amount", "500000")
+                                .color(Color.WHITE)
+                                .create()
+                ))
                 .row(List.of(
-                        new Button(new Action("&#128259;Назад", Map.of("command", "back", "next", "armory")), Color.WHITE),
-                        new Button(new Action("Главная", Map.of("command", "info")), Color.BLUE)
+                        Button.newButton()
+                                .label(Emoji.BACK + "Назад")
+                                .payload("command", "back")
+                                .payload("next", "armory")
+                                .color(Color.WHITE)
+                                .create(),
+                        Button.newButton()
+                                .label("Главная")
+                                .payload("command", "info")
+                                .color(Color.BLUE)
+                                .create()
                     )
                 )
                 .build();

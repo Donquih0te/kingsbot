@@ -10,7 +10,7 @@ import java.util.Map;
 public abstract class Command {
 
     @Getter
-    private String name;
+    protected String name;
     protected Keyboard keyboard;
     protected Bot bot;
 

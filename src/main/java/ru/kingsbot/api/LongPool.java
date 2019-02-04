@@ -1,9 +1,6 @@
 package ru.kingsbot.api;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import lombok.extern.log4j.Log4j2;
 import org.apache.http.HttpResponse;
@@ -15,6 +12,7 @@ import ru.kingsbot.command.TextCommandParser;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.repository.PlayerRepository;
 import ru.kingsbot.tutorial.Tutorial;
+import ru.kingsbot.utils.Utils;
 
 import java.io.IOException;
 import java.util.Map;
@@ -38,7 +36,6 @@ public class LongPool {
     private String token;
     private String version;
     private Integer groupId;
-    //private final Integer GROUP_ID = 123281395;
 
     public LongPool(Bot bot, VkApiClient client, String token, String version, Integer groupId) {
         this.bot = bot;
@@ -144,7 +141,12 @@ public class LongPool {
                             commandParser.parse(peerId, fromId, text);
                             return;
                         }
-                        Map<String, String> payload = bot.getGson().fromJson(payloadObject.getAsString(), new TypeToken<Map<String, String>>(){}.getType());
+                        Map<String, String> payload;
+                        try {
+                            payload = bot.getGson().fromJson(payloadObject.getAsString(), new TypeToken<Map<String, String>>(){}.getType());
+                        }catch(JsonSyntaxException e) {
+                            return;
+                        }
                         if(peerId == fromId) {
                             if(!player.isTutorial()) {
                                 Tutorial tutorial = new Tutorial(player);
@@ -156,15 +158,19 @@ public class LongPool {
                                 return;
                             }
                             String commandName = payload.get("command");
+                            //payload.remove("command");
                             if(player.isBanned()) {
-                                bot.getCommandMap().getCommand("user_banned").ifPresent(cmd -> cmd.execute(player, peerId, payload));
+                                bot.getCommandMap().getCommand("user_banned")
+                                        .ifPresent(cmd -> cmd.execute(player, peerId, payload));
                                 return;
                             }
                             Optional<Command> command = bot.getCommandMap().getCommand(commandName);
                             if(command.isPresent()) {
+                                payload.put("key", Utils.encodeSignature(player.getId() + "-" + command.get().getName()));
                                 command.get().execute(player, peerId, payload);
                             }else{
-                                bot.getCommandMap().getCommand("not_found").ifPresent(cmd -> cmd.execute(player, peerId, payload));
+                                bot.getCommandMap().getCommand("not_found")
+                                        .ifPresent(cmd -> cmd.execute(player, peerId, payload));
                             }
                         }else{
                             if(!player.isTutorial()) {

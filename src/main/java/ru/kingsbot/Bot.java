@@ -36,7 +36,7 @@ import java.util.stream.Collectors;
 public class Bot {
 
     private static final Random RANDOM = new Random();
-    private static final String PROPERTIES_FILE = "application-dev.properties";
+    private static final String PROPERTIES_FILE = "application.properties";
 
     private static volatile Bot instance;
 

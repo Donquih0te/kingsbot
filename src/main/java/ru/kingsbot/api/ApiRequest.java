@@ -11,7 +11,6 @@ import java.util.Map;
 public class ApiRequest {
 
     private static final String API = "https://api.vk.com/method/";
-    //private static final String TOKEN = "44a218bb17db132b19bf3264a15c3ce09a5a54fc30ba7d507e6b3e7d30c0efeadef35e9b9f1b519d36142";
 
     private final String method;
     private final Map<String, Object> params;

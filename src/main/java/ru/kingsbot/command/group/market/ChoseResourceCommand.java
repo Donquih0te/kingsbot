@@ -1,12 +1,12 @@
 package ru.kingsbot.command.group.market;
 
 import ru.kingsbot.Emoji;
-import ru.kingsbot.api.keyboard.Action;
 import ru.kingsbot.api.keyboard.Button;
 import ru.kingsbot.api.keyboard.Color;
 import ru.kingsbot.api.keyboard.Keyboard;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
+import ru.kingsbot.utils.Utils;
 
 import java.util.List;
 import java.util.Map;
@@ -19,6 +19,7 @@ public class ChoseResourceCommand extends Command {
 
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
         if(payload.get("resource") == null || payload.get("action") == null) {
             return;
         }
@@ -28,28 +29,101 @@ public class ChoseResourceCommand extends Command {
             case "buy":
                 keyboard = Keyboard.newKeyboard()
                         .row(List.of(
-                                new Button(new Action("1k", Map.of("command", "buy_resource_amount", "resource", payload.get("resource"), "amount", "1000")), Color.WHITE),
-                                new Button(new Action("5k", Map.of("command", "buy_resource_amount", "resource", payload.get("resource"), "amount", "5000")), Color.WHITE),
-                                new Button(new Action("10k", Map.of("command", "buy_resource_amount", "resource", payload.get("resource"), "amount", "10000")), Color.WHITE),
-                                new Button(new Action("50k", Map.of("command", "buy_resource_amount", "resource", payload.get("resource"), "amount", "50000")), Color.WHITE)
+                                Button.newButton()
+                                        .label("1k")
+                                        .payload("command", "buy_resource_amount")
+                                        .payload("resource", payload.get("resource"))
+                                        .payload("amount", "1000")
+                                        .color(Color.WHITE)
+                                        .create(),
+                                Button.newButton()
+                                        .label("5k")
+                                        .payload("command", "buy_resource_amount")
+                                        .payload("resource", payload.get("resource"))
+                                        .payload("amount", "5000")
+                                        .color(Color.WHITE)
+                                        .create(),
+                                Button.newButton()
+                                        .label("10k")
+                                        .payload("command", "buy_resource_amount")
+                                        .payload("resource", payload.get("resource"))
+                                        .payload("amount", "10000")
+                                        .color(Color.WHITE)
+                                        .create(),
+                                Button.newButton()
+                                        .label("50k")
+                                        .payload("command", "buy_resource_amount")
+                                        .payload("resource", payload.get("resource"))
+                                        .payload("amount", "50000")
+                                        .color(Color.WHITE)
+                                        .create()
+                        ))
+                        .row(List.of(
+                                Button.newButton()
+                                        .label("100k")
+                                        .payload("command", "buy_resource_amount")
+                                        .payload("resource", payload.get("resource"))
+                                        .payload("amount", "100000")
+                                        .color(Color.WHITE)
+                                        .create(),
+                                Button.newButton()
+                                        .label("500k")
+                                        .payload("command", "buy_resource_amount")
+                                        .payload("resource", payload.get("resource"))
+                                        .payload("amount", "500000")
+                                        .color(Color.WHITE)
+                                        .create(),
+                                Button.newButton()
+                                        .label("1kk")
+                                        .payload("command", "buy_resource_amount")
+                                        .payload("resource", payload.get("resource"))
+                                        .payload("amount", "1000000")
+                                        .color(Color.WHITE)
+                                        .create(),
+                                Button.newButton()
+                                        .label("5kk")
+                                        .payload("command", "buy_resource_amount")
+                                        .payload("resource", payload.get("resource"))
+                                        .payload("amount", "5000000")
+                                        .color(Color.WHITE)
+                                        .create()
                             )
                         )
                         .row(List.of(
-                                new Button(new Action("100k", Map.of("command", "buy_resource_amount", "resource", payload.get("resource"), "amount", "100000")), Color.WHITE),
-                                new Button(new Action("500k", Map.of("command", "buy_resource_amount", "resource", payload.get("resource"), "amount", "500000")), Color.WHITE),
-                                new Button(new Action("1kk", Map.of("command", "buy_resource_amount", "resource", payload.get("resource"), "amount", "1000000")), Color.WHITE),
-                                new Button(new Action("5kk", Map.of("command", "buy_resource_amount", "resource", payload.get("resource"), "amount", "5000000")), Color.WHITE)
-                            )
-                        )
+                                Button.newButton()
+                                        .label("10kk")
+                                        .payload("command", "buy_resource_amount")
+                                        .payload("resource", payload.get("resource"))
+                                        .payload("amount", "10000000")
+                                        .color(Color.WHITE)
+                                        .create(),
+                                Button.newButton()
+                                        .label("50kk")
+                                        .payload("command", "buy_resource_amount")
+                                        .payload("resource", payload.get("resource"))
+                                        .payload("amount", "50000000")
+                                        .color(Color.WHITE)
+                                        .create(),
+                                Button.newButton()
+                                        .label("100kk")
+                                        .payload("command", "buy_resource_amount")
+                                        .payload("resource", payload.get("resource"))
+                                        .payload("amount", "100000000")
+                                        .color(Color.WHITE)
+                                        .create()
+                        ))
                         .row(List.of(
-                                new Button(new Action("10kk", Map.of("command", "buy_resource_amount", "resource", payload.get("resource"), "amount", "10000000")), Color.WHITE),
-                                new Button(new Action("50kk", Map.of("command", "buy_resource_amount", "resource", payload.get("resource"), "amount", "50000000")), Color.WHITE),
-                                new Button(new Action("100kk", Map.of("command", "buy_resource_amount", "resource", payload.get("resource"), "amount", "100000000")), Color.WHITE)
-                            )
-                        )
-                        .row(List.of(
-                                new Button(new Action(Emoji.BACK + "Назад", Map.of("command", "back", "next", "buy_resource")), Color.WHITE),
-                                new Button(new Action("Главная", Map.of("command", "info")), Color.BLUE)
+                                Button.newButton()
+                                        .label(Emoji.BACK + "Назад")
+                                        .payload("command", "back")
+                                        .payload("next", "buy_resource")
+                                        .color(Color.WHITE)
+                                        .create(),
+                                Button.newButton()
+                                        .label("Главная")
+                                        .payload("command", "info")
+                                        .color(Color.BLUE)
+                                        .create()
                             )
                         )
                         .build();
@@ -57,28 +131,101 @@ public class ChoseResourceCommand extends Command {
             case "sell":
                 keyboard = Keyboard.newKeyboard()
                         .row(List.of(
-                                new Button(new Action("1k", Map.of("command", "sell_resource_amount", "resource", payload.get("resource"), "amount", "1000")), Color.WHITE),
-                                new Button(new Action("5k", Map.of("command", "sell_resource_amount", "resource", payload.get("resource"), "amount", "5000")), Color.WHITE),
-                                new Button(new Action("10k", Map.of("command", "sell_resource_amount", "resource", payload.get("resource"), "amount", "10000")), Color.WHITE),
-                                new Button(new Action("50k", Map.of("command", "sell_resource_amount", "resource", payload.get("resource"), "amount", "50000")), Color.WHITE)
+                                Button.newButton()
+                                        .label("1k")
+                                        .payload("command", "sell_resource_amount")
+                                        .payload("resource", payload.get("resource"))
+                                        .payload("amount", "1000")
+                                        .color(Color.WHITE)
+                                        .create(),
+                                Button.newButton()
+                                        .label("5k")
+                                        .payload("command", "sell_resource_amount")
+                                        .payload("resource", payload.get("resource"))
+                                        .payload("amount", "5000")
+                                        .color(Color.WHITE)
+                                        .create(),
+                                Button.newButton()
+                                        .label("10k")
+                                        .payload("command", "sell_resource_amount")
+                                        .payload("resource", payload.get("resource"))
+                                        .payload("amount", "10000")
+                                        .color(Color.WHITE)
+                                        .create(),
+                                Button.newButton()
+                                        .label("50k")
+                                        .payload("command", "sell_resource_amount")
+                                        .payload("resource", payload.get("resource"))
+                                        .payload("amount", "50000")
+                                        .color(Color.WHITE)
+                                        .create()
                             )
                         )
                         .row(List.of(
-                                new Button(new Action("100k", Map.of("command", "sell_resource_amount", "resource", payload.get("resource"), "amount", "100000")), Color.WHITE),
-                                new Button(new Action("500k", Map.of("command", "sell_resource_amount", "resource", payload.get("resource"), "amount", "500000")), Color.WHITE),
-                                new Button(new Action("1kk", Map.of("command", "sell_resource_amount", "resource", payload.get("resource"), "amount", "1000000")), Color.WHITE),
-                                new Button(new Action("5kk", Map.of("command", "sell_resource_amount", "resource", payload.get("resource"), "amount", "5000000")), Color.WHITE)
-                                )
+                                Button.newButton()
+                                        .label("100k")
+                                        .payload("command", "sell_resource_amount")
+                                        .payload("resource", payload.get("resource"))
+                                        .payload("amount", "100000")
+                                        .color(Color.WHITE)
+                                        .create(),
+                                Button.newButton()
+                                        .label("500k")
+                                        .payload("command", "sell_resource_amount")
+                                        .payload("resource", payload.get("resource"))
+                                        .payload("amount", "500000")
+                                        .color(Color.WHITE)
+                                        .create(),
+                                Button.newButton()
+                                        .label("1kk")
+                                        .payload("command", "sell_resource_amount")
+                                        .payload("resource", payload.get("resource"))
+                                        .payload("amount", "1000000")
+                                        .color(Color.WHITE)
+                                        .create(),
+                                Button.newButton()
+                                        .label("5kk")
+                                        .payload("command", "sell_resource_amount")
+                                        .payload("resource", payload.get("resource"))
+                                        .payload("amount", "5000000")
+                                        .color(Color.WHITE)
+                                        .create()                                )
                         )
                         .row(List.of(
-                                new Button(new Action("10kk", Map.of("command", "sell_resource_amount", "resource", payload.get("resource"), "amount", "10000000")), Color.WHITE),
-                                new Button(new Action("50kk", Map.of("command", "sell_resource_amount", "resource", payload.get("resource"), "amount", "50000000")), Color.WHITE),
-                                new Button(new Action("100kk", Map.of("command", "sell_resource_amount", "resource", payload.get("resource"), "amount", "100000000")), Color.WHITE)
-                            )
-                        )
+                                Button.newButton()
+                                        .label("10kk")
+                                        .payload("command", "sell_resource_amount")
+                                        .payload("resource", payload.get("resource"))
+                                        .payload("amount", "10000000")
+                                        .color(Color.WHITE)
+                                        .create(),
+                                Button.newButton()
+                                        .label("50kk")
+                                        .payload("command", "sell_resource_amount")
+                                        .payload("resource", payload.get("resource"))
+                                        .payload("amount", "50000000")
+                                        .color(Color.WHITE)
+                                        .create(),
+                                Button.newButton()
+                                        .label("100kk")
+                                        .payload("command", "sell_resource_amount")
+                                        .payload("resource", payload.get("resource"))
+                                        .payload("amount", "100000000")
+                                        .color(Color.WHITE)
+                                        .create()
+                        ))
                         .row(List.of(
-                                new Button(new Action(Emoji.BACK + "Назад", Map.of("command", "back", "next", "sell_resource")), Color.WHITE),
-                                new Button(new Action("Главная", Map.of("command", "info")), Color.BLUE)
+                                Button.newButton()
+                                        .label(Emoji.BACK + "Назад")
+                                        .payload("command", "back")
+                                        .payload("next", "sell_resource")
+                                        .color(Color.WHITE)
+                                        .create(),
+                                Button.newButton()
+                                        .label("Главная")
+                                        .payload("command", "info")
+                                        .color(Color.BLUE)
+                                        .create()
                             )
                         )
                         .build();

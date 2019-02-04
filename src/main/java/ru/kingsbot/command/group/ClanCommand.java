@@ -1,7 +1,6 @@
 package ru.kingsbot.command.group;
 
 import ru.kingsbot.Emoji;
-import ru.kingsbot.api.keyboard.Action;
 import ru.kingsbot.api.keyboard.Button;
 import ru.kingsbot.api.keyboard.Color;
 import ru.kingsbot.api.keyboard.Keyboard;
@@ -22,15 +21,15 @@ public class ClanCommand extends Command {
 
     private final DateFormat formatter = new SimpleDateFormat("dd:MM:yy HH:mm:ss");
 
-    private Keyboard.Builder builder;
-
     public ClanCommand() {
         super("clan");
-        builder = Keyboard.newKeyboard();
     }
 
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
+
+        Keyboard.Builder builder = Keyboard.newKeyboard();
         StringBuilder sb = new StringBuilder();
         sb.append(Emoji.INFO).append("Инфомация о клане:\n\n");
         if(player.getClan() == null) {
@@ -44,8 +43,20 @@ public class ClanCommand extends Command {
                 Clan clan = target.getClan();
                 sb.append(Emoji.ACCEPT).append("Приглашение на вступление в клан <").append(clan.getName()).append(">\n");
                 builder.row(List.of(
-                        new Button(new Action("Принять", Map.of("command", "clan_request", "action", "accept", "from", String.valueOf(clan.getId()))), Color.GREEN),
-                        new Button(new Action("Отклонить", Map.of("command", "clan_request", "action", "deny", "from", String.valueOf(clan.getId()))), Color.RED)
+                        Button.newButton()
+                                .label("Прнять")
+                                .payload("command", "clan_request")
+                                .payload("action", "accept")
+                                .payload("from", String.valueOf(clan.getId()))
+                                .color(Color.GREEN)
+                                .create(),
+                        Button.newButton()
+                                .label("Отклонить")
+                                .payload("command", "clan_request")
+                                .payload("action", "deny")
+                                .payload("from", String.valueOf(clan.getId()))
+                                .color(Color.RED)
+                                .create()
                 ));
             }
         }else{
@@ -63,9 +74,21 @@ public class ClanCommand extends Command {
             sb.append(collect);
         }
         builder.row(List.of(
-                new Button(new Action(Emoji.MARK + "Команды", Map.of("command", "clan_commands")), Color.WHITE),
-                new Button(new Action(Emoji.TOP + "Топ", Map.of("command", "clan_rating")), Color.WHITE),
-                new Button(new Action("Главная", Map.of("command", "info")), Color.BLUE)
+                Button.newButton()
+                        .label(Emoji.MARK + "Команды")
+                        .payload("command", "clan_commands")
+                        .color(Color.WHITE)
+                        .create(),
+                Button.newButton()
+                        .label(Emoji.TOP + "Топ")
+                        .payload("command", "clan_rating")
+                        .color(Color.WHITE)
+                        .create(),
+                Button.newButton()
+                        .label("Главная")
+                        .payload("command", "info")
+                        .color(Color.BLUE)
+                        .create()
         ));
         keyboard = builder.build();
         bot.sendMessage(peerId, sb.toString(), keyboard);

@@ -1,5 +1,6 @@
 package ru.kingsbot;
 
+import lombok.extern.log4j.Log4j2;
 import ru.kingsbot.donat.DonateParser;
 import ru.kingsbot.utils.HibernateUtil;
 
@@ -7,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import java.io.FileNotFoundException;
 
+@Log4j2
 public class Application {
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -14,8 +16,8 @@ public class Application {
         Bot bot = new Bot();
         new DonateParser(bot).start();
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            //log.info("Сохранение данных...");
-            //bot.sendMessage(2000000139, "Произошло выключение бота", null);
+            log.info("Сохранение данных...");
+            bot.sendMessage(2000000139, "Произошло выключение бота", null);
             EntityManager entityManager = HibernateUtil.getEntityManager();
             EntityTransaction transaction = entityManager.getTransaction();
             transaction.begin();

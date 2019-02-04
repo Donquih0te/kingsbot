@@ -1,13 +1,13 @@
 package ru.kingsbot.command.group.resource;
 
 import ru.kingsbot.Emoji;
-import ru.kingsbot.api.keyboard.Action;
 import ru.kingsbot.api.keyboard.Button;
 import ru.kingsbot.api.keyboard.Color;
 import ru.kingsbot.api.keyboard.Keyboard;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.resource.Resource;
+import ru.kingsbot.utils.Utils;
 
 import java.util.List;
 import java.util.Map;
@@ -20,19 +20,43 @@ public class OpenResourceCommand extends Command {
 
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
         if(payload.get("resource") == null) {
             return;
         }
         keyboard = Keyboard.newKeyboard()
                 .row(List.of(
-                        new Button(new Action(Emoji.PLUS + "Добавить рабочего",Map.of("command", "citizen_resource", "resource", payload.get("resource"), "action", "put")), Color.WHITE),
-                        new Button(new Action(Emoji.MINUS + "Снять рабочего",Map.of("command", "citizen_resource", "resource", payload.get("resource"), "action", "remove")), Color.WHITE)
-                    )
-                )
+                        Button.newButton().label(Emoji.PLUS + "Добавить рабочего").payload("command", "citizen_resource")
+                                .payload("resource", payload.get("resource"))
+                                .payload("action", "put")
+                                .payload("key", Utils.encodeSignature(player.getId() + "-citizen_resource"))
+                                .color(Color.WHITE)
+                                .create(),
+                        Button.newButton().label(Emoji.PLUS + "Добавить рабочего").payload("command", "citizen_resource")
+                                .payload("resource", payload.get("resource"))
+                                .payload("action", "remove")
+                                .payload("key", Utils.encodeSignature(player.getId() + "-citizen_resource"))
+                                .color(Color.WHITE)
+                                .create()
+                ))
                 .row(List.of(
-                        new Button(new Action(Emoji.FIND + "Найти",Map.of("command", "find_resource", "resource", payload.get("resource"))), Color.RED),
-                        new Button(new Action(Emoji.BACK + "Назад", Map.of("command", "back", "next", "resource")), Color.WHITE),
-                        new Button(new Action("Главная", Map.of("command", "info")), Color.BLUE)
+                        Button.newButton()
+                                .label(Emoji.FIND + "Найти")
+                                .payload("command", "find_resource")
+                                .payload("resource", payload.get("resource"))
+                                .color(Color.RED)
+                                .create(),
+                        Button.newButton()
+                                .label(Emoji.BACK + "Назад")
+                                .payload("command", "back")
+                                .payload("next", "resource")
+                                .color(Color.WHITE)
+                                .create(),
+                        Button.newButton()
+                                .label("Главная")
+                                .payload("command", "info")
+                                .color(Color.BLUE)
+                                .create()
                     )
                 )
                 .build();

@@ -5,6 +5,7 @@ import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Building;
 import ru.kingsbot.entity.building.Storage;
 import ru.kingsbot.utils.NumberConverter;
+import ru.kingsbot.utils.Utils;
 
 import java.util.Map;
 
@@ -16,6 +17,7 @@ public class UpgradeBuildingCommand extends Command {
 
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
         if(payload.get("building") == null) {
             return;
         }

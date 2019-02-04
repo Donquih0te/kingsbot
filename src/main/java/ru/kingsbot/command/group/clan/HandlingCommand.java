@@ -3,6 +3,7 @@ package ru.kingsbot.command.group.clan;
 import ru.kingsbot.Emoji;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
+import ru.kingsbot.utils.Utils;
 
 import java.util.Map;
 
@@ -14,6 +15,7 @@ public class HandlingCommand extends Command {
 
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
         StringBuilder sb = new StringBuilder();
         sb.append(Emoji.INFO).append("Клановые команды:\n\n");
         if(player.getClan() == null) {

@@ -4,6 +4,7 @@ import ru.kingsbot.Emoji;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.clan.Clan;
+import ru.kingsbot.utils.Utils;
 
 import java.util.Map;
 
@@ -15,6 +16,7 @@ public class ClanRequestCommand extends Command {
 
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
         if(payload.get("action") == null || payload.get("from") == null) {
             return;
         }

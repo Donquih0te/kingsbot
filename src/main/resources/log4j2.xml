@@ -7,9 +7,9 @@
         </Console>
 
         <!-- File Appender -->
-        <!--<File name="File" fileName="/home/kingsbot/bot.log">-->
-            <!--<PatternLayout pattern="%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n" />-->
-        <!--</File>-->
+        <File name="File" fileName="/home/kingsbot/bot.log">
+            <PatternLayout pattern="%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n" />
+        </File>
     </Appenders>
     <Loggers>
         <!-- Log everything in hibernate -->
@@ -35,7 +35,7 @@
         <!--</Logger>-->
 
         <Root level="error" >
-            <!--<AppenderRef ref="File" />-->
+            <AppenderRef ref="File" />
             <AppenderRef ref="Console" />
         </Root>
     </Loggers>

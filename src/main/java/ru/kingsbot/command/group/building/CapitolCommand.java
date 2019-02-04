@@ -1,6 +1,6 @@
 package ru.kingsbot.command.group.building;
 
-import ru.kingsbot.api.keyboard.Action;
+import ru.kingsbot.Emoji;
 import ru.kingsbot.api.keyboard.Button;
 import ru.kingsbot.api.keyboard.Color;
 import ru.kingsbot.api.keyboard.Keyboard;
@@ -10,6 +10,7 @@ import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Capitol;
 import ru.kingsbot.entity.building.Storage;
 import ru.kingsbot.utils.NumberConverter;
+import ru.kingsbot.utils.Utils;
 
 import java.util.List;
 import java.util.Map;
@@ -20,13 +21,30 @@ public class CapitolCommand extends Command {
         super("capitol");
         keyboard = Keyboard.newKeyboard()
                 .row(List.of(
-                        new Button(new Action("Улучшить&#9874;", Map.of("command", "upgrade_building", "building", "capitol")), Color.WHITE),
-                        new Button(new Action("&#9937;Рабочий", Map.of("command", "citizen")), Color.WHITE)
-                    )
-                )
+                        Button.newButton()
+                                .label("Улучшить" + Emoji.CITIZEN)
+                                .payload("command", "upgrade_building")
+                                .payload("building", "capitol")
+                                .color(Color.WHITE)
+                                .create(),
+                        Button.newButton()
+                                .label(Emoji.WORKERS + "Рабочий")
+                                .payload("command", "citizen")
+                                .color(Color.WHITE)
+                                .create()
+                ))
                 .row(List.of(
-                        new Button(new Action("&#128259;Назад", Map.of("command", "back", "next", "building")), Color.WHITE),
-                        new Button(new Action("Главная", Map.of("command", "info")), Color.BLUE)
+                        Button.newButton()
+                                .label(Emoji.BACK + "Назад")
+                                .payload("command", "back")
+                                .payload("next", "building")
+                                .color(Color.WHITE)
+                                .create(),
+                        Button.newButton()
+                                .label("Главная")
+                                .payload("command", "info")
+                                .color(Color.BLUE)
+                                .create()
                     )
                 )
                 .build();
@@ -34,19 +52,20 @@ public class CapitolCommand extends Command {
 
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
         Capitol capitol = player.getCapitol();
         Storage storage = player.getStorage();
         Citizen citizen = capitol.getCitizen();
-        StringBuilder sb = new StringBuilder("&#128331;Капитолий\n\n");
+        StringBuilder sb = new StringBuilder(Emoji.CAPITOL + "Капитолий\n\n");
         sb.append("Уровень: ").append(capitol.getLevel()).append("\n\n")
                 .append("Улучшить:\n")
-                .append(NumberConverter.toString(capitol.getGoldUpgradeCost())).append("&#128176;")
+                .append(NumberConverter.toString(capitol.getGoldUpgradeCost())).append(Emoji.GOLD)
                 .append(capitol.getGoldUpgradeCost() <= storage.getGold() ? " ✔" : " ❌").append("\n")
-                .append(NumberConverter.toString(capitol.getIronUpgradeCost())).append("&#9725;")
+                .append(NumberConverter.toString(capitol.getIronUpgradeCost())).append(Emoji.IRON)
                 .append(capitol.getIronUpgradeCost() <= storage.getIron() ? " ✔" : " ❌").append("\n")
-                .append(NumberConverter.toString(capitol.getStoneUpgradeCost())).append("&#9935;")
+                .append(NumberConverter.toString(capitol.getStoneUpgradeCost())).append(Emoji.STONE)
                 .append(capitol.getStoneUpgradeCost() <= storage.getStone() ? " ✔" : " ❌").append("\n")
-                .append(NumberConverter.toString(capitol.getWoodUpgradeCost())).append("&#127795;")
+                .append(NumberConverter.toString(capitol.getWoodUpgradeCost())).append(Emoji.WOOD)
                 .append(capitol.getWoodUpgradeCost() <= storage.getWood() ? " ✔" : " ❌").append("\n\n");
 
         bot.sendMessage(peerId, sb.toString(), keyboard);

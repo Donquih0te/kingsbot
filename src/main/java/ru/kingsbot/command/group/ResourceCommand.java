@@ -1,7 +1,6 @@
 package ru.kingsbot.command.group;
 
 import ru.kingsbot.Emoji;
-import ru.kingsbot.api.keyboard.Action;
 import ru.kingsbot.api.keyboard.Button;
 import ru.kingsbot.api.keyboard.Color;
 import ru.kingsbot.api.keyboard.Keyboard;
@@ -9,6 +8,7 @@ import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Citizen;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.utils.NumberConverter;
+import ru.kingsbot.utils.Utils;
 
 import java.util.List;
 import java.util.Map;
@@ -17,27 +17,54 @@ public class ResourceCommand extends Command {
 
     public ResourceCommand() {
         super("resource");
-        keyboard = Keyboard.newKeyboard()
-                .row(List.of(
-                        new Button(new Action(Emoji.FOOD + "Ферма", Map.of("command", "open_resource", "resource" , "food")), Color.WHITE),
-                        new Button(new Action(Emoji.GOLD + "Золотой рудник", Map.of("command", "open_resource", "resource" , "gold")), Color.WHITE)
-                    )
-                )
-                .row(List.of(
-                        new Button(new Action(Emoji.IRON + "Железный рудник", Map.of("command", "open_resource", "resource" , "iron")), Color.WHITE),
-                        new Button(new Action(Emoji.STONE + "Каменная шахта", Map.of("command", "open_resource", "resource" , "stone")), Color.WHITE)
-                    )
-                )
-                .row(List.of(
-                        new Button(new Action(Emoji.WOOD + "Лес", Map.of("command", "open_resource", "resource" , "wood")), Color.WHITE),
-                        new Button(new Action("Главная", Map.of("command", "info")), Color.BLUE)
-                    )
-                )
-                .build();
     }
 
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
+        keyboard = Keyboard.newKeyboard()
+                .row(List.of(
+                        Button.newButton()
+                                .label(Emoji.FOOD + "Ферма")
+                                .payload("command", "open_resource")
+                                .payload("resource" , "food")
+                                .color(Color.WHITE)
+                                .create(),
+                        Button.newButton()
+                                .label(Emoji.GOLD + "Золотой рудник")
+                                .payload("command", "open_resource")
+                                .payload("resource" , "gold")
+                                .color(Color.WHITE)
+                                .create()
+                ))
+                .row(List.of(
+                        Button.newButton()
+                                .label(Emoji.IRON + "Железный рудник")
+                                .payload("command", "open_resource")
+                                .payload("resource" , "iron")
+                                .color(Color.WHITE)
+                                .create(),
+                        Button.newButton()
+                                .label(Emoji.STONE + "Каменная шахта")
+                                .payload("command", "open_resource")
+                                .payload("resource" , "stone")
+                                .color(Color.WHITE)
+                                .create()
+                ))
+                .row(List.of(
+                        Button.newButton()
+                                .label(Emoji.WOOD + "Лес")
+                                .payload("command", "open_resource")
+                                .payload("resource" , "wood")
+                                .color(Color.WHITE)
+                                .create(),
+                        Button.newButton()
+                                .label("Главная")
+                                .payload("command", "info")
+                                .color(Color.BLUE)
+                                .create()
+                ))
+                .build();
         Citizen citizen = player.getCapitol().getCitizen();
         if(player.updateResources()) {
             bot.getPlayerRepository().update(player);

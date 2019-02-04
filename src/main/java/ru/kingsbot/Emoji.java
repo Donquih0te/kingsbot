@@ -41,5 +41,9 @@ public class Emoji {
     public static final String BOSS_TYPE = "&#126980;";
     public static final String KEY = "&#128273;";
     public static final String TIME = "&#9203;";
+    public static final String ATTACK = "&#128163;";
+    public static final String WALL = "&#128304;";
+    public static final String TOWER = "&#128508;";
+    public static final String UPGRADE = "&#9851;";
 
 }

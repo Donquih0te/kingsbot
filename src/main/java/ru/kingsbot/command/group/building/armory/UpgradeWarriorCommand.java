@@ -1,10 +1,12 @@
 package ru.kingsbot.command.group.building.armory;
 
+import ru.kingsbot.Emoji;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.army.Warrior;
 import ru.kingsbot.entity.building.Storage;
 import ru.kingsbot.utils.NumberConverter;
+import ru.kingsbot.utils.Utils;
 
 import java.util.Map;
 
@@ -16,6 +18,7 @@ public class UpgradeWarriorCommand extends Command {
 
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
         if(payload.get("warrior") == null) {
             return;
         }
@@ -33,26 +36,26 @@ public class UpgradeWarriorCommand extends Command {
         }
         StringBuilder sb = new StringBuilder();
         if(warrior.getAmount() == 0) {
-            sb.append("Сначала купи воинов");
+            sb.append(Emoji.RED_EXCLAMATION_MARK).append("Сначала купи воинов");
         }else{
             Storage storage = player.getStorage();
             boolean buy = true;
             if((long)warrior.getFoodUpgradeCost() > storage.getFood()) {
                 sb.append("Для улучшения не хватает ")
                         .append(NumberConverter.toString((long)warrior.getFoodUpgradeCost() - storage.getFood()))
-                        .append("&#127830;\n");
+                        .append(Emoji.FOOD).append("\n");
                 buy = false;
             }
             if((long)warrior.getGoldUpgradeCost() > storage.getGold()) {
                 sb.append("Для улучшения не хватает ")
                         .append(NumberConverter.toString((long)warrior.getGoldUpgradeCost() - storage.getGold()))
-                        .append("&#128176;\n");
+                        .append(Emoji.GOLD).append("\n");
                 buy = false;
             }
             if((long)warrior.getIronUpgradeCost() > storage.getIron()) {
                 sb.append("Для улучшения не хватает ")
                         .append(NumberConverter.toString((long)warrior.getIronUpgradeCost() - storage.getIron()))
-                        .append("&#9725;\n");
+                        .append(Emoji.IRON).append("\n");
                 buy = false;
             }
             if(buy) {
@@ -62,15 +65,15 @@ public class UpgradeWarriorCommand extends Command {
                 storage.reduceIron(warrior.getIronUpgradeCost());
                 sb.append("Уровень: ").append(warrior.getLevel()).append("\n")
                         .append("Колличество: ").append(NumberConverter.toString(warrior.getAmount())).append("\n")
-                        .append("HP: ").append(warrior.getHealth()).append("&#129505;\n")
-                        .append("Атака: ").append(warrior.getAttack()).append("&#9876;\n")
-                        .append("Защита: ").append(warrior.getArmor()).append("&#128737;\n\n")
+                        .append("HP: ").append(warrior.getHealth()).append(Emoji.HEARTH).append("\n")
+                        .append("Атака: ").append(warrior.getAttack()).append(Emoji.CLUBMAN).append("\n")
+                        .append("Защита: ").append(warrior.getArmor()).append(Emoji.PROTECTION).append("\n\n")
                         .append("Улучшить:\n")
-                        .append(NumberConverter.toString(warrior.getFoodUpgradeCost())).append("&#127830;")
+                        .append(NumberConverter.toString(warrior.getFoodUpgradeCost())).append(Emoji.FOOD)
                         .append(storage.getFood() - warrior.getFoodUpgradeCost() > 0 ? " ✔" : " ❌").append("\n")
-                        .append(NumberConverter.toString(warrior.getGoldUpgradeCost())).append("&#128176;")
+                        .append(NumberConverter.toString(warrior.getGoldUpgradeCost())).append(Emoji.GOLD)
                         .append(storage.getGold() - warrior.getGoldUpgradeCost() > 0 ? " ✔" : " ❌").append("\n")
-                        .append(NumberConverter.toString(warrior.getIronUpgradeCost())).append("&#9725;")
+                        .append(NumberConverter.toString(warrior.getIronUpgradeCost())).append(Emoji.IRON)
                         .append(storage.getIron() - warrior.getIronUpgradeCost() > 0 ? " ✔" : " ❌").append("\n\n");
             }
         }

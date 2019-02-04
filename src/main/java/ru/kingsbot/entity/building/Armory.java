@@ -25,4 +25,12 @@ public class Armory extends Building {
         woodUpgradeCost = 1_000;
     }
 
+    public void upgrade() {
+        super.upgrade();
+        goldUpgradeCost = 2000 + (level - 1) * (250 + (level - 1) * 150);
+        ironUpgradeCost = 2000 + (level - 1) * (250 + (level - 1) * 150);
+        stoneUpgradeCost = 2000 + (level - 1) * (250 + (level - 1) * 150);
+        woodUpgradeCost = 2000 + (level - 1) * (250 + (level - 1) * 150);
+    }
+
 }

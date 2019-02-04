@@ -1,7 +1,6 @@
 package ru.kingsbot.command.group.market;
 
 import ru.kingsbot.Emoji;
-import ru.kingsbot.api.keyboard.Action;
 import ru.kingsbot.api.keyboard.Button;
 import ru.kingsbot.api.keyboard.Color;
 import ru.kingsbot.api.keyboard.Keyboard;
@@ -10,6 +9,7 @@ import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Storage;
 import ru.kingsbot.entity.market.Market;
 import ru.kingsbot.utils.NumberConverter;
+import ru.kingsbot.utils.Utils;
 
 import java.util.List;
 import java.util.Map;
@@ -18,27 +18,58 @@ public class BuyResourceCommand extends Command {
 
     public BuyResourceCommand() {
         super("buy_resource");
-        keyboard = Keyboard.newKeyboard()
-                .row(List.of(
-                        new Button(new Action(Emoji.FOOD + "Еда", Map.of("command", "chose_resource", "action", "buy", "resource", "food")), Color.WHITE),
-                        new Button(new Action(Emoji.IRON + "Железо", Map.of("command", "chose_resource", "action", "buy", "resource", "iron")), Color.WHITE)
-                    )
-                )
-                .row(List.of(
-                        new Button(new Action(Emoji.STONE + "Камень", Map.of("command", "chose_resource", "action", "buy", "resource", "stone")), Color.WHITE),
-                        new Button(new Action(Emoji.WOOD + "Дерево", Map.of("command", "chose_resource", "action", "buy", "resource", "wood")), Color.WHITE)
-                    )
-                )
-                .row(List.of(
-                        new Button(new Action(Emoji.BACK + "Назад", Map.of("command", "back", "next", "market")), Color.WHITE),
-                        new Button(new Action("Главная", Map.of("command", "info")), Color.BLUE)
-                    )
-                )
-                .build();
     }
 
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
+        keyboard = Keyboard.newKeyboard()
+                .row(List.of(
+                        Button.newButton()
+                                .label(Emoji.FOOD + "Еда")
+                                .payload("command", "chose_resource")
+                                .payload("resource", "food")
+                                .payload("action", "buy")
+                                .color(Color.WHITE)
+                                .create(),
+                        Button.newButton()
+                                .label(Emoji.IRON + "Железо")
+                                .payload("command", "chose_resource")
+                                .payload("resource", "iron")
+                                .payload("action", "buy")
+                                .color(Color.WHITE)
+                                .create()
+                ))
+                .row(List.of(
+                        Button.newButton()
+                                .label(Emoji.STONE + "Камень")
+                                .payload("command", "chose_resource")
+                                .payload("resource", "stone")
+                                .payload("action", "buy")
+                                .color(Color.WHITE)
+                                .create(),
+                        Button.newButton()
+                                .label(Emoji.WOOD + "Дерево")
+                                .payload("command", "chose_resource")
+                                .payload("resource", "wood")
+                                .payload("action", "buy")
+                                .color(Color.WHITE)
+                                .create()
+                ))
+                .row(List.of(
+                        Button.newButton()
+                                .label(Emoji.BACK + "Назад")
+                                .payload("command", "back")
+                                .payload("next", "market")
+                                .color(Color.WHITE)
+                                .create(),
+                        Button.newButton()
+                                .label("Главная")
+                                .payload("command", "info")
+                                .color(Color.BLUE)
+                                .create()
+                ))
+                .build();
         Storage storage = player.getStorage();
         Market market = bot.getMarket();
         StringBuilder sb = new StringBuilder();

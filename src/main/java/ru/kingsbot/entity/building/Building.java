@@ -66,10 +66,6 @@ public class Building {
 
     public void upgrade() {
         level++;
-        goldUpgradeCost = 2000 + (level - 1) * (250 + (level - 1) * 150);
-        ironUpgradeCost = 2000 + (level - 1) * (250 + (level - 1) * 150);
-        stoneUpgradeCost = 2000 + (level - 1) * (250 + (level - 1) * 150);
-        woodUpgradeCost = 2000 + (level - 1) * (250 + (level - 1) * 150);
     }
 
 }

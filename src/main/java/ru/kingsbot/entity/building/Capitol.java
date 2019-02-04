@@ -57,6 +57,10 @@ public class Capitol extends Building {
             if(level % 3 == 0)
                 maxCitizensAmount++;
         }
+        goldUpgradeCost = 2000 + (level - 1) * (150 + (level - 1) * 150);
+        ironUpgradeCost = 2000 + (level - 1) * (150 + (level - 1) * 150);
+        stoneUpgradeCost = 2000 + (level - 1) * (150 + (level - 1) * 150);
+        woodUpgradeCost = 2000 + (level - 1) * (150 + (level - 1) * 150);
     }
 
     public void addFreeCitizens(int citizens) {

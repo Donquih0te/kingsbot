@@ -1,14 +1,14 @@
 package ru.kingsbot.command.group.boss;
 
 import ru.kingsbot.Emoji;
-import ru.kingsbot.api.keyboard.Action;
 import ru.kingsbot.api.keyboard.Button;
 import ru.kingsbot.api.keyboard.Color;
 import ru.kingsbot.api.keyboard.Keyboard;
+import ru.kingsbot.boss.Boss;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
-import ru.kingsbot.boss.Boss;
 import ru.kingsbot.utils.NumberConverter;
+import ru.kingsbot.utils.Utils;
 
 import java.util.List;
 import java.util.Map;
@@ -21,12 +21,21 @@ public class BossTypeCommand extends Command {
 
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
-        if(payload.get("boss") == null) {
-            return;
-        }
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
         keyboard = Keyboard.newKeyboard()
-                .row(List.of(new Button(new Action(Emoji.ARMORY + "Бой", Map.of("command", "boss_attack", "boss", payload.get("boss"))), Color.RED)))
-                .row(List.of(new Button(new Action("Главная", Map.of("command", "info")), Color.BLUE)))
+                .row(List.of(
+                        Button.newButton()
+                                .label(Emoji.ARMORY + "Бой")
+                                .payload("command", "boss_attack")
+                                .payload("boss", payload.get("boss"))
+                                .color(Color.GREEN)
+                                .create(),
+                        Button.newButton()
+                                .label("Главная")
+                                .payload("command", "info")
+                                .color(Color.BLUE)
+                                .create()
+                ))
                 .build();
 
         Boss boss = bot.getBossMap().getBoss(payload.get("boss"));

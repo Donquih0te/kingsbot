@@ -5,6 +5,7 @@ import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Capitol;
 import ru.kingsbot.entity.resource.*;
+import ru.kingsbot.utils.Utils;
 
 import java.util.Map;
 import java.util.Random;
@@ -19,6 +20,7 @@ public class FindResourceCommand extends Command {
 
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
         if(payload.get("resource") == null) {
             return;
         }

@@ -1,6 +1,6 @@
 package ru.kingsbot.command.group.building;
 
-import ru.kingsbot.api.keyboard.Action;
+import ru.kingsbot.Emoji;
 import ru.kingsbot.api.keyboard.Button;
 import ru.kingsbot.api.keyboard.Color;
 import ru.kingsbot.api.keyboard.Keyboard;
@@ -8,6 +8,7 @@ import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Armory;
 import ru.kingsbot.entity.building.Storage;
+import ru.kingsbot.utils.Utils;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -21,50 +22,93 @@ public class ArmoryCommand extends Command {
 
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
         Armory armory = player.getArmory();
         Storage storage = player.getStorage();
-        StringBuilder sb = new StringBuilder("&#9876;Казармы\n\n");
+        StringBuilder sb = new StringBuilder(Emoji.ARMORY + "Казармы\n\n");
         if(!armory.isPurchased()) {
             sb.append("Уровень: ").append(armory.getLevel()).append("\n\n")
                     .append("Купить:\n")
-                    .append("Золото: ").append(armory.getGoldCost()).append("&#128176;")
+                    .append(armory.getGoldCost()).append(Emoji.GOLD)
                     .append(armory.getGoldCost() <= storage.getGold() ? " ✔" : " ❌").append("\n")
-                    .append("Железо: ").append(armory.getIronCost()).append("&#9725;")
+                    .append(armory.getIronCost()).append(Emoji.IRON)
                     .append(armory.getIronCost() <= storage.getIron() ? " ✔" : " ❌").append("\n")
-                    .append("Камень: ").append(armory.getStoneCost()).append("&#9935;")
+                    .append(armory.getStoneCost()).append(Emoji.STONE)
                     .append(armory.getStoneCost() <= storage.getStone() ? " ✔" : " ❌").append("\n")
-                    .append("Дерево: ").append(armory.getWoodCost()).append("&#127795;")
+                    .append(armory.getWoodCost()).append(Emoji.WOOD)
                     .append(armory.getWoodCost() <= storage.getWood() ? " ✔" : " ❌").append("\n");
             keyboard = Keyboard.newKeyboard()
-                    .row(List.of(new Button(new Action("&#10133;Купить", Map.of("command", "buy_building", "building", "armory")), Color.WHITE)))
-                    .row(List.of(new Button(new Action("Главная", Map.of("command", "info")), Color.BLUE)))
+                    .row(List.of(
+                            Button.newButton()
+                                    .label(Emoji.PLUS + "Купить")
+                                    .payload("command", "buy_building")
+                                    .payload("building", "armory")
+                                    .color(Color.WHITE)
+                                    .create()
+                    ))
+                    .row(List.of(
+                            Button.newButton()
+                                    .label(Emoji.BACK + "Назад")
+                                    .payload("command", "back")
+                                    .payload("next", "building")
+                                    .color(Color.WHITE)
+                                    .create(),
+                            Button.newButton()
+                                    .label("Главная")
+                                    .payload("command", "info")
+                                    .color(Color.BLUE)
+                                    .create()
+                    ))
                     .build();
         }else{
             sb.append("Улучшить:\n");
-            sb.append("Золото: ").append(armory.getGoldUpgradeCost()).append("&#128176;")
+            sb.append(armory.getGoldUpgradeCost()).append(Emoji.GOLD)
                     .append(armory.getGoldUpgradeCost() <= storage.getGold() ? " ✔" : " ❌").append("\n");
-            sb.append("Железо: ").append(armory.getIronUpgradeCost()).append("&#9725;")
+            sb.append(armory.getIronUpgradeCost()).append(Emoji.IRON)
                     .append(armory.getIronUpgradeCost() <= storage.getIron() ? " ✔" : " ❌").append("\n");
-            sb.append("Камень: ").append(armory.getStoneUpgradeCost()).append("&#9935;")
+            sb.append(armory.getStoneUpgradeCost()).append(Emoji.STONE)
                     .append(armory.getStoneUpgradeCost() <= storage.getStone() ? " ✔" : " ❌").append("\n");
-            sb.append("Дерево: ").append(armory.getWoodUpgradeCost()).append("&#127795;")
+            sb.append(armory.getWoodUpgradeCost()).append(Emoji.WOOD)
                     .append(armory.getWoodUpgradeCost() <= storage.getWood() ? " ✔" : " ❌").append("\n\n");
             keyboard = Keyboard.newKeyboard()
                     .row(new LinkedList<>(List.of(
-                            new Button(new Action("Улучшить&#9874;", Map.of("command", "upgrade_building", "building", "armory")), Color.GREEN)
-                        ))
+                            Button.newButton()
+                                    .label("Улучшить" + Emoji.CITIZEN)
+                                    .payload("command", "upgrade_building")
+                                    .payload("building", "armory")
+                                    .color(Color.GREEN)
+                                    .create()
+                            ))
                     )
                     .row(List.of(
-                            new Button(new Action("&#128259;Назад", Map.of("command", "back", "next", "building")), Color.WHITE),
-                            new Button(new Action("Главная", Map.of("command", "info")), Color.BLUE)
+                            Button.newButton()
+                                    .label(Emoji.BACK + "Назад")
+                                    .payload("command", "back")
+                                    .payload("next", "building")
+                                    .color(Color.WHITE)
+                                    .create(),
+                            Button.newButton()
+                                    .label("Главная")
+                                    .payload("command", "info")
+                                    .color(Color.BLUE)
+                                    .create()
                         )
                     )
                     .build();
 
-            switch (player.getAge()) {
+            switch(player.getAge()) {
                 case PREHISTORIC:
-                    Button clubman = new Button(new Action("Воин с дубиной", Map.of("command", "clubman")), Color.WHITE);
-                    Button rockThrower = new Button(new Action("Метатель камней", Map.of("command", "rock_thrower")), Color.WHITE);
+                    Button clubman = Button.newButton()
+                            .label("Воин с дубиной")
+                            .payload("command", "clubman")
+                            .color(Color.WHITE)
+                            .create();
+                    Button rockThrower = Button.newButton()
+                            .label("Метатель камней")
+                            .payload("command", "rock_thrower")
+                            .color(Color.WHITE)
+                            .create();
+
                     keyboard.addButtonToRow(0, clubman);
                     keyboard.addButtonToRow(0, rockThrower);
                     break;

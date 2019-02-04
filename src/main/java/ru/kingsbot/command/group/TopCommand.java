@@ -23,15 +23,16 @@ public class TopCommand extends Command {
 
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
         long time = Instant.now().getEpochSecond();
         if(lastUpdate == null || time - lastUpdate > 60) {
             StringBuilder sb = new StringBuilder();
 
             TypedQuery<Player> query = HibernateUtil.getEntityManager()
-                    .createQuery("select p from Player p order by p.territory desc", Player.class);
+                    .createQuery("from Player p order by p.territory desc", Player.class);
             query.setMaxResults(10);
             List<Player> list = query.getResultList();
-
+            sb.append(Emoji.TOP).append("Рейтинг игроков по территории:\n");
             list.forEach(p -> {
                 sb.append(Utils.createLink(p)).append("  ")
                         .append(NumberConverter.toString(p.getTerritory()))

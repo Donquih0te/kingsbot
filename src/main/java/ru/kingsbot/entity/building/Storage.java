@@ -93,6 +93,10 @@ public class Storage extends Building {
         maxIron = 100_000 + (level - 1) * (10_000 + (level - 1) * 250L);
         maxStone = 100_000 + (level - 1) * (10_000 + (level - 1) * 250L);
         maxWood = 100_000 + (level - 1) * (10_000 + (level - 1) * 300L);
+        goldUpgradeCost = 2000 + (level - 1) * (80 + (level - 1) * 85);
+        ironUpgradeCost = 2000 + (level - 1) * (80 + (level - 1) * 85);
+        stoneUpgradeCost = 2000 + (level - 1) * (80 + (level - 1) * 80);
+        woodUpgradeCost = 2000 + (level - 1) * (80 + (level - 1) * 80);
     }
 
     public void addFood(long amount) {

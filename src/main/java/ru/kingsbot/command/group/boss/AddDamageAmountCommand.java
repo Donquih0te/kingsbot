@@ -6,6 +6,7 @@ import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.army.Warrior;
 import ru.kingsbot.utils.NumberConverter;
+import ru.kingsbot.utils.Utils;
 
 import java.util.Map;
 
@@ -17,6 +18,7 @@ public class AddDamageAmountCommand extends Command {
 
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
         if(payload.get("warrior") == null || payload.get("amount") == null) {
             return;
         }

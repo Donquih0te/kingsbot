@@ -33,6 +33,8 @@ public class BossAttackCommand extends Command {
 
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
+
         if(payload.get("boss") == null) {
             return;
         }
@@ -124,15 +126,31 @@ public class BossAttackCommand extends Command {
                             .append("HP: ").append(boss.getMaxHp()).append(Emoji.HEARTH).append("\n\n")
                             .append(Emoji.RED_EXCLAMATION_MARK).append("Чтобы нанести урон выбери войска и атакуй");
                     builder.row(List.of(
-                            new Button(new Action(Emoji.CLUBMAN + "Воин", Map.of("command", "add_damage", "warrior", "clubman")), Color.WHITE),
-                            new Button(new Action(Emoji.ROCK_THROWER + "Метатель", Map.of("command", "add_damage", "warrior", "rock_thrower")), Color.WHITE)
+                            Button.newButton()
+                                    .label(Emoji.CLUBMAN + "Воин")
+                                    .payload("command", "add_damage")
+                                    .payload("warrior", "clubman")
+                                    .color(Color.WHITE)
+                                    .create(),
+                            Button.newButton()
+                                    .label(Emoji.ROCK_THROWER + "Метатель")
+                                    .payload("command", "add_damage")
+                                    .payload("warrior", "rock_thrower")
+                                    .color(Color.WHITE)
+                                    .create()
                     ));
                 }
             }else{
                 sb.append(Emoji.RED_EXCLAMATION_MARK).append("Нельзя атаковать боссов без клана");
             }
         }
-        builder.row(List.of(new Button(new Action("Главная", Map.of("command", "info")), Color.BLUE)));
+        builder.row(List.of(
+                Button.newButton()
+                        .label("Главная")
+                        .payload("command", "info")
+                        .color(Color.BLUE)
+                        .create()
+        ));
         keyboard = builder.build();
         bot.sendMessage(peerId, sb.toString(), keyboard);
     }

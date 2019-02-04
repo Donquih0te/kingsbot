@@ -6,6 +6,7 @@ import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.clan.Clan;
 import ru.kingsbot.utils.HibernateUtil;
 import ru.kingsbot.utils.NumberConverter;
+import ru.kingsbot.utils.Utils;
 
 import javax.persistence.TypedQuery;
 import java.time.Instant;
@@ -23,6 +24,7 @@ public class ClanRatingCommand extends Command {
 
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
         long time = Instant.now().getEpochSecond();
         if(lastUpdate == null || time - lastUpdate > 60) {
             StringBuilder sb = new StringBuilder("Рейтинг кланов:\n");

@@ -1,7 +1,6 @@
 package ru.kingsbot.command.group;
 
 import ru.kingsbot.Emoji;
-import ru.kingsbot.api.keyboard.Action;
 import ru.kingsbot.api.keyboard.Button;
 import ru.kingsbot.api.keyboard.Color;
 import ru.kingsbot.api.keyboard.Keyboard;
@@ -9,6 +8,7 @@ import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.army.Warrior;
 import ru.kingsbot.utils.NumberConverter;
+import ru.kingsbot.utils.Utils;
 
 import java.util.List;
 import java.util.Map;
@@ -17,17 +17,27 @@ public class ArmyCommand extends Command {
 
     public ArmyCommand() {
         super("army");
-        keyboard = Keyboard.newKeyboard()
-                .row(List.of(
-                        new Button(new Action("&#128163;Атака", Map.of("command", "attack")), Color.WHITE)
-                    )
-                )
-                .row(List.of(new Button(new Action("Главная", Map.of("command", "info")), Color.BLUE)))
-                .build();
     }
 
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
+        keyboard = Keyboard.newKeyboard()
+                .row(List.of(
+                        Button.newButton()
+                                .label(Emoji.ATTACK + "Атака")
+                                .payload("command", "attack")
+                                .color(Color.WHITE)
+                                .create()
+                ))
+                .row(List.of(
+                        Button.newButton()
+                                .label("Главная")
+                                .payload("command", "info")
+                                .color(Color.BLUE)
+                                .create()
+                ))
+                .build();
         Warrior warrior1 = null;
         Warrior warrior2 = null;
         switch(player.getAge()) {
