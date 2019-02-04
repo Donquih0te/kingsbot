@@ -1,0 +1,15 @@
+*.class
+build
+build/*
+gradle
+gradle/*
+out
+
+.gradle
+.gradle/*
+.idea
+.idea/*
+*.iml
+
+*.jar
+
