@@ -151,7 +151,7 @@ public class PlayerAttack {
                 .append(NumberConverter.toString((int)(storage.getIron() * ATTACK_BONUS))).append(Emoji.IRON).append("  ")
                 .append(NumberConverter.toString((int)(storage.getStone() * ATTACK_BONUS))).append(Emoji.STONE).append("  ")
                 .append(NumberConverter.toString((int)(storage.getWood() * ATTACK_BONUS))).append(Emoji.WOOD).append("\n")
-                .append(NumberConverter.toString((int)(target.getTerritory() * ATTACK_BONUS)).append(Emoji.TERRITORY).append("\n\n");
+                .append(NumberConverter.toString((int)(target.getTerritory() * ATTACK_BONUS))).append(Emoji.TERRITORY).append("\n\n");
     }
 
 }
