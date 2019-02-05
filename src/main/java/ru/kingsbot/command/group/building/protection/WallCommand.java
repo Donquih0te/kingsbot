@@ -18,11 +18,6 @@ public class WallCommand extends Command {
 
     public WallCommand() {
         super("wall");
-    }
-
-    @Override
-    public void execute(Player player, Integer peerId, Map<String, String> payload) {
-        Utils.checkSignature(payload.get("key"), player.getId(), name);
         keyboard = Keyboard.newKeyboard()
                 .row(new LinkedList<>(List.of(
                         Button.newButton()
@@ -53,6 +48,11 @@ public class WallCommand extends Command {
                                 .create()
                 ))
                 .build();
+    }
+
+    @Override
+    public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
         StringBuilder sb = new StringBuilder();
         Storage storage = player.getStorage();
         Wall wall = player.getWall();

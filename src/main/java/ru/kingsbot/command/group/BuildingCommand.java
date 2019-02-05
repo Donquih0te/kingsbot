@@ -15,11 +15,6 @@ public class BuildingCommand extends Command {
 
     public BuildingCommand() {
         super("building");
-    }
-
-    @Override
-    public void execute(Player player, Integer peerId, Map<String, String> payload) {
-        Utils.checkSignature(payload.get("key"), player.getId(), name);
         keyboard = Keyboard.newKeyboard()
                 .row(List.of(
                         Button.newButton()
@@ -51,6 +46,11 @@ public class BuildingCommand extends Command {
                                 .create()
                 ))
                 .build();
+    }
+
+    @Override
+    public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
         String message = "Строй зданий, улучшай их и открой все их тайны";
         bot.sendMessage(peerId, message, keyboard);
     }

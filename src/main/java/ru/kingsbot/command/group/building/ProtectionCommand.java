@@ -17,11 +17,6 @@ public class ProtectionCommand extends Command {
 
     public ProtectionCommand() {
         super("protection");
-    }
-
-    @Override
-    public void execute(Player player, Integer peerId, Map<String, String> payload) {
-        Utils.checkSignature(payload.get("key"), player.getId(), name);
         keyboard = Keyboard.newKeyboard()
                 .row(List.of(
                         Button.newButton()
@@ -49,6 +44,11 @@ public class ProtectionCommand extends Command {
                                 .create()
                 ))
                 .build();
+    }
+
+    @Override
+    public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
         Wall wall = player.getWall();
         Tower tower = player.getTower();
         StringBuilder sb = new StringBuilder();

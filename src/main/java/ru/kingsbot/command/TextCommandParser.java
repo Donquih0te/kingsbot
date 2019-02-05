@@ -31,7 +31,7 @@ public class TextCommandParser {
                     return;
                 }
                 if(player.getId() == Integer.parseInt(words[1])) {
-                    bot.sendMessage(peerId, "нельзя пригласить самого себя", null);
+                    bot.sendMessage(peerId, "Нельзя пригласить самого себя", null);
                     return;
                 }
                 Player target = bot.getPlayerRepository().get(Integer.valueOf(words[1]));
@@ -47,8 +47,15 @@ public class TextCommandParser {
                 player.getStorage().addGold(100_000);
                 target.addInvite(player.getId());
                 target.getStorage().addGold(100_000);
-                bot.sendMessage(peerId, "Игрока уже пригласили в игру\n", null);
-                bot.sendMessage(target.getId(), Utils.createLink(player) + " указал тебя, как пригласившего его", null);
+                StringBuilder playerResult = new StringBuilder();
+                sb.append("Ты отметил игрока ").append(Utils.createLink(target)).append(" как пригласившего тебя.\n")
+                        .append("За это вы оба получаете по 100к").append(Emoji.GOLD).append("\n\n");
+                StringBuilder targetResult = new StringBuilder();
+                sb.append(Utils.createLink(player)).append(" указал тебя, как пригласившего его.\n")
+                        .append("За это вы оба получаете по 100к").append(Emoji.GOLD).append("\n\n")
+                        .append("Ты пригласил: ").append(target.getInviteList().size());
+                bot.sendMessage(peerId, playerResult.toString(), null);
+                bot.sendMessage(target.getId(), targetResult.toString(), null);
                 break;
             }
 //            case "передать": {
@@ -89,15 +96,15 @@ public class TextCommandParser {
                             return;
                         }
                         Storage storage = player.getStorage();
-                        if(storage.getGold() >= 10_000_000) {
+                        if(storage.getGold() >= 7_000_000) {
                             player.setClan(new Clan(player.getId(), words[2]));
-                            storage.reduceGold(10_000_000);
+                            storage.reduceGold(7_000_000);
                             sb.append(Emoji.ACCEPT).append("Клан <").append(words[2]).append("> успешно создан");
                         }else{
                             sb.append(Emoji.RED_EXCLAMATION_MARK)
-                                    .append("Для создания клана необходимо 10кк").append(Emoji.GOLD).append("\n")
+                                    .append("Для создания клана необходимо 7кк").append(Emoji.GOLD).append("\n")
                                     .append("Тебе не хватает ")
-                                    .append(NumberConverter.toString(10_000_000 - storage.getGold())).append(Emoji.GOLD);
+                                    .append(NumberConverter.toString(7_000_000 - storage.getGold())).append(Emoji.GOLD);
                         }
                         bot.sendMessage(player.getId(), sb.toString(), bot.getKeyboard());
                         break;

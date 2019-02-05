@@ -28,7 +28,6 @@ public class ClanCommand extends Command {
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
         Utils.checkSignature(payload.get("key"), player.getId(), name);
-
         Keyboard.Builder builder = Keyboard.newKeyboard();
         StringBuilder sb = new StringBuilder();
         sb.append(Emoji.INFO).append("Инфомация о клане:\n\n");

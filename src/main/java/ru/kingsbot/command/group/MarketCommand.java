@@ -15,11 +15,6 @@ public class MarketCommand extends Command {
 
     public MarketCommand() {
         super("market");
-    }
-
-    @Override
-    public void execute(Player player, Integer peerId, Map<String, String> payload) {
-        Utils.checkSignature(payload.get("key"), player.getId(), name);
         keyboard = Keyboard.newKeyboard()
                 .row(List.of(
                         Button.newButton()
@@ -41,6 +36,11 @@ public class MarketCommand extends Command {
                                 .create()
                 ))
                 .build();
+    }
+
+    @Override
+    public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
         //TODO: добавить торговца
         StringBuilder sb = new StringBuilder();
         sb.append("На рынке ты можешь купить или продать некоторые ресурсы.");

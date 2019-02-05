@@ -18,11 +18,6 @@ public class SellResourceCommand extends Command {
 
     public SellResourceCommand() {
         super("sell_resource");
-    }
-
-    @Override
-    public void execute(Player player, Integer peerId, Map<String, String> payload) {
-        Utils.checkSignature(payload.get("key"), player.getId(), name);
         keyboard = Keyboard.newKeyboard()
                 .row(List.of(
                         Button.newButton()
@@ -69,6 +64,11 @@ public class SellResourceCommand extends Command {
                                 .create()
                 ))
                 .build();
+    }
+
+    @Override
+    public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
         Storage storage = player.getStorage();
         Market market = bot.getMarket();
         StringBuilder sb = new StringBuilder();

@@ -18,7 +18,7 @@ public class BuyWarriorAmountCommand extends Command {
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
         Utils.checkSignature(payload.get("key"), player.getId(), name);
-        if(payload.get("warrior") == null || payload.get("amount") == null) {
+        if(payload.get("warrior") == null || payload.get("amount") == null || Integer.parseInt(payload.get("amount")) < 0) {
             return;
         }
         Warrior warrior = null;
