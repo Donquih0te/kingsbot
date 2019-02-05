@@ -33,7 +33,7 @@ public class SellResourceAmountCommand extends Command {
                             .append(NumberConverter.toString(amount - storage.getFood())).append(Emoji.FOOD).append(" для продажи\n");
                 }else{
                     if(market.getFood().getSellCost() * amount / market.getFood().getSellAmount() + storage.getGold() > storage.getMaxGold()) {
-                        sb.append("На складе не хватает места. Выбери количество поменьше или прокачай склад");
+                        sb.append("На складе не хватает места. Выбери количество поменьше или прокачай склад\n");
                     }else{
                         sb.append("Продано ").append(NumberConverter.toString(amount)).append(Emoji.FOOD).append(" за ")
                                 .append(NumberConverter.toString(market.getFood().getSellCost() * amount / market.getFood().getSellAmount()))
@@ -49,7 +49,7 @@ public class SellResourceAmountCommand extends Command {
                             .append(NumberConverter.toString(amount - storage.getIron())).append(Emoji.IRON).append(" для продажи\n");
                 }else{
                     if(market.getIron().getSellCost() * amount / market.getIron().getSellAmount() + storage.getGold() > storage.getMaxGold()) {
-                        sb.append("На складе не хватает места. Выбери количество поменьше или прокачай склад");
+                        sb.append("На складе не хватает места. Выбери количество поменьше или прокачай склад\n");
                     }else{
                         sb.append("Продано ").append(NumberConverter.toString(amount)).append(Emoji.IRON).append(" за ")
                                 .append(NumberConverter.toString(market.getIron().getSellCost() * amount / market.getIron().getSellAmount()))
@@ -65,7 +65,7 @@ public class SellResourceAmountCommand extends Command {
                             .append(NumberConverter.toString(amount - storage.getStone())).append(Emoji.STONE).append(" для продажи\n");
                 }else{
                     if(market.getStone().getSellCost() * amount / market.getStone().getSellAmount() + storage.getGold() > storage.getMaxGold()) {
-                        sb.append("На складе не хватает места. Выбери количество поменьше или прокачай склад");
+                        sb.append("На складе не хватает места. Выбери количество поменьше или прокачай склад\n");
                     }else{
                         sb.append("Продано ").append(NumberConverter.toString(amount)).append(Emoji.STONE).append(" за ")
                                 .append(NumberConverter.toString(market.getStone().getSellCost() * amount / market.getStone().getSellAmount()))
@@ -81,7 +81,7 @@ public class SellResourceAmountCommand extends Command {
                             .append(NumberConverter.toString(amount - storage.getWood())).append(Emoji.WOOD).append(" для продажи\n");
                 }else{
                     if(market.getWood().getSellCost() * amount / market.getWood().getSellAmount() + storage.getGold() > storage.getMaxGold()) {
-                        sb.append("На складе не хватает места. Выбери количество поменьше или прокачай склад");
+                        sb.append("На складе не хватает места. Выбери количество поменьше или прокачай склад\n");
                     }else{
                         sb.append("Продано ").append(NumberConverter.toString(amount)).append(Emoji.WOOD).append(" за ")
                                 .append(NumberConverter.toString(market.getWood().getSellCost() * amount / market.getWood().getSellAmount()))
@@ -93,7 +93,7 @@ public class SellResourceAmountCommand extends Command {
                 break;
         }
 
-        sb.append("Склад\n")
+        sb.append(Emoji.STORAGE).append("\nСклад\n")
                 .append(NumberConverter.toString(storage.getFood())).append(" | ")
                 .append(NumberConverter.toString(storage.getMaxFood())).append(Emoji.FOOD).append("\n")
                 .append(NumberConverter.toString(storage.getGold())).append(" | ")
