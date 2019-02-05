@@ -47,15 +47,15 @@ public class PlayerAttack {
         double targetAttack = targetArmy.getSumAttack() * bonusAttack(target) > whoArmy.getSumArmor() + whoDefense ?
                 targetArmy.getSumAttack() - whoArmy.getSumArmor() - whoDefense : 10;
 
-        whoResult.append("Вы атаковали королевство игрока ").append(Utils.createLink(target)).append("\n");
-        targetResult.append("Ваше королевство атаковал игрок ").append(Utils.createLink(who)).append("\n");
+        whoResult.append("Вы атаковали королевство игрока ").append(Utils.createLink(target)).append(".\n");
+        targetResult.append("Ваше королевство атаковал игрок ").append(Utils.createLink(who)).append(".\n");
 
         double whoArmyLosses;
         double targetArmyLosses;
 
         if(whoAttack >= targetAttack) {
             whoResult.append("Атака завершилась победой\n\n");
-            targetResult.append("Ваши воины слабы и не смогли противостоять армии противника\n\n");
+            targetResult.append("Ваши воины слабы и не смогли противостоять армии противника.\n\n");
 
             whoArmyLosses = targetAttack / whoAttack;
             targetArmyLosses = 1 - (targetAttack / whoAttack);
@@ -146,12 +146,12 @@ public class PlayerAttack {
 
     private void attackResources(Player player, StringBuilder result) {
         Storage storage = player.getStorage();
-        result.append((int)(storage.getFood() * ATTACK_BONUS)).append(Emoji.FOOD).append("  ")
-                .append((int)(storage.getGold() * ATTACK_BONUS)).append(Emoji.GOLD).append("  ")
-                .append((int)(storage.getIron() * ATTACK_BONUS)).append(Emoji.IRON).append("  ")
-                .append((int)(storage.getStone() * ATTACK_BONUS)).append(Emoji.STONE).append("  ")
-                .append((int)(storage.getWood() * ATTACK_BONUS)).append(Emoji.WOOD).append("\n")
-                .append((int)(target.getTerritory() * ATTACK_BONUS)).append(Emoji.TERRITORY).append("\n");
+        result.append(NumberConverter.toString((int)(storage.getFood() * ATTACK_BONUS))).append(Emoji.FOOD).append("  ")
+                .append(NumberConverter.toString((int)(storage.getGold() * ATTACK_BONUS))).append(Emoji.GOLD).append("  ")
+                .append(NumberConverter.toString((int)(storage.getIron() * ATTACK_BONUS))).append(Emoji.IRON).append("  ")
+                .append(NumberConverter.toString((int)(storage.getStone() * ATTACK_BONUS))).append(Emoji.STONE).append("  ")
+                .append(NumberConverter.toString((int)(storage.getWood() * ATTACK_BONUS))).append(Emoji.WOOD).append("\n")
+                .append((int)(target.getTerritory() * ATTACK_BONUS)).append(Emoji.TERRITORY).append("\n\n");
     }
 
 }
