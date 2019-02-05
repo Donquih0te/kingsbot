@@ -31,10 +31,10 @@
         <class>ru.kingsbot.entity.Perk</class>
         <class>ru.kingsbot.entity.donate.Donate</class>
         <properties>
-            <property name="hibernate.hikari.dataSource.url" value="jdbc:postgresql://127.0.0.1:5432/civbot" />
+            <property name="hibernate.hikari.dataSource.url" value="jdbc:postgresql://127.0.0.1:5432/kingsbot" />
             <property name="hibernate.hikari.dataSourceClassName" value="org.postgresql.ds.PGSimpleDataSource" />
-            <property name="hibernate.hikari.dataSource.user" value="postgres" />
-            <property name="hibernate.hikari.dataSource.password" value="37nolege" />
+            <property name="hibernate.hikari.dataSource.user" value="king" />
+            <property name="hibernate.hikari.dataSource.password" value="85SelenaGomez85" />
             <property name="hibernate.show_sql" value="false" />
             <property name="hibernate.format_sql" value="false" />
             <property name="hibernate.hbm2ddl.auto" value="update" />
