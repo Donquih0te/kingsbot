@@ -1,0 +1,3 @@
+application.properties merge=ours
+
+*.java text=auto eol=lf
