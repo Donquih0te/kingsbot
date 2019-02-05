@@ -93,7 +93,7 @@ public class SellResourceAmountCommand extends Command {
                 break;
         }
 
-        sb.append(Emoji.STORAGE).append("\nСклад\n")
+        sb.append("\n").append(Emoji.STORAGE).append("Склад\n")
                 .append(NumberConverter.toString(storage.getFood())).append(" | ")
                 .append(NumberConverter.toString(storage.getMaxFood())).append(Emoji.FOOD).append("\n")
                 .append(NumberConverter.toString(storage.getGold())).append(" | ")
