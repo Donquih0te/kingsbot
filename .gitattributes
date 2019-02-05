@@ -1,3 +1,4 @@
 **/application.properties merge=ours
+**/persistence.xml merge=ours
 
 *.java text=auto eol=lf

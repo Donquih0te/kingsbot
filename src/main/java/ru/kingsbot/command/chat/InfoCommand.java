@@ -25,7 +25,7 @@ public class InfoCommand extends Command {
         Storage storage = player.getStorage();
         Capitol capitol = player.getCapitol();
         sb.append(Utils.createLink(player)).append(", твоя статистика:\n\n")
-                .append("ID: ").append(player.getId()).append("\n")
+                .append("Игровой ID: ").append(player.getId()).append("\n")
                 .append("Эпоха: ").append(player.getAge().getName()).append(Emoji.AGE).append("\n")
                 .append("Земли: ").append(player.getTerritory()).append(Emoji.TERRITORY).append("\n\n")
                 .append("Побед: ").append(player.getWins()).append("\n")
