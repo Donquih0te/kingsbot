@@ -199,7 +199,7 @@ public class Bot {
 
         JsonObject json = new JsonParser().parse(result).getAsJsonObject();
         if(!json.has("response")) {
-            log.error("Impossible to set player name", result);
+            log.error("Impossible to set player name\n" + result);
             return;
         }
         JsonArray response = json.get("response").getAsJsonArray();

@@ -18,7 +18,7 @@ public class Emoji {
     public static final String IRON = "&#9725;";
     public static final String STONE = "&#9935;";
     public static final String WOOD = "&#127795;";
-    public static final String TERRITORY = "&#128262;";
+    public static final String TERRITORY = "&#127759;";
     public static final String CITIZEN = "&#9874;";
     public static final String FREE_CITIZEN = "&#128296;";
     public static final String RED_EXCLAMATION_MARK = "&#10071;";
