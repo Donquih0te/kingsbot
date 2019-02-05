@@ -2,7 +2,7 @@ package ru.kingsbot;
 
 public class Emoji {
 
-    public static final String INFO = "&#128220;";
+    public static final String INFO = "&#128220;"; 
     public static final String BUILDINGS = "&#127963;";
     public static final String RESOURCES = "&#9935;";
     public static final String HEROES = "&#129355;";
