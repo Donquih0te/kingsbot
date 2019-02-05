@@ -96,6 +96,10 @@ public class TextCommandParser {
                         if(player.getClan() != null) {
                             return;
                         }
+                        if(words[2].length() > 10) {
+                            bot.sendMessage(player.getId(), "Название клана очень длинное", bot.getKeyboard());
+                            return;
+                        }
                         Storage storage = player.getStorage();
                         if(storage.getGold() >= 7_000_000) {
                             player.setClan(new Clan(player.getId(), words[2]));
@@ -116,9 +120,9 @@ public class TextCommandParser {
                         if(!player.getClan().isOwner(player.getId()) || !player.getClan().isVice(player.getId())) {
                             return;
                         }
-                        Player target = bot.getPlayerRepository().get(Integer.valueOf(words[2]));
+                        Player target = bot.getPlayerRepository().get(Utils.parseInt(words[2]));
                         if(target == null) {
-                            sb.append(Emoji.RED_EXCLAMATION_MARK).append("Игрок с id ").append(Integer.valueOf(words[2])).append(" не найден");
+                            sb.append(Emoji.RED_EXCLAMATION_MARK).append("Игрок с id ").append(words[2]).append(" не найден");
                         }else{
                             if(target.getClan() != null) {
                                 bot.sendMessage(peerId, "Игрок уже состоит в клане", null);
@@ -139,9 +143,9 @@ public class TextCommandParser {
                         if(!player.getClan().isOwner(player.getId())) {
                             return;
                         }
-                        Player vice = bot.getPlayerRepository().get(Integer.valueOf(words[2]));
+                        Player vice = bot.getPlayerRepository().get(Utils.parseInt(words[2]));
                         if(vice == null) {
-                            sb.append(Emoji.RED_EXCLAMATION_MARK).append("Игрок с id ").append(Integer.valueOf(words[2])).append(" не найден");
+                            sb.append(Emoji.RED_EXCLAMATION_MARK).append("Игрок с id ").append(words[2]).append(" не найден");
                         }else{
                             if(player.getClan().isMember(vice.getId())) {
                                 return;
@@ -158,9 +162,9 @@ public class TextCommandParser {
                         if(!player.getClan().isOwner(player.getId())) {
                             return;
                         }
-                        Player owner = bot.getPlayerRepository().get(Integer.valueOf(words[2]));
+                        Player owner = bot.getPlayerRepository().get(Utils.parseInt(words[2]));
                         if(owner == null) {
-                            sb.append(Emoji.RED_EXCLAMATION_MARK).append("Игрок с id ").append(Integer.valueOf(words[2])).append(" не найден");
+                            sb.append(Emoji.RED_EXCLAMATION_MARK).append("Игрок с id ").append(words[2]).append(" не найден");
                         }else{
                             if(player.getClan().isMember(owner.getId())) {
                                 return;
