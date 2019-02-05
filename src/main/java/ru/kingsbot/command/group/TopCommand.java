@@ -29,7 +29,7 @@ public class TopCommand extends Command {
             StringBuilder sb = new StringBuilder();
 
             TypedQuery<Player> query = HibernateUtil.getEntityManager()
-                    .createQuery("from Player p order by p.territory desc", Player.class);
+                    .createQuery("from Player p where p.id > 0 and p.firstName <> null order by p.territory desc", Player.class);
             query.setMaxResults(10);
             List<Player> list = query.getResultList();
             sb.append(Emoji.TOP).append("Рейтинг игроков по территории:\n");
@@ -38,6 +38,7 @@ public class TopCommand extends Command {
                         .append(NumberConverter.toString(p.getTerritory()))
                         .append(Emoji.TERRITORY).append("\n");
             });
+
 
             lastUpdate = Instant.now().getEpochSecond();
             lastResult = sb.toString();
