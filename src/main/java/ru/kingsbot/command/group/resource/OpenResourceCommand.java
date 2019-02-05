@@ -32,7 +32,7 @@ public class OpenResourceCommand extends Command {
                                 .payload("key", Utils.encodeSignature(player.getId() + "-citizen_resource"))
                                 .color(Color.WHITE)
                                 .create(),
-                        Button.newButton().label(Emoji.PLUS + "Добавить рабочего").payload("command", "citizen_resource")
+                        Button.newButton().label(Emoji.MINUS + "Снять рабочего").payload("command", "citizen_resource")
                                 .payload("resource", payload.get("resource"))
                                 .payload("action", "remove")
                                 .payload("key", Utils.encodeSignature(player.getId() + "-citizen_resource"))
