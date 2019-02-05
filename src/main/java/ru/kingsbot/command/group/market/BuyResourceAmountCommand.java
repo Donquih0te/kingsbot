@@ -20,7 +20,7 @@ public class BuyResourceAmountCommand extends Command {
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
         Utils.checkSignature(payload.get("key"), player.getId(), name);
-        if(payload.get("resource") == null || payload.get("amount") == null) {
+        if(payload.get("resource") == null || payload.get("amount") == null || Utils.parseInt(payload.get("amount")) < 0) {
             return;
         }
         StringBuilder sb = new StringBuilder();
