@@ -19,11 +19,6 @@ public class RockThrowerCommand extends Command {
 
     public RockThrowerCommand() {
         super("rock_thrower");
-    }
-
-    @Override
-    public void execute(Player player, Integer peerId, Map<String, String> payload) {
-        Utils.checkSignature(payload.get("key"), player.getId(), name);
         keyboard = Keyboard.newKeyboard()
                 .row(new LinkedList<>(List.of(
                         Button.newButton()
@@ -54,6 +49,11 @@ public class RockThrowerCommand extends Command {
                                 .create()
                 ))
                 .build();
+    }
+
+    @Override
+    public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
         Warrior rockThrower = player.getArmy().getRockThrower();
         Storage storage = player.getStorage();
         StringBuilder sb = new StringBuilder("Метатель камней\n\n");

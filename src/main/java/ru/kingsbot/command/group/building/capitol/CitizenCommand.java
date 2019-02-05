@@ -19,11 +19,6 @@ public class CitizenCommand extends Command {
 
     public CitizenCommand() {
         super("citizen");
-    }
-
-    @Override
-    public void execute(Player player, Integer peerId, Map<String, String> payload) {
-        Utils.checkSignature(payload.get("key"), player.getId(), name);
         keyboard = Keyboard.newKeyboard()
                 .row(new LinkedList<>(List.of(
                         Button.newButton()
@@ -52,6 +47,11 @@ public class CitizenCommand extends Command {
                                 .create()
                 ))
                 .build();
+    }
+
+    @Override
+    public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
         Citizen citizen = player.getCapitol().getCitizen();
         Storage storage = player.getStorage();
         StringBuilder sb = new StringBuilder();

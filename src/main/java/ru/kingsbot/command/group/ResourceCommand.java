@@ -17,11 +17,6 @@ public class ResourceCommand extends Command {
 
     public ResourceCommand() {
         super("resource");
-    }
-
-    @Override
-    public void execute(Player player, Integer peerId, Map<String, String> payload) {
-        Utils.checkSignature(payload.get("key"), player.getId(), name);
         keyboard = Keyboard.newKeyboard()
                 .row(List.of(
                         Button.newButton()
@@ -65,6 +60,11 @@ public class ResourceCommand extends Command {
                                 .create()
                 ))
                 .build();
+    }
+
+    @Override
+    public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
         Citizen citizen = player.getCapitol().getCitizen();
         if(player.updateResources()) {
             bot.getPlayerRepository().update(player);

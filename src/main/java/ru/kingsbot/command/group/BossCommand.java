@@ -14,11 +14,6 @@ public class BossCommand extends Command {
 
     public BossCommand() {
         super("boss");
-    }
-
-    @Override
-    public void execute(Player player, Integer peerId, Map<String, String> payload) {
-        Utils.checkSignature(payload.get("key"), player.getId(), name);
         keyboard = Keyboard.newKeyboard()
                 .row(List.of(
                         Button.newButton()
@@ -48,6 +43,11 @@ public class BossCommand extends Command {
                                 .create()
                 ))
                 .build();
+    }
+
+    @Override
+    public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
         bot.sendMessage(peerId, "Боссы", keyboard);
     }
 }

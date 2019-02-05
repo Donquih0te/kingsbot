@@ -19,11 +19,6 @@ public class ClubmanCommand extends Command {
 
     public ClubmanCommand() {
         super("clubman");
-    }
-
-    @Override
-    public void execute(Player player, Integer peerId, Map<String, String> payload) {
-        Utils.checkSignature(payload.get("key"), player.getId(), name);
         keyboard = Keyboard.newKeyboard()
                 .row(new LinkedList<>(List.of(
                         Button.newButton()
@@ -54,6 +49,11 @@ public class ClubmanCommand extends Command {
                                 .create()
                 ))
                 .build();
+    }
+
+    @Override
+    public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
         Warrior clubman = player.getArmy().getClubman();
         Storage storage = player.getStorage();
         StringBuilder sb = new StringBuilder("Воин с дубиной\n\n");

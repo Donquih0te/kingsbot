@@ -17,11 +17,6 @@ public class ArmyCommand extends Command {
 
     public ArmyCommand() {
         super("army");
-    }
-
-    @Override
-    public void execute(Player player, Integer peerId, Map<String, String> payload) {
-        Utils.checkSignature(payload.get("key"), player.getId(), name);
         keyboard = Keyboard.newKeyboard()
                 .row(List.of(
                         Button.newButton()
@@ -38,6 +33,11 @@ public class ArmyCommand extends Command {
                                 .create()
                 ))
                 .build();
+    }
+
+    @Override
+    public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        Utils.checkSignature(payload.get("key"), player.getId(), name);
         Warrior warrior1 = null;
         Warrior warrior2 = null;
         switch(player.getAge()) {
