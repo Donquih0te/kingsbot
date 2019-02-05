@@ -11,6 +11,9 @@ import javax.persistence.TypedQuery;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class TopCommand extends Command {
 
@@ -33,10 +36,14 @@ public class TopCommand extends Command {
             query.setMaxResults(10);
             List<Player> list = query.getResultList();
             sb.append(Emoji.TOP).append("Рейтинг игроков по территории:\n\n");
-            list.forEach(p -> {
-                sb.append(Utils.createLink(p)).append("  ")
-                        .append(NumberConverter.toString(p.getTerritory()))
-                        .append(Emoji.TERRITORY).append("\n");
+            List<Player> collect = list.stream().filter(Objects::nonNull).collect(Collectors.toList());
+            if(collect.isEmpty()) {
+                return;
+            }
+            AtomicInteger i = new AtomicInteger(1);
+            collect.forEach(p -> {
+                sb.append(getEmoji(i.getAndIncrement())).append(Utils.createLink(p)).append("  ")
+                        .append(NumberConverter.toString(p.getTerritory())).append("\n");
             });
 
 
@@ -45,5 +52,18 @@ public class TopCommand extends Command {
         }
 
         bot.sendMessage(peerId, lastResult, null);
+    }
+
+    private String getEmoji(int place) {
+        switch(place) {
+            case 1:
+                return Emoji.GOLD_MEDAL;
+            case 2:
+                return Emoji.SILVER_MEDAL;
+            case 3:
+                return Emoji.BRONZE_MEDAL;
+            default:
+                return Emoji.TERRITORY;
+        }
     }
 }
