@@ -18,6 +18,9 @@ public class InfoCommand extends Command {
 
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
+        if(player.getFirstName() == null) {
+            bot.setName(player);
+        }
         if(player.updateResources()) {
             bot.getPlayerRepository().update(player);
         }
