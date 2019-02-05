@@ -16,7 +16,8 @@ public class StartCommand extends Command {
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
         Utils.checkSignature(payload.get("key"), player.getId(), name);
         StringBuilder sb = new StringBuilder();
-        sb.append("Создано новое королевство.");// Полная инструкция по игре: <ссылка на статью>");
+        sb.append("Создано новое королевство.\n")
+                .append("Помощь по игре: ").append("vk.com/@kingsbot-pomosch-po-igre").append("\n");
 
         bot.sendMessage(peerId, sb.toString(), bot.getKeyboard());
     }
