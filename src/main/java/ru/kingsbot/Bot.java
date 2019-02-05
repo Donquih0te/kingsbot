@@ -189,6 +189,9 @@ public class Bot {
     }
 
     public void setName(Player player) {
+        if(player.getId() < 0) {
+            return;
+        }
         ApiRequest request = ApiRequest.newApiRequest()
                 .method("users.get")
                 .param("user_ids", player.getId())
