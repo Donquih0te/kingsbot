@@ -33,8 +33,10 @@ public class AttackCommand extends Command {
         Long currentTime = Instant.now().getEpochSecond();
         if(!players.containsKey(player.getId()) || (currentTime - players.get(player.getId()) > TIMESTAMP)) {
             TypedQuery<Player> query = HibernateUtil.getEntityManager()
-                    .createQuery("select p from Player p inner join Perk perk on perk.id = p.id " +
+                    .createQuery("from Player p inner join Perk perk on perk.id = p.id " +
                             "where p.id != :id " +
+                            "and p.id > 0 " +
+                            "and p.firstName <> null " +
                             "and perk.shieldCancel < :time " +
                             "and p.age = :age " +
                             "and round(p.territory) > round(:territory / 1.2) " +
