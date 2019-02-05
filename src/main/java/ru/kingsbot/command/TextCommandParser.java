@@ -229,7 +229,7 @@ public class TextCommandParser {
                         if(t.length < 2) {
                             return;
                         }
-                        int a = Integer.parseInt(t[1]);
+                        int a = Utils.parseInt(t[1]);
                         Clubman clubman = player.getArmy().getClubman();
                         RockThrower rockThrower = player.getArmy().getRockThrower();
                         clubman.setAmount(a);

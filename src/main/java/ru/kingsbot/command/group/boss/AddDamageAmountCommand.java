@@ -19,10 +19,10 @@ public class AddDamageAmountCommand extends Command {
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
         Utils.checkSignature(payload.get("key"), player.getId(), name);
-        if(payload.get("warrior") == null || payload.get("amount") == null || Integer.parseInt(payload.get("amount")) < 0) {
+        if(payload.get("warrior") == null || payload.get("amount") == null || Utils.parseInt(payload.get("amount")) < 0) {
             return;
         }
-        int amount = Integer.parseInt(payload.get("amount"));
+        int amount = Utils.parseInt(payload.get("amount"));
         Warrior warrior = null;
         switch(payload.get("warrior")) {
             case "clubman":

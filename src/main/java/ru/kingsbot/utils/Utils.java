@@ -44,7 +44,7 @@ public class Utils {
             return false;
         }
         String[] keys = Utils.decodeSignature(key).split("-");
-        return Integer.parseInt(keys[0]) == id && keys[1].equals(command);
+        return parseInt(keys[0]) == id && keys[1].equals(command);
     }
 
     public static int parseInt(String s) {

@@ -18,7 +18,7 @@ public class BuyWarriorAmountCommand extends Command {
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
         Utils.checkSignature(payload.get("key"), player.getId(), name);
-        if(payload.get("warrior") == null || payload.get("amount") == null || Integer.parseInt(payload.get("amount")) < 0) {
+        if(payload.get("warrior") == null || payload.get("amount") == null || Utils.parseInt(payload.get("amount")) < 0) {
             return;
         }
         Warrior warrior = null;
@@ -34,7 +34,7 @@ public class BuyWarriorAmountCommand extends Command {
             return;
         }
         StringBuilder sb = new StringBuilder(warrior.getName()).append("\n\n");
-        int amount = Integer.parseInt(payload.get("amount"));
+        int amount = Utils.parseInt(payload.get("amount"));
         Storage storage = player.getStorage();
         boolean buy = true;
         if(storage.getFood() < amount * warrior.getFoodCost()) {

@@ -6,6 +6,7 @@ import ru.kingsbot.Emoji;
 import ru.kingsbot.entity.Perk;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.donate.Donate;
+import ru.kingsbot.utils.Utils;
 
 import java.time.Instant;
 import java.util.List;
@@ -40,7 +41,7 @@ public class DonateParser extends Thread {
                 int id = donate.getCustomer();
                 switch(words[0].toLowerCase()) {
                     case "addgold": {
-                        int amount = Integer.parseInt(words[1]);
+                        int amount = Utils.parseInt(words[1]);
                         Player player = bot.getPlayerRepository().get(id);
                         if(player == null) {
                             return;
@@ -51,7 +52,7 @@ public class DonateParser extends Thread {
                     }
                     case "setattack": {
                         double attack = Double.parseDouble(words[1]);
-                        int hours = Integer.parseInt(words[2]);
+                        int hours = Utils.parseInt(words[2]);
                         Player player = bot.getPlayerRepository().get(id);
                         if(player == null) {
                             return;

@@ -26,7 +26,7 @@ public class BuyResourceAmountCommand extends Command {
         StringBuilder sb = new StringBuilder();
         Market market = bot.getMarket();
         Storage storage = player.getStorage();
-        long amount = Integer.parseInt(payload.get("amount"));
+        long amount = Utils.parseInt(payload.get("amount"));
         switch(payload.get("resource")) {
             case "food":
                 if(market.getFood().getBuyCost() * amount / market.getFood().getBuyAmount() > storage.getGold()) {

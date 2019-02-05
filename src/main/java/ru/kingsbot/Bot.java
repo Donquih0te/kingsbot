@@ -22,6 +22,7 @@ import ru.kingsbot.repository.ConversationRepository;
 import ru.kingsbot.repository.DonateRepository;
 import ru.kingsbot.repository.MarketRepository;
 import ru.kingsbot.repository.PlayerRepository;
+import ru.kingsbot.utils.Utils;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -113,7 +114,7 @@ public class Bot {
             properties.load(inputStream);
             token = properties.getProperty("token");
             version = properties.getProperty("version");
-            groupId = Integer.parseInt(properties.getProperty("group_id"));
+            groupId = Utils.parseInt(properties.getProperty("group_id"));
         }catch(IOException e) {
             log.error("Failed to load properties", e);
         }

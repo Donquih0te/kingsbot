@@ -22,7 +22,7 @@ public class ClanRequestCommand extends Command {
         }
 
         StringBuilder sb = new StringBuilder();
-        int from = Integer.parseInt(payload.get("from"));
+        int from = Utils.parseInt(payload.get("from"));
         switch(payload.get("action")) {
             case "accept":
                 Clan clan = bot.getPlayerRepository().get(from).getClan();
