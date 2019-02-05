@@ -30,11 +30,12 @@ public class TextCommandParser {
                 if(words.length < 2) {
                     return;
                 }
-                if(player.getId() == Integer.parseInt(words[1])) {
+                int id = Utils.parseInt(words[1]);
+                if(player.getId() == id) {
                     bot.sendMessage(peerId, "Нельзя пригласить самого себя", null);
                     return;
                 }
-                Player target = bot.getPlayerRepository().get(Integer.valueOf(words[1]));
+                Player target = bot.getPlayerRepository().get(id);
                 if(target == null) {
                     bot.sendMessage(peerId, "Игрок не найден в базе", null);
                     return;

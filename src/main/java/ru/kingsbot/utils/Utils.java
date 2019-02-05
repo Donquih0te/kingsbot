@@ -47,4 +47,14 @@ public class Utils {
         return Integer.parseInt(keys[0]) == id && keys[1].equals(command);
     }
 
+    public static int parseInt(String s) {
+        int i;
+        try {
+            i = Integer.parseInt(s);
+        }catch(NumberFormatException ignore) {
+            i = 0;
+        }
+        return i;
+    }
+
 }
