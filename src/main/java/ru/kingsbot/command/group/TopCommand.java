@@ -42,7 +42,7 @@ public class TopCommand extends Command {
             }
             AtomicInteger i = new AtomicInteger(1);
             collect.forEach(p -> {
-                sb.append(getEmoji(i.getAndIncrement())).append(Utils.createLink(p)).append("  ")
+                sb.append(getEmoji(i.getAndIncrement())).append(" ").append(Utils.createLink(p)).append("  =>  ")
                         .append(NumberConverter.toString(p.getTerritory())).append("\n");
             });
 
