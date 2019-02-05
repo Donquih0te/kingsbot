@@ -89,15 +89,15 @@ public class TextCommandParser {
                             return;
                         }
                         Storage storage = player.getStorage();
-                        if(storage.getGold() >= 10_000_000) {
+                        if(storage.getGold() >= 7_000_000) {
                             player.setClan(new Clan(player.getId(), words[2]));
-                            storage.reduceGold(10_000_000);
+                            storage.reduceGold(7_000_000);
                             sb.append(Emoji.ACCEPT).append("Клан <").append(words[2]).append("> успешно создан");
                         }else{
                             sb.append(Emoji.RED_EXCLAMATION_MARK)
-                                    .append("Для создания клана необходимо 10кк").append(Emoji.GOLD).append("\n")
+                                    .append("Для создания клана необходимо 7кк").append(Emoji.GOLD).append("\n")
                                     .append("Тебе не хватает ")
-                                    .append(NumberConverter.toString(10_000_000 - storage.getGold())).append(Emoji.GOLD);
+                                    .append(NumberConverter.toString(7_000_000 - storage.getGold())).append(Emoji.GOLD);
                         }
                         bot.sendMessage(player.getId(), sb.toString(), bot.getKeyboard());
                         break;
