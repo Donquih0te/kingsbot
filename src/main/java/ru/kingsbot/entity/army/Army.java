@@ -41,4 +41,8 @@ public class Army {
                 + rockThrower.getAmount() * rockThrower.getArmor() * rockThrower.getLevel();
     }
 
+    public long getWarriorsAmount() {
+        return clubman.getAmount() + rockThrower.getAmount();
+    }
+
 }

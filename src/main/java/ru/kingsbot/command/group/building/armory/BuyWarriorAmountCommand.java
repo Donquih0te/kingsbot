@@ -1,5 +1,6 @@
 package ru.kingsbot.command.group.building.armory;
 
+import ru.kingsbot.Emoji;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.army.Warrior;
@@ -37,34 +38,39 @@ public class BuyWarriorAmountCommand extends Command {
         int amount = Utils.parseInt(payload.get("amount"));
         Storage storage = player.getStorage();
         boolean buy = true;
-        if(storage.getFood() < amount * warrior.getFoodCost()) {
-            sb.append("Не хватает ")
-                    .append(NumberConverter.toString(amount * warrior.getFoodCost() - storage.getFood()))
-                    .append("&#127830; для покупки воинов\n");
-            buy = false;
-        }
-        if(storage.getGold() < amount * warrior.getGoldCost()) {
-            sb.append("Не хватает ")
-                    .append(NumberConverter.toString(amount * warrior.getGoldCost() - storage.getGold()))
-                    .append("&#128176; для покупки воинов\n");
-            buy = false;
-        }
-        if(storage.getIron() < amount * warrior.getIronCost()) {
-            sb.append("Не хватает ")
-                    .append(NumberConverter.toString(amount * warrior.getIronCost() - storage.getIron()))
-                    .append("&#9725; для покупки воинов\n");
-            buy = false;
-        }
+        if(storage.getMaxFood() < player.getArmy().getWarriorsAmount() + amount / 100) {
+            sb.append(Emoji.RED_EXCLAMATION_MARK).append("На складе нет столько еды, чтобы прокормить Ваше войско.")
+                    .append("Качай склад и рабочих, чтобы нанять больше армии.");
+        }else{
+            if(storage.getFood() < amount * warrior.getFoodCost()) {
+                sb.append("Не хватает ")
+                        .append(NumberConverter.toString(amount * warrior.getFoodCost() - storage.getFood()))
+                        .append("&#127830; для покупки воинов\n");
+                buy = false;
+            }
+            if(storage.getGold() < amount * warrior.getGoldCost()) {
+                sb.append("Не хватает ")
+                        .append(NumberConverter.toString(amount * warrior.getGoldCost() - storage.getGold()))
+                        .append("&#128176; для покупки воинов\n");
+                buy = false;
+            }
+            if(storage.getIron() < amount * warrior.getIronCost()) {
+                sb.append("Не хватает ")
+                        .append(NumberConverter.toString(amount * warrior.getIronCost() - storage.getIron()))
+                        .append("&#9725; для покупки воинов\n");
+                buy = false;
+            }
 
-        if(buy) {
-            warrior.add(amount);
-            storage.reduceFood(amount * warrior.getFoodCost());
-            storage.reduceGold(amount * warrior.getGoldCost());
-            storage.reduceIron(amount * warrior.getIronCost());
-            sb.append("Куплено ").append(NumberConverter.toString(amount)).append(" воинов\n")
-                    .append("за ").append(amount * warrior.getFoodCost()).append("&#127830; ")
-                    .append(NumberConverter.toString(amount * warrior.getGoldCost())).append("&#128176; ")
-                    .append(NumberConverter.toString(amount * warrior.getIronCost())).append("&#9725;\n");
+            if(buy) {
+                warrior.add(amount);
+                storage.reduceFood(amount * warrior.getFoodCost());
+                storage.reduceGold(amount * warrior.getGoldCost());
+                storage.reduceIron(amount * warrior.getIronCost());
+                sb.append("Куплено ").append(NumberConverter.toString(amount)).append(" воинов\n")
+                        .append("за ").append(amount * warrior.getFoodCost()).append("&#127830; ")
+                        .append(NumberConverter.toString(amount * warrior.getGoldCost())).append("&#128176; ")
+                        .append(NumberConverter.toString(amount * warrior.getIronCost())).append("&#9725;\n");
+            }
         }
 
         bot.sendMessage(peerId, sb.toString(), null);
