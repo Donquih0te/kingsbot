@@ -82,8 +82,8 @@ public class PlayerAttack {
 
             who.addWin();
         }else{
-            whoResult.append("Атака завершилась неудачей\n\n");
-            targetResult.append("Ваши воины смогли отстоять королевство\n\n");
+            whoResult.append("Атака завершилась неудачей.\n\n");
+            targetResult.append("Ваши воины смогли отстоять королевство.\n\n");
 
             whoArmyLosses = 1 - (whoAttack / targetAttack);
             targetArmyLosses = whoAttack / targetAttack;
