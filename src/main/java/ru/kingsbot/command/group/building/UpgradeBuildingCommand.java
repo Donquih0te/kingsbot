@@ -1,5 +1,6 @@
 package ru.kingsbot.command.group.building;
 
+import ru.kingsbot.Emoji;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Building;
@@ -46,28 +47,28 @@ public class UpgradeBuildingCommand extends Command {
         StringBuilder sb = new StringBuilder();
         Storage storage = player.getStorage();
         boolean buy = true;
-        if((long)building.getGoldUpgradeCost() > storage.getGold()) {
-            sb.append("Для улучшения не хватает ")
-                    .append(NumberConverter.toString((long)building.getGoldUpgradeCost() - storage.getGold()))
-                    .append("&#128176;\n");
+        if(storage.getGold() < building.getGoldUpgradeCost()) {
+            sb.append(Emoji.RED_EXCLAMATION_MARK).append("Для улучшения не хватает ")
+                    .append(NumberConverter.toString(building.getGoldUpgradeCost() - storage.getGold()))
+                    .append(Emoji.GOLD).append("\n");
             buy = false;
         }
-        if((long)building.getIronUpgradeCost() > storage.getIron()) {
-            sb.append("Для улучшения не хватает ")
-                    .append(NumberConverter.toString((long)building.getIronUpgradeCost() - storage.getIron()))
-                    .append("&#9725;\n");
+        if(storage.getIron() < building.getIronUpgradeCost()) {
+            sb.append(Emoji.RED_EXCLAMATION_MARK).append("Для улучшения не хватает ")
+                    .append(NumberConverter.toString(building.getIronUpgradeCost() - storage.getIron()))
+                    .append(Emoji.IRON).append("\n");
             buy = false;
         }
-        if((long)building.getStoneUpgradeCost() > storage.getStone()) {
-            sb.append("Для улучшения не хватает ")
-                    .append(NumberConverter.toString((long)building.getStoneUpgradeCost() - storage.getStone()))
-                    .append("&#9935;\n");
+        if(storage.getStone() < building.getStoneUpgradeCost()) {
+            sb.append(Emoji.RED_EXCLAMATION_MARK).append("Для улучшения не хватает ")
+                    .append(NumberConverter.toString(building.getStoneUpgradeCost() - storage.getStone()))
+                    .append(Emoji.STONE).append("\n");
             buy = false;
         }
-        if((long)building.getWoodUpgradeCost() > storage.getWood()) {
-            sb.append("Для улучшения не хватает ")
-                    .append(NumberConverter.toString((long)building.getWoodUpgradeCost() - storage.getWood()))
-                    .append("&#127795;\n");
+        if(storage.getWood() < building.getWoodUpgradeCost()) {
+            sb.append(Emoji.RED_EXCLAMATION_MARK).append("Для улучшения не хватает ")
+                    .append(NumberConverter.toString(building.getWoodUpgradeCost() - storage.getWood()))
+                    .append(Emoji.WOOD).append("\n");
             buy = false;
         }
         if(buy) {
@@ -78,16 +79,16 @@ public class UpgradeBuildingCommand extends Command {
             building.upgrade();
 
             sb.append(building.getName()).append("\n\n")
-                    .append("Уровень: ").append(building.getLevel()).append("\n\n")
+                    .append(Emoji.LEVEL).append("Уровень: ").append(building.getLevel()).append("\n\n")
                     .append("Улучшить:\n")
-                    .append(NumberConverter.toString(building.getGoldUpgradeCost())).append("&#128176;")
-                    .append(storage.getGold() >= (long)building.getGoldUpgradeCost() ? " ✔" : " ❌").append("\n")
-                    .append(NumberConverter.toString(building.getIronUpgradeCost())).append("&#9725;")
-                    .append(storage.getIron() >= (long)building.getIronUpgradeCost() ? " ✔" : " ❌").append("\n")
-                    .append(NumberConverter.toString(building.getStoneUpgradeCost())).append("&#9935;")
-                    .append(storage.getStone() >= (long)building.getStoneUpgradeCost() ? " ✔" : " ❌").append("\n")
-                    .append(NumberConverter.toString(building.getWoodUpgradeCost())).append("&#127795;")
-                    .append(storage.getWood() >= (long)building.getWoodUpgradeCost() ? " ✔" : " ❌").append("\n\n");
+                    .append(NumberConverter.toString(building.getGoldUpgradeCost())).append(Emoji.GOLD)
+                    .append(storage.getGold() >= building.getGoldUpgradeCost() ? " ✔" : " ❌").append("\n")
+                    .append(NumberConverter.toString(building.getIronUpgradeCost())).append(Emoji.IRON)
+                    .append(storage.getIron() >= building.getIronUpgradeCost() ? " ✔" : " ❌").append("\n")
+                    .append(NumberConverter.toString(building.getStoneUpgradeCost())).append(Emoji.STONE)
+                    .append(storage.getStone() >= building.getStoneUpgradeCost() ? " ✔" : " ❌").append("\n")
+                    .append(NumberConverter.toString(building.getWoodUpgradeCost())).append(Emoji.WOOD)
+                    .append(storage.getWood() >= building.getWoodUpgradeCost() ? " ✔" : " ❌").append("\n\n");
         }
         bot.sendMessage(peerId, sb.toString(), null);
     }

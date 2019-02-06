@@ -43,8 +43,8 @@ public class BossTypeCommand extends Command {
             return;
         }
         StringBuilder sb = new StringBuilder();
-        sb.append(Emoji.BOSS_TYPE).append(boss.getCustomName()).append(":\n\n")
-                .append("HP: ").append(boss.getMaxHp()).append(Emoji.HEARTH).append("\n")
+        sb.append(Emoji.BOSS_TYPE).append(boss.getCustomName()).append(":\n")
+                .append("HP: ").append(NumberConverter.toString(boss.getMaxHp())).append(Emoji.HEARTH).append("\n")
                 .append("Побед: ").append(player.getBossInfo().getWins(boss)).append(Emoji.TOP).append("\n")
                 .append("Ключей: ").append(player.getBossInfo().getKeys(boss)).append(Emoji.KEY).append("\n\n")
                 .append("Награда за победу:\n")

@@ -26,13 +26,13 @@ public class UpgradeCitizenCommand extends Command {
         Storage storage = player.getStorage();
         boolean buy = true;
         if((long)citizen.getFoodUpgradeCost() > storage.getFood()) {
-            sb.append(Emoji.RED_EXCLAMATION_MARK)
-                    .append("Для улучшения не хватает ").append(citizen.getFoodUpgradeCost() - storage.getFood()).append(Emoji.FOOD).append("\n");
+            sb.append(Emoji.RED_EXCLAMATION_MARK).append("Для улучшения не хватает ")
+                    .append(NumberConverter.toString(citizen.getFoodUpgradeCost() - storage.getFood())).append(Emoji.FOOD).append("\n");
             buy = false;
         }
         if((long)citizen.getGoldUpgradeCost() > storage.getGold()) {
-            sb.append(Emoji.RED_EXCLAMATION_MARK)
-                    .append("Для улучшения не хватает ").append(citizen.getGoldUpgradeCost() - storage.getGold()).append(Emoji.GOLD).append("&#128176;\n");
+            sb.append(Emoji.RED_EXCLAMATION_MARK).append("Для улучшения не хватает ")
+                    .append(NumberConverter.toString(citizen.getGoldUpgradeCost() - storage.getGold())).append(Emoji.GOLD).append("\n");
             buy = false;
         }
         if(buy) {
@@ -40,15 +40,15 @@ public class UpgradeCitizenCommand extends Command {
             storage.reduceGold(citizen.getGoldUpgradeCost());
             citizen.upgrade();
 
-            sb.append("Уровень: ").append(citizen.getLevel()).append("\n")
-                    .append("Рабочих: ").append(capitol.getCitizensAmount()).append("/")
-                    .append(capitol.getMaxCitizensAmount()).append(Emoji.RESOURCES).append("\n")
-                    .append("Свободных рабочих: ").append(capitol.getFreeCitizensAmount()).append(Emoji.WORKERS).append("\n\n")
+            sb.append(Emoji.LEVEL).append("Уровень: ").append(citizen.getLevel()).append("\n")
+                    .append(Emoji.RESOURCES).append("Рабочих: ").append(capitol.getCitizensAmount()).append("/")
+                    .append(capitol.getMaxCitizensAmount()).append("\n")
+                    .append(Emoji.WORKERS).append("Свободных рабочих: ").append(capitol.getFreeCitizensAmount()).append("\n\n")
                     .append("Улучшить рабочего:\n")
                     .append(NumberConverter.toString(citizen.getFoodUpgradeCost())).append(Emoji.FOOD)
-                    .append(storage.getFood() - (long)citizen.getFoodUpgradeCost() > 0 ? " ✔" : " ❌").append("\n")
+                    .append(storage.getFood() - citizen.getFoodUpgradeCost() > 0 ? " ✔" : " ❌").append("\n")
                     .append(NumberConverter.toString(citizen.getGoldUpgradeCost())).append(Emoji.GOLD)
-                    .append(storage.getGold() - (long)citizen.getGoldUpgradeCost() > 0 ? " ✔" : " ❌").append("\n\n");
+                    .append(storage.getGold() - citizen.getGoldUpgradeCost() > 0 ? " ✔" : " ❌").append("\n\n");
         }
 
         bot.sendMessage(peerId, sb.toString(), null);

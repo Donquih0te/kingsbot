@@ -36,25 +36,25 @@ public class BuyBuildingCommand extends Command {
         Storage storage = player.getStorage();
         boolean buy = true;
         if(storage.getGold() < building.getGoldCost()) {
-            sb.append("Не хватает ")
+            sb.append(Emoji.RED_EXCLAMATION_MARK).append("Не хватает ")
                     .append(NumberConverter.toString(building.getGoldCost() - storage.getGold())).append(Emoji.GOLD)
                     .append(" для покупки здания\n");
             buy = false;
         }
         if(storage.getIron() < building.getIronCost()) {
-            sb.append("Не хватает ")
+            sb.append(Emoji.RED_EXCLAMATION_MARK).append("Не хватает ")
                     .append(NumberConverter.toString(building.getIronCost() - storage.getIron())).append(Emoji.IRON)
                     .append(" для покупки здания\n");
             buy = false;
         }
         if(storage.getStone() < building.getStoneCost()) {
-            sb.append("Не хватает ")
+            sb.append(Emoji.RED_EXCLAMATION_MARK).append("Не хватает ")
                     .append(NumberConverter.toString(building.getStoneCost() - storage.getStone())).append(Emoji.STONE)
                     .append(" для покупки здания\n");
             buy = false;
         }
         if(storage.getWood() < building.getWoodCost()) {
-            sb.append("Не хватает ")
+            sb.append(Emoji.RED_EXCLAMATION_MARK).append("Не хватает ")
                     .append(NumberConverter.toString(building.getWoodCost() - storage.getWood())).append(Emoji.WOOD)
                     .append(" для покупки здания\n");
             buy = false;

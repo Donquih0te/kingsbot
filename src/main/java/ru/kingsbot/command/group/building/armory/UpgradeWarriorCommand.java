@@ -40,21 +40,21 @@ public class UpgradeWarriorCommand extends Command {
         }else{
             Storage storage = player.getStorage();
             boolean buy = true;
-            if((long)warrior.getFoodUpgradeCost() > storage.getFood()) {
-                sb.append("Для улучшения не хватает ")
-                        .append(NumberConverter.toString((long)warrior.getFoodUpgradeCost() - storage.getFood()))
+            if(warrior.getFoodUpgradeCost() > storage.getFood()) {
+                sb.append(Emoji.RED_EXCLAMATION_MARK).append("Для улучшения не хватает ")
+                        .append(NumberConverter.toString(warrior.getFoodUpgradeCost() - storage.getFood()))
                         .append(Emoji.FOOD).append("\n");
                 buy = false;
             }
-            if((long)warrior.getGoldUpgradeCost() > storage.getGold()) {
-                sb.append("Для улучшения не хватает ")
-                        .append(NumberConverter.toString((long)warrior.getGoldUpgradeCost() - storage.getGold()))
+            if(storage.getGold() < warrior.getGoldUpgradeCost()) {
+                sb.append(Emoji.RED_EXCLAMATION_MARK).append("Для улучшения не хватает ")
+                        .append(NumberConverter.toString(warrior.getGoldUpgradeCost() - storage.getGold()))
                         .append(Emoji.GOLD).append("\n");
                 buy = false;
             }
-            if((long)warrior.getIronUpgradeCost() > storage.getIron()) {
-                sb.append("Для улучшения не хватает ")
-                        .append(NumberConverter.toString((long)warrior.getIronUpgradeCost() - storage.getIron()))
+            if(storage.getIron() < warrior.getIronUpgradeCost()) {
+                sb.append(Emoji.RED_EXCLAMATION_MARK).append("Для улучшения не хватает ")
+                        .append(NumberConverter.toString(warrior.getIronUpgradeCost() - storage.getIron()))
                         .append(Emoji.IRON).append("\n");
                 buy = false;
             }
@@ -63,9 +63,9 @@ public class UpgradeWarriorCommand extends Command {
                 storage.reduceFood(warrior.getFoodUpgradeCost());
                 storage.reduceGold(warrior.getGoldUpgradeCost());
                 storage.reduceIron(warrior.getIronUpgradeCost());
-                sb.append("Уровень: ").append(warrior.getLevel()).append("\n")
+                sb.append(warrior.getName()).append("\n")
+                        .append(Emoji.LEVEL).append("Уровень: ").append(warrior.getLevel()).append("\n")
                         .append("Колличество: ").append(NumberConverter.toString(warrior.getAmount())).append("\n")
-                        .append("HP: ").append(warrior.getHealth()).append(Emoji.HEARTH).append("\n")
                         .append("Атака: ").append(warrior.getAttack()).append(Emoji.CLUBMAN).append("\n")
                         .append("Защита: ").append(warrior.getArmor()).append(Emoji.PROTECTION).append("\n\n")
                         .append("Улучшить:\n")

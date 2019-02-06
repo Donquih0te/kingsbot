@@ -56,7 +56,7 @@ public class BossAttackCommand extends Command {
                             .append("Итоги боя:\n");
                     bossAttack.getAttackers().forEach((id, damage) -> {
                         Player p = bot.getPlayerRepository().get(id);
-                        sb.append(Utils.createLink(p)).append(": ")
+                        sb.append(Utils.createLink(p)).append("  =>  ")
                                 .append(NumberConverter.toString(damage)).append(" урона");
                         if(!bossAttack.isRewarded()) {
                             Storage storage = p.getStorage();
@@ -74,11 +74,11 @@ public class BossAttackCommand extends Command {
                         StringBuilder result = new StringBuilder();
                         result.append(Emoji.TIME).append("Сражение над боссом ").append(boss.getCustomName()).append(" завершено\n\n")
                                 .append("Награда за победу:\n")
-                                .append(boss.getFoodReward()).append(Emoji.FOOD).append("  ")
-                                .append(boss.getGoldReward()).append(Emoji.GOLD).append("  ")
-                                .append(boss.getIronReward()).append(Emoji.IRON).append("  ")
-                                .append(boss.getStoneReward()).append(Emoji.STONE).append("  ")
-                                .append(boss.getWoodReward()).append(Emoji.WOOD).append("\n")
+                                .append(NumberConverter.toString(boss.getFoodReward())).append(Emoji.FOOD).append("  ")
+                                .append(NumberConverter.toString(boss.getGoldReward())).append(Emoji.GOLD).append("  ")
+                                .append(NumberConverter.toString(boss.getIronReward())).append(Emoji.IRON).append("  ")
+                                .append(NumberConverter.toString(boss.getStoneReward())).append(Emoji.STONE).append("  ")
+                                .append(NumberConverter.toString(boss.getWoodReward())).append(Emoji.WOOD).append("\n")
                                 .append("+1").append(Emoji.KEY);
                         bot.sendMessage(new ArrayList<>(bossAttack.getAttackers().keySet()), result.toString(), null);
                         bossAttack.setRewarded(true);
@@ -91,7 +91,11 @@ public class BossAttackCommand extends Command {
                     if(bossAttack.isLose()) {
                         sb.append(Emoji.TIME).append("Бой проигран\n")
                                 .append("Итоги боя:\n");
-
+                        bossAttack.getAttackers().forEach((id, damage) -> {
+                            Player p = bot.getPlayerRepository().get(id);
+                            sb.append(Utils.createLink(p)).append("  =>  ")
+                                    .append(NumberConverter.toString(damage)).append(" урона");
+                        });
                     }else{
                         long time = DATE.getTime() / 1000;
                         String formatDate = formatter.format(new Date((bossAttack.getBoss().getAttackPeriod() - (time - bossAttack.getBoss().getStartAttack())) * 1000));

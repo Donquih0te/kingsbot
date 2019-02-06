@@ -12,6 +12,7 @@ import javax.persistence.TypedQuery;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class ClanRatingCommand extends Command {
 
@@ -27,22 +28,39 @@ public class ClanRatingCommand extends Command {
         Utils.checkSignature(payload.get("key"), player.getId(), name);
         long time = Instant.now().getEpochSecond();
         if(lastUpdate == null || time - lastUpdate > 60) {
-            StringBuilder sb = new StringBuilder("Рейтинг кланов:\n");
-
             TypedQuery<Clan> query = HibernateUtil.getEntityManager()
                     .createQuery("select clan from Clan clan order by clan.rating desc", Clan.class);
             query.setMaxResults(10);
             List<Clan> list = query.getResultList();
-
-            list.forEach(clan -> {
-                sb.append(clan.getName()).append(": ")
-                        .append(NumberConverter.toString(clan.getRating()))
-                        .append(Emoji.TOP).append("\n");
-            });
+            StringBuilder sb = new StringBuilder();
+            if(list.isEmpty()) {
+                sb.append("Пока ни один игрок не создал клан");
+            }else{
+                sb.append("Рейтинг кланов:\n");
+                AtomicInteger i = new AtomicInteger(1);
+                list.forEach(clan -> {
+                    sb.append(getEmoji(i.getAndIncrement())).append(clan.getName()).append("  =>  ")
+                            .append(NumberConverter.toString(clan.getRating()))
+                            .append("\n");
+                });
+            }
 
             lastUpdate = Instant.now().getEpochSecond();
             lastResult = sb.toString();
         }
         bot.sendMessage(peerId, lastResult, null);
+    }
+
+    private String getEmoji(int place) {
+        switch(place) {
+            case 1:
+                return Emoji.GOLD_MEDAL;
+            case 2:
+                return Emoji.SILVER_MEDAL;
+            case 3:
+                return Emoji.BRONZE_MEDAL;
+            default:
+                return Emoji.TERRITORY;
+        }
     }
 }

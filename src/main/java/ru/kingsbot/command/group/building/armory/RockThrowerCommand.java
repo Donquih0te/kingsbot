@@ -56,23 +56,23 @@ public class RockThrowerCommand extends Command {
         Utils.checkSignature(payload.get("key"), player.getId(), name);
         Warrior rockThrower = player.getArmy().getRockThrower();
         Storage storage = player.getStorage();
-        StringBuilder sb = new StringBuilder("Метатель камней\n\n");
-        sb.append("Уровень: ").append(rockThrower.getLevel()).append("\n")
+        StringBuilder sb = new StringBuilder();
+        sb.append(Emoji.ROCK_THROWER).append("Метатель камней\n")
+                .append(Emoji.LEVEL).append("Уровень: ").append(rockThrower.getLevel()).append("\n")
                 .append("Колличество: ").append(NumberConverter.toString(rockThrower.getAmount())).append("\n")
-                .append("HP: ").append(rockThrower.getHealth()).append("&#129505;\n")
-                .append("Атака: ").append(rockThrower.getAttack()).append("&#9876;\n")
-                .append("Защита: ").append(rockThrower.getArmor()).append("&#128737;\n\n")
+                .append("Атака: ").append(rockThrower.getAttack()).append(Emoji.CLUBMAN).append("\n")
+                .append("Защита: ").append(rockThrower.getArmor()).append(Emoji.PROTECTION).append("\n\n")
                 .append("Улучшить:\n")
-                .append(NumberConverter.toString(rockThrower.getFoodUpgradeCost())).append("&#127830;")
+                .append(NumberConverter.toString(rockThrower.getFoodUpgradeCost())).append(Emoji.FOOD)
                 .append(rockThrower.getFoodUpgradeCost() <= storage.getFood() ? " ✔" : " ❌").append("\n")
-                .append(NumberConverter.toString(rockThrower.getGoldUpgradeCost())).append("&#128176;")
+                .append(NumberConverter.toString(rockThrower.getGoldUpgradeCost())).append(Emoji.GOLD)
                 .append(rockThrower.getGoldUpgradeCost() <= storage.getGold() ? " ✔" : " ❌").append("\n")
-                .append(NumberConverter.toString(rockThrower.getIronUpgradeCost())).append("&#9725;")
+                .append(NumberConverter.toString(rockThrower.getIronUpgradeCost())).append(Emoji.IRON)
                 .append(rockThrower.getIronUpgradeCost() <= storage.getIron() ? " ✔" : " ❌").append("\n\n")
                 .append("Купить:\n")
-                .append("100 воинов за ").append(rockThrower.getFoodCost() * 100).append("&#127830; ")
-                .append(rockThrower.getGoldCost() * 100).append("&#128176; ")
-                .append(rockThrower.getIronCost() * 100).append("&#9725;\n");
+                .append("100 воинов за ").append(rockThrower.getFoodCost() * 100).append(Emoji.FOOD).append("  ")
+                .append(rockThrower.getGoldCost() * 100).append(Emoji.GOLD).append("  ")
+                .append(rockThrower.getIronCost() * 100).append(Emoji.IRON).append("\n");
 
         bot.sendMessage(peerId, sb.toString(), keyboard);
     }

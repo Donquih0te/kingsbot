@@ -17,7 +17,7 @@ public class ClanRequestCommand extends Command {
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
         Utils.checkSignature(payload.get("key"), player.getId(), name);
-        if(payload.get("action") == null || payload.get("from") == null) {
+        if(payload.get("action") == null || payload.get("from") == null || Utils.parseInt(payload.get("from")) < 0) {
             return;
         }
 

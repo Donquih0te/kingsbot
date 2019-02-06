@@ -53,10 +53,10 @@ public class ProtectionCommand extends Command {
         Tower tower = player.getTower();
         StringBuilder sb = new StringBuilder();
         sb.append(Emoji.WALL).append("Стены:\n")
-                .append("Уровень: ").append(wall.getLevel()).append("\n")
+                .append(Emoji.LEVEL).append("Уровень: ").append(wall.getLevel()).append("\n")
                 .append("Количество: ").append(wall.getAmount()).append("\n\n");
         sb.append(Emoji.TOWER).append("Башни:\n")
-                .append("Уровень: ").append(tower.getLevel()).append("\n")
+                .append(Emoji.LEVEL).append("Уровень: ").append(tower.getLevel()).append("\n")
                 .append("Количество: ").append(tower.getAmount()).append("\n\n");
         bot.sendMessage(peerId, sb.toString(), keyboard);
     }

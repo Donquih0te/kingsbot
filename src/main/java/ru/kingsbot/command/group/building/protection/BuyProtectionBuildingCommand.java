@@ -6,6 +6,7 @@ import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Building;
 import ru.kingsbot.entity.building.Protection;
 import ru.kingsbot.entity.building.Storage;
+import ru.kingsbot.utils.NumberConverter;
 import ru.kingsbot.utils.Utils;
 
 import java.util.Map;
@@ -37,24 +38,24 @@ public class BuyProtectionBuildingCommand extends Command {
         StringBuilder sb = new StringBuilder();
         Storage storage = player.getStorage();
         boolean buy = true;
-        if(storage.getGold() < (long)building.getGoldCost()) {
-            sb.append("Не хватает ")
-                    .append((long)building.getGoldCost() - storage.getGold()).append(Emoji.GOLD).append(" для покупки\n");
+        if(storage.getGold() < building.getGoldCost()) {
+            sb.append(Emoji.RED_EXCLAMATION_MARK).append("Не хватает ")
+                    .append(NumberConverter.toString(building.getGoldCost() - storage.getGold())).append(Emoji.GOLD).append(" для покупки\n");
             buy = false;
         }
-        if(storage.getIron() < (long)building.getIronCost()) {
-            sb.append("Не хватает ")
-                    .append((long)building.getIronCost() - storage.getIron()).append(Emoji.IRON).append(" для покупки\n");
+        if(storage.getIron() < building.getIronCost()) {
+            sb.append(Emoji.RED_EXCLAMATION_MARK).append("Не хватает ")
+                    .append(NumberConverter.toString(building.getIronCost() - storage.getIron())).append(Emoji.IRON).append(" для покупки\n");
             buy = false;
         }
-        if(storage.getStone() < (long)building.getStoneCost()) {
-            sb.append("Не хватает ")
-                    .append((long)building.getStoneCost() - storage.getStone()).append(Emoji.STONE).append(" для покупки\n");
+        if(storage.getStone() < building.getStoneCost()) {
+            sb.append(Emoji.RED_EXCLAMATION_MARK).append("Не хватает ")
+                    .append(NumberConverter.toString(building.getStoneCost() - storage.getStone())).append(Emoji.STONE).append(" для покупки\n");
             buy = false;
         }
-        if(storage.getWood() < (long)building.getWoodCost()) {
-            sb.append("Не хватает ")
-                    .append((long)building.getWoodCost() - storage.getWood()).append(Emoji.WOOD).append(" для покупки\n");
+        if(storage.getWood() < building.getWoodCost()) {
+            sb.append(Emoji.RED_EXCLAMATION_MARK).append("Не хватает ")
+                    .append(NumberConverter.toString(building.getWoodCost() - storage.getWood())).append(Emoji.WOOD).append(" для покупки\n");
             buy = false;
         }
         if(buy) {
@@ -66,7 +67,7 @@ public class BuyProtectionBuildingCommand extends Command {
                 storage.reduceIron(building.getIronCost());
                 storage.reduceStone(building.getStoneCost());
                 storage.reduceWood(building.getWoodCost());
-                sb.append("Уровень: ").append(building.getLevel()).append("\n")
+                sb.append(Emoji.LEVEL).append("Уровень: ").append(building.getLevel()).append("\n")
                         .append("Количество: ").append(((Protection) building).getAmount()).append("\n");
 
             }

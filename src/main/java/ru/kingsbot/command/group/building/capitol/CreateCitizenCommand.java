@@ -6,6 +6,7 @@ import ru.kingsbot.entity.Citizen;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Capitol;
 import ru.kingsbot.entity.building.Storage;
+import ru.kingsbot.utils.NumberConverter;
 import ru.kingsbot.utils.Utils;
 
 import java.util.Map;
@@ -28,11 +29,13 @@ public class CreateCitizenCommand extends Command {
         }else{
             boolean buy = true;
             if(citizen.getFoodCost() > storage.getFood()) {
-                sb.append("Для покупки не хватает ").append(citizen.getFoodCost() - storage.getFood()).append(Emoji.FOOD).append("\n");
+                sb.append(Emoji.RED_EXCLAMATION_MARK).append("Для покупки не хватает ")
+                        .append(NumberConverter.toString(citizen.getFoodCost() - storage.getFood())).append(Emoji.FOOD).append("\n");
                 buy = false;
             }
             if(citizen.getGoldCost() > storage.getGold()) {
-                sb.append("Для покупки не хватает ").append(citizen.getGoldCost() - storage.getGold()).append(Emoji.GOLD).append("\n");
+                sb.append(Emoji.RED_EXCLAMATION_MARK).append("Для покупки не хватает ")
+                        .append(NumberConverter.toString(citizen.getGoldCost() - storage.getGold())).append(Emoji.GOLD).append("\n");
                 buy = false;
             }
             if(buy) {
@@ -41,14 +44,14 @@ public class CreateCitizenCommand extends Command {
                 capitol.addCitizens(1);
                 capitol.addFreeCitizens(1);
 
-                sb.append("Уровень: ").append(citizen.getLevel()).append("\n")
-                        .append("Рабочих: ").append(capitol.getCitizensAmount()).append("/")
-                        .append(capitol.getMaxCitizensAmount()).append(Emoji.RESOURCES).append("\n")
-                        .append("Свободных рабочих: ").append(capitol.getFreeCitizensAmount()).append(Emoji.WORKERS).append("\n\n")
+                sb.append(Emoji.LEVEL).append("Уровень: ").append(citizen.getLevel()).append("\n")
+                        .append(Emoji.RESOURCES).append("Рабочих: ").append(capitol.getCitizensAmount()).append("/")
+                        .append(capitol.getMaxCitizensAmount()).append("\n")
+                        .append(Emoji.WORKERS).append("Свободных рабочих: ").append(capitol.getFreeCitizensAmount()).append("\n\n")
                         .append("Создать рабочего:\n")
-                        .append(citizen.getFoodCost()).append(Emoji.FOOD)
+                        .append(NumberConverter.toString(citizen.getFoodCost())).append(Emoji.FOOD)
                         .append(storage.getFood() - citizen.getFoodCost() > 0 ? " ✔" : " ❌").append("\n")
-                        .append(citizen.getGoldCost()).append(Emoji.GOLD)
+                        .append(NumberConverter.toString(citizen.getGoldCost())).append(Emoji.GOLD)
                         .append(storage.getGold() - citizen.getGoldCost() > 0 ? " ✔" : " ❌").append("\n\n");
             }
         }

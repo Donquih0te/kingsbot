@@ -54,6 +54,12 @@ public class Button {
         }
 
         public Button create() {
+            if(label == null) {
+                label = "Unknown";
+            }
+            if(color == null) {
+                color = Color.WHITE;
+            }
             return new Button(new Action(label, payload), color);
         }
 

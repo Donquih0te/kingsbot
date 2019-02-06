@@ -40,32 +40,33 @@ public class CitizenResourceCommand extends Command {
                 resource = player.getWoodResource();
                 break;
         }
+        if(resource == null) {
+            return;
+        }
         StringBuilder sb = new StringBuilder();
-        if(resource != null) {
-            String action = payload.get("action");
-            if(action.equals("put")) {
-                if(capitol.getFreeCitizensAmount() == 0) {
-                    sb.append(Emoji.RED_EXCLAMATION_MARK).append("У вас нет свободных рабочих").append("\n");
+        String action = payload.get("action");
+        if(action.equals("put")) {
+            if(capitol.getFreeCitizensAmount() == 0) {
+                sb.append(Emoji.RED_EXCLAMATION_MARK).append("У вас нет свободных рабочих").append("\n");
+            }else{
+                if(resource.getCitizensAmount() == resource.getMaxCitizensAmount()) {
+                    sb.append(Emoji.RED_EXCLAMATION_MARK).append("Нет свободных рабочих мест, чтобы добавить рабочего").append("\n");
                 }else{
-                    if(resource.getCitizensAmount() == resource.getMaxCitizensAmount()) {
-                        sb.append(Emoji.RED_EXCLAMATION_MARK).append("Нет свободных рабочих мест, чтобы добавить рабочего").append("\n");
-                    }else{
-                        resource.addCitizen();
-                        capitol.removeFreeCitizens(1);
-                    }
-                }
-            }else if(action.equals("remove")) {
-                if(resource.getCitizensAmount() == 0) {
-                    sb.append(Emoji.RED_EXCLAMATION_MARK).append("На добыче нет больше рабочих").append("\n");
-                }else{
-                    resource.removeCitizen();
-                    capitol.addFreeCitizens(1);
+                    resource.addCitizen();
+                    capitol.removeFreeCitizens(1);
                 }
             }
-            sb.append("Рабочих на добыче: ").append(resource.getCitizensAmount()).append("/")
-                    .append(resource.getMaxCitizensAmount()).append(Emoji.STONE).append("\n")
-                    .append("Свободных рабочих: ").append(capitol.getFreeCitizensAmount()).append(Emoji.WORKERS).append("\n");
+        }else if(action.equals("remove")) {
+            if(resource.getCitizensAmount() == 0) {
+                sb.append(Emoji.RED_EXCLAMATION_MARK).append("На добыче нет больше рабочих").append("\n");
+            }else{
+                resource.removeCitizen();
+                capitol.addFreeCitizens(1);
+            }
         }
+        sb.append("Рабочих на добыче: ").append(resource.getCitizensAmount()).append("/")
+                .append(resource.getMaxCitizensAmount()).append(Emoji.STONE).append("\n")
+                .append("Свободных рабочих: ").append(capitol.getFreeCitizensAmount()).append(Emoji.WORKERS).append("\n");
 
         bot.sendMessage(peerId, sb.toString(), null);
     }

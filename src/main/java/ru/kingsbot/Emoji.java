@@ -48,5 +48,7 @@ public class Emoji {
     public static final String GOLD_MEDAL = "&#129351;";
     public static final String SILVER_MEDAL = "&#129352;";
     public static final String BRONZE_MEDAL = "&#129353;";
+    public static final String LEVEL = "&#128165;";
+    public static final String SPEED = "&#127788;";
 
 }

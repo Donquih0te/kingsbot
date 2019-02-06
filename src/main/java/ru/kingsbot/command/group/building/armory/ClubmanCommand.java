@@ -57,22 +57,22 @@ public class ClubmanCommand extends Command {
         Warrior clubman = player.getArmy().getClubman();
         Storage storage = player.getStorage();
         StringBuilder sb = new StringBuilder("Воин с дубиной\n\n");
-        sb.append("Уровень: ").append(clubman.getLevel()).append("\n")
+        sb.append(Emoji.CLUBMAN).append("Метатель камней\n")
+                .append(Emoji.LEVEL).append("Уровень: ").append(clubman.getLevel()).append("\n")
                 .append("Колличество: ").append(NumberConverter.toString(clubman.getAmount())).append("\n")
-                .append("HP: ").append(clubman.getHealth()).append("&#129505;\n")
-                .append("Атака: ").append(clubman.getAttack()).append("&#9876;\n")
-                .append("Защита: ").append(clubman.getArmor()).append("&#128737;\n\n")
+                .append("Атака: ").append(clubman.getAttack()).append(Emoji.CLUBMAN).append("\n")
+                .append("Защита: ").append(clubman.getArmor()).append(Emoji.PROTECTION).append("\n\n")
                 .append("Улучшить:\n")
-                .append(NumberConverter.toString(clubman.getFoodUpgradeCost())).append("&#127830;")
+                .append(NumberConverter.toString(clubman.getFoodUpgradeCost())).append(Emoji.FOOD)
                 .append(clubman.getFoodUpgradeCost() <= storage.getFood() ? " ✔" : " ❌").append("\n")
-                .append(NumberConverter.toString(clubman.getGoldUpgradeCost())).append("&#128176;")
+                .append(NumberConverter.toString(clubman.getGoldUpgradeCost())).append(Emoji.GOLD)
                 .append(clubman.getGoldUpgradeCost() <= storage.getGold() ? " ✔" : " ❌").append("\n")
-                .append(NumberConverter.toString(clubman.getIronUpgradeCost())).append("&#9725;")
+                .append(NumberConverter.toString(clubman.getIronUpgradeCost())).append(Emoji.IRON)
                 .append(clubman.getIronUpgradeCost() <= storage.getIron() ? " ✔" : " ❌").append("\n\n")
                 .append("Купить:\n")
-                .append("100 воинов за ").append(clubman.getFoodCost() * 100).append("&#127830; ")
-                .append(clubman.getGoldCost() * 100).append("&#128176; ")
-                .append(clubman.getIronCost() * 100).append("&#9725;\n");
+                .append("100 воинов за ").append(clubman.getFoodCost() * 100).append(Emoji.FOOD).append("  ")
+                .append(clubman.getGoldCost() * 100).append(Emoji.GOLD).append("  ")
+                .append(clubman.getIronCost() * 100).append(Emoji.IRON).append("\n");
 
         bot.sendMessage(peerId, sb.toString(), keyboard);
     }

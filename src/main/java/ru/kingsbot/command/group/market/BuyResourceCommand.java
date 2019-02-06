@@ -73,7 +73,7 @@ public class BuyResourceCommand extends Command {
         Storage storage = player.getStorage();
         Market market = bot.getMarket();
         StringBuilder sb = new StringBuilder();
-        sb.append("Склад:\n")
+        sb.append(Emoji.STORAGE).append("Склад:\n")
                 .append(NumberConverter.toString(storage.getFood())).append(Emoji.FOOD).append("\n")
                 .append(NumberConverter.toString(storage.getGold())).append(Emoji.GOLD).append("\n")
                 .append(NumberConverter.toString(storage.getIron())).append(Emoji.IRON).append("\n")

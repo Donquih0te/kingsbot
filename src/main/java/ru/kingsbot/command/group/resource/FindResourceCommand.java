@@ -35,12 +35,12 @@ public class FindResourceCommand extends Command {
                     player.setFoodResource(new Food(RANDOM.nextInt(500_000 * capitol.getLevel() - 100_000 * capitol.getLevel()) + 100_000 * capitol.getLevel()));
                     sb.append(Emoji.MARK).append("Найдена новая ферма для добычи еды\n")
                             .append("Твои рабочие вернулись со старой фермы. Теперь ты можешь отправить их работать на новую\n\n")
-                            .append("Рабочих на добыче: ").append(resource.getCitizensAmount()).append("/")
+                            .append("Рабочих на добыче: 0/")
                             .append(resource.getMaxCitizensAmount()).append(Emoji.STONE).append("\n")
                             .append("Свободных рабочих: ").append(capitol.getFreeCitizensAmount()).append(Emoji.WORKERS).append("\n");
 
                 }else{
-                    sb.append(Emoji.RED_EXCLAMATION_MARK).append("Завершите добычу ресурса перед поиском нового месторождения\n");
+                    sb.append(Emoji.RED_EXCLAMATION_MARK).append("Поиск нового ресурса возможен только когда ресурс истощен\n");
                 }
                 break;
             case "gold":
@@ -50,11 +50,11 @@ public class FindResourceCommand extends Command {
                     player.setGoldResource(new Gold(RANDOM.nextInt(500_000 * capitol.getLevel() - 100_000 * capitol.getLevel()) + 100_000 * capitol.getLevel()));
                     sb.append(Emoji.MARK).append("Найден новый золотой рудник для добычи золота\n")
                             .append("Твои рабочие вернулись со старого рудника. Теперь ты можешь отправить их работать на новый\n")
-                            .append("Рабочих на добыче: ").append(resource.getCitizensAmount()).append("/")
+                            .append("Рабочих на добыче: 0/")
                             .append(resource.getMaxCitizensAmount()).append(Emoji.STONE).append("\n")
                             .append("Свободных рабочих: ").append(capitol.getFreeCitizensAmount()).append(Emoji.WORKERS).append("\n");
                 }else{
-                    sb.append(Emoji.RED_EXCLAMATION_MARK).append("Завершите добычу ресурса перед поиском нового месторождения\n");
+                    sb.append(Emoji.RED_EXCLAMATION_MARK).append("Поиск нового ресурса возможен только когда ресурс истощен\n");
                 }
                 break;
             case "iron":
@@ -64,11 +64,11 @@ public class FindResourceCommand extends Command {
                     player.setIronResource(new Iron(RANDOM.nextInt(500_000 * capitol.getLevel() - 100_000 * capitol.getLevel()) + 100_000 * capitol.getLevel()));
                     sb.append(Emoji.MARK).append("Найден новый железный рудник для добычи железа\n")
                             .append("Твои рабочие вернулись со старого рудника. Теперь ты можешь отправить их работать на новый\n")
-                            .append("Рабочих на добыче: ").append(resource.getCitizensAmount()).append("/")
+                            .append("Рабочих на добыче: 0/")
                             .append(resource.getMaxCitizensAmount()).append(Emoji.STONE).append("\n")
                             .append("Свободных рабочих: ").append(capitol.getFreeCitizensAmount()).append(Emoji.WORKERS).append("\n");
                 }else{
-                    sb.append(Emoji.RED_EXCLAMATION_MARK).append("Завершите добычу ресурса перед поиском нового месторождения\n");
+                    sb.append(Emoji.RED_EXCLAMATION_MARK).append("Поиск нового ресурса возможен только когда ресурс истощен\n");
                 }
                 break;
             case "stone":
@@ -78,11 +78,11 @@ public class FindResourceCommand extends Command {
                     player.setStoneResource(new Stone(RANDOM.nextInt(500_000 * capitol.getLevel() - 100_000 * capitol.getLevel()) + 100_000 * capitol.getLevel()));
                     sb.append(Emoji.MARK).append("Найдена новая каменная шахта для добычи камня\n")
                             .append("Твои рабочие вернулись со старой шахты. Теперь ты можешь отправить их работать на новую\n")
-                            .append("Рабочих на добыче: ").append(resource.getCitizensAmount()).append("/")
+                            .append("Рабочих на добыче: 0/")
                             .append(resource.getMaxCitizensAmount()).append(Emoji.STONE).append("\n")
                             .append("Свободных рабочих: ").append(capitol.getFreeCitizensAmount()).append(Emoji.WORKERS).append("\n");
                 }else{
-                    sb.append(Emoji.RED_EXCLAMATION_MARK).append("Завершите добычу ресурса перед поиском нового месторождения\n");
+                    sb.append(Emoji.RED_EXCLAMATION_MARK).append("Поиск нового ресурса возможен только когда ресурс истощен\n");
                 }
                 break;
             case "wood":
@@ -92,11 +92,11 @@ public class FindResourceCommand extends Command {
                     player.setWoodResource(new Wood(RANDOM.nextInt(500_000 * capitol.getLevel() - 100_000 * capitol.getLevel()) + 100_000 * capitol.getLevel()));
                     sb.append(Emoji.MARK).append("Найден новый лес для добычи дерева\n")
                             .append("Твои рабочие вернулись со старого леса. Теперь ты можешь отправить их работать на новый\n")
-                            .append("Рабочих на добыче: ").append(resource.getCitizensAmount()).append("/")
+                            .append("Рабочих на добыче: 0/")
                             .append(resource.getMaxCitizensAmount()).append(Emoji.STONE).append("\n")
                             .append("Свободных рабочих: ").append(capitol.getFreeCitizensAmount()).append(Emoji.WORKERS).append("\n");
                 }else{
-                    sb.append(Emoji.RED_EXCLAMATION_MARK).append("Завершите добычу ресурса перед поиском нового леса\n");
+                    sb.append(Emoji.RED_EXCLAMATION_MARK).append("Поиск нового ресурса возможен только когда ресурс истощен\n");
                 }
                 break;
         }

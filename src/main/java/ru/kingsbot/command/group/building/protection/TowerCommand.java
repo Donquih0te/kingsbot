@@ -8,6 +8,7 @@ import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Storage;
 import ru.kingsbot.entity.building.Tower;
+import ru.kingsbot.utils.NumberConverter;
 import ru.kingsbot.utils.Utils;
 
 import java.util.LinkedList;
@@ -56,27 +57,27 @@ public class TowerCommand extends Command {
         StringBuilder sb = new StringBuilder();
         Storage storage = player.getStorage();
         Tower tower = player.getTower();
-        sb.append(Emoji.TOWER).append("Башни:\n\n")
-                .append("Уровень:").append(tower.getLevel()).append("\n")
+        sb.append(Emoji.TOWER).append("Башни:\n")
+                .append(Emoji.LEVEL).append("Уровень:").append(tower.getLevel()).append("\n")
                 .append("Количество: ").append(tower.getAmount()).append("\n\n")
                 .append("Купить:\n")
-                .append(tower.getGoldCost()).append(Emoji.GOLD)
-                .append((long)tower.getGoldCost() <= storage.getGold() ? " ✔" : " ❌").append("\n")
-                .append(tower.getIronCost()).append(Emoji.IRON)
-                .append((long)tower.getIronCost() <= storage.getIron() ? " ✔" : " ❌").append("\n")
-                .append(tower.getStoneCost()).append(Emoji.STONE)
-                .append((long)tower.getStoneCost() <= storage.getStone() ? " ✔" : " ❌").append("\n")
-                .append(tower.getWoodCost()).append(Emoji.WOOD)
-                .append((long)tower.getWoodCost() <= storage.getWood() ? " ✔" : " ❌").append("\n\n")
+                .append(NumberConverter.toString(tower.getGoldCost())).append(Emoji.GOLD)
+                .append(tower.getGoldCost() <= storage.getGold() ? " ✔" : " ❌").append("\n")
+                .append(NumberConverter.toString(tower.getIronCost())).append(Emoji.IRON)
+                .append(tower.getIronCost() <= storage.getIron() ? " ✔" : " ❌").append("\n")
+                .append(NumberConverter.toString(tower.getStoneCost())).append(Emoji.STONE)
+                .append(tower.getStoneCost() <= storage.getStone() ? " ✔" : " ❌").append("\n")
+                .append(NumberConverter.toString(tower.getWoodCost())).append(Emoji.WOOD)
+                .append(tower.getWoodCost() <= storage.getWood() ? " ✔" : " ❌").append("\n\n")
                 .append("Улучшить:\n")
-                .append(tower.getGoldUpgradeCost()).append(Emoji.GOLD)
-                .append((long)tower.getGoldUpgradeCost() <= storage.getGold() ? " ✔" : " ❌").append("\n")
-                .append(tower.getIronUpgradeCost()).append(Emoji.IRON)
-                .append((long)tower.getIronUpgradeCost() <= storage.getIron() ? " ✔" : " ❌").append("\n")
-                .append(tower.getStoneUpgradeCost()).append(Emoji.STONE)
-                .append((long)tower.getStoneUpgradeCost() <= storage.getStone() ? " ✔" : " ❌").append("\n")
-                .append(tower.getWoodUpgradeCost()).append(Emoji.WOOD)
-                .append((long)tower.getWoodUpgradeCost() <= storage.getWood() ? " ✔" : " ❌").append("\n\n");
+                .append(NumberConverter.toString(tower.getGoldUpgradeCost())).append(Emoji.GOLD)
+                .append(tower.getGoldUpgradeCost() <= storage.getGold() ? " ✔" : " ❌").append("\n")
+                .append(NumberConverter.toString(tower.getIronUpgradeCost())).append(Emoji.IRON)
+                .append(tower.getIronUpgradeCost() <= storage.getIron() ? " ✔" : " ❌").append("\n")
+                .append(NumberConverter.toString(tower.getStoneUpgradeCost())).append(Emoji.STONE)
+                .append(tower.getStoneUpgradeCost() <= storage.getStone() ? " ✔" : " ❌").append("\n")
+                .append(NumberConverter.toString(tower.getWoodUpgradeCost())).append(Emoji.WOOD)
+                .append(tower.getWoodUpgradeCost() <= storage.getWood() ? " ✔" : " ❌").append("\n\n");
 
         bot.sendMessage(peerId, sb.toString(), keyboard);
     }

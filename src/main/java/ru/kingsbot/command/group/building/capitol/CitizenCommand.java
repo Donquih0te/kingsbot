@@ -55,10 +55,10 @@ public class CitizenCommand extends Command {
         Citizen citizen = player.getCapitol().getCitizen();
         Storage storage = player.getStorage();
         StringBuilder sb = new StringBuilder();
-        sb.append(Emoji.WORKERS).append("Рабочий:\n\n")
-                .append("Уровень: ").append(citizen.getLevel()).append("\n\n")
-                .append("Скорость добычи: ")
-                .append(NumberConverter.toString(citizen.getFoodPerMinute())).append(Emoji.FOOD).append(" в минуту\n\n")
+        sb.append(Emoji.WORKERS).append("Рабочий:\n")
+                .append(Emoji.LEVEL).append("Уровень: ").append(citizen.getLevel()).append("\n\n")
+                .append(Emoji.SPEED).append("Скорость добычи: ")
+                .append(NumberConverter.toString(citizen.getFoodPerMinute())).append(" в минуту\n\n")
                 .append("Создать:\n")
                 .append(NumberConverter.toString(citizen.getFoodCost())).append(Emoji.FOOD)
                 .append(citizen.getFoodCost() <= storage.getFood() ? " ✔" : " ❌").append("\n")

@@ -28,7 +28,6 @@ public class AttackCommand extends Command {
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
         Utils.checkSignature(payload.get("key"), player.getId(), name);
-
         StringBuilder sb = new StringBuilder();
         Long currentTime = Instant.now().getEpochSecond();
         if(!players.containsKey(player.getId()) || (currentTime - players.get(player.getId()) > TIMESTAMP)) {

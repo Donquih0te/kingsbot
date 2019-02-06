@@ -8,6 +8,7 @@ import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Armory;
 import ru.kingsbot.entity.building.Storage;
+import ru.kingsbot.utils.NumberConverter;
 import ru.kingsbot.utils.Utils;
 
 import java.util.LinkedList;
@@ -25,17 +26,18 @@ public class ArmoryCommand extends Command {
         Utils.checkSignature(payload.get("key"), player.getId(), name);
         Armory armory = player.getArmory();
         Storage storage = player.getStorage();
-        StringBuilder sb = new StringBuilder(Emoji.ARMORY + "Казармы\n\n");
+        StringBuilder sb = new StringBuilder();
         if(!armory.isPurchased()) {
-            sb.append("Уровень: ").append(armory.getLevel()).append("\n\n")
+            sb.append(Emoji.ARMORY).append("Казармы\n")
+                    .append(Emoji.LEVEL).append("Уровень: ").append(armory.getLevel()).append("\n\n")
                     .append("Купить:\n")
-                    .append(armory.getGoldCost()).append(Emoji.GOLD)
+                    .append(NumberConverter.toString(armory.getGoldCost())).append(Emoji.GOLD)
                     .append(armory.getGoldCost() <= storage.getGold() ? " ✔" : " ❌").append("\n")
-                    .append(armory.getIronCost()).append(Emoji.IRON)
+                    .append(NumberConverter.toString(armory.getIronCost())).append(Emoji.IRON)
                     .append(armory.getIronCost() <= storage.getIron() ? " ✔" : " ❌").append("\n")
-                    .append(armory.getStoneCost()).append(Emoji.STONE)
+                    .append(NumberConverter.toString(armory.getStoneCost())).append(Emoji.STONE)
                     .append(armory.getStoneCost() <= storage.getStone() ? " ✔" : " ❌").append("\n")
-                    .append(armory.getWoodCost()).append(Emoji.WOOD)
+                    .append(NumberConverter.toString(armory.getWoodCost())).append(Emoji.WOOD)
                     .append(armory.getWoodCost() <= storage.getWood() ? " ✔" : " ❌").append("\n");
             keyboard = Keyboard.newKeyboard()
                     .row(List.of(
@@ -61,14 +63,14 @@ public class ArmoryCommand extends Command {
                     ))
                     .build();
         }else{
-            sb.append("Улучшить:\n");
-            sb.append(armory.getGoldUpgradeCost()).append(Emoji.GOLD)
-                    .append(armory.getGoldUpgradeCost() <= storage.getGold() ? " ✔" : " ❌").append("\n");
-            sb.append(armory.getIronUpgradeCost()).append(Emoji.IRON)
-                    .append(armory.getIronUpgradeCost() <= storage.getIron() ? " ✔" : " ❌").append("\n");
-            sb.append(armory.getStoneUpgradeCost()).append(Emoji.STONE)
-                    .append(armory.getStoneUpgradeCost() <= storage.getStone() ? " ✔" : " ❌").append("\n");
-            sb.append(armory.getWoodUpgradeCost()).append(Emoji.WOOD)
+            sb.append("Улучшить:\n")
+                    .append(NumberConverter.toString(armory.getGoldUpgradeCost())).append(Emoji.GOLD)
+                    .append(armory.getGoldUpgradeCost() <= storage.getGold() ? " ✔" : " ❌").append("\n")
+                    .append(NumberConverter.toString(armory.getIronUpgradeCost())).append(Emoji.IRON)
+                    .append(armory.getIronUpgradeCost() <= storage.getIron() ? " ✔" : " ❌").append("\n")
+                    .append(NumberConverter.toString(armory.getStoneUpgradeCost())).append(Emoji.STONE)
+                    .append(armory.getStoneUpgradeCost() <= storage.getStone() ? " ✔" : " ❌").append("\n")
+                    .append(NumberConverter.toString(armory.getWoodUpgradeCost())).append(Emoji.WOOD)
                     .append(armory.getWoodUpgradeCost() <= storage.getWood() ? " ✔" : " ❌").append("\n\n");
             keyboard = Keyboard.newKeyboard()
                     .row(new LinkedList<>(List.of(
