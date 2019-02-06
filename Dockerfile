@@ -1,6 +1,5 @@
-FROM openjdk
+FROM openjdk:11
 
-COPY /gradle/libs/civ.jar .
+COPY /build/libs/civ.jar /
 
-ENTRYPOINT ["java"]
-CMD ["-jar", "/app/civ.jar"]
+CMD java -jar /civ.jar
