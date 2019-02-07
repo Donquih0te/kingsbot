@@ -1,8 +1,6 @@
 package ru.kingsbot.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 import ru.kingsbot.entity.age.Age;
 import ru.kingsbot.entity.army.Army;
@@ -18,6 +16,8 @@ import java.util.*;
 @Entity
 @Table(name = "player")
 @DynamicUpdate
+@ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 public class Player {
 

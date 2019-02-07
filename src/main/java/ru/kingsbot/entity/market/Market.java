@@ -1,11 +1,15 @@
 package ru.kingsbot.entity.market;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "market")
+@ToString
+@EqualsAndHashCode
 public class Market {
 
     @Id

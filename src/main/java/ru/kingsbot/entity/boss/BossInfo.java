@@ -1,7 +1,9 @@
 package ru.kingsbot.entity.boss;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import ru.kingsbot.boss.Boss;
 
 import javax.persistence.Column;
@@ -11,6 +13,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "boss_info")
+@ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 public class BossInfo {
 

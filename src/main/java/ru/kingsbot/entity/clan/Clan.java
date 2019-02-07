@@ -1,8 +1,6 @@
 package ru.kingsbot.entity.clan;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import ru.kingsbot.Bot;
 import ru.kingsbot.service.PlayerService;
 
@@ -13,6 +11,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "clan")
+@ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 public class Clan {
 

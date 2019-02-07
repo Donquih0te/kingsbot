@@ -1,12 +1,16 @@
 package ru.kingsbot.entity.army;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "army")
+@ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 public class Army {
 
