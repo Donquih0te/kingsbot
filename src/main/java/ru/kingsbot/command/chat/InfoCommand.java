@@ -32,7 +32,7 @@ public class InfoCommand extends Command {
                 .append("Игровой ID: ").append(player.getId()).append("\n")
                 .append("Эпоха: ").append(player.getAge().getName()).append(Emoji.AGE).append("\n")
                 .append("Земли: ").append(player.getTerritory()).append(Emoji.TERRITORY).append("\n\n")
-                .append("Побед: ").append(player.getWins()).append("\n")
+                .append("Побед: ").append(player.getWins()).append(Emoji.GOLD_MEDAL).append("\n")
                 .append("Поражений: ").append(player.getLesions()).append("\n\n")
                 .append("Свободно рабочих: ").append(capitol.getFreeCitizensAmount()).append(Emoji.FREE_CITIZEN).append("\n")
                 .append("Рабочих: ").append(capitol.getCitizensAmount()).append("/").append(capitol.getMaxCitizensAmount()).append(Emoji.CITIZEN).append("\n\n")

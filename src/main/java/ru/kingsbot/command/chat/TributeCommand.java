@@ -40,6 +40,7 @@ public class TributeCommand extends Command {
             int min = 1000 * player.getLevel() * capitol.getLevel();
             int amount = RANDOM.nextInt(max - min) + min;
             storage.addGold(amount);
+
             player.addExperience(1);
             if(player.getCurrentExperience().intValue() == player.getMaxExperience().intValue()) {
                 player.levelUp();
