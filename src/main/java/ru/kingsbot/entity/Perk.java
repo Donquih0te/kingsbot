@@ -1,14 +1,14 @@
 package ru.kingsbot.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.Instant;
 
 @Entity
 @Table(name = "perk")
+@ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 public class Perk {
 

@@ -1,11 +1,11 @@
 package ru.kingsbot.entity.building;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
+@ToString
+@EqualsAndHashCode
 @MappedSuperclass
 @NoArgsConstructor
 public class Building {

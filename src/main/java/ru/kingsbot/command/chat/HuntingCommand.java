@@ -44,9 +44,9 @@ public class HuntingCommand extends Command {
                     int max = 1000 * player.getLevel() * capitol.getFreeCitizensAmount();
                     int min = 200 * player.getLevel() * capitol.getFreeCitizensAmount();
                     int amount = RANDOM.nextInt(max - min) + min;
-                    player.getStorage().addFood(amount);
                     sb.append(Utils.createLink(player)).append(", ").append(list.get(i)).append(" Это принесло тебе ")
-                            .append(NumberConverter.toString(amount)).append(Emoji.FOOD).append(" \n\n");
+                            .append(NumberConverter.toString(amount)).append(Emoji.FOOD);
+                    player.getStorage().addFood(amount);
                 }else{
                     sb.append(Utils.createLink(player)).append(list.get(i)).append("\n\n");
                 }

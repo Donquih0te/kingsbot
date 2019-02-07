@@ -16,12 +16,10 @@ import java.util.List;
 @Log4j2
 public class DonateParser extends Thread {
 
-    private final Bot bot;
     private final PlayerService playerService;
     private final DonateService donateService;
 
     public DonateParser(Bot bot) {
-        this.bot = bot;
         this.playerService = bot.getPlayerService();
         this.donateService = bot.getDonateService();
 
@@ -30,15 +28,17 @@ public class DonateParser extends Thread {
     }
 
     public void run() {
-        List<String > lines = null;
         while(true) {
             try {
-                Thread.sleep(10000);
+                Thread.sleep(15000);
             }catch(InterruptedException ignore) {
 
             }
 
-            List<Donate> donateList = donateService.findByNotCompleted();
+            List<Donate> donateList = donateService.getNotCompleted();
+            if(donateList.isEmpty()) {
+                return;
+            }
             donateList.forEach(donate -> {
                 String[] words = donate.getCommand().split(" ");
                 int id = donate.getCustomer();
@@ -54,7 +54,7 @@ public class DonateParser extends Thread {
                         break;
                     }
                     case "setattack": {
-                        double attack = Double.parseDouble(words[1]);
+                        double attack = Utils.parseDouble(words[1]);
                         int hours = Utils.parseInt(words[2]);
                         Player player = playerService.getById(id);
                         if(player == null) {
@@ -67,7 +67,7 @@ public class DonateParser extends Thread {
                         break;
                     }
                     case "setshield": {
-                        int hours = Integer.parseInt(words[1]);
+                        int hours = Utils.parseInt(words[1]);
                         Player player = playerService.getById(id);
                         if(player == null) {
                             return;

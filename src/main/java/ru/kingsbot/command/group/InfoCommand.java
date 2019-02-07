@@ -39,14 +39,13 @@ public class InfoCommand extends Command {
             t = "00:00:00";
         }
         StringBuilder sb = new StringBuilder();
-        sb.append("Статистика:\n\n")
-                .append("ID: ").append(player.getId()).append("\n")
+        sb.append("Игровой ID: ").append(player.getId()).append("\n")
                 .append("Эпоха: ").append(player.getAge().getName()).append(Emoji.AGE).append("\n")
                 .append("Земли: ").append(player.getTerritory()).append(Emoji.TERRITORY).append("\n")
                 .append("Щит: ").append(t).append("\n\n")
                 .append("Свободно рабочих: ").append(capitol.getFreeCitizensAmount()).append(Emoji.FREE_CITIZEN).append("\n")
                 .append("Рабочих: ").append(capitol.getCitizensAmount()).append("/").append(capitol.getMaxCitizensAmount()).append(Emoji.CITIZEN).append("\n\n")
-                .append("Побед: ").append(player.getWins()).append("\n")
+                .append("Побед: ").append(player.getWins()).append(Emoji.GOLD_MEDAL).append("\n")
                 .append("Поражений: ").append(player.getLesions()).append("\n\n")
                 .append(Emoji.FOOD).append("Еда: ").append(NumberConverter.toString(storage.getFood())).append("  |  ")
                 .append(NumberConverter.toString(storage.getMaxFood())).append("\n")
@@ -58,6 +57,7 @@ public class InfoCommand extends Command {
                 .append(NumberConverter.toString(storage.getMaxStone())).append("\n")
                 .append(Emoji.WOOD).append("Дерево: ").append(NumberConverter.toString(storage.getWood())).append("  |  ")
                 .append(NumberConverter.toString(storage.getMaxWood())).append("\n\n");
+
         if(player.getFoodResource().isMined() || player.getGoldResource().isMined() || player.getIronResource().isMined() ||
                 player.getStoneResource().isMined() || player.getWoodResource().isMined()) {
             sb.append(Emoji.RED_EXCLAMATION_MARK).append("Есть истощенные ресурсы");

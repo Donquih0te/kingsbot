@@ -1,11 +1,15 @@
 package ru.kingsbot.entity;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "citizen")
+@ToString
+@EqualsAndHashCode
 public class Citizen {
 
     @Id

@@ -15,10 +15,10 @@ public class FriendCommand extends Command {
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
         StringBuilder sb = new StringBuilder();
-        sb.append("Приглашай друзей и получай за них бонусы!\n")
+        sb.append(Emoji.KRIEG).append("Приглашай друзей и получай за них бонусы!\n")
                 .append("За каждого нового друга ты можешь получить 100к").append(Emoji.GOLD).append("\n\n")
                 .append("Твой друг должен написать команду боту:\n")
-                .append("реф <").append(player.getId()).append(">\n\n")
+                .append("реф ").append(player.getId()).append("\n\n")
                 .append("Ты пригласил в игру: ").append(player.getInviteList().size());
 
         playerService.sendMessage(peerId, sb.toString(), null);

@@ -1,9 +1,13 @@
 package ru.kingsbot.entity.market;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
+@ToString
+@EqualsAndHashCode
 @MappedSuperclass
 public class ResourceCost {
 

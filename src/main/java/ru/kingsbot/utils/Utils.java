@@ -8,8 +8,9 @@ import java.util.Random;
 
 public class Utils {
 
-    private static Base64.Encoder encoder = Base64.getEncoder();
-    private static Base64.Decoder decoder = Base64.getDecoder();
+    private static final Base64.Encoder encoder = Base64.getEncoder();
+    private static final Base64.Decoder decoder = Base64.getDecoder();
+    private static final Random RANDOM = new Random();
 
     public static String createLink(Player player) {
         StringBuilder sb = new StringBuilder();
@@ -26,7 +27,7 @@ public class Utils {
 
     public static <T> T getRandomValueFromList(List<T> list) {
         if(!list.isEmpty()) {
-            return list.get(new Random().nextInt(list.size()));
+            return list.get(RANDOM.nextInt(list.size()));
         }
         return null;
     }

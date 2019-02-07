@@ -1,7 +1,9 @@
 package ru.kingsbot.entity.conversation;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +12,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "conversation")
+@ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 public class Conversation {
 
