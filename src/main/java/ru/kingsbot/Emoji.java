@@ -50,6 +50,7 @@ public class Emoji {
     public static final String BRONZE_MEDAL = "&#129353;";
     public static final String LEVEL = "&#128165;";
     public static final String SPEED = "&#127788;";
+    public static final String EXPERIENCE = "&#9889;";
     public static final String KRIEG = "&#128488;";
     public static final String ARLONG = "&#129416;";
     public static final String CROCODILE = "&#128010;";

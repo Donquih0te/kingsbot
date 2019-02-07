@@ -1,5 +1,6 @@
 package ru.kingsbot.command.chat;
 
+import ru.kingsbot.Emoji;
 import ru.kingsbot.api.keyboard.Keyboards;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
@@ -49,16 +50,17 @@ public class RaidCommand extends Command {
                     player.levelUp();
                 }
 
-                players.put(player.getId(), currentTime);
                 sb.append(Utils.createLink(player)).append(", ты совершил набег на близлижайшее поселение.\n\n")
                         .append("В результате набега получено: \n")
-                        .append(NumberConverter.toString(goldAmount)).append("&#128176;  ")
-                        .append(NumberConverter.toString(ironAmount)).append("&#9725;  ")
-                        .append(NumberConverter.toString(woodAmount)).append("&#127795;\n\n")
-                        .append("Уровень: ").append(player.getLevel()).append("&#10024;\n")
-                        .append("Опыт: ").append(player.getCurrentExperience()).append("/").append(player.getMaxExperience()).append("&#9889;");
+                        .append(NumberConverter.toString(goldAmount)).append(Emoji.GOLD).append("  ")
+                        .append(NumberConverter.toString(ironAmount)).append(Emoji.IRON).append("  ")
+                        .append(NumberConverter.toString(woodAmount)).append(Emoji.WOOD).append("\n\n")
+                        .append(Emoji.LEVEL).append("Уровень: ").append(player.getLevel()).append("\n")
+                        .append(Emoji.EXPERIENCE).append("Опыт: ").append(player.getCurrentExperience()).append("/").append(player.getMaxExperience());
+                players.put(player.getId(), currentTime);
             }else{
-                sb.append(Utils.createLink(player)).append(", у тебя нет свободных рабочих чтобы совершить набег.");
+                sb.append(Utils.createLink(player)).append(", у тебя нет свободных рабочих чтобы совершить набег.\n")
+                        .append("Создать новых рабочих можно в \"Строения\" -> \"Капитолий\"");
             }
         }else{
             sb.append(Utils.createLink(player)).append(", твои люди устали после прошлого набега. Следующий набег можно совершить через ")
