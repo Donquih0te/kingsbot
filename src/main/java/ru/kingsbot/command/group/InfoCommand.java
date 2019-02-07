@@ -57,7 +57,7 @@ public class InfoCommand extends Command {
                 .append(NumberConverter.toString(storage.getMaxStone())).append("\n")
                 .append(Emoji.WOOD).append("Дерево: ").append(NumberConverter.toString(storage.getWood())).append("  |  ")
                 .append(NumberConverter.toString(storage.getMaxWood())).append("\n\n");
-        
+
         if(player.getFoodResource().isMined() || player.getGoldResource().isMined() || player.getIronResource().isMined() ||
                 player.getStoneResource().isMined() || player.getWoodResource().isMined()) {
             sb.append(Emoji.RED_EXCLAMATION_MARK).append("Есть истощенные ресурсы");
