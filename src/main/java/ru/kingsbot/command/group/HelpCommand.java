@@ -20,6 +20,6 @@ public class HelpCommand extends Command {
                 .append("Помощь проекту: ").append("kingsbot.ru").append("\n\n")
                 .append("Если тебя пригласили в игру, то ты можешь написать \"реф <ID пригласившего>\" и вы оба получите небольшой бонус");
 
-        bot.sendMessage(peerId, sb.toString(), null);
+        playerService.sendMessage(peerId, sb.toString(), null);
     }
 }

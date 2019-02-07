@@ -101,6 +101,6 @@ public class BuyWarriorCommand extends Command {
                 )
                 .build();
 
-        bot.sendMessage(peerId, "Выберите количество", keyboard);
+        playerService.sendMessage(peerId, "Выберите количество", keyboard);
     }
 }

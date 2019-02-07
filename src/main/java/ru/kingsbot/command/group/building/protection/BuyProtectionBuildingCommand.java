@@ -73,6 +73,6 @@ public class BuyProtectionBuildingCommand extends Command {
             }
         }
 
-        bot.sendMessage(peerId, sb.toString(), null);
+        playerService.sendMessage(peerId, sb.toString(), null);
     }
 }

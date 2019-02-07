@@ -73,7 +73,7 @@ public class BuyWarriorAmountCommand extends Command {
             }
         }
 
-        bot.sendMessage(peerId, sb.toString(), null);
+        playerService.sendMessage(peerId, sb.toString(), null);
 
     }
 }

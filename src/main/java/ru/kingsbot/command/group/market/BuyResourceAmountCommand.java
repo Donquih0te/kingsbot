@@ -24,7 +24,7 @@ public class BuyResourceAmountCommand extends Command {
             return;
         }
         StringBuilder sb = new StringBuilder();
-        Market market = bot.getMarket();
+        Market market = marketService.load(1L);
         Storage storage = player.getStorage();
         long amount = Utils.parseInt(payload.get("amount"));
         switch(payload.get("resource")) {
@@ -106,7 +106,7 @@ public class BuyResourceAmountCommand extends Command {
                 .append(NumberConverter.toString(storage.getWood())).append(" | ")
                 .append(NumberConverter.toString(storage.getMaxWood())).append(Emoji.WOOD).append("\n");
 
-        bot.sendMessage(peerId, sb.toString(), null);
+        playerService.sendMessage(peerId, sb.toString(), null);
     }
 
 }

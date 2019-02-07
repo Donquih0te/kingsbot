@@ -20,7 +20,7 @@ public class VkApiClient {
         client.start();
     }
 
-    public String request(ApiRequest request) {
+    public String sendRequest(ApiRequest request) {
         String result = null;
         HttpResponse response = null;
         try {

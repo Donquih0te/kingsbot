@@ -74,7 +74,7 @@ public class ClubmanCommand extends Command {
                 .append(clubman.getGoldCost() * 100).append(Emoji.GOLD).append("  ")
                 .append(clubman.getIronCost() * 100).append(Emoji.IRON).append("\n");
 
-        bot.sendMessage(peerId, sb.toString(), keyboard);
+        playerService.sendMessage(peerId, sb.toString(), keyboard);
     }
 
 }

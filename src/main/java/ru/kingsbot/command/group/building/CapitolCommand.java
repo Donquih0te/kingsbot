@@ -69,6 +69,6 @@ public class CapitolCommand extends Command {
                 .append(NumberConverter.toString(capitol.getWoodUpgradeCost())).append(Emoji.WOOD)
                 .append(capitol.getWoodUpgradeCost() <= storage.getWood() ? " ✔" : " ❌").append("\n\n");
 
-        bot.sendMessage(peerId, sb.toString(), keyboard);
+        playerService.sendMessage(peerId, sb.toString(), keyboard);
     }
 }

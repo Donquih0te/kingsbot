@@ -51,6 +51,6 @@ public class UpgradeCitizenCommand extends Command {
                     .append(storage.getGold() - citizen.getGoldUpgradeCost() > 0 ? " ✔" : " ❌").append("\n\n");
         }
 
-        bot.sendMessage(peerId, sb.toString(), null);
+        playerService.sendMessage(peerId, sb.toString(), null);
     }
 }

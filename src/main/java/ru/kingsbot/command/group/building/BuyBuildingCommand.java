@@ -1,6 +1,7 @@
 package ru.kingsbot.command.group.building;
 
 import ru.kingsbot.Emoji;
+import ru.kingsbot.api.keyboard.Keyboards;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Building;
@@ -65,10 +66,9 @@ public class BuyBuildingCommand extends Command {
             storage.reduceStone(building.getStoneCost());
             storage.reduceWood(building.getWoodCost());
             building.setPurchased(true);
-            bot.getPlayerRepository().update(player);
             sb.append("Куплено новое здание");
         }
 
-        bot.sendMessage(peerId, sb.toString(), bot.getKeyboard());
+        playerService.sendMessage(peerId, sb.toString(), Keyboards.getGroupKeyboard());
     }
 }

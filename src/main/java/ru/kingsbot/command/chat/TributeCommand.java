@@ -1,6 +1,7 @@
 package ru.kingsbot.command.chat;
 
 import ru.kingsbot.Emoji;
+import ru.kingsbot.api.keyboard.Keyboards;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Capitol;
@@ -54,6 +55,6 @@ public class TributeCommand extends Command {
                     .append(formatter.format(new Date((TIMESTAMP - (currentTime - players.get(player.getId()))) * 1000)));
         }
 
-        bot.sendMessage(peerId, sb.toString(), bot.getChatKeyboard());
+        playerService.sendMessage(peerId, sb.toString(), Keyboards.getChatKeyboard());
     }
 }

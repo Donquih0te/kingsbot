@@ -58,6 +58,6 @@ public class ProtectionCommand extends Command {
         sb.append(Emoji.TOWER).append("Башни:\n")
                 .append(Emoji.LEVEL).append("Уровень: ").append(tower.getLevel()).append("\n")
                 .append("Количество: ").append(tower.getAmount()).append("\n\n");
-        bot.sendMessage(peerId, sb.toString(), keyboard);
+        playerService.sendMessage(peerId, sb.toString(), keyboard);
     }
 }

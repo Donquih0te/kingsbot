@@ -57,4 +57,14 @@ public class Utils {
         return i;
     }
 
+    public static double parseDouble(String s) {
+        double i;
+        try {
+            i = Integer.parseInt(s);
+        }catch(NumberFormatException ignore) {
+            i = 0;
+        }
+        return i;
+    }
+
 }

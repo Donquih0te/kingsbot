@@ -11,7 +11,6 @@ import ru.kingsbot.entity.building.Storage;
 import ru.kingsbot.utils.NumberConverter;
 import ru.kingsbot.utils.Utils;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +19,7 @@ public class CitizenCommand extends Command {
     public CitizenCommand() {
         super("citizen");
         keyboard = Keyboard.newKeyboard()
-                .row(new LinkedList<>(List.of(
+                .row(List.of(
                         Button.newButton()
                                 .label(Emoji.PLUS + "Создать")
                                 .payload("command", "create_citizen")
@@ -31,8 +30,7 @@ public class CitizenCommand extends Command {
                                 .payload("command", "upgrade_citizen")
                                 .color(Color.WHITE)
                                 .create()
-                        ))
-                )
+                ))
                 .row(List.of(
                         Button.newButton()
                                 .label(Emoji.BACK + "Назад")
@@ -70,6 +68,6 @@ public class CitizenCommand extends Command {
                 .append(NumberConverter.toString(citizen.getGoldUpgradeCost())).append(Emoji.GOLD)
                 .append(storage.getGold() - citizen.getGoldUpgradeCost() > 0 ? " ✔" : " ❌").append("\n\n");
 
-        bot.sendMessage(peerId, sb.toString(), keyboard);
+        playerService.sendMessage(peerId, sb.toString(), keyboard);
     }
 }

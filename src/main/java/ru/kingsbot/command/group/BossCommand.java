@@ -48,6 +48,6 @@ public class BossCommand extends Command {
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
         Utils.checkSignature(payload.get("key"), player.getId(), name);
-        bot.sendMessage(peerId, "Боссы", keyboard);
+        playerService.sendMessage(peerId, "Боссы", keyboard);
     }
 }

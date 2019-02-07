@@ -57,7 +57,7 @@ public class TopCommand extends Command {
 //        sb.append("\n....\n")
 //                .append(result).append("  ").append(Utils.createLink(player)).append("  =>  ").append(player.getTerritory());
 
-        bot.sendMessage(peerId, lastResult, null);
+        playerService.sendMessage(peerId, lastResult, null);
     }
 
     private String getEmoji(int place) {

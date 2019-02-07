@@ -44,6 +44,6 @@ public class MarketCommand extends Command {
         //TODO: добавить торговца
         StringBuilder sb = new StringBuilder();
         sb.append("На рынке ты можешь купить или продать некоторые ресурсы.");
-        bot.sendMessage(peerId, sb.toString(), keyboard);
+        playerService.sendMessage(peerId, sb.toString(), keyboard);
     }
 }

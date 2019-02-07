@@ -90,6 +90,6 @@ public class UpgradeBuildingCommand extends Command {
                     .append(NumberConverter.toString(building.getWoodUpgradeCost())).append(Emoji.WOOD)
                     .append(storage.getWood() >= building.getWoodUpgradeCost() ? " ✔" : " ❌").append("\n\n");
         }
-        bot.sendMessage(peerId, sb.toString(), null);
+        playerService.sendMessage(peerId, sb.toString(), null);
     }
 }

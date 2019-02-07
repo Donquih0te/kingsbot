@@ -66,6 +66,6 @@ public class StorageCommand extends Command {
                 .append(NumberConverter.toString(storage.getWoodUpgradeCost())).append(Emoji.WOOD)
                 .append(storage.getWoodUpgradeCost() <= storage.getWood() ? " ✔" : " ❌").append("\n\n");
 
-        bot.sendMessage(peerId, sb.toString(), keyboard);
+        playerService.sendMessage(peerId, sb.toString(), keyboard);
     }
 }

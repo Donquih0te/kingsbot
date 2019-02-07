@@ -118,6 +118,6 @@ public class ArmoryCommand extends Command {
 
         }
 
-        bot.sendMessage(peerId, sb.toString(), keyboard);
+        playerService.sendMessage(peerId, sb.toString(), keyboard);
     }
 }

@@ -13,6 +13,6 @@ public class UserBannedCommand extends Command {
 
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
-        bot.sendMessage(peerId, "Вы заблокированы)))))\n Спасибо, что были с нами :)", null);
+        playerService.sendMessage(peerId, "Вы заблокированы)))))\n Спасибо, что были с нами :)", null);
     }
 }

@@ -79,6 +79,6 @@ public class TowerCommand extends Command {
                 .append(NumberConverter.toString(tower.getWoodUpgradeCost())).append(Emoji.WOOD)
                 .append(tower.getWoodUpgradeCost() <= storage.getWood() ? " ✔" : " ❌").append("\n\n");
 
-        bot.sendMessage(peerId, sb.toString(), keyboard);
+        playerService.sendMessage(peerId, sb.toString(), keyboard);
     }
 }

@@ -53,6 +53,6 @@ public class BossTypeCommand extends Command {
                 .append(NumberConverter.toString(boss.getIronReward())).append(Emoji.IRON).append("  ")
                 .append(NumberConverter.toString(boss.getStoneReward())).append(Emoji.STONE).append("  ")
                 .append(NumberConverter.toString(boss.getWoodReward())).append(Emoji.WOOD).append("  ");
-        bot.sendMessage(peerId, sb.toString(), keyboard);
+        playerService.sendMessage(peerId, sb.toString(), keyboard);
     }
 }

@@ -79,6 +79,6 @@ public class WallCommand extends Command {
                 .append(NumberConverter.toString(wall.getWoodUpgradeCost())).append(Emoji.WOOD)
                 .append(wall.getWoodUpgradeCost() <= storage.getWood() ? " ✔" : " ❌").append("\n\n");
 
-        bot.sendMessage(peerId, sb.toString(), keyboard);
+        playerService.sendMessage(peerId, sb.toString(), keyboard);
     }
 }

@@ -1,6 +1,7 @@
 package ru.kingsbot.command.group.clan;
 
 import ru.kingsbot.Emoji;
+import ru.kingsbot.api.keyboard.Keyboards;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.clan.Clan;
@@ -25,7 +26,7 @@ public class ClanRequestCommand extends Command {
         int from = Utils.parseInt(payload.get("from"));
         switch(payload.get("action")) {
             case "accept":
-                Clan clan = bot.getPlayerRepository().get(from).getClan();
+                Clan clan = playerService.getById(from).getClan();
                 player.setClan(clan);
                 clan.addMember(player.getId());
                 sb.append(Emoji.ACCEPT).append("Ты вступил в клан ").append(clan.getName());
@@ -35,6 +36,6 @@ public class ClanRequestCommand extends Command {
                 break;
         }
         player.setClanRequest(null);
-        bot.sendMessage(peerId, sb.toString(), bot.getKeyboard());
+        playerService.sendMessage(peerId, sb.toString(), Keyboards.getGroupKeyboard());
     }
 }

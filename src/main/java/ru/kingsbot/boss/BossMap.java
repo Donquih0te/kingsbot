@@ -1,8 +1,11 @@
 package ru.kingsbot.boss;
 
+import lombok.extern.log4j.Log4j2;
+
 import java.util.HashMap;
 import java.util.Map;
 
+@Log4j2
 public class BossMap {
 
     private Map<String, Boss> bossMap = new HashMap<>();
@@ -24,8 +27,8 @@ public class BossMap {
     public Boss getBossToAttack(String name) {
         try {
             return bossMap.get(name).clone();
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
+        }catch(CloneNotSupportedException e) {
+            log.error("Can't create bosses clone", e);
         }
         return null;
     }
