@@ -58,7 +58,7 @@ public class TowerCommand extends Command {
         Storage storage = player.getStorage();
         Tower tower = player.getTower();
         sb.append(Emoji.TOWER).append("Башни:\n")
-                .append(Emoji.LEVEL).append("Уровень:").append(tower.getLevel()).append("\n")
+                .append(Emoji.LEVEL).append("Уровень: ").append(tower.getLevel()).append("\n")
                 .append("Количество: ").append(tower.getAmount()).append("\n\n")
                 .append("Купить:\n")
                 .append(NumberConverter.toString(tower.getGoldCost())).append(Emoji.GOLD)

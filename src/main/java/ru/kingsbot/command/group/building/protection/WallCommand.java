@@ -58,7 +58,7 @@ public class WallCommand extends Command {
         Storage storage = player.getStorage();
         Wall wall = player.getWall();
         sb.append(Emoji.WALL).append("Стены:\n")
-                .append(Emoji.LEVEL).append("Уровень:").append(wall.getLevel()).append("\n")
+                .append(Emoji.LEVEL).append("Уровень: ").append(wall.getLevel()).append("\n")
                 .append("Количество: ").append(wall.getAmount()).append("\n\n")
                 .append("Купить:\n")
                 .append(NumberConverter.toString(wall.getGoldCost())).append(Emoji.GOLD)
