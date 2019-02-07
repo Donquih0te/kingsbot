@@ -48,7 +48,7 @@ public class StorageCommand extends Command {
         Utils.checkSignature(payload.get("key"), player.getId(), name);
         StringBuilder sb = new StringBuilder();
         Storage storage = player.getStorage();
-        sb.append(Emoji.STORAGE).append("Склад:\n\n")
+        sb.append(Emoji.STORAGE).append("Склад:\n")
                 .append(Emoji.LEVEL).append("Уровень: ").append(storage.getLevel()).append("\n\n")
                 .append("Вместимость: ")
                 .append(NumberConverter.toString(storage.getMaxFood())).append(Emoji.FOOD).append("   ")
