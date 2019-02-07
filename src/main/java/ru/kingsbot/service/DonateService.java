@@ -13,7 +13,7 @@ public class DonateService {
         return donateRepository.getByCustomer(id);
     }
 
-    public List<Donate> findByNotCompleted() {
+    public List<Donate> getNotCompleted() {
         return donateRepository.findByNotCompleted();
     }
 
