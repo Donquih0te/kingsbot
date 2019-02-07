@@ -43,12 +43,12 @@ public class TextCommandParser {
                     return;
                 }
                 if(player.getInvitedBy() != null) {
-                    playerService.sendMessage(peerId, "Ты уже вводил код приглашения\n", null);
+                    playerService.sendMessage(peerId, "Ты уже вводил код приглашения", null);
                     return;
                 }
                 Player target = playerService.getById(id);
                 if(target == null) {
-                    playerService.sendMessage(peerId, "Игрок не найден в базе", null);
+                    playerService.sendMessage(peerId, "Игрок не зарегистрирован", null);
                     return;
                 }
                 player.setInvitedBy(target.getId());
