@@ -15,13 +15,13 @@ public class NumberConverter {
             return String.valueOf(number);
         }
         StringBuilder sb = new StringBuilder();
-        int n = String.valueOf(number).length() / 3;
-        if((number / Math.pow(1000, n)) < 1) {
-            n--;
+        int zeroCount = String.valueOf(number).length() / 3;
+        if((number / Math.pow(1000, zeroCount)) < 1) {
+            zeroCount--;
         }
-        for(int i = 0; i < n; i++) {
-            if(i + 1 == n) {
-                String d = FORMAT.format(number / Math.pow(1000d, n));
+        for(int i = 0; i < zeroCount; i++) {
+            if(i + 1 == zeroCount) {
+                String d = FORMAT.format(number / Math.pow(1000d, zeroCount));
                 sb.insert(0, d);
             }
             sb.append("k");

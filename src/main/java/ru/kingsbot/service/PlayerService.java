@@ -59,6 +59,10 @@ public class PlayerService {
         return repository.getEnemyToPlayerByCancelledShieldAndTerritory(player);
     }
 
+    public List<Player> getPlayersTop() {
+        return repository.getPlayersOrderByTerritory();
+    }
+
     public List<Clan> getClansRating() {
         return repository.getClansOrderByRating();
     }

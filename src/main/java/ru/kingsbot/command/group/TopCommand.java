@@ -3,11 +3,9 @@ package ru.kingsbot.command.group;
 import ru.kingsbot.Emoji;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
-import ru.kingsbot.utils.HibernateUtil;
 import ru.kingsbot.utils.NumberConverter;
 import ru.kingsbot.utils.Utils;
 
-import javax.persistence.TypedQuery;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
@@ -31,10 +29,7 @@ public class TopCommand extends Command {
         if(lastUpdate == null || time - lastUpdate > 60) {
             StringBuilder sb = new StringBuilder();
 
-            TypedQuery<Player> query = HibernateUtil.getEntityManager()
-                    .createQuery("from Player p where p.id > 0 and p.firstName <> null order by p.territory desc", Player.class);
-            query.setMaxResults(10);
-            List<Player> list = query.getResultList();
+            List<Player> list = playerService.getPlayersTop();
             sb.append(Emoji.TOP).append("Рейтинг игроков по территории:\n\n");
             List<Player> collect = list.stream().filter(Objects::nonNull).collect(Collectors.toList());
             if(collect.isEmpty()) {

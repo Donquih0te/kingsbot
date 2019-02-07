@@ -78,9 +78,14 @@ public class PlayerRepository implements Repository<Player, Integer>  {
         return query.getResultList();
     }
 
+    public List<Player> getPlayersOrderByTerritory() {
+        TypedQuery<Player> query = manager.createQuery("from Player p where p.id > 0 order by p.territory desc", Player.class);
+        query.setMaxResults(10);
+        return query.getResultList();
+    }
+
     public List<Clan> getClansOrderByRating() {
-        TypedQuery<Clan> query = manager
-                .createQuery("select clan from Clan clan order by clan.rating desc", Clan.class);
+        TypedQuery<Clan> query = manager.createQuery("from Clan clan order by clan.rating desc", Clan.class);
         query.setMaxResults(10);
         return query.getResultList();
     }
