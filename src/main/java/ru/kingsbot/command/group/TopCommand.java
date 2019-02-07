@@ -46,10 +46,16 @@ public class TopCommand extends Command {
                         .append(NumberConverter.toString(p.getTerritory())).append("\n");
             });
 
-
-            lastUpdate = Instant.now().getEpochSecond();
+            lastUpdate = time;
             lastResult = sb.toString();
         }
+
+//        Query query = HibernateUtil.getEntityManager()
+//                .createNativeQuery("select row_number() OVER (order by p.territory desc) from Player p where p.id > 0 and p.first_name IS NOT NULL");
+//        int result = query.getFirstResult();
+//        StringBuilder sb = new StringBuilder(lastResult);
+//        sb.append("\n....\n")
+//                .append(result).append("  ").append(Utils.createLink(player)).append("  =>  ").append(player.getTerritory());
 
         bot.sendMessage(peerId, lastResult, null);
     }
