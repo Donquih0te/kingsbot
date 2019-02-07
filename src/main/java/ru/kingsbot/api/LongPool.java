@@ -70,7 +70,7 @@ public class LongPool {
     public void run () {
         while(true) {
             String url = server + "?act=a_check&key=" + key + "&ts=" + ts + "&wait=10";
-            String body = requestHandler.sendGet(url);
+            String body = requestHandler.sendGetRequest(url);
 
             if(body == null) {
                 return;

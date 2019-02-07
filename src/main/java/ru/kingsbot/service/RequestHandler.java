@@ -30,7 +30,7 @@ public class RequestHandler {
         return vkApiClient.sendRequest(request);
     }
 
-    public String sendGet(String url) {
+    public String sendGetRequest(String url) {
         HttpGet get = new HttpGet(url);
 
         String body = null;
