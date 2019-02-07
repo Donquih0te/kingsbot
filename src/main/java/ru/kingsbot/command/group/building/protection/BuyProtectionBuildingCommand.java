@@ -61,7 +61,7 @@ public class BuyProtectionBuildingCommand extends Command {
         if(buy) {
             if(player.getTerritory() / 1000 > ((Protection) building).getAmount()) {
                 sb.append(Emoji.RED_EXCLAMATION_MARK)
-                        .append("Ты достигл максимального количества стен для твоей территории. Захватывай территории чтобы купить больше защитных сооружений");
+                        .append("Ты достиг максимального количества защитных сооружений для твоей территории.\n Атакуй другие королевства и захватывай территории чтобы купить больше защитных сооружений");
             }else{
                 storage.reduceGold(building.getGoldCost());
                 storage.reduceIron(building.getIronCost());
@@ -73,6 +73,6 @@ public class BuyProtectionBuildingCommand extends Command {
             }
         }
 
-        bot.sendMessage(peerId, sb.toString(), null);
+        playerService.sendMessage(peerId, sb.toString(), null);
     }
 }

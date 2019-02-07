@@ -1,6 +1,7 @@
 package ru.kingsbot.command.chat;
 
 import ru.kingsbot.Emoji;
+import ru.kingsbot.api.keyboard.Keyboards;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Capitol;
@@ -53,18 +54,20 @@ public class HuntingCommand extends Command {
                 if(player.getCurrentExperience().intValue() == player.getMaxExperience().intValue()) {
                     player.levelUp();
                 }
+
+                sb.append(Emoji.LEVEL).append("Уровень: ").append(player.getLevel()).append("\n")
+                        .append(Emoji.EXPERIENCE).append("Опыт: ").append(player.getCurrentExperience()).append("/").append(player.getMaxExperience());
                 players.put(player.getId(), currentTime);
-                sb.append("Уровень: ").append(player.getLevel()).append("&#10024;\n")
-                        .append("Опыт: ").append(player.getCurrentExperience()).append("/").append(player.getMaxExperience()).append("&#9889;");
             }else{
-                sb.append(Utils.createLink(player)).append(", у тебя нет свободных рабочих чтобы идти на охоту.");
+                sb.append(Utils.createLink(player)).append(", у тебя нет свободных рабочих чтобы идти на охоту.\n")
+                .append("Создать новых рабочих можно в \"Строения\" -> \"Капитолий\"");
             }
         }else{
             sb.append(Utils.createLink(player)).append(", твои люди устали после прошлой охоты. В следующий поход можно пойти через ")
                     .append(formatter.format(new Date((TIMESTAMP - (currentTime - players.get(player.getId()))) * 1000)));
         }
 
-        bot.sendMessage(peerId, sb.toString(),bot.getChatKeyboard());
+        playerService.sendMessage(peerId, sb.toString(), Keyboards.getChatKeyboard());
     }
 
 }

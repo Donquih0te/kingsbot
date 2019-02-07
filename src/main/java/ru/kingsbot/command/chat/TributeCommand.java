@@ -1,6 +1,7 @@
 package ru.kingsbot.command.chat;
 
 import ru.kingsbot.Emoji;
+import ru.kingsbot.api.keyboard.Keyboards;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Capitol;
@@ -44,16 +45,16 @@ public class TributeCommand extends Command {
                 player.levelUp();
             }
 
-            players.put(player.getId(), currentTime);
             sb.append(Utils.createLink(player)).append(", сбор дани с твоих поселений принес ")
                     .append(NumberConverter.toString(amount)).append(Emoji.GOLD).append("\n\n")
-                    .append("Уровень: ").append(player.getLevel()).append("&#10024;\n")
-                    .append("Опыт: ").append(player.getCurrentExperience()).append("/").append(player.getMaxExperience()).append("&#9889;");
+                    .append(Emoji.LEVEL).append("Уровень: ").append(player.getLevel()).append("\n")
+                    .append(Emoji.EXPERIENCE).append("Опыт: ").append(player.getCurrentExperience()).append("/").append(player.getMaxExperience());
+            players.put(player.getId(), currentTime);
         }else{
             sb.append(Utils.createLink(player)).append(", следующий сбор дани можно совершить через ")
                     .append(formatter.format(new Date((TIMESTAMP - (currentTime - players.get(player.getId()))) * 1000)));
         }
 
-        bot.sendMessage(peerId, sb.toString(), bot.getChatKeyboard());
+        playerService.sendMessage(peerId, sb.toString(), Keyboards.getChatKeyboard());
     }
 }

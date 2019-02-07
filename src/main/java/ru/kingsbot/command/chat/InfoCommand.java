@@ -1,6 +1,7 @@
 package ru.kingsbot.command.chat;
 
 import ru.kingsbot.Emoji;
+import ru.kingsbot.api.keyboard.Keyboards;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Capitol;
@@ -19,10 +20,10 @@ public class InfoCommand extends Command {
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
         if(player.getFirstName() == null) {
-            bot.setName(player);
+            playerService.validateName(player);
         }
         if(player.updateResources()) {
-            bot.getPlayerRepository().update(player);
+            playerService.update(player);
         }
         StringBuilder sb = new StringBuilder();
         Storage storage = player.getStorage();
@@ -41,6 +42,6 @@ public class InfoCommand extends Command {
                 .append(Emoji.STONE).append("Камень: ").append(NumberConverter.toString(storage.getStone())).append("\n")
                 .append(Emoji.WOOD).append("Дерево: ").append(NumberConverter.toString(storage.getWood())).append("\n");
 
-        bot.sendMessage(peerId, sb.toString(), bot.getChatKeyboard());
+        playerService.sendMessage(peerId, sb.toString(), Keyboards.getChatKeyboard());
     }
 }

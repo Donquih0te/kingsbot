@@ -1,5 +1,6 @@
 package ru.kingsbot.command.group;
 
+import ru.kingsbot.api.keyboard.Keyboards;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.utils.Utils;
@@ -15,6 +16,6 @@ public class NotFoundCommand extends Command {
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
         Utils.checkSignature(payload.get("key"), player.getId(), name);
-        bot.sendMessage(peerId, "Неизвестная команда", bot.getKeyboard());
+        playerService.sendMessage(peerId, "Неизвестная команда", Keyboards.getGroupKeyboard());
     }
 }

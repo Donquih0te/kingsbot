@@ -61,6 +61,6 @@ public class AgeCommand extends Command {
                 break;
         }
 
-        bot.sendMessage(peerId, sb.toString(), null);
+        playerService.sendMessage(peerId, sb.toString(), null);
     }
 }

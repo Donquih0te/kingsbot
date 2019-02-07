@@ -38,7 +38,7 @@ public class ClanCommand extends Command {
             if(player.getClanRequest() == null) {
                 sb.append(Emoji.DENY).append("Заявки на вступление в клан отсутствуют\n");
             }else{
-                Player target = bot.getPlayerRepository().load(player.getClanRequest());
+                Player target = playerService.getById(player.getClanRequest());
                 Clan clan = target.getClan();
                 sb.append(Emoji.ACCEPT).append("Приглашение на вступление в клан <").append(clan.getName()).append(">\n");
                 builder.row(List.of(
@@ -63,12 +63,12 @@ public class ClanCommand extends Command {
             sb.append(Emoji.CLAN).append("Клан: ").append(clan.getName()).append("\n")
                     .append(Emoji.TOP).append("Рейтинг: ").append(NumberConverter.toString(clan.updateRating())).append("\n")
                     .append("Создан: ").append(formatter.format(new Date(clan.getCreateDate()))).append("\n")
-                    .append("Создатель: ").append(Utils.createLink(bot.getPlayerRepository().load(clan.getOwnerId()))).append("\n")
+                    .append("Создатель: ").append(Utils.createLink(playerService.getById(clan.getOwnerId()))).append("\n")
                     .append("Заместитель: ")
-                    .append(clan.getViceId() == null ? "не назначен" : Utils.createLink(bot.getPlayerRepository().load(clan.getViceId()))).append("\n")
+                    .append(clan.getViceId() == null ? "не назначен" : Utils.createLink(playerService.getById(clan.getViceId()))).append("\n")
                     .append("Участники:\n");
             String collect = clan.getMembers().stream()
-                    .map(member -> Utils.createLink(bot.getPlayerRepository().get(member)))
+                    .map(member -> Utils.createLink(playerService.getById(member)))
                     .collect(Collectors.joining(", "));
             sb.append(collect);
         }
@@ -90,6 +90,6 @@ public class ClanCommand extends Command {
                         .create()
         ));
         keyboard = builder.build();
-        bot.sendMessage(peerId, sb.toString(), keyboard);
+        playerService.sendMessage(peerId, sb.toString(), keyboard);
     }
 }

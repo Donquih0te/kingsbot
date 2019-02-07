@@ -1,5 +1,6 @@
 package ru.kingsbot.command.group;
 
+import ru.kingsbot.Emoji;
 import ru.kingsbot.api.keyboard.Button;
 import ru.kingsbot.api.keyboard.Color;
 import ru.kingsbot.api.keyboard.Keyboard;
@@ -17,19 +18,19 @@ public class BossCommand extends Command {
         keyboard = Keyboard.newKeyboard()
                 .row(List.of(
                         Button.newButton()
-                                .label("Криг")
+                                .label(Emoji.KRIEG + "Криг")
                                 .payload("command", "boss_type")
                                 .payload("boss", "krieg")
                                 .color(Color.WHITE)
                                 .create(),
                         Button.newButton()
-                                .label("Арлонг")
+                                .label(Emoji.ARLONG + "Арлонг")
                                 .payload("command", "boss_type")
                                 .payload("boss", "arlong")
                                 .color(Color.WHITE)
                                 .create(),
                         Button.newButton()
-                                .label("Крокодил")
+                                .label(Emoji.CROCODILE + "Крокодил")
                                 .payload("command", "boss_type")
                                 .payload("boss", "crocodile")
                                 .color(Color.WHITE)
@@ -48,6 +49,6 @@ public class BossCommand extends Command {
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
         Utils.checkSignature(payload.get("key"), player.getId(), name);
-        bot.sendMessage(peerId, "Боссы", keyboard);
+        playerService.sendMessage(peerId, "Боссы", keyboard);
     }
 }

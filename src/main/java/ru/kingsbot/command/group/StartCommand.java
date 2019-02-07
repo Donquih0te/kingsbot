@@ -1,5 +1,6 @@
 package ru.kingsbot.command.group;
 
+import ru.kingsbot.api.keyboard.Keyboards;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.utils.Utils;
@@ -19,7 +20,7 @@ public class StartCommand extends Command {
         sb.append("Создано новое королевство.\n")
                 .append("Помощь по игре: ").append("vk.com/@kingsbot-pomosch-po-igre").append("\n");
 
-        bot.sendMessage(peerId, sb.toString(), bot.getKeyboard());
+        playerService.sendMessage(peerId, sb.toString(), Keyboards.getGroupKeyboard());
     }
 
 }

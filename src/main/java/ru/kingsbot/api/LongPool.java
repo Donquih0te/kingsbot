@@ -3,49 +3,44 @@ package ru.kingsbot.api;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import lombok.extern.log4j.Log4j2;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.util.EntityUtils;
 import ru.kingsbot.Bot;
+import ru.kingsbot.api.keyboard.Keyboards;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.command.TextCommandParser;
 import ru.kingsbot.entity.Player;
-import ru.kingsbot.repository.PlayerRepository;
+import ru.kingsbot.service.PlayerService;
+import ru.kingsbot.service.RequestHandler;
 import ru.kingsbot.tutorial.Tutorial;
 import ru.kingsbot.utils.Utils;
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.ExecutionException;
 
 @Log4j2
 public class LongPool {
 
     private static final String MESSAGE_NEW = "message_new";
 
+    private final Bot bot;
+    private final RequestHandler requestHandler;
+    private final Integer groupId;
+
+    private TextCommandParser commandParser;
+    private PlayerService playerService;
+
     private JsonParser parser;
 
-    private Bot bot;
-    private VkApiClient client;
-    private PlayerRepository playerRepository;
-    private TextCommandParser commandParser;
     private String key;
     private String server;
     private String ts;
-    private String token;
-    private String version;
-    private Integer groupId;
 
-    public LongPool(Bot bot, VkApiClient client, String token, String version, Integer groupId) {
+    public LongPool(Bot bot, RequestHandler requestHandler, Integer groupId) {
         this.bot = bot;
-        this.client = client;
-        this.token = token;
-        this.version = version;
+        this.requestHandler = requestHandler;
         this.groupId = groupId;
         parser = new JsonParser();
-        playerRepository = bot.getPlayerRepository();
-        commandParser = new TextCommandParser();
+        playerService = bot.getPlayerService();
+        commandParser = new TextCommandParser(bot);
         getLongPoolData();
     }
 
@@ -53,17 +48,15 @@ public class LongPool {
         ApiRequest request = ApiRequest.newApiRequest()
                 .method("groups.getLongPollServer")
                 .param("group_id", groupId)
-                .param("access_token", token)
-                .param("v", version)
                 .build();
-        String response = client.request(request);
+        String response = requestHandler.sendVkApiRequest(request);
         if(response == null) {
             return;
         }
 
         JsonObject element = parser.parse(response).getAsJsonObject();
         if(element.has("error")) {
-            log.error("ApiRequest error", element.toString());
+            log.error("ApiRequest error\n" + element.toString());
             return;
         }
         if(element.has("response")) {
@@ -77,23 +70,8 @@ public class LongPool {
     public void run () {
         while(true) {
             String url = server + "?act=a_check&key=" + key + "&ts=" + ts + "&wait=10";
-            HttpGet get = new HttpGet(url);
+            String body = requestHandler.sendGetRequest(url);
 
-            String body = null;
-            HttpResponse response = null;
-            try {
-                response = client.getHttpClient().execute(get, null).get();
-            }catch (InterruptedException | ExecutionException e) {
-                log.error(e.getMessage(), e);
-            }
-            if(response == null) {
-                return;
-            }
-            try {
-                body = EntityUtils.toString(response.getEntity(), "UTF-8");
-            }catch(IOException e) {
-                log.error(e.getMessage(), e);
-            }
             if(body == null) {
                 return;
             }
@@ -125,7 +103,7 @@ public class LongPool {
                         int peerId = object.get("peer_id").getAsInt();
                         String text = object.get("text").getAsString();
                         JsonElement payloadObject = object.get("payload");
-                        Player player = playerRepository.load(fromId);
+                        Player player = playerService.load(fromId);
                         if(payloadObject == null) {
                             if(peerId == fromId) {
                                 if(!player.isTutorial()) {
@@ -135,7 +113,7 @@ public class LongPool {
                                 }
                             }else{
                                 if(!player.isTutorial()) {
-                                    bot.sendMessage(peerId, "Чтобы начать игру напишите в группу vk.me/kingsbot", bot.getChatKeyboard());
+                                    playerService.sendMessage(peerId, "Чтобы начать игру напишите в группу vk.me/kingsbot", Keyboards.getChatKeyboard());
                                 }
                             }
                             commandParser.parse(peerId, fromId, text);
@@ -154,7 +132,7 @@ public class LongPool {
                                 return;
                             }
                             if(payload.isEmpty()) {
-                                bot.sendMessage(peerId, "Для игры используйте кнопки", bot.getKeyboard());
+                                playerService.sendMessage(peerId, "Для игры используйте кнопки", Keyboards.getGroupKeyboard());
                                 return;
                             }
                             String commandName = payload.get("command");
@@ -174,7 +152,7 @@ public class LongPool {
                             }
                         }else{
                             if(!player.isTutorial()) {
-                                bot.sendMessage(peerId, "Чтобы начать игру напишите в группу vk.me/kingsbot", bot.getChatKeyboard());
+                                playerService.sendMessage(peerId, "Чтобы начать игру напишите в группу vk.me/kingsbot", Keyboards.getChatKeyboard());
                                 return;
                             }
                             if(player.isBanned()) {

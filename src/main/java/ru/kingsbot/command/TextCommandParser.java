@@ -2,27 +2,34 @@ package ru.kingsbot.command;
 
 import ru.kingsbot.Bot;
 import ru.kingsbot.Emoji;
+import ru.kingsbot.api.keyboard.Keyboards;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.army.Clubman;
 import ru.kingsbot.entity.army.RockThrower;
 import ru.kingsbot.entity.building.Storage;
 import ru.kingsbot.entity.clan.Clan;
 import ru.kingsbot.entity.conversation.Conversation;
+import ru.kingsbot.service.ConversationService;
+import ru.kingsbot.service.PlayerService;
 import ru.kingsbot.utils.HibernateUtil;
 import ru.kingsbot.utils.NumberConverter;
 import ru.kingsbot.utils.Utils;
 
 public class TextCommandParser {
 
-    private Bot bot;
+    private final Bot bot;
+    private final PlayerService playerService;
+    private final ConversationService conversationService;
 
-    public TextCommandParser() {
-        bot = Bot.getInstance();
+    public TextCommandParser(Bot bot) {
+        this.bot = bot;
+        this.playerService = bot.getPlayerService();
+        this.conversationService = bot.getConversationService();
     }
 
     public void parse(Integer peerId, Integer fromId, String message) {
         StringBuilder sb = new StringBuilder();
-        Player player = bot.getPlayerRepository().load(fromId);
+        Player player = playerService.load(fromId);
         String[] words = message.split(" ");
         switch(words[0].toLowerCase()) {
             case "реф":
@@ -32,16 +39,16 @@ public class TextCommandParser {
                 }
                 int id = Utils.parseInt(words[1]);
                 if(player.getId() == id) {
-                    bot.sendMessage(peerId, "Нельзя пригласить самого себя", null);
-                    return;
-                }
-                Player target = bot.getPlayerRepository().get(id);
-                if(target == null) {
-                    bot.sendMessage(peerId, "Игрок не найден в базе", null);
+                    playerService.sendMessage(peerId, "Нельзя пригласить самого себя", null);
                     return;
                 }
                 if(player.getInvitedBy() != null) {
-                    bot.sendMessage(peerId, "Ты уже вводил код приглашения\n", null);
+                    playerService.sendMessage(peerId, "Ты уже вводил код приглашения", null);
+                    return;
+                }
+                Player target = playerService.getById(id);
+                if(target == null) {
+                    playerService.sendMessage(peerId, "Игрок не зарегистрирован", null);
                     return;
                 }
                 player.setInvitedBy(target.getId());
@@ -55,29 +62,29 @@ public class TextCommandParser {
                 sb.append(Utils.createLink(player)).append(" указал тебя, как пригласившего его.\n")
                         .append("За это вы оба получаете по 100к").append(Emoji.GOLD).append("\n\n")
                         .append("Ты пригласил: ").append(target.getInviteList().size());
-                bot.sendMessage(peerId, playerResult.toString(), null);
-                bot.sendMessage(target.getId(), targetResult.toString(), null);
+                playerService.sendMessage(peerId, playerResult.toString(), null);
+                playerService.sendMessage(target, targetResult.toString(), null);
                 break;
             }
 //            case "передать": {
 //                if(words.length < 3) {
-//                    bot.sendMessage(peerId, "передать <id игрока> <кол-во золота>\n", null);
+//                    playerService.sendMessage(peerId, "передать <id игрока> <кол-во золота>\n", null);
 //                    return;
 //                }
-//                Player target = bot.getPlayerRepository().get(Integer.valueOf(words[1]));
+//                Player target = playerService.getPlayerRepository().get(Integer.valueOf(words[1]));
 //                if(target == null) {
-//                    bot.sendMessage(peerId, "Игрок не найден в базе", null);
+//                    playerService.sendMessage(peerId, "Игрок не найден в базе", null);
 //                    return;
 //                }
 //                int gold = Integer.valueOf(words[2]);
 //                if(player.getStorage().getGold() < gold) {
-//                    bot.sendMessage(peerId, "У тебя на складе нет столько золота", null);
+//                    playerService.sendMessage(peerId, "У тебя на складе нет столько золота", null);
 //                    return;
 //                }
 //                target.getStorage().addGold(gold);
 //                player.getStorage().reduceGold(gold);
-//                bot.sendMessage(peerId, "Передано", null);
-//                bot.sendMessage(target.getId(), Utils.createLink(player) + " передал тебе сундучек с золотом", null);
+//                playerService.sendMessage(peerId, "Передано", null);
+//                playerService.sendMessage(target.getId(), Utils.createLink(player) + " передал тебе сундучек с золотом", null);
 //                break;
 //            }
         }
@@ -92,12 +99,12 @@ public class TextCommandParser {
                     return;
                 }
                 switch(words[1].toLowerCase()) {
-                    case "создать":
+                    case "создать": {
                         if(player.getClan() != null) {
                             return;
                         }
                         if(words[2].length() > 10) {
-                            bot.sendMessage(player.getId(), "Название клана очень длинное", bot.getKeyboard());
+                            playerService.sendMessage(player.getId(), "Название клана очень длинное", Keyboards.getGroupKeyboard());
                             return;
                         }
                         Storage storage = player.getStorage();
@@ -111,39 +118,41 @@ public class TextCommandParser {
                                     .append("Тебе не хватает ")
                                     .append(NumberConverter.toString(7_000_000 - storage.getGold())).append(Emoji.GOLD);
                         }
-                        bot.sendMessage(player.getId(), sb.toString(), bot.getKeyboard());
+                        playerService.sendMessage(player, sb.toString(), Keyboards.getGroupKeyboard());
                         break;
-                    case "пригласить":
+                    }
+                    case "пригласить": {
                         if(player.getClan() == null) {
                             return;
                         }
                         if(!player.getClan().isOwner(player.getId()) || !player.getClan().isVice(player.getId())) {
                             return;
                         }
-                        Player target = bot.getPlayerRepository().get(Utils.parseInt(words[2]));
+                        Player target = playerService.getById(Utils.parseInt(words[2]));
                         if(target == null) {
                             sb.append(Emoji.RED_EXCLAMATION_MARK).append("Игрок с id ").append(words[2]).append(" не найден");
                         }else{
                             if(target.getClan() != null) {
-                                bot.sendMessage(peerId, "Игрок уже состоит в клане", null);
+                                playerService.sendMessage(peerId, "Игрок уже состоит в клане", null);
                                 return;
                             }
                             if(player.getClan().isMember(target.getId())) {
                                 return;
                             }
                             target.setClanRequest(player.getId());
-                            bot.sendMessage(peerId, "Заявка на вступление в клан отправлена", null);
-                            bot.sendMessage(target.getId(), "Тебя приглашают в клан " + player.getClan().getName(), null);
+                            playerService.sendMessage(peerId, "Заявка на вступление в клан отправлена", null);
+                            playerService.sendMessage(target, "Тебя приглашают в клан " + player.getClan().getName(), null);
                         }
                         break;
-                    case "зам":
+                    }
+                    case "зам": {
                         if(player.getClan() == null) {
                             return;
                         }
                         if(!player.getClan().isOwner(player.getId())) {
                             return;
                         }
-                        Player vice = bot.getPlayerRepository().get(Utils.parseInt(words[2]));
+                        Player vice = playerService.getById(Utils.parseInt(words[2]));
                         if(vice == null) {
                             sb.append(Emoji.RED_EXCLAMATION_MARK).append("Игрок с id ").append(words[2]).append(" не найден");
                         }else{
@@ -151,18 +160,19 @@ public class TextCommandParser {
                                 return;
                             }
                             player.getClan().setViceId(vice.getId());
-                            bot.sendMessage(player.getId(), "Заместителем клана назначен " + Utils.createLink(vice), null);
-                            bot.sendMessage(vice.getId(), "Ты назвачен заместителем клана " + player.getClan().getName(), null);
+                            playerService.sendMessage(peerId, "Заместителем клана назначен " + Utils.createLink(vice), null);
+                            playerService.sendMessage(vice, "Ты назвачен заместителем клана " + player.getClan().getName(), null);
                         }
                         break;
-                    case "глава":
+                    }
+                    case "глава": {
                         if(player.getClan() == null) {
                             return;
                         }
                         if(!player.getClan().isOwner(player.getId())) {
                             return;
                         }
-                        Player owner = bot.getPlayerRepository().get(Utils.parseInt(words[2]));
+                        Player owner = playerService.getById(Utils.parseInt(words[2]));
                         if(owner == null) {
                             sb.append(Emoji.RED_EXCLAMATION_MARK).append("Игрок с id ").append(words[2]).append(" не найден");
                         }else{
@@ -170,35 +180,37 @@ public class TextCommandParser {
                                 return;
                             }
                             player.getClan().setOwnerId(owner.getId());
-                            bot.sendMessage(player.getId(), "Главой клана назначен " + Utils.createLink(owner), null);
-                            bot.sendMessage(owner.getId(), "Ты назвачен новым главой клана " + player.getClan().getName(), null);
+                            playerService.sendMessage(peerId, "Главой клана назначен " + Utils.createLink(owner), null);
+                            playerService.sendMessage(owner, "Ты назвачен новым главой клана " + player.getClan().getName(), null);
                         }
                         break;
-                    case "инфо":
+                    }
+                    case "инфо": {
 
                         break;
+                    }
                 }
             }else{
-                bot.sendMessage(peerId, "Для игры используйте кнопки", null);
+                playerService.sendMessage(peerId, "Для игры используйте кнопки", null);
             }
         }else{
-            Conversation conversation = bot.getConversationRepository().get(peerId.longValue());
+            Conversation conversation = conversationService.getBuId(peerId.longValue());
             if(conversation == null) {
                 conversation = new Conversation(peerId.longValue());
-                bot.getConversationRepository().save(conversation);
-                bot.sendMessage(peerId, "Здарова бандиты!\nС вами как всегда KingsBot", bot.getChatKeyboard());
+                conversationService.save(conversation);
+                playerService.sendMessage(peerId, "Здарова бандиты!\nС вами как всегда KingsBot", Keyboards.getChatKeyboard());
             }
             if(message.startsWith("/")){
                 String[] t = message.split(" ");
                 switch(t[0].substring(1)) {
-                    case "setres":
+                    case "setres": {
                         if(!player.isAdmin()) {
                             return;
                         }
                         if(t.length < 2) {
                             return;
                         }
-                        long amount = Long.parseLong(t[1]);
+                        long amount = Utils.parseInt(t[1]);
                         Storage storage = player.getStorage();
                         if(amount > storage.getMaxFood() + storage.getFood()) {
                             storage.setMaxFood(amount);
@@ -221,12 +233,13 @@ public class TextCommandParser {
                         }
                         storage.addWood(amount);
 
-                        bot.sendMessage(peerId, "ресурсы обновлены", null);
+                        playerService.sendMessage(peerId, "ресурсы обновлены", null);
                         break;
+                    }
                     case "setage":
 
                         break;
-                    case "setarmy":
+                    case "setarmy": {
                         if(!player.isAdmin()) {
                             return;
                         }
@@ -238,21 +251,37 @@ public class TextCommandParser {
                         RockThrower rockThrower = player.getArmy().getRockThrower();
                         clubman.setAmount(a);
                         rockThrower.setAmount(a);
-                        bot.sendMessage(peerId, "армия обновлена", null);
+                        playerService.sendMessage(peerId, "армия обновлена", null);
                         break;
-                    case "cache":
+                    }
+                    case "cache": {
                         if(!player.isAdmin()) {
                             return;
                         }
-                        HibernateUtil.removeCache();
+                        HibernateUtil.clearCache();
                         break;
-                    case "notify":
+                    }
+                    case "admin": {
+                        if(!player.isAdmin()) {
+                            return;
+                        }
+                        int id = Utils.parseInt(t[1]);
+                        Player target = playerService.getById(id);
+                        if(target == null) {
+                            return;
+                        }
+                        player.setAdmin(!player.isAdmin());
+                        playerService.sendMessage(peerId, "admin: " + (player.isNotify() ? "true" : "false"), null);
+                        break;
+                    }
+                    case "notify": {
                         if(!player.isAdmin()) {
                             return;
                         }
                         player.setNotify(!player.isNotify());
-                        bot.sendMessage(peerId, "notify: " + (player.isNotify() ? "on" : "off"), null);
+                        playerService.sendMessage(peerId, "notify: " + (player.isNotify() ? "on" : "off"), null);
                         break;
+                    }
                 }
             }
         }

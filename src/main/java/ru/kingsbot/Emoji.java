@@ -31,7 +31,7 @@ public class Emoji {
     public static final String CLUBMAN = "&#9876;";
     public static final String ROCK_THROWER = "&#127993;";
     public static final String FIND = "&#128270;";
-    public static final String BACK = "&#128259;";
+    public static final String BACK = "&#128257;";
     public static final String WORKERS = "&#9937;";
     public static final String MARK = "&#10160;";
     public static final String WAVE = "&#12336;";
@@ -50,5 +50,9 @@ public class Emoji {
     public static final String BRONZE_MEDAL = "&#129353;";
     public static final String LEVEL = "&#128165;";
     public static final String SPEED = "&#127788;";
+    public static final String EXPERIENCE = "&#9889;";
+    public static final String KRIEG = "&#128488;";
+    public static final String ARLONG = "&#129416;";
+    public static final String CROCODILE = "&#128010;";
 
 }

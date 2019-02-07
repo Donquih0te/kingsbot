@@ -4,11 +4,9 @@ import ru.kingsbot.Emoji;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.clan.Clan;
-import ru.kingsbot.utils.HibernateUtil;
 import ru.kingsbot.utils.NumberConverter;
 import ru.kingsbot.utils.Utils;
 
-import javax.persistence.TypedQuery;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
@@ -28,10 +26,7 @@ public class ClanRatingCommand extends Command {
         Utils.checkSignature(payload.get("key"), player.getId(), name);
         long time = Instant.now().getEpochSecond();
         if(lastUpdate == null || time - lastUpdate > 60) {
-            TypedQuery<Clan> query = HibernateUtil.getEntityManager()
-                    .createQuery("select clan from Clan clan order by clan.rating desc", Clan.class);
-            query.setMaxResults(10);
-            List<Clan> list = query.getResultList();
+            List<Clan> list = playerService.getClansRating();
             StringBuilder sb = new StringBuilder();
             if(list.isEmpty()) {
                 sb.append("Пока ни один игрок не создал клан");
@@ -48,7 +43,7 @@ public class ClanRatingCommand extends Command {
             lastUpdate = Instant.now().getEpochSecond();
             lastResult = sb.toString();
         }
-        bot.sendMessage(peerId, lastResult, null);
+        playerService.sendMessage(peerId, lastResult, null);
     }
 
     private String getEmoji(int place) {

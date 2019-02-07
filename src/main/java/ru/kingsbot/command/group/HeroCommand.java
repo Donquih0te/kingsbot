@@ -17,7 +17,7 @@ public class HeroCommand extends Command {
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
         Utils.checkSignature(payload.get("key"), player.getId(), name);
         if(player.getAge() != Age.COPPER) {
-            bot.sendMessage(peerId, "Герои станут доступны с Эпохи: Медный век", null);
+            playerService.sendMessage(peerId, "Герои станут доступны с Эпохи: Медный век", null);
         }
     }
 }

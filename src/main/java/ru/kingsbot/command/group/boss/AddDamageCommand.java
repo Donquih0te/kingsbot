@@ -93,6 +93,6 @@ public class AddDamageCommand extends Command {
         StringBuilder sb = new StringBuilder();
         sb.append(Emoji.RED_EXCLAMATION_MARK).append("Выберите количество воинов для атаки босса\n")
                 .append("Количество снесенного урона зависит от количества и атаки ваших войск");
-        bot.sendMessage(peerId, sb.toString(), keyboard);
+        playerService.sendMessage(peerId, sb.toString(), keyboard);
     }
 }

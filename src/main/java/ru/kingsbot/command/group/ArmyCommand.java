@@ -55,6 +55,6 @@ public class ArmyCommand extends Command {
                 .append(Emoji.ROCK_THROWER).append("[").append(warrior2.getLevel()).append("] Метатель камней: ")
                 .append(NumberConverter.toString(warrior2.getAmount())).append("\n");
 
-        bot.sendMessage(peerId, sb.toString(), keyboard);
+        playerService.sendMessage(peerId, sb.toString(), keyboard);
     }
 }

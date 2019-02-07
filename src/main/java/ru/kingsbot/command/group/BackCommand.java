@@ -19,7 +19,7 @@ public class BackCommand extends Command {
             return;
         }
         player.updateResources();
-        bot.getPlayerRepository().update(player);
+        playerService.update(player);
         Optional<Command> next = bot.getCommandMap().getCommand(payload.get("next"));
         next.ifPresent(cmd -> cmd.execute(player, peerId, Collections.emptyMap()));
     }

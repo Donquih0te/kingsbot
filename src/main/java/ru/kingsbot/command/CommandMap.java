@@ -97,6 +97,7 @@ public class CommandMap {
 
         commands.put("top", new TopCommand());
         commands.put("help", new HelpCommand());
+        commands.put("friend", new FriendCommand());
 
         commands.put("back", new BackCommand());
         commands.put("user_banned", new UserBannedCommand());

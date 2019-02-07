@@ -55,7 +55,7 @@ public class BossAttackCommand extends Command {
                     sb.append(Emoji.TOP).append("Босс побежден\n")
                             .append("Итоги боя:\n");
                     bossAttack.getAttackers().forEach((id, damage) -> {
-                        Player p = bot.getPlayerRepository().get(id);
+                        Player p = playerService.getById(id);
                         sb.append(Utils.createLink(p)).append("  =>  ")
                                 .append(NumberConverter.toString(damage)).append(" урона");
                         if(!bossAttack.isRewarded()) {
@@ -80,7 +80,7 @@ public class BossAttackCommand extends Command {
                                 .append(NumberConverter.toString(boss.getStoneReward())).append(Emoji.STONE).append("  ")
                                 .append(NumberConverter.toString(boss.getWoodReward())).append(Emoji.WOOD).append("\n")
                                 .append("+1").append(Emoji.KEY);
-                        bot.sendMessage(new ArrayList<>(bossAttack.getAttackers().keySet()), result.toString(), null);
+                        playerService.sendMessage(new ArrayList<>(bossAttack.getAttackers().keySet()), result.toString(), null);
                         bossAttack.setRewarded(true);
                     }
                     sb.append("\n\nАтаковать еще раз?");
@@ -92,7 +92,7 @@ public class BossAttackCommand extends Command {
                         sb.append(Emoji.TIME).append("Бой проигран\n")
                                 .append("Итоги боя:\n");
                         bossAttack.getAttackers().forEach((id, damage) -> {
-                            Player p = bot.getPlayerRepository().get(id);
+                            Player p = playerService.getById(id);
                             sb.append(Utils.createLink(p)).append("  =>  ")
                                     .append(NumberConverter.toString(damage)).append(" урона");
                         });
@@ -156,6 +156,6 @@ public class BossAttackCommand extends Command {
                         .create()
         ));
         keyboard = builder.build();
-        bot.sendMessage(peerId, sb.toString(), keyboard);
+        playerService.sendMessage(peerId, sb.toString(), keyboard);
     }
 }

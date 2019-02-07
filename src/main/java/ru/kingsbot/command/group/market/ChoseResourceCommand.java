@@ -232,6 +232,6 @@ public class ChoseResourceCommand extends Command {
                 break;
         }
 
-        bot.sendMessage(peerId, sb.toString(), keyboard);
+        playerService.sendMessage(peerId, sb.toString(), keyboard);
     }
 }

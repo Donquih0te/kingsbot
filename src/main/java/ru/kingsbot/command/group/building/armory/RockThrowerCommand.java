@@ -74,6 +74,6 @@ public class RockThrowerCommand extends Command {
                 .append(rockThrower.getGoldCost() * 100).append(Emoji.GOLD).append("  ")
                 .append(rockThrower.getIronCost() * 100).append(Emoji.IRON).append("\n");
 
-        bot.sendMessage(peerId, sb.toString(), keyboard);
+        playerService.sendMessage(peerId, sb.toString(), keyboard);
     }
 }

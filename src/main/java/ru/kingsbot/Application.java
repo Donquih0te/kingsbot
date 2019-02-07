@@ -12,12 +12,11 @@ import java.io.FileNotFoundException;
 public class Application {
 
     public static void main(String[] args) throws FileNotFoundException {
-        HibernateUtil.build();
         Bot bot = new Bot();
         new DonateParser(bot).start();
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             log.info("Сохранение данных...");
-            bot.sendMessage(2000000139, "Произошло выключение бота", null);
+            bot.getPlayerService().sendMessage(2000000139, "Произошло выключение бота", null);
             EntityManager entityManager = HibernateUtil.getEntityManager();
             EntityTransaction transaction = entityManager.getTransaction();
             transaction.begin();

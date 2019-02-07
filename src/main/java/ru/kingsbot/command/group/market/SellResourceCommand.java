@@ -70,7 +70,7 @@ public class SellResourceCommand extends Command {
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
         Utils.checkSignature(payload.get("key"), player.getId(), name);
         Storage storage = player.getStorage();
-        Market market = bot.getMarket();
+        Market market = marketService.load(1L);
         StringBuilder sb = new StringBuilder();
         sb.append(Emoji.STORAGE).append("Склад:\n")
                 .append(NumberConverter.toString(storage.getFood())).append(Emoji.FOOD).append("\n")
@@ -88,6 +88,6 @@ public class SellResourceCommand extends Command {
                 .append(market.getWood().getSellAmount()).append(Emoji.WOOD).append(" за  ")
                 .append(market.getWood().getSellCost()).append(Emoji.GOLD).append("\n");
 
-        bot.sendMessage(peerId, sb.toString(), keyboard);
+        playerService.sendMessage(peerId, sb.toString(), keyboard);
     }
 }

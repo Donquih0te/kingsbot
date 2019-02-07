@@ -68,7 +68,7 @@ public class CitizenResourceCommand extends Command {
                 .append(resource.getMaxCitizensAmount()).append(Emoji.STONE).append("\n")
                 .append("Свободных рабочих: ").append(capitol.getFreeCitizensAmount()).append(Emoji.WORKERS).append("\n");
 
-        bot.sendMessage(peerId, sb.toString(), null);
+        playerService.sendMessage(peerId, sb.toString(), null);
     }
 
 }

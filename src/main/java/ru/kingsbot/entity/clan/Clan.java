@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import ru.kingsbot.Bot;
+import ru.kingsbot.service.PlayerService;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -109,8 +110,9 @@ public class Clan {
     public long updateRating() {
         Bot bot = Bot.getInstance();
         rating = 0L;
+        PlayerService playerService = bot.getPlayerService();
         members.forEach(id -> {
-            rating += bot.getPlayerRepository().get(id).getTerritory();
+            rating += playerService.getById(id).getTerritory();
         });
         return rating;
     }

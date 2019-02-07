@@ -57,7 +57,7 @@ public class CapitolCommand extends Command {
         Storage storage = player.getStorage();
         Citizen citizen = capitol.getCitizen();
         StringBuilder sb = new StringBuilder();
-        sb.append(Emoji.CAPITOL).append("Капитолий\n")
+        sb.append(Emoji.CAPITOL).append("Капитолий:\n")
                 .append(Emoji.LEVEL).append("Уровень: ").append(capitol.getLevel()).append("\n\n")
                 .append("Улучшить:\n")
                 .append(NumberConverter.toString(capitol.getGoldUpgradeCost())).append(Emoji.GOLD)
@@ -69,6 +69,6 @@ public class CapitolCommand extends Command {
                 .append(NumberConverter.toString(capitol.getWoodUpgradeCost())).append(Emoji.WOOD)
                 .append(capitol.getWoodUpgradeCost() <= storage.getWood() ? " ✔" : " ❌").append("\n\n");
 
-        bot.sendMessage(peerId, sb.toString(), keyboard);
+        playerService.sendMessage(peerId, sb.toString(), keyboard);
     }
 }

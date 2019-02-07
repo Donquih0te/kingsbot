@@ -67,7 +67,7 @@ public class ResourceCommand extends Command {
         Utils.checkSignature(payload.get("key"), player.getId(), name);
         Citizen citizen = player.getCapitol().getCitizen();
         if(player.updateResources()) {
-            bot.getPlayerRepository().update(player);
+            playerService.update(player);
         }
         StringBuilder sb = new StringBuilder();
         String exhausted = "(" + Emoji.RED_EXCLAMATION_MARK + " ИСТОЩЕН)\n";
@@ -102,7 +102,7 @@ public class ResourceCommand extends Command {
                 .append(NumberConverter.toString(player.getWoodResource().getCitizensAmount() * citizen.getWoodPerMinute()))
                 .append(Emoji.WOOD).append(" в минуту\n\n");
 
-        bot.sendMessage(peerId, sb.toString(), keyboard);
+        playerService.sendMessage(peerId, sb.toString(), keyboard);
 
     }
 

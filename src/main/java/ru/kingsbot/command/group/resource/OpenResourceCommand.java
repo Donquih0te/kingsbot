@@ -92,7 +92,7 @@ public class OpenResourceCommand extends Command {
                 .append("Рабочих: ").append(resource.getCitizensAmount()).append("/")
                 .append(resource.getMaxCitizensAmount()).append(Emoji.WORKERS).append("\n");
 
-        bot.sendMessage(peerId, sb.toString(), keyboard);
+        playerService.sendMessage(peerId, sb.toString(), keyboard);
     }
 
 }

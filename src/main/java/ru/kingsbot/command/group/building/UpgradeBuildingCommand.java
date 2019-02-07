@@ -78,7 +78,7 @@ public class UpgradeBuildingCommand extends Command {
             storage.reduceWood(building.getWoodUpgradeCost());
             building.upgrade();
 
-            sb.append(building.getName()).append("\n\n")
+            sb.append(building.getName()).append(":\n")
                     .append(Emoji.LEVEL).append("Уровень: ").append(building.getLevel()).append("\n\n")
                     .append("Улучшить:\n")
                     .append(NumberConverter.toString(building.getGoldUpgradeCost())).append(Emoji.GOLD)
@@ -90,6 +90,6 @@ public class UpgradeBuildingCommand extends Command {
                     .append(NumberConverter.toString(building.getWoodUpgradeCost())).append(Emoji.WOOD)
                     .append(storage.getWood() >= building.getWoodUpgradeCost() ? " ✔" : " ❌").append("\n\n");
         }
-        bot.sendMessage(peerId, sb.toString(), null);
+        playerService.sendMessage(peerId, sb.toString(), null);
     }
 }

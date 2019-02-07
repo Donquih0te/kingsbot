@@ -52,7 +52,7 @@ public class BuildingCommand extends Command {
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
         Utils.checkSignature(payload.get("key"), player.getId(), name);
         String message = "Строй зданий, улучшай их и открой все их тайны";
-        bot.sendMessage(peerId, message, keyboard);
+        playerService.sendMessage(peerId, message, keyboard);
     }
 
 }

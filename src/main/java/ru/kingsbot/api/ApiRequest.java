@@ -20,6 +20,14 @@ public class ApiRequest {
         this.params = params;
     }
 
+    public void setToken(String token) {
+        params.put("access_token", token);
+    }
+
+    public void setVersion(String version) {
+        params.put("v", version);
+    }
+
     public HttpGet get() {
         URI uri = URI.create(buildQuery());
         HttpGet get = new HttpGet(uri);

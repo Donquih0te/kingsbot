@@ -1,6 +1,7 @@
 package ru.kingsbot.command.group.boss;
 
 import ru.kingsbot.Emoji;
+import ru.kingsbot.api.keyboard.Keyboards;
 import ru.kingsbot.attack.BossAttack;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
@@ -49,11 +50,11 @@ public class AddDamageAmountCommand extends Command {
 
             if(bossAttack.isWin() || bossAttack.isLose()) {
                 sb.append(Emoji.TIME).append("Бой заввершен");
-                keyboard = bot.getKeyboard();
+                keyboard = Keyboards.getGroupKeyboard();
             }
         }
 
 
-        bot.sendMessage(peerId, sb.toString(), keyboard);
+        playerService.sendMessage(peerId, sb.toString(), keyboard);
     }
 }

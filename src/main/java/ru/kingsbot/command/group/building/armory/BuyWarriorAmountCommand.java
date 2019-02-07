@@ -42,19 +42,19 @@ public class BuyWarriorAmountCommand extends Command {
             sb.append(Emoji.RED_EXCLAMATION_MARK).append("На складе нет столько еды, чтобы прокормить твоё войско.")
                     .append("Качай склад и рабочих, чтобы нанять больше армии.");
         }else{
-            if(storage.getFood() < amount * warrior.getFoodCost()) {
+            if(storage.getFood() < (amount * warrior.getFoodCost())) {
                 sb.append(Emoji.RED_EXCLAMATION_MARK).append("Не хватает ")
                         .append(NumberConverter.toString(amount * warrior.getFoodCost() - storage.getFood()))
                         .append(Emoji.FOOD).append(" для покупки воинов\n");
                 buy = false;
             }
-            if(storage.getGold() < amount * warrior.getGoldCost()) {
+            if(storage.getGold() < (amount * warrior.getGoldCost())) {
                 sb.append(Emoji.RED_EXCLAMATION_MARK).append("Не хватает ")
                         .append(NumberConverter.toString(amount * warrior.getGoldCost() - storage.getGold()))
                         .append(Emoji.GOLD).append(" для покупки воинов\n");
                 buy = false;
             }
-            if(storage.getIron() < amount * warrior.getIronCost()) {
+            if(storage.getIron() < (amount * warrior.getIronCost())) {
                 sb.append(Emoji.RED_EXCLAMATION_MARK).append("Не хватает ")
                         .append(NumberConverter.toString(amount * warrior.getIronCost() - storage.getIron()))
                         .append(Emoji.IRON).append(" для покупки воинов\n");
@@ -73,7 +73,7 @@ public class BuyWarriorAmountCommand extends Command {
             }
         }
 
-        bot.sendMessage(peerId, sb.toString(), null);
+        playerService.sendMessage(peerId, sb.toString(), null);
 
     }
 }

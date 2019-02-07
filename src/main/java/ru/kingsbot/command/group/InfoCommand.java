@@ -1,6 +1,7 @@
 package ru.kingsbot.command.group;
 
 import ru.kingsbot.Emoji;
+import ru.kingsbot.api.keyboard.Keyboards;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Capitol;
@@ -19,10 +20,10 @@ public class InfoCommand extends Command {
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
         if(player.getFirstName() == null) {
-            bot.setName(player);
+            playerService.validateName(player);
         }
         if(player.updateResources()) {
-            bot.getPlayerRepository().update(player);
+            playerService.update(player);
         }
         long currentTime = Instant.now().getEpochSecond();
         long shieldCancel = player.getPerk().getShieldCancel();
@@ -62,7 +63,7 @@ public class InfoCommand extends Command {
             sb.append(Emoji.RED_EXCLAMATION_MARK).append("Есть истощенные ресурсы");
         }
 
-        bot.sendMessage(peerId, sb.toString(), bot.getKeyboard());
+        playerService.sendMessage(peerId, sb.toString(), Keyboards.getGroupKeyboard());
     }
 
 }

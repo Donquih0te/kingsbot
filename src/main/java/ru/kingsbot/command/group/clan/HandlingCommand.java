@@ -27,6 +27,6 @@ public class HandlingCommand extends Command {
                     .append(Emoji.WAVE).append(" клан имя <название> - сменить название клана");
         }
 
-        bot.sendMessage(peerId, sb.toString(), null);
+        playerService.sendMessage(peerId, sb.toString(), null);
     }
 }
