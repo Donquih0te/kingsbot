@@ -40,7 +40,7 @@ public class UpgradeWarriorCommand extends Command {
         }else{
             Storage storage = player.getStorage();
             boolean buy = true;
-            if(warrior.getFoodUpgradeCost() > storage.getFood()) {
+            if(storage.getFood() < warrior.getFoodUpgradeCost()) {
                 sb.append(Emoji.RED_EXCLAMATION_MARK).append("Для улучшения не хватает ")
                         .append(NumberConverter.toString(warrior.getFoodUpgradeCost() - storage.getFood()))
                         .append(Emoji.FOOD).append("\n");
@@ -59,11 +59,11 @@ public class UpgradeWarriorCommand extends Command {
                 buy = false;
             }
             if(buy) {
-                warrior.upgrade();
                 storage.reduceFood(warrior.getFoodUpgradeCost());
                 storage.reduceGold(warrior.getGoldUpgradeCost());
                 storage.reduceIron(warrior.getIronUpgradeCost());
-                sb.append(warrior.getName()).append("\n")
+                warrior.upgrade();
+                sb.append(warrior.getName()).append(":\n")
                         .append(Emoji.LEVEL).append("Уровень: ").append(warrior.getLevel()).append("\n")
                         .append("Колличество: ").append(NumberConverter.toString(warrior.getAmount())).append("\n")
                         .append("Атака: ").append(warrior.getAttack()).append(Emoji.CLUBMAN).append("\n")

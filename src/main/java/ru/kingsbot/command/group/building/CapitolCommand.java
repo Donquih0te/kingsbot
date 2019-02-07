@@ -57,7 +57,7 @@ public class CapitolCommand extends Command {
         Storage storage = player.getStorage();
         Citizen citizen = capitol.getCitizen();
         StringBuilder sb = new StringBuilder();
-        sb.append(Emoji.CAPITOL).append("Капитолий\n")
+        sb.append(Emoji.CAPITOL).append("Капитолий:\n")
                 .append(Emoji.LEVEL).append("Уровень: ").append(capitol.getLevel()).append("\n\n")
                 .append("Улучшить:\n")
                 .append(NumberConverter.toString(capitol.getGoldUpgradeCost())).append(Emoji.GOLD)

@@ -28,7 +28,7 @@ public class ArmoryCommand extends Command {
         Storage storage = player.getStorage();
         StringBuilder sb = new StringBuilder();
         if(!armory.isPurchased()) {
-            sb.append(Emoji.ARMORY).append("Казармы\n")
+            sb.append(Emoji.ARMORY).append("Казармы:\n")
                     .append(Emoji.LEVEL).append("Уровень: ").append(armory.getLevel()).append("\n\n")
                     .append("Купить:\n")
                     .append(NumberConverter.toString(armory.getGoldCost())).append(Emoji.GOLD)
