@@ -214,7 +214,6 @@ public class Player {
     public Player(Integer id) {
         this.id = id;
         registerDate = Instant.now().getEpochSecond();
-        invited = false;
         level = 1;
         currentExperience = 0;
         maxExperience = 50;
