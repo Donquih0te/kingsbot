@@ -43,10 +43,10 @@ public class PlayerAttack {
         long whoDefense = who.getWall().getDefense() + who.getTower().getDefense();
         long targetDefense = target.getWall().getDefense() + target.getTower().getDefense();
 
-        double whoAttack = whoArmy.getSumAttack() * bonusAttack(who) > targetArmy.getSumArmor() + targetDefense ?
-                whoArmy.getSumAttack() - targetArmy.getSumArmor() - targetDefense : 10;
-        double targetAttack = targetArmy.getSumAttack() * bonusAttack(target) > whoArmy.getSumArmor() + whoDefense ?
-                targetArmy.getSumAttack() - whoArmy.getSumArmor() - whoDefense : 10;
+        double whoAttack = whoArmy.getSumAttack() * bonusAttack(who) > targetDefense ?
+                whoArmy.getSumAttack() * bonusAttack(who) - targetDefense : 10;
+        double targetAttack = targetArmy.getSumAttack() * bonusAttack(target) > + whoDefense ?
+                targetArmy.getSumAttack() * bonusAttack(target) - whoDefense : 10;
 
         whoResult.append("Вы атаковали королевство игрока ").append(Utils.createLink(target)).append(".\n");
         targetResult.append("Ваше королевство атаковал игрок ").append(Utils.createLink(who)).append(".\n");
@@ -54,12 +54,12 @@ public class PlayerAttack {
         double whoArmyLosses;
         double targetArmyLosses;
 
-        if(whoAttack >= targetAttack) {
+        if(whoAttack + whoArmy.getSumArmor() >= targetAttack + targetArmy.getSumArmor()) {
             whoResult.append("Атака завершилась победой\n\n");
             targetResult.append("Ваши воины слабы и не смогли противостоять армии противника.\n\n");
 
-            whoArmyLosses = targetAttack / whoAttack;
-            targetArmyLosses = 1 - (targetAttack / whoAttack);
+            whoArmyLosses = (targetAttack + targetArmy.getSumArmor()) / (whoAttack + whoArmy.getSumArmor());
+            targetArmyLosses = 1 - whoArmyLosses;
 
             whoResult.append("Полученные ресурсы:\n");
             attackResources(target, whoResult);
@@ -86,8 +86,8 @@ public class PlayerAttack {
             whoResult.append("Атака завершилась неудачей.\n\n");
             targetResult.append("Ваши воины смогли отстоять королевство.\n\n");
 
-            whoArmyLosses = 1 - (whoAttack / targetAttack);
-            targetArmyLosses = whoAttack / targetAttack;
+            targetArmyLosses = (whoAttack + whoArmy.getSumArmor()) / (targetAttack + targetArmy.getSumArmor());
+            whoArmyLosses = 1 - targetArmyLosses;
 
             who.addLesion();
         }
