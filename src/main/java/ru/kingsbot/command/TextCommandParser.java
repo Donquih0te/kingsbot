@@ -282,6 +282,13 @@ public class TextCommandParser {
                         playerService.sendMessage(peerId, "notify: " + (player.isNotify() ? "on" : "off"), null);
                         break;
                     }
+                    case "ref": {
+                        if(!player.isAdmin()) {
+                            return;
+                        }
+                        player.setInvitedBy(null);
+                        break;
+                    }
                 }
             }
         }

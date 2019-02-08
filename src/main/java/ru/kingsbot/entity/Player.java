@@ -41,10 +41,6 @@ public class Player {
     private Long registerDate;
 
     @Getter
-    @Column(name = "invited", nullable = false)
-    private boolean invited;
-
-    @Getter
     @Setter
     @Column(name = "invited_by", nullable = true)
     private Integer invitedBy;
@@ -226,6 +222,7 @@ public class Player {
         territory = 1000L;
         wins = 0;
         lesions = 0;
+        invitedBy = null;
         lastAttack = registerDate;
         attackTimeout = 60 * 15;
         lastBossAttack = registerDate;
