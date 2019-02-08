@@ -13,6 +13,7 @@ import java.time.Instant;
 public class PlayerAttack {
 
     private static final double ATTACK_BONUS = 0.10;
+    private static final double ARMY_SAVE = 0.95;
     private static final int SHIELD_TIME = 60 * 60 * 12;
 
     private final StringBuilder whoResult = new StringBuilder();
@@ -107,21 +108,11 @@ public class PlayerAttack {
     }
 
     private void armyLosses(Army army, double losses, StringBuilder who, StringBuilder target) {
-        double index;
         int clubmanLosses;
         int rockThrowerLosses;
-        if(army.getClubman().getLevel() / army.getRockThrower().getLevel() < 1) {
-            index = army.getClubman().getLevel() / (double) army.getRockThrower().getLevel();
-            clubmanLosses = (int) (army.getClubman().getAmount() * losses * (1 - index));
-            rockThrowerLosses = (int) (army.getRockThrower().getAmount() * losses * index);
-        }else if(army.getClubman().getLevel() / army.getRockThrower().getLevel() > 1) {
-            index = army.getRockThrower().getLevel() / (double) army.getClubman().getLevel();
-            clubmanLosses = (int) (army.getClubman().getAmount() * losses * index);
-            rockThrowerLosses = (int) (army.getRockThrower().getAmount() * losses * (1 - index));
-        }else{
-            clubmanLosses = (int) (army.getClubman().getAmount() * losses);
-            rockThrowerLosses = (int) (army.getRockThrower().getAmount() * losses);
-        }
+
+        clubmanLosses = (int) Math.ceil(army.getClubman().getAmount() * losses(army, losses) * ARMY_SAVE);
+        rockThrowerLosses = (int) Math.ceil(army.getRockThrower().getAmount() * losses(army, losses) * ARMY_SAVE);
 
         who.append("Ваши потери:\n");
         attackResults(army, clubmanLosses, rockThrowerLosses, who);
@@ -131,6 +122,17 @@ public class PlayerAttack {
 
         army.getClubman().remove(clubmanLosses);
         army.getRockThrower().remove(rockThrowerLosses);
+    }
+
+    private double losses(Army army, double losses) {
+        double clubman = army.getClubman().getLevel() * army.getClubman().getAmount();
+        double rockThrower = army.getRockThrower().getLevel() * army.getRockThrower().getAmount();
+        double r = (clubman + rockThrower) / 2;
+        if(losses > 0.5) {
+            return losses + r > 1 ? losses : losses + r;
+        }else{
+            return losses - r < 0 ? losses : losses - r;
+        }
     }
 
     private void attackResults(Army army, int clubmanLosses, int rockThrowerLosses, StringBuilder result) {
