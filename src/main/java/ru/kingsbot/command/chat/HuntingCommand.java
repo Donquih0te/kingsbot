@@ -48,7 +48,7 @@ public class HuntingCommand extends Command {
                             .append(NumberConverter.toString(amount)).append(Emoji.FOOD);
                     player.getStorage().addFood(amount);
                 }else{
-                    sb.append(Utils.createLink(player)).append(list.get(i)).append("\n\n");
+                    sb.append(Utils.createLink(player)).append(", ").append(list.get(i)).append("\n\n");
                 }
                 player.addExperience(1);
                 if(player.getCurrentExperience().intValue() == player.getMaxExperience().intValue()) {

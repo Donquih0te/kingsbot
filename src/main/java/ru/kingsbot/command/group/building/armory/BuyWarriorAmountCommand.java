@@ -67,7 +67,7 @@ public class BuyWarriorAmountCommand extends Command {
                 storage.reduceGold(amount * warrior.getGoldCost());
                 storage.reduceIron(amount * warrior.getIronCost());
                 sb.append("Куплено ").append(NumberConverter.toString(amount)).append(" воинов\n")
-                        .append("за ").append(amount * warrior.getFoodCost()).append(Emoji.FOOD).append("  ")
+                        .append("за ").append(NumberConverter.toString(amount * warrior.getFoodCost())).append(Emoji.FOOD).append("  ")
                         .append(NumberConverter.toString(amount * warrior.getGoldCost())).append(Emoji.GOLD).append("  ")
                         .append(NumberConverter.toString(amount * warrior.getIronCost())).append(Emoji.IRON).append("\n");
             }

@@ -1,15 +1,15 @@
 package ru.kingsbot.repository;
 
-public interface Repository<Entity, Key> {
+public interface Repository<E, ID> {
 
-    public void save(Entity entity);
+    public void save(E entity);
 
-    public Entity get(Key id);
+    public E get(ID id);
 
-    public void update(Entity entity);
+    public void update(E entity);
 
-    public Entity load(Key id);
+    public E load(ID id);
 
-    public void delete(Key id);
+    public void delete(ID id);
 
 }
