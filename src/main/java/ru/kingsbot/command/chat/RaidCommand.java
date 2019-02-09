@@ -35,7 +35,7 @@ public class RaidCommand extends Command {
         StringBuilder sb = new StringBuilder();
         Storage storage = player.getStorage();
         Capitol capitol = player.getCapitol();
-        if(!players.containsKey(player.getId()) || players.get(player.getId()) >= currentTime) {
+        if(!players.containsKey(player.getId()) || players.get(player.getId()) <= currentTime) {
             if(capitol.getFreeCitizensAmount() > 0) {
                 player.addExperience(1);
                 if(player.getCurrentExperience().intValue() == player.getMaxExperience().intValue()) {

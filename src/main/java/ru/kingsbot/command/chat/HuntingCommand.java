@@ -37,7 +37,7 @@ public class HuntingCommand extends Command {
         long currentTime = Instant.now().getEpochSecond();
         StringBuilder sb = new StringBuilder();
         Capitol capitol = player.getCapitol();
-        if(!players.containsKey(player.getId()) || players.get(player.getId()) >= currentTime) {
+        if(!players.containsKey(player.getId()) || players.get(player.getId()) <= currentTime) {
             if(capitol.getFreeCitizensAmount() > 0) {
                 int i = RANDOM.nextInt(list.size() - 1);
                 player.addExperience(1);
