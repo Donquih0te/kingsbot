@@ -35,7 +35,7 @@ public class TributeCommand extends Command {
         StringBuilder sb = new StringBuilder();
         Storage storage = player.getStorage();
         Capitol capitol = player.getCapitol();
-        if(!players.containsKey(player.getId()) || (currentTime - players.get(player.getId()) >= TIMESTAMP)) {
+        if(!players.containsKey(player.getId()) || players.get(player.getId()) >= currentTime) {
             int max = 2500 * player.getLevel() * capitol.getLevel();
             int min = 1000 * player.getLevel() * capitol.getLevel();
             int amount = RANDOM.nextInt(max - min) + min;
@@ -50,10 +50,10 @@ public class TributeCommand extends Command {
                     .append(NumberConverter.toString(amount)).append(Emoji.GOLD).append("\n\n")
                     .append(Emoji.LEVEL).append("Уровень: ").append(player.getLevel()).append("\n")
                     .append(Emoji.EXPERIENCE).append("Опыт: ").append(player.getCurrentExperience()).append("/").append(player.getMaxExperience());
-            players.put(player.getId(), currentTime);
+            players.put(player.getId(), Instant.now().plusSeconds(TIMESTAMP).getEpochSecond());
         }else{
             sb.append(Utils.createLink(player)).append(", следующий сбор дани можно совершить через ")
-                    .append(formatter.format(new Date((TIMESTAMP - (currentTime - players.get(player.getId()))) * 1000)));
+                    .append(formatter.format(new Date((players.get(player.getId()) - currentTime) * 1000)));
         }
 
         playerService.sendMessage(peerId, sb.toString(), Keyboards.getChatKeyboard());

@@ -41,10 +41,6 @@ public class Player {
     private Long registerDate;
 
     @Getter
-    @Column(name = "invited", nullable = false)
-    private boolean invited;
-
-    @Getter
     @Setter
     @Column(name = "invited_by", nullable = true)
     private Integer invitedBy;
@@ -218,7 +214,6 @@ public class Player {
     public Player(Integer id) {
         this.id = id;
         registerDate = Instant.now().getEpochSecond();
-        invited = false;
         level = 1;
         currentExperience = 0;
         maxExperience = 50;
@@ -226,6 +221,7 @@ public class Player {
         territory = 1000L;
         wins = 0;
         lesions = 0;
+        invitedBy = null;
         lastAttack = registerDate;
         attackTimeout = 60 * 15;
         lastBossAttack = registerDate;

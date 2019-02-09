@@ -13,6 +13,7 @@ import java.time.Instant;
 public class PlayerAttack {
 
     private static final double ATTACK_BONUS = 0.10;
+    private static final double ARMY_SAVE = 0.95;
     private static final int SHIELD_TIME = 60 * 60 * 12;
 
     private final StringBuilder whoResult = new StringBuilder();
@@ -42,10 +43,10 @@ public class PlayerAttack {
         long whoDefense = who.getWall().getDefense() + who.getTower().getDefense();
         long targetDefense = target.getWall().getDefense() + target.getTower().getDefense();
 
-        double whoAttack = whoArmy.getSumAttack() * bonusAttack(who) > targetArmy.getSumArmor() + targetDefense ?
-                whoArmy.getSumAttack() - targetArmy.getSumArmor() - targetDefense : 10;
-        double targetAttack = targetArmy.getSumAttack() * bonusAttack(target) > whoArmy.getSumArmor() + whoDefense ?
-                targetArmy.getSumAttack() - whoArmy.getSumArmor() - whoDefense : 10;
+        double whoAttack = whoArmy.getSumAttack() * bonusAttack(who) > targetDefense ?
+                whoArmy.getSumAttack() * bonusAttack(who) - targetDefense : 10;
+        double targetAttack = targetArmy.getSumAttack() * bonusAttack(target) > + whoDefense ?
+                targetArmy.getSumAttack() * bonusAttack(target) - whoDefense : 10;
 
         whoResult.append("Вы атаковали королевство игрока ").append(Utils.createLink(target)).append(".\n");
         targetResult.append("Ваше королевство атаковал игрок ").append(Utils.createLink(who)).append(".\n");
@@ -53,12 +54,12 @@ public class PlayerAttack {
         double whoArmyLosses;
         double targetArmyLosses;
 
-        if(whoAttack >= targetAttack) {
+        if(whoAttack + whoArmy.getSumArmor() >= targetAttack + targetArmy.getSumArmor()) {
             whoResult.append("Атака завершилась победой\n\n");
             targetResult.append("Ваши воины слабы и не смогли противостоять армии противника.\n\n");
 
-            whoArmyLosses = targetAttack / whoAttack;
-            targetArmyLosses = 1 - (targetAttack / whoAttack);
+            whoArmyLosses = (targetAttack + targetArmy.getSumArmor()) / (whoAttack + whoArmy.getSumArmor());
+            targetArmyLosses = 1 - whoArmyLosses;
 
             whoResult.append("Полученные ресурсы:\n");
             attackResources(target, whoResult);
@@ -85,8 +86,8 @@ public class PlayerAttack {
             whoResult.append("Атака завершилась неудачей.\n\n");
             targetResult.append("Ваши воины смогли отстоять королевство.\n\n");
 
-            whoArmyLosses = 1 - (whoAttack / targetAttack);
-            targetArmyLosses = whoAttack / targetAttack;
+            targetArmyLosses = (whoAttack + whoArmy.getSumArmor()) / (targetAttack + targetArmy.getSumArmor());
+            whoArmyLosses = 1 - targetArmyLosses;
 
             who.addLesion();
         }
@@ -107,21 +108,11 @@ public class PlayerAttack {
     }
 
     private void armyLosses(Army army, double losses, StringBuilder who, StringBuilder target) {
-        double index;
         int clubmanLosses;
         int rockThrowerLosses;
-        if(army.getClubman().getLevel() / army.getRockThrower().getLevel() < 1) {
-            index = army.getClubman().getLevel() / (double) army.getRockThrower().getLevel();
-            clubmanLosses = (int) (army.getClubman().getAmount() * losses * (1 - index));
-            rockThrowerLosses = (int) (army.getRockThrower().getAmount() * losses * index);
-        }else if(army.getClubman().getLevel() / army.getRockThrower().getLevel() > 1) {
-            index = army.getRockThrower().getLevel() / (double) army.getClubman().getLevel();
-            clubmanLosses = (int) (army.getClubman().getAmount() * losses * index);
-            rockThrowerLosses = (int) (army.getRockThrower().getAmount() * losses * (1 - index));
-        }else{
-            clubmanLosses = (int) (army.getClubman().getAmount() * losses);
-            rockThrowerLosses = (int) (army.getRockThrower().getAmount() * losses);
-        }
+
+        clubmanLosses = (int) Math.ceil(army.getClubman().getAmount() * losses(army, losses) * ARMY_SAVE);
+        rockThrowerLosses = (int) Math.ceil(army.getRockThrower().getAmount() * losses(army, losses) * ARMY_SAVE);
 
         who.append("Ваши потери:\n");
         attackResults(army, clubmanLosses, rockThrowerLosses, who);
@@ -131,6 +122,17 @@ public class PlayerAttack {
 
         army.getClubman().remove(clubmanLosses);
         army.getRockThrower().remove(rockThrowerLosses);
+    }
+
+    private double losses(Army army, double losses) {
+        double clubman = army.getClubman().getLevel() * army.getClubman().getAmount();
+        double rockThrower = army.getRockThrower().getLevel() * army.getRockThrower().getAmount();
+        double r = (clubman + rockThrower) / 2;
+        if(losses > 0.5) {
+            return losses + r > 1 ? losses : losses + r;
+        }else{
+            return losses - r < 0 ? losses : losses - r;
+        }
     }
 
     private void attackResults(Army army, int clubmanLosses, int rockThrowerLosses, StringBuilder result) {

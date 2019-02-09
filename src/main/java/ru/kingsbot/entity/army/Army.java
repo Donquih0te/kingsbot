@@ -36,13 +36,13 @@ public class Army {
     }
 
     public double getSumAttack() {
-        return clubman.getAmount() * clubman.getAttack() * clubman.getLevel()
-                + rockThrower.getAmount() * rockThrower.getAttack() * rockThrower.getLevel();
+        return clubman.getAmount() * clubman.getAttack()
+                + rockThrower.getAmount() * rockThrower.getAttack();
     }
 
     public double getSumArmor() {
-        return clubman.getAmount() * clubman.getArmor() * clubman.getLevel()
-                + rockThrower.getAmount() * rockThrower.getArmor() * rockThrower.getLevel();
+        return clubman.getAmount() * clubman.getArmor()
+                + rockThrower.getAmount() * rockThrower.getArmor();
     }
 
     public long getWarriorsAmount() {

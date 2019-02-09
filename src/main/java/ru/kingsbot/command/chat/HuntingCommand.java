@@ -37,34 +37,36 @@ public class HuntingCommand extends Command {
         long currentTime = Instant.now().getEpochSecond();
         StringBuilder sb = new StringBuilder();
         Capitol capitol = player.getCapitol();
-        if(!players.containsKey(player.getId()) || (currentTime - players.get(player.getId()) >= TIMESTAMP)) {
+        if(!players.containsKey(player.getId()) || players.get(player.getId()) >= currentTime) {
             if(capitol.getFreeCitizensAmount() > 0) {
                 int i = RANDOM.nextInt(list.size() - 1);
+                player.addExperience(1);
+                if(player.getCurrentExperience().intValue() == player.getMaxExperience().intValue()) {
+                    player.levelUp();
+                }
+                int level = player.getLevel();
+                int freeCitizens = capitol.getFreeCitizensAmount();
                 if(i < 4) {
-                    int max = 1000 * player.getLevel() * capitol.getFreeCitizensAmount();
-                    int min = 200 * player.getLevel() * capitol.getFreeCitizensAmount();
+                    int max = 1000 * level * freeCitizens;
+                    int min = 200 * level * freeCitizens;
                     int amount = RANDOM.nextInt(max - min) + min;
                     sb.append(Utils.createLink(player)).append(", ").append(list.get(i)).append(" Это принесло тебе ")
                             .append(NumberConverter.toString(amount)).append(Emoji.FOOD);
                     player.getStorage().addFood(amount);
                 }else{
-                    sb.append(Utils.createLink(player)).append(list.get(i)).append("\n\n");
-                }
-                player.addExperience(1);
-                if(player.getCurrentExperience().intValue() == player.getMaxExperience().intValue()) {
-                    player.levelUp();
+                    sb.append(Utils.createLink(player)).append(", ").append(list.get(i)).append("\n\n");
                 }
 
-                sb.append(Emoji.LEVEL).append("Уровень: ").append(player.getLevel()).append("\n")
+                sb.append(Emoji.LEVEL).append("Уровень: ").append(level).append("\n")
                         .append(Emoji.EXPERIENCE).append("Опыт: ").append(player.getCurrentExperience()).append("/").append(player.getMaxExperience());
-                players.put(player.getId(), currentTime);
+                players.put(player.getId(), Instant.now().plusSeconds(TIMESTAMP).getEpochSecond());
             }else{
                 sb.append(Utils.createLink(player)).append(", у тебя нет свободных рабочих чтобы идти на охоту.\n")
                 .append("Создать новых рабочих можно в \"Строения\" -> \"Капитолий\"");
             }
         }else{
             sb.append(Utils.createLink(player)).append(", твои люди устали после прошлой охоты. В следующий поход можно пойти через ")
-                    .append(formatter.format(new Date((TIMESTAMP - (currentTime - players.get(player.getId()))) * 1000)));
+                    .append(formatter.format(new Date((players.get(player.getId()) - currentTime) * 1000)));
         }
 
         playerService.sendMessage(peerId, sb.toString(), Keyboards.getChatKeyboard());

@@ -56,8 +56,8 @@ public class ClubmanCommand extends Command {
         Utils.checkSignature(payload.get("key"), player.getId(), name);
         Warrior clubman = player.getArmy().getClubman();
         Storage storage = player.getStorage();
-        StringBuilder sb = new StringBuilder("Воин с дубиной\n\n");
-        sb.append(Emoji.CLUBMAN).append("Метатель камней\n")
+        StringBuilder sb = new StringBuilder();
+        sb.append(Emoji.CLUBMAN).append("Воин с дубиной\n")
                 .append(Emoji.LEVEL).append("Уровень: ").append(clubman.getLevel()).append("\n")
                 .append("Колличество: ").append(NumberConverter.toString(clubman.getAmount())).append("\n")
                 .append("Атака: ").append(clubman.getAttack()).append(Emoji.CLUBMAN).append("\n")

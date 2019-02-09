@@ -35,36 +35,39 @@ public class RaidCommand extends Command {
         StringBuilder sb = new StringBuilder();
         Storage storage = player.getStorage();
         Capitol capitol = player.getCapitol();
-        if(!players.containsKey(player.getId()) || (currentTime - players.get(player.getId()) >= TIMESTAMP)) {
-            if(capitol.getFreeCitizensAmount() != 0) {
-                int max = 1000 * player.getLevel() * capitol.getFreeCitizensAmount();
-                int min = 200 * player.getLevel() * capitol.getFreeCitizensAmount();
+        if(!players.containsKey(player.getId()) || players.get(player.getId()) >= currentTime) {
+            if(capitol.getFreeCitizensAmount() > 0) {
+                player.addExperience(1);
+                if(player.getCurrentExperience().intValue() == player.getMaxExperience().intValue()) {
+                    player.levelUp();
+                }
+                int level = player.getLevel();
+                int freeCitizens = capitol.getFreeCitizensAmount();
+
+                int max = 1000 * level * freeCitizens;
+                int min = 200 * level * freeCitizens;
                 int goldAmount = RANDOM.nextInt(max - min) + min;
                 int ironAmount = RANDOM.nextInt(max - min) + min;
                 int woodAmount = RANDOM.nextInt(max - min) + min;
                 storage.addGold(goldAmount);
                 storage.addIron(ironAmount);
                 storage.addWood(woodAmount);
-                player.addExperience(1);
-                if(player.getCurrentExperience().intValue() == player.getMaxExperience().intValue()) {
-                    player.levelUp();
-                }
 
                 sb.append(Utils.createLink(player)).append(", ты совершил набег на близлижайшее поселение.\n\n")
                         .append("В результате набега получено: \n")
                         .append(NumberConverter.toString(goldAmount)).append(Emoji.GOLD).append("  ")
                         .append(NumberConverter.toString(ironAmount)).append(Emoji.IRON).append("  ")
                         .append(NumberConverter.toString(woodAmount)).append(Emoji.WOOD).append("\n\n")
-                        .append(Emoji.LEVEL).append("Уровень: ").append(player.getLevel()).append("\n")
+                        .append(Emoji.LEVEL).append("Уровень: ").append(level).append("\n")
                         .append(Emoji.EXPERIENCE).append("Опыт: ").append(player.getCurrentExperience()).append("/").append(player.getMaxExperience());
-                players.put(player.getId(), currentTime);
+                players.put(player.getId(), Instant.now().plusSeconds(TIMESTAMP).getEpochSecond());
             }else{
                 sb.append(Utils.createLink(player)).append(", у тебя нет свободных рабочих чтобы совершить набег.\n")
                         .append("Создать новых рабочих можно в \"Строения\" -> \"Капитолий\"");
             }
         }else{
             sb.append(Utils.createLink(player)).append(", твои люди устали после прошлого набега. Следующий набег можно совершить через ")
-                    .append(formatter.format(new Date((TIMESTAMP - (currentTime - players.get(player.getId()))) * 1000)));
+                    .append(formatter.format(new Date((players.get(player.getId()) - currentTime) * 1000)));
         }
 
         playerService.sendMessage(peerId, sb.toString(), Keyboards.getChatKeyboard());
