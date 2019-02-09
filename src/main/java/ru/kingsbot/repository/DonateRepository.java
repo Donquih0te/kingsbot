@@ -48,14 +48,22 @@ public class DonateRepository implements Repository<Donate, Integer> {
     }
 
     public List<Donate> getByCustomer(Integer id) {
+        EntityTransaction transaction = manager.getTransaction();
+        transaction.begin();
         TypedQuery<Donate> query = manager.createQuery("from Donate donate where donate.customer = :id", Donate.class);
         query.setParameter("id", id);
-        return query.getResultList();
+        List<Donate> donates = query.getResultList();
+        transaction.commit();
+        return donates;
     }
 
     public List<Donate> findByNotCompleted() {
+        EntityTransaction transaction = manager.getTransaction();
+        transaction.begin();
         TypedQuery<Donate> query = manager.createQuery("from Donate donate where donate.completed = false", Donate.class);
-        return query.getResultList();
+        List<Donate> donates = query.getResultList();
+        transaction.commit();
+        return donates;
     }
 
 }
