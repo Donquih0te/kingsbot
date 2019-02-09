@@ -61,6 +61,8 @@ public class PlayerRepository implements Repository<Player, Integer>  {
     }
 
     public List<Player> getEnemyToPlayerByCancelledShieldAndTerritory(Player player) {
+        EntityTransaction transaction = manager.getTransaction();
+        transaction.begin();
         TypedQuery<Player> query = manager
                 .createQuery("Select p from Player p inner join Perk perk on perk.id = p.id " +
                         "where p.id != :id " +
@@ -75,19 +77,29 @@ public class PlayerRepository implements Repository<Player, Integer>  {
         query.setParameter("age", player.getAge());
         query.setParameter("territory", (double) player.getTerritory());
         query.setMaxResults(5);
-        return query.getResultList();
+        List<Player> players = query.getResultList();
+        transaction.commit();
+        return players;
     }
 
     public List<Player> getPlayersOrderByTerritory() {
+        EntityTransaction transaction = manager.getTransaction();
+        transaction.begin();
         TypedQuery<Player> query = manager.createQuery("from Player p where p.id > 0 order by p.territory desc", Player.class);
         query.setMaxResults(10);
-        return query.getResultList();
+        List<Player> players = query.getResultList();
+        transaction.commit();
+        return players;
     }
 
     public List<Clan> getClansOrderByRating() {
+        EntityTransaction transaction = manager.getTransaction();
+        transaction.begin();
         TypedQuery<Clan> query = manager.createQuery("from Clan clan order by clan.rating desc", Clan.class);
         query.setMaxResults(10);
-        return query.getResultList();
+        List<Clan> clans = query.getResultList();
+        transaction.commit();
+        return clans;
     }
 
 }
