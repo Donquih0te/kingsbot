@@ -24,7 +24,8 @@ public class HandlingCommand extends Command {
             sb.append(Emoji.WAVE).append(" клан пригласить <id игрока>\n")
                     .append(Emoji.WAVE).append(" клан зам <id игрока> - назначить заместителя")
                     .append(Emoji.WAVE).append(" клан глава <id игрока> - передать главу")
-                    .append(Emoji.WAVE).append(" клан имя <название> - сменить название клана");
+                    .append(Emoji.WAVE).append(" клан имя <название> - сменить название клана")
+                    .append(Emoji.WAVE).append(" клан покинуть - покинуть клан");
         }
 
         playerService.sendMessage(peerId, sb.toString(), null);

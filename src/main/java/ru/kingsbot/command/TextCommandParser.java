@@ -15,6 +15,9 @@ import ru.kingsbot.utils.HibernateUtil;
 import ru.kingsbot.utils.NumberConverter;
 import ru.kingsbot.utils.Utils;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class TextCommandParser {
 
     private final Bot bot;
@@ -103,7 +106,11 @@ public class TextCommandParser {
                         if(player.getClan() != null) {
                             return;
                         }
-                        if(words[2].length() > 10) {
+                        List<String> wordsList = Arrays.asList(words);
+                        wordsList.remove(0);
+                        wordsList.remove(1);
+                        String clanName = String.join(" ", wordsList);
+                        if(clanName.length() > 10) {
                             playerService.sendMessage(player.getId(), "Название клана очень длинное", Keyboards.getGroupKeyboard());
                             return;
                         }
@@ -122,21 +129,19 @@ public class TextCommandParser {
                         break;
                     }
                     case "пригласить": {
-                        if(player.getClan() == null) {
+                        Clan clan = player.getClan();
+                        if(clan == null) {
                             return;
                         }
-                        if(!player.getClan().isOwner(player.getId()) || !player.getClan().isVice(player.getId())) {
+                        if(!clan.isOwner(player.getId()) || !clan.isVice(player.getId())) {
                             return;
                         }
                         Player target = playerService.getById(Utils.parseInt(words[2]));
                         if(target == null) {
-                            sb.append(Emoji.RED_EXCLAMATION_MARK).append("Игрок с id ").append(words[2]).append(" не найден");
+                            playerService.sendMessage(peerId, "Игрок не надйен.", null);
                         }else{
                             if(target.getClan() != null) {
                                 playerService.sendMessage(peerId, "Игрок уже состоит в клане", null);
-                                return;
-                            }
-                            if(player.getClan().isMember(target.getId())) {
                                 return;
                             }
                             target.setClanRequest(player.getId());
@@ -146,43 +151,80 @@ public class TextCommandParser {
                         break;
                     }
                     case "зам": {
-                        if(player.getClan() == null) {
+                        Clan clan = player.getClan();
+                        if(clan == null) {
                             return;
                         }
-                        if(!player.getClan().isOwner(player.getId())) {
+                        if(!clan.isOwner(player.getId())) {
                             return;
                         }
                         Player vice = playerService.getById(Utils.parseInt(words[2]));
                         if(vice == null) {
-                            sb.append(Emoji.RED_EXCLAMATION_MARK).append("Игрок с id ").append(words[2]).append(" не найден");
+                            playerService.sendMessage(peerId, "Игрок не надйен.", null);
                         }else{
-                            if(player.getClan().isMember(vice.getId())) {
+                            if(!clan.isMember(vice.getId())) {
                                 return;
                             }
-                            player.getClan().setViceId(vice.getId());
-                            playerService.sendMessage(peerId, "Заместителем клана назначен " + Utils.createLink(vice), null);
-                            playerService.sendMessage(vice, "Ты назвачен заместителем клана " + player.getClan().getName(), null);
+                            if(clan.isVice(vice.getId())) {
+                                return;
+                            }
+                            clan.setViceId(vice.getId());
+                            playerService.sendMessage(clan.getMembers(), "Заместителем клана назначен " + Utils.createLink(vice), null);
+                            playerService.sendMessage(vice, "Ты назвачен заместителем клана " + clan.getName(), null);
                         }
                         break;
                     }
                     case "глава": {
-                        if(player.getClan() == null) {
+                        Clan clan = player.getClan();
+                        if(clan == null) {
                             return;
                         }
-                        if(!player.getClan().isOwner(player.getId())) {
+                        if(!clan.isOwner(player.getId())) {
                             return;
                         }
                         Player owner = playerService.getById(Utils.parseInt(words[2]));
                         if(owner == null) {
-                            sb.append(Emoji.RED_EXCLAMATION_MARK).append("Игрок с id ").append(words[2]).append(" не найден");
+                            playerService.sendMessage(peerId, "Игрок не надйен.", null);
                         }else{
-                            if(player.getClan().isMember(owner.getId())) {
+                            if(!clan.isMember(owner.getId())) {
                                 return;
                             }
-                            player.getClan().setOwnerId(owner.getId());
-                            playerService.sendMessage(peerId, "Главой клана назначен " + Utils.createLink(owner), null);
-                            playerService.sendMessage(owner, "Ты назвачен новым главой клана " + player.getClan().getName(), null);
+                            if(clan.isOwner(owner.getId())) {
+                                return;
+                            }
+                            clan.setOwnerId(owner.getId());
+                            playerService.sendMessage(clan.getMembers(), "Главой клана назначен " + Utils.createLink(owner), null);
+                            playerService.sendMessage(owner, "Ты назвачен новым главой клана " + clan.getName(), null);
                         }
+                        break;
+                    }
+                    case "покинуть": {
+                        Clan clan = player.getClan();
+                        if(clan == null) {
+                            return;
+                        }
+                        int id = player.getId();
+                        if(clan.isOwner(id)) {
+                            clan.removeMember(id);
+                            player.setClan(null);
+                            if(clan.getViceId() != null) {
+                                clan.setOwnerId(clan.getViceId());
+                            }else{
+                                if(!clan.getMembers().isEmpty()) {
+                                    clan.setOwnerId(Utils.getRandomValueFromList(clan.getMembers()));
+                                }
+                            }
+                            playerService.sendMessage(clan.getMembers(), Utils.createLink(player) + " покинул клан.", null);
+                            return;
+                        }
+                        if(clan.isVice(player.getId())) {
+                            clan.removeMember(id);
+                            clan.setViceId(null);
+                            playerService.sendMessage(clan.getMembers(), Utils.createLink(player) + " покинул клан.", null);
+                            return;
+                        }
+                        clan.removeMember(id);
+                        playerService.sendMessage(clan.getMembers(), Utils.createLink(player) + " покинул клан.", null);
                         break;
                     }
                     case "инфо": {
