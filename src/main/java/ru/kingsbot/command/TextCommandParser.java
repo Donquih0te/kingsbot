@@ -113,7 +113,7 @@ public class TextCommandParser {
                             wordsList.remove(0);
                             wordsList.remove(1);
                             String clanName = String.join(" ", wordsList);
-                            if(clanName.length() > 10) {
+                            if(clanName.length() > 15) {
                                 playerService.sendMessage(player.getId(), "Название клана очень длинное", Keyboards.getGroupKeyboard());
                                 return;
                             }
