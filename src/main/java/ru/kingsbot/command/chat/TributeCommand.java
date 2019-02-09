@@ -35,7 +35,7 @@ public class TributeCommand extends Command {
         StringBuilder sb = new StringBuilder();
         Storage storage = player.getStorage();
         Capitol capitol = player.getCapitol();
-        if(!players.containsKey(player.getId()) || players.get(player.getId()) >= currentTime) {
+        if(!players.containsKey(player.getId()) || players.get(player.getId()) <= currentTime) {
             int max = 2500 * player.getLevel() * capitol.getLevel();
             int min = 1000 * player.getLevel() * capitol.getLevel();
             int amount = RANDOM.nextInt(max - min) + min;

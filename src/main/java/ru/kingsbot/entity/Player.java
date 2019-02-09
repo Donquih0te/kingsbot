@@ -249,7 +249,7 @@ public class Player {
     private int updateResource(Resource resource, int resourcePerMinute, long time) {
         long sec = Instant.now().getEpochSecond();
         int amount;
-        if(perk.getResourceBonusCancel() <= sec) {
+        if(perk.getResourceBonusCancel() >= sec) {
             amount = (int) ((time / 60) * resourcePerMinute * resource.getCitizensAmount() * perk.getResourceBonus());
         }else{
             amount = (int) ((time / 60) * resourcePerMinute * resource.getCitizensAmount());

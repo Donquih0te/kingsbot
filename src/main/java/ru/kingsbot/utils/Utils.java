@@ -61,7 +61,7 @@ public class Utils {
     public static double parseDouble(String s) {
         double i;
         try {
-            i = Integer.parseInt(s);
+            i = Double.parseDouble(s);
         }catch(NumberFormatException ignore) {
             i = 0;
         }
