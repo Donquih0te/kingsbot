@@ -60,10 +60,10 @@ public class TextCommandParser {
                 target.addInvite(player.getId());
                 target.getStorage().addGold(100_000);
                 StringBuilder playerResult = new StringBuilder();
-                sb.append("Ты отметил игрока ").append(Utils.createLink(target)).append(" как пригласившего тебя.\n")
+                playerResult.append("Ты отметил игрока ").append(Utils.createLink(target)).append(" как пригласившего тебя.\n")
                         .append("За это вы оба получаете по 100к").append(Emoji.GOLD).append("\n\n");
                 StringBuilder targetResult = new StringBuilder();
-                sb.append(Utils.createLink(player)).append(" указал тебя, как пригласившего его.\n")
+                targetResult.append(Utils.createLink(player)).append(" указал тебя, как пригласившего его.\n")
                         .append("За это вы оба получаете по 100к").append(Emoji.GOLD).append("\n\n")
                         .append("Ты пригласил: ").append(target.getInviteList().size());
                 playerService.sendMessage(peerId, playerResult.toString(), null);
@@ -107,16 +107,16 @@ public class TextCommandParser {
                         if(player.getClan() != null) {
                             return;
                         }
-                        List<String> wordsList = new ArrayList<>(Arrays.asList(words));
-                        wordsList.remove(0);
-                        wordsList.remove(1);
-                        String clanName = String.join(" ", wordsList);
-                        if(clanName.length() > 10) {
-                            playerService.sendMessage(player.getId(), "Название клана очень длинное", Keyboards.getGroupKeyboard());
-                            return;
-                        }
                         Storage storage = player.getStorage();
                         if(storage.getGold() >= 7_000_000) {
+                            List<String> wordsList = new ArrayList<>(Arrays.asList(words));
+                            wordsList.remove(0);
+                            wordsList.remove(1);
+                            String clanName = String.join(" ", wordsList);
+                            if(clanName.length() > 10) {
+                                playerService.sendMessage(player.getId(), "Название клана очень длинное", Keyboards.getGroupKeyboard());
+                                return;
+                            }
                             player.setClan(new Clan(player.getId(), words[2]));
                             storage.reduceGold(7_000_000);
                             sb.append(Emoji.ACCEPT).append("Клан <").append(words[2]).append("> успешно создан");
