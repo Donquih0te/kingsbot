@@ -15,6 +15,7 @@ import ru.kingsbot.utils.HibernateUtil;
 import ru.kingsbot.utils.NumberConverter;
 import ru.kingsbot.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -106,7 +107,7 @@ public class TextCommandParser {
                         if(player.getClan() != null) {
                             return;
                         }
-                        List<String> wordsList = Arrays.asList(words);
+                        List<String> wordsList = new ArrayList<>(Arrays.asList(words));
                         wordsList.remove(0);
                         wordsList.remove(1);
                         String clanName = String.join(" ", wordsList);
