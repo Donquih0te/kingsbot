@@ -23,7 +23,7 @@ public class AttackCommand extends Command {
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
         Utils.checkSignature(payload.get("key"), player.getId(), name);
         StringBuilder sb = new StringBuilder();
-        sb.append("Атаки отключены для успранения неполадок. В скором времени все вернется");
+        sb.append("Атаки отключены для устранения неполадок. В скором времени все вернется");
 //        Long currentTime = Instant.now().getEpochSecond();
 //        if(!players.containsKey(player.getId()) || (currentTime - players.get(player.getId()) > TIMESTAMP)) {
 //            List<Player> targets = playerService.getEnemyToAttack(player);
