@@ -273,9 +273,9 @@ public class Player {
                 }
             }else{
                 if(storage.getFood() < storage.getMaxFood()) {
+                    storage.addFood(foodResource.getCurrentAmount());
                     foodResource.setCurrentAmount(0);
                     foodResource.setMined(true);
-                    storage.addFood(foodResource.getCurrentAmount());
                 }
             }
             int goldAmount = updateResource(goldResource, capitol.getCitizen().getGoldPerMinute(), time);
@@ -286,9 +286,9 @@ public class Player {
                 }
             }else{
                 if(storage.getGold() < storage.getMaxGold()) {
+                    storage.addGold(goldResource.getCurrentAmount());
                     goldResource.setCurrentAmount(0);
                     goldResource.setMined(true);
-                    storage.addGold(goldResource.getCurrentAmount());
                 }
             }
             int ironAmount = updateResource(ironResource, capitol.getCitizen().getIronPerMinute(), time);
@@ -299,9 +299,9 @@ public class Player {
                 }
             }else{
                 if(storage.getIron() < storage.getMaxIron()) {
+                    storage.addIron(ironResource.getCurrentAmount());
                     ironResource.setCurrentAmount(0);
                     ironResource.setMined(true);
-                    storage.addIron(ironResource.getCurrentAmount());
                 }
             }
             int stoneAmount = updateResource(stoneResource, capitol.getCitizen().getStonePerMinute(), time);
@@ -312,9 +312,9 @@ public class Player {
                 }
             }else{
                 if(storage.getStone() < storage.getMaxStone()) {
+                    storage.addStone(stoneResource.getCurrentAmount());
                     stoneResource.setCurrentAmount(0);
                     stoneResource.setMined(true);
-                    storage.addStone(stoneResource.getCurrentAmount());
                 }
             }
             int woodAmount = updateResource(woodResource, capitol.getCitizen().getWoodPerMinute(), time);
@@ -325,9 +325,9 @@ public class Player {
                 }
             }else{
                 if(storage.getWood() < storage.getMaxWood()) {
+                    storage.addWood(woodResource.getCurrentAmount());
                     woodResource.setCurrentAmount(0);
                     woodResource.setMined(true);
-                    storage.addWood(woodResource.getCurrentAmount());
                 }
             }
             return true;
