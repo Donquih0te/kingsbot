@@ -79,7 +79,7 @@ public class PlayerService {
         String peerId = peerIds.stream().map(Object::toString).collect(Collectors.joining(","));
         ApiRequest.Builder builder = ApiRequest.newApiRequest()
                 .method("messages.send")
-                .param("random_id", RANDOM.nextInt(999_999))
+                .param("random_id", RANDOM.nextInt(Integer.MAX_VALUE))
                 .param("peer_id", peerId)
                 .param("message", message);
 
@@ -91,7 +91,7 @@ public class PlayerService {
 
     public void validateName(Player player) {
         if(player.getId() < 0) {
-            return;
+                return;
         }
         ApiRequest request = ApiRequest.newApiRequest()
                 .method("users.get")
