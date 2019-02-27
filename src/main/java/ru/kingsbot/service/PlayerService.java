@@ -91,7 +91,7 @@ public class PlayerService {
 
     public void validateName(Player player) {
         if(player.getId() < 0) {
-                return;
+            return;
         }
         ApiRequest request = ApiRequest.newApiRequest()
                 .method("users.get")
@@ -102,7 +102,7 @@ public class PlayerService {
 
         JsonObject json = parser.parse(result).getAsJsonObject();
         if(!json.has("response")) {
-            log.error("Impossible to set player name\n" + result);
+            log.error("Impossible to set player name\nJson:" + result);
             return;
         }
         JsonArray response = json.get("response").getAsJsonArray();
