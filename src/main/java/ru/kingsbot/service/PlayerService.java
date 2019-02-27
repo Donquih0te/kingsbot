@@ -79,7 +79,7 @@ public class PlayerService {
         String peerId = peerIds.stream().map(Object::toString).collect(Collectors.joining(","));
         ApiRequest.Builder builder = ApiRequest.newApiRequest()
                 .method("messages.send")
-                .param("random_id", RANDOM.nextInt(999_999))
+                .param("random_id", RANDOM.nextInt(Integer.MAX_VALUE))
                 .param("peer_id", peerId)
                 .param("message", message);
 
@@ -102,7 +102,7 @@ public class PlayerService {
 
         JsonObject json = parser.parse(result).getAsJsonObject();
         if(!json.has("response")) {
-            log.error("Impossible to set player name\n" + result);
+            log.error("Impossible to set player name\nJson:" + result);
             return;
         }
         JsonArray response = json.get("response").getAsJsonArray();
