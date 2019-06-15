@@ -20,15 +20,9 @@ public class ApiRequest {
         this.params = params;
     }
 
-    public void setToken(String token) {
-        params.put("access_token", token);
-    }
-
-    public void setVersion(String version) {
+    public HttpGet toHttp(String version, String token) {
         params.put("v", version);
-    }
-
-    public HttpGet get() {
+        params.put("access_token", token);
         URI uri = URI.create(buildQuery());
         HttpGet get = new HttpGet(uri);
         get.addHeader("Content-Type", "application/json");
@@ -36,17 +30,17 @@ public class ApiRequest {
     }
 
     private String buildQuery() {
-        StringBuilder str = new StringBuilder(API);
-        str.append(method).append("?");
+        StringBuilder query = new StringBuilder(API);
+        query.append(method).append("?");
 //        String p = params.entrySet().stream()
 //                .map(entry -> entry.getKey() + "=" + (entry.getValue() != null ? escape(entry.getValue().toString()) : ""))
 //                .collect(Collectors.joining("&"));
-//        str.append(p);
+//        query.append(p);
         params.forEach((k,v) -> {
-            str.append(k).append("=").append(URLEncoder.encode(v.toString(), StandardCharsets.UTF_8)).append("&");
+            query.append(k).append("=").append(URLEncoder.encode(v.toString(), StandardCharsets.UTF_8)).append("&");
         });
 
-        return str.toString();
+        return query.toString();
     }
 
     private String escape(String data) {
