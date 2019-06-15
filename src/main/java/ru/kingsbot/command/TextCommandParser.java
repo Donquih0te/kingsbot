@@ -75,7 +75,7 @@ public class TextCommandParser {
 //                    playerService.sendMessage(peerId, "передать <id игрока> <кол-во золота>\n", null);
 //                    return;
 //                }
-//                Player target = playerService.getPlayerRepository().get(Integer.valueOf(words[1]));
+//                Player target = playerService.getPlayerRepository().toHttp(Integer.valueOf(words[1]));
 //                if(target == null) {
 //                    playerService.sendMessage(peerId, "Игрок не найден в базе", null);
 //                    return;

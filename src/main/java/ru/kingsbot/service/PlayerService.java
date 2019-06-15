@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import lombok.extern.log4j.Log4j2;
 import ru.kingsbot.api.ApiRequest;
+import ru.kingsbot.api.TransportClient;
 import ru.kingsbot.api.keyboard.Keyboard;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.clan.Clan;
@@ -21,13 +22,13 @@ public class PlayerService {
     private static final Random RANDOM = new Random();
 
     private final PlayerRepository repository = new PlayerRepository();
-    private final RequestHandler requestHandler;
+    private final TransportClient transportClient;
     private final Gson gson;
     private JsonParser parser;
 
-    public PlayerService(Gson gson, RequestHandler requestHandler) {
+    public PlayerService(Gson gson, TransportClient transportClient) {
         this.gson = gson;
-        this.requestHandler = requestHandler;
+        this.transportClient = transportClient;
         parser = new JsonParser();
     }
 
@@ -86,7 +87,7 @@ public class PlayerService {
         if(keyboard != null) {
             builder.param("keyboard", gson.toJson(keyboard));
         }
-        requestHandler.sendVkApiRequest(builder.build());
+        transportClient.sendVkApiRequest(builder.build());
     }
 
     public void validateName(Player player) {
@@ -94,11 +95,11 @@ public class PlayerService {
             return;
         }
         ApiRequest request = ApiRequest.newApiRequest()
-                .method("users.get")
+                .method("users.toHttp")
                 .param("user_ids", player.getId())
                 .build();
 
-        String result = requestHandler.sendVkApiRequest(request);
+        String result = transportClient.sendVkApiRequest(request);
 
         JsonObject json = parser.parse(result).getAsJsonObject();
         if(!json.has("response")) {

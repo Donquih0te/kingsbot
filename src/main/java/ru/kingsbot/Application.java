@@ -11,9 +11,12 @@ import java.io.FileNotFoundException;
 @Log4j2
 public class Application {
 
-    public static void main(String[] args) throws FileNotFoundException {
-        Bot bot = new Bot();
-        new DonateParser(bot).start();
+    private static final String DATA_PATH = System.getProperty("user.dir") + "/";
+
+    public static void main(String[] args) {
+        log.info("Начало работы");
+        Bot bot = new Bot(DATA_PATH);
+        //new DonateParser(bot).start();
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             log.info("Сохранение данных...");
             bot.getPlayerService().sendMessage(2000000139, "Произошло выключение бота", null);
