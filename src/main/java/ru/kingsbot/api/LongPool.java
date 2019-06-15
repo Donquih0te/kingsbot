@@ -9,7 +9,6 @@ import ru.kingsbot.command.Command;
 import ru.kingsbot.command.TextCommandParser;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.service.PlayerService;
-import ru.kingsbot.service.RequestHandler;
 import ru.kingsbot.tutorial.Tutorial;
 import ru.kingsbot.utils.Utils;
 
@@ -22,7 +21,7 @@ public class LongPool {
     private static final String MESSAGE_NEW = "message_new";
 
     private final Bot bot;
-    private final RequestHandler requestHandler;
+    private final TransportClient transportClient;
     private final Integer groupId;
 
     private TextCommandParser commandParser;
@@ -34,9 +33,9 @@ public class LongPool {
     private String server;
     private String ts;
 
-    public LongPool(Bot bot, RequestHandler requestHandler, Integer groupId) {
+    public LongPool(Bot bot, TransportClient transportClient, Integer groupId) {
         this.bot = bot;
-        this.requestHandler = requestHandler;
+        this.transportClient = transportClient;
         this.groupId = groupId;
         parser = new JsonParser();
         playerService = bot.getPlayerService();
@@ -49,7 +48,7 @@ public class LongPool {
                 .method("groups.getLongPollServer")
                 .param("group_id", groupId)
                 .build();
-        String response = requestHandler.sendVkApiRequest(request);
+        String response = transportClient.sendVkApiRequest(request);
         if(response == null) {
             return;
         }
@@ -70,7 +69,7 @@ public class LongPool {
     public void run () {
         while(true) {
             String url = server + "?act=a_check&key=" + key + "&ts=" + ts + "&wait=5";
-            String body = requestHandler.sendGetRequest(url);
+            String body = transportClient.sendGetRequest(url);
 
             if(body == null) {
                 return;
