@@ -20,7 +20,6 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.Properties;
 
 @Log4j2
@@ -115,8 +114,6 @@ public class Bot {
                 throw new FileNotFoundException(String.format("The %s file doesn't exists in classpath", fileName));
             }
             try {
-                List<String> lines = Files.readAllLines(appPropPath);
-                Files.createFile(appPropPath);
                 Files.copy(inputStream, appPropPath);
             } catch (IOException e) {
                 throw new RuntimeException(e);
