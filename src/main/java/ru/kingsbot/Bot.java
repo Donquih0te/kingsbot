@@ -130,7 +130,7 @@ public class Bot {
             log.error(e.getMessage(), e);
         }
 
-        groupId = Utils.parseInt(prop.getProperty("groupId"));
+        groupId = Utils.parseInt(prop.getProperty("group_id"));
 
         String token = prop.getProperty("token");
 
