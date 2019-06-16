@@ -76,7 +76,8 @@ public class Bot {
 
         // Initializing and starting the http-request executor
         this.initTransportClient();
-        transportClient.start();
+
+        Keyboards.init();
 
         // Creating the database connection
         HibernateUtil.build();
@@ -86,6 +87,7 @@ public class Bot {
         conversationService = new ConversationService();
 
         longPool = new LongPool(this, transportClient, groupId);
+
         bossMap = new BossMap();
         bossAttackMap = new BossAttackMap();
         commandMap = new CommandMap();
@@ -96,7 +98,8 @@ public class Bot {
     }
 
     public void run() {
-        Keyboards.init();
+        commandMap.loadDefaultCommands();
+        transportClient.start();
         longPool.run();
     }
 

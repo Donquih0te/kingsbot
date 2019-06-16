@@ -31,10 +31,15 @@ import java.util.Optional;
 
 public class CommandMap {
 
-    private Map<String, Command> commands = new HashMap<>();
-    private Map<String, Command> chatCommands = new HashMap<>();
+    // Default group commands.  Key(Command name), Value(Command)
+    private final Map<String, Command> commands = new HashMap<>();
 
-    public CommandMap() {
+    // Default chat commands.  Key(Command name), Value(Command)
+    private final Map<String, Command> chatCommands = new HashMap<>();
+
+    public CommandMap() {}
+
+    public void loadDefaultCommands() {
         setDefaultCommands();
         setChatCommands();
     }
