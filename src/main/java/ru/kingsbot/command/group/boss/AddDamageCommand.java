@@ -1,10 +1,10 @@
 package ru.kingsbot.command.group.boss;
 
 import ru.kingsbot.Emoji;
+import ru.kingsbot.command.Command;
 import ru.kingsbot.command.keyboard.Button;
 import ru.kingsbot.command.keyboard.Color;
 import ru.kingsbot.command.keyboard.Keyboard;
-import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.utils.Utils;
 

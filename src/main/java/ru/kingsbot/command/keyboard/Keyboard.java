@@ -2,7 +2,8 @@ package ru.kingsbot.command.keyboard;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Keyboard {
 

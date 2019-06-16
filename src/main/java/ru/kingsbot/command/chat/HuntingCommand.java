@@ -1,8 +1,8 @@
 package ru.kingsbot.command.chat;
 
 import ru.kingsbot.Emoji;
-import ru.kingsbot.command.keyboard.Keyboards;
 import ru.kingsbot.command.Command;
+import ru.kingsbot.command.keyboard.Keyboards;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Capitol;
 import ru.kingsbot.utils.NumberConverter;

@@ -4,12 +4,12 @@ import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import lombok.extern.log4j.Log4j2;
 import ru.kingsbot.Bot;
-import ru.kingsbot.command.keyboard.Keyboards;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.command.TextCommandParser;
+import ru.kingsbot.command.keyboard.Keyboards;
 import ru.kingsbot.entity.Player;
-import ru.kingsbot.service.PlayerService;
 import ru.kingsbot.game.Tutorial;
+import ru.kingsbot.service.PlayerService;
 import ru.kingsbot.utils.Utils;
 
 import java.util.Map;

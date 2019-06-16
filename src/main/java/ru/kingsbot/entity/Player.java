@@ -11,7 +11,9 @@ import ru.kingsbot.entity.resource.*;
 
 import javax.persistence.*;
 import java.time.Instant;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 @Entity
 @Table(name = "player")

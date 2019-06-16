@@ -2,7 +2,9 @@ package ru.kingsbot.entity.army;
 
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
 @ToString
 @EqualsAndHashCode

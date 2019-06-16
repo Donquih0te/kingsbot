@@ -1,10 +1,10 @@
 package ru.kingsbot.command.group.building;
 
 import ru.kingsbot.Emoji;
+import ru.kingsbot.command.Command;
 import ru.kingsbot.command.keyboard.Button;
 import ru.kingsbot.command.keyboard.Color;
 import ru.kingsbot.command.keyboard.Keyboard;
-import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Tower;
 import ru.kingsbot.entity.building.Wall;

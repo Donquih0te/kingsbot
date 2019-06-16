@@ -1,8 +1,8 @@
 package ru.kingsbot.command.group.building;
 
 import ru.kingsbot.Emoji;
-import ru.kingsbot.command.keyboard.Keyboards;
 import ru.kingsbot.command.Command;
+import ru.kingsbot.command.keyboard.Keyboards;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Building;
 import ru.kingsbot.entity.building.Storage;
