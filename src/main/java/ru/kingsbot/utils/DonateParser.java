@@ -1,4 +1,4 @@
-package ru.kingsbot.donat;
+package ru.kingsbot.utils;
 
 import lombok.extern.log4j.Log4j2;
 import ru.kingsbot.Bot;
@@ -8,7 +8,6 @@ import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.donate.Donate;
 import ru.kingsbot.service.DonateService;
 import ru.kingsbot.service.PlayerService;
-import ru.kingsbot.utils.Utils;
 
 import java.time.Instant;
 import java.util.List;

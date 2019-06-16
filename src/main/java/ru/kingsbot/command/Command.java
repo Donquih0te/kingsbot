@@ -2,7 +2,7 @@ package ru.kingsbot.command;
 
 import lombok.Getter;
 import ru.kingsbot.Bot;
-import ru.kingsbot.api.keyboard.Keyboard;
+import ru.kingsbot.command.keyboard.Keyboard;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.service.MarketService;
 import ru.kingsbot.service.PlayerService;

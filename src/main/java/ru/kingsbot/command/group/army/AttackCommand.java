@@ -1,7 +1,7 @@
 package ru.kingsbot.command.group.army;
 
 import ru.kingsbot.Emoji;
-import ru.kingsbot.attack.PlayerAttack;
+import ru.kingsbot.game.attack.PlayerAttack;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.utils.Utils;

@@ -1,9 +1,9 @@
 package ru.kingsbot.command.group.building.capitol;
 
 import ru.kingsbot.Emoji;
-import ru.kingsbot.api.keyboard.Button;
-import ru.kingsbot.api.keyboard.Color;
-import ru.kingsbot.api.keyboard.Keyboard;
+import ru.kingsbot.command.keyboard.Button;
+import ru.kingsbot.command.keyboard.Color;
+import ru.kingsbot.command.keyboard.Keyboard;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Citizen;
 import ru.kingsbot.entity.Player;

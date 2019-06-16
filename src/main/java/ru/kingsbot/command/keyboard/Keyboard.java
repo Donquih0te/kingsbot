@@ -1,4 +1,4 @@
-package ru.kingsbot.api.keyboard;
+package ru.kingsbot.command.keyboard;
 
 import com.google.gson.annotations.SerializedName;
 

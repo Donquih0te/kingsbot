@@ -1,13 +1,13 @@
 package ru.kingsbot.command.group.boss;
 
 import ru.kingsbot.Emoji;
-import ru.kingsbot.api.keyboard.Action;
-import ru.kingsbot.api.keyboard.Button;
-import ru.kingsbot.api.keyboard.Color;
-import ru.kingsbot.api.keyboard.Keyboard;
-import ru.kingsbot.attack.BossAttack;
-import ru.kingsbot.attack.BossAttackMap;
-import ru.kingsbot.boss.Boss;
+import ru.kingsbot.command.keyboard.Action;
+import ru.kingsbot.command.keyboard.Button;
+import ru.kingsbot.command.keyboard.Color;
+import ru.kingsbot.command.keyboard.Keyboard;
+import ru.kingsbot.game.attack.BossAttack;
+import ru.kingsbot.game.attack.BossAttackMap;
+import ru.kingsbot.game.boss.Boss;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Storage;

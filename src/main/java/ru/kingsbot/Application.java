@@ -1,12 +1,10 @@
 package ru.kingsbot;
 
 import lombok.extern.log4j.Log4j2;
-import ru.kingsbot.donat.DonateParser;
 import ru.kingsbot.utils.HibernateUtil;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import java.io.FileNotFoundException;
 
 @Log4j2
 public class Application {

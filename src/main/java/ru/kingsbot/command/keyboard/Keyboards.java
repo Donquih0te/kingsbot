@@ -1,4 +1,4 @@
-package ru.kingsbot.api.keyboard;
+package ru.kingsbot.command.keyboard;
 
 import lombok.AccessLevel;
 import lombok.Getter;

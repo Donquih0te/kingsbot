@@ -2,7 +2,7 @@ package ru.kingsbot.command;
 
 import ru.kingsbot.Bot;
 import ru.kingsbot.Emoji;
-import ru.kingsbot.api.keyboard.Keyboards;
+import ru.kingsbot.command.keyboard.Keyboards;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.army.Clubman;
 import ru.kingsbot.entity.army.RockThrower;

@@ -4,7 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import ru.kingsbot.boss.Boss;
+import ru.kingsbot.game.boss.Boss;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

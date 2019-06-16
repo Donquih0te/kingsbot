@@ -1,8 +1,8 @@
 package ru.kingsbot.command.group.boss;
 
 import ru.kingsbot.Emoji;
-import ru.kingsbot.api.keyboard.Keyboards;
-import ru.kingsbot.attack.BossAttack;
+import ru.kingsbot.command.keyboard.Keyboards;
+import ru.kingsbot.game.attack.BossAttack;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.army.Warrior;

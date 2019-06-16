@@ -1,6 +1,6 @@
 package ru.kingsbot.command.group;
 
-import ru.kingsbot.api.keyboard.Keyboards;
+import ru.kingsbot.command.keyboard.Keyboards;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.utils.Utils;

@@ -1,4 +1,4 @@
-package ru.kingsbot.api;
+package ru.kingsbot.client;
 
 import org.apache.http.client.methods.HttpGet;
 
