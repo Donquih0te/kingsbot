@@ -1,4 +1,4 @@
-package ru.kingsbot.attack;
+package ru.kingsbot.game.attack;
 
 import ru.kingsbot.Emoji;
 import ru.kingsbot.entity.Perk;

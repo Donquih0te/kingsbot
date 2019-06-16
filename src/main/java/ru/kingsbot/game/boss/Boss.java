@@ -1,4 +1,4 @@
-package ru.kingsbot.boss;
+package ru.kingsbot.game.boss;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,8 +1,8 @@
-package ru.kingsbot.attack;
+package ru.kingsbot.game.attack;
 
 import lombok.Getter;
 import lombok.Setter;
-import ru.kingsbot.boss.Boss;
+import ru.kingsbot.game.boss.Boss;
 
 import java.util.Date;
 import java.util.HashMap;
