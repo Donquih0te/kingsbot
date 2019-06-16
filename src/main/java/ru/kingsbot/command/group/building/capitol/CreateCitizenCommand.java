@@ -1,6 +1,6 @@
 package ru.kingsbot.command.group.building.capitol;
 
-import ru.kingsbot.Emoji;
+import ru.kingsbot.utils.Emoji;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Citizen;
 import ru.kingsbot.entity.Player;

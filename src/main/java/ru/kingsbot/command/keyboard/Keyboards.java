@@ -3,7 +3,7 @@ package ru.kingsbot.command.keyboard;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import ru.kingsbot.Emoji;
+import ru.kingsbot.utils.Emoji;
 
 import java.util.List;
 import java.util.Map;

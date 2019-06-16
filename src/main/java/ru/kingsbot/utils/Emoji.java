@@ -1,4 +1,4 @@
-package ru.kingsbot;
+package ru.kingsbot.utils;
 
 public class Emoji {
 

@@ -1,6 +1,6 @@
 package ru.kingsbot.command.group.clan;
 
-import ru.kingsbot.Emoji;
+import ru.kingsbot.utils.Emoji;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.utils.Utils;

@@ -1,6 +1,6 @@
 package ru.kingsbot.game.attack;
 
-import ru.kingsbot.Emoji;
+import ru.kingsbot.utils.Emoji;
 import ru.kingsbot.entity.Perk;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.army.Army;

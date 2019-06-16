@@ -1,6 +1,6 @@
 package ru.kingsbot.command.group.boss;
 
-import ru.kingsbot.Emoji;
+import ru.kingsbot.utils.Emoji;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.command.keyboard.Keyboards;
 import ru.kingsbot.entity.Player;

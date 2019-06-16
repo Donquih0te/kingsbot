@@ -2,7 +2,6 @@ package ru.kingsbot.utils;
 
 import lombok.extern.log4j.Log4j2;
 import ru.kingsbot.Bot;
-import ru.kingsbot.Emoji;
 import ru.kingsbot.entity.Perk;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.donate.Donate;
