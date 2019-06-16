@@ -4,7 +4,7 @@ plugins {
 
 compileJava.options.encoding = 'UTF-8'
 
-group 'civ'
+group 'kingsbot'
 
 jar {
     from { 
