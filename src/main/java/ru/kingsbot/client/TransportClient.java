@@ -27,6 +27,18 @@ public class TransportClient {
         client = HttpAsyncClients.createDefault();
     }
 
+    public void start() {
+        client.start();
+    }
+
+    public void close() {
+        try {
+            client.close();
+        } catch(IOException e) {
+            log.error(e.getMessage(), e);
+        }
+    }
+
     // TODO: Use it in sendVkApiRequest and sendGetRequest
 //    private String sendGet(HttpGet getRequest) {
 //
@@ -36,7 +48,7 @@ public class TransportClient {
         String result = null;
         HttpResponse response = null;
         try {
-            response = client.execute(request.toHttp(token, version), null).get();
+            response = client.execute(request.toHttp(version, token), null).get();
         }catch(InterruptedException | ExecutionException e) {
             log.error(e.getMessage(), e);
         }
@@ -75,20 +87,6 @@ public class TransportClient {
 
     public CloseableHttpAsyncClient getHttpClient() {
         return client;
-    }
-
-    public void start() {
-        if(!client.isRunning()) {
-            client.start();
-        }
-    }
-
-    public void close() {
-        try {
-            client.close();
-        } catch(IOException e) {
-            log.error(e.getMessage(), e);
-        }
     }
 
 }

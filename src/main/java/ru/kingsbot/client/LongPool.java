@@ -1,19 +1,25 @@
 package ru.kingsbot.client;
 
-import com.google.gson.*;
-import com.google.gson.reflect.TypeToken;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import lombok.extern.log4j.Log4j2;
 import ru.kingsbot.Bot;
+import ru.kingsbot.client.exception.InvalidResponseException;
+import ru.kingsbot.client.objects.VkError;
+import ru.kingsbot.client.objects.longpool.LongPoolServer;
+import ru.kingsbot.client.objects.longpool.response.LongPoolResponse;
+import ru.kingsbot.client.objects.longpool.response.LongPoolUpdate;
+import ru.kingsbot.client.objects.longpool.response.LongPoolUpdateObject;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.command.TextCommandParser;
 import ru.kingsbot.command.keyboard.Keyboards;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.game.Tutorial;
 import ru.kingsbot.service.PlayerService;
-import ru.kingsbot.utils.Utils;
 
+import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Log4j2
 public class LongPool {
@@ -28,82 +34,93 @@ public class LongPool {
     private PlayerService playerService;
 
     private JsonParser parser;
+    private Gson gson;
 
-    private String key;
-    private String server;
-    private String ts;
+    private LongPoolServer longPoolServer;
 
     public LongPool(Bot bot, TransportClient transportClient, Integer groupId) {
         this.bot = bot;
         this.transportClient = transportClient;
         this.groupId = groupId;
         parser = new JsonParser();
+        gson = new Gson();
         playerService = bot.getPlayerService();
         commandParser = new TextCommandParser(bot);
-        getLongPoolData();
     }
 
-    private void getLongPoolData() {
+    private void getLongPoolData() throws InvalidResponseException {
         ApiRequest request = ApiRequest.newApiRequest()
                 .method("groups.getLongPollServer")
                 .param("group_id", groupId)
                 .build();
         String response = transportClient.sendVkApiRequest(request);
-        if(response == null) {
-            return;
-        }
 
         JsonObject element = parser.parse(response).getAsJsonObject();
         if(element.has("error")) {
-            log.error("ApiRequest error\n" + element.toString());
-            return;
+            VkError error = gson.fromJson(element.get("error"), VkError.class);
+            throw new InvalidResponseException(error);
         }
         if(element.has("response")) {
-            JsonObject object = element.get("response").getAsJsonObject();
-            key = object.get("key").getAsString();
-            server = object.get("server").getAsString();
-            ts = object.get("ts").getAsString();
+            longPoolServer = gson.fromJson(element.get("response"), LongPoolServer.class);
         }
     }
 
-    public void run () {
+    public void run() {
+        try {
+            getLongPoolData();
+        } catch (InvalidResponseException e) {
+            log.error(e.getMessage(), e);
+        }
+
+        LongPoolResponse longPoolResponse;
+
         while(true) {
-            String url = server + "?act=a_check&key=" + key + "&ts=" + ts + "&wait=5";
+            String url = longPoolServer.getServer() + "?act=a_check&key=" + longPoolServer.getKey() + "&ts=" + longPoolServer.getTs() + "&wait=5";
             String body = transportClient.sendGetRequest(url);
 
-            if(body == null) {
-                return;
-            }
             JsonObject jsonObject = parser.parse(body).getAsJsonObject();
             if(jsonObject.has("failed")) {
                 switch(jsonObject.get("failed").getAsString()) {
+
+                    // История событий устарела или была частично утеряна,
+                    // приложение может получать события далее, используя новое значение ts из ответа
                     case "1":
-                        ts = jsonObject.get("ts").getAsString();
+                        longPoolServer.setTs(jsonObject.get("ts").getAsString());
                     break;
+
+                    // Истекло время действия ключа, нужно заново получить key методом groups.getLongPollServer
                     case "2":
+
+                    // Информация утрачена, нужно запросить новые key и ts методом groups.getLongPollServer
                     case "3":
-                        getLongPoolData();
-                    break;
+                        try {
+                            getLongPoolData();
+                        } catch (InvalidResponseException e) {
+                            e.printStackTrace();
+                        }
+                        break;
                 }
                 continue;
             }
 
-            ts = jsonObject.get("ts").getAsString();
+            longPoolResponse = gson.fromJson(jsonObject, LongPoolResponse.class);
+            System.out.println(longPoolResponse);
+            longPoolServer.setTs(longPoolResponse.getTs());
 
-            JsonArray updates = jsonObject.get("updates").getAsJsonArray();
-            updates.forEach(element -> {
-                switch(element.getAsJsonObject().get("type").getAsString()) {
+            List<LongPoolUpdate> updates = longPoolResponse.getUpdates();
+            updates.forEach(update -> {
+                switch(update.getType()) {
                     case MESSAGE_NEW:
-                        JsonObject object = element.getAsJsonObject().get("object").getAsJsonObject();
-                        int fromId = object.get("from_id").getAsInt();
+                        LongPoolUpdateObject object = update.getObject();
+                        int fromId = object.getFromId();
                         if(fromId == groupId) {
                             return;
                         }
-                        int peerId = object.get("peer_id").getAsInt();
-                        String text = object.get("text").getAsString();
-                        JsonElement payloadObject = object.get("payload");
+                        int peerId = object.getPeerId();
+                        String text = object.getText();
+                        Map<String, String> payload = object.getPayload();
                         Player player = playerService.load(fromId);
-                        if(payloadObject == null) {
+                        if(payload.isEmpty()) {
                             if(peerId == fromId) {
                                 if(!player.isTutorial()) {
                                     Tutorial tutorial = new Tutorial(player);
@@ -118,12 +135,7 @@ public class LongPool {
                             commandParser.parse(peerId, fromId, text);
                             return;
                         }
-                        Map<String, String> payload;
-                        try {
-                            payload = bot.getGson().fromJson(payloadObject.getAsString(), new TypeToken<Map<String, String>>(){}.getType());
-                        }catch(JsonSyntaxException e) {
-                            return;
-                        }
+
                         if(peerId == fromId) {
                             if(!player.isTutorial()) {
                                 Tutorial tutorial = new Tutorial(player);
@@ -145,7 +157,7 @@ public class LongPool {
                             if(command.isPresent()) {
                                 payload.put("key", Utils.encodeSignature(player.getId() + "-" + command.get().getName()));
                                 command.get().execute(player, peerId, payload);
-                            }else{
+                        }else{
                                 bot.getCommandMap().getCommand("not_found")
                                         .ifPresent(cmd -> cmd.execute(player, peerId, payload));
                             }
@@ -163,7 +175,7 @@ public class LongPool {
                                 command.get().execute(player, peerId, payload);
                             }else{
                                 bot.getCommandMap().getChatCommand("info").ifPresent(cmd -> cmd.execute(player, peerId, payload));
-                            }
+                        }
                         }
                     break;
                 }
