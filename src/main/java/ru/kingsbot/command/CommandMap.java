@@ -31,9 +31,8 @@ import java.util.Optional;
 
 public class CommandMap {
 
-    private final String DEFAULT_GROUP_COMMAND_NAME = "info";
-
-    private final String DEFAULT_CHAT_COMMAND_NAME = "info";
+    private static final String DEFAULT_GROUP_COMMAND_NAME = "info";
+    private static final String DEFAULT_CHAT_COMMAND_NAME = "info";
 
     // Default group commands.  Key(Command name), Value(Command)
     private final Map<String, Command> commands = new HashMap<>();
