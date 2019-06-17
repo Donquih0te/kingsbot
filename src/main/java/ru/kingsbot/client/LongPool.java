@@ -149,18 +149,11 @@ public class LongPool {
                             String commandName = payload.get("command");
                             //payload.remove("command");
                             if(player.isBanned()) {
-                                bot.getCommandMap().getCommand("user_banned")
-                                        .ifPresent(cmd -> cmd.execute(player, peerId, payload));
+                                bot.getCommandMap().getCommand("user_banned").execute(player, peerId, payload);
                                 return;
                             }
-                            Optional<Command> command = bot.getCommandMap().getCommand(commandName);
-                            if(command.isPresent()) {
-                                payload.put("key", Utils.encodeSignature(player.getId() + "-" + command.get().getName()));
-                                command.get().execute(player, peerId, payload);
-                        }else{
-                                bot.getCommandMap().getCommand("not_found")
-                                        .ifPresent(cmd -> cmd.execute(player, peerId, payload));
-                            }
+                            Command command = bot.getCommandMap().getCommand(commandName);
+                            command.execute(player, peerId, payload);
                         }else{
                             if(!player.isTutorial()) {
                                 playerService.sendMessage(peerId, "Чтобы начать игру напишите в группу vk.me/kingsbot", Keyboards.getChatKeyboard());
@@ -170,12 +163,8 @@ public class LongPool {
                                 return;
                             }
                             String commandName = payload.get("command");
-                            Optional<Command> command = bot.getCommandMap().getChatCommand(commandName);
-                            if(command.isPresent()) {
-                                command.get().execute(player, peerId, payload);
-                            }else{
-                                bot.getCommandMap().getChatCommand("info").ifPresent(cmd -> cmd.execute(player, peerId, payload));
-                        }
+                            Command command = bot.getCommandMap().getChatCommand(commandName);
+                            command.execute(player, peerId, payload);
                         }
                     break;
                 }
