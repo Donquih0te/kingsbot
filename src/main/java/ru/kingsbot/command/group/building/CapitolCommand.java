@@ -20,7 +20,7 @@ public class CapitolCommand extends Command {
     public CapitolCommand() {
         super("capitol");
         keyboard = Keyboard.newKeyboard()
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label("Улучшить" + Emoji.CITIZEN)
                                 .payload("command", "upgrade_building")
@@ -33,7 +33,7 @@ public class CapitolCommand extends Command {
                                 .color(Color.WHITE)
                                 .create()
                 ))
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.BACK + "Назад")
                                 .payload("command", "back")
@@ -47,7 +47,7 @@ public class CapitolCommand extends Command {
                                 .create()
                     )
                 )
-                .build();
+                .create();
     }
 
     @Override

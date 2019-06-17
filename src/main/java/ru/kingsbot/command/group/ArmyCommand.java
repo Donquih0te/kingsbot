@@ -18,21 +18,21 @@ public class ArmyCommand extends Command {
     public ArmyCommand() {
         super("army");
         keyboard = Keyboard.newKeyboard()
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.ATTACK + "Атака")
                                 .payload("command", "attack")
                                 .color(Color.WHITE)
                                 .create()
                 ))
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label("Главная")
                                 .payload("command", "info")
                                 .color(Color.BLUE)
                                 .create()
                 ))
-                .build();
+                .create();
     }
 
     @Override

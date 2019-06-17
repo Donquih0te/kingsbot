@@ -18,7 +18,7 @@ public class ProtectionCommand extends Command {
     public ProtectionCommand() {
         super("protection");
         keyboard = Keyboard.newKeyboard()
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.WALL + "Стены")
                                 .payload("command", "wall")
@@ -30,7 +30,7 @@ public class ProtectionCommand extends Command {
                                 .color(Color.WHITE)
                                 .create()
                 ))
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.BACK + "Назад")
                                 .payload("command", "back")
@@ -43,7 +43,7 @@ public class ProtectionCommand extends Command {
                                 .color(Color.BLUE)
                                 .create()
                 ))
-                .build();
+                .create();
     }
 
     @Override

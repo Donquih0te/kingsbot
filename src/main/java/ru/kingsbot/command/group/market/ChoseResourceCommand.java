@@ -28,7 +28,7 @@ public class ChoseResourceCommand extends Command {
         switch(payload.get("action")) {
             case "buy":
                 keyboard = Keyboard.newKeyboard()
-                        .row(List.of(
+                        .withRowButtons(List.of(
                                 Button.newButton()
                                         .label("1k")
                                         .payload("command", "buy_resource_amount")
@@ -58,7 +58,7 @@ public class ChoseResourceCommand extends Command {
                                         .color(Color.WHITE)
                                         .create()
                         ))
-                        .row(List.of(
+                        .withRowButtons(List.of(
                                 Button.newButton()
                                         .label("100k")
                                         .payload("command", "buy_resource_amount")
@@ -89,7 +89,7 @@ public class ChoseResourceCommand extends Command {
                                         .create()
                             )
                         )
-                        .row(List.of(
+                        .withRowButtons(List.of(
                                 Button.newButton()
                                         .label("10kk")
                                         .payload("command", "buy_resource_amount")
@@ -112,7 +112,7 @@ public class ChoseResourceCommand extends Command {
                                         .color(Color.WHITE)
                                         .create()
                         ))
-                        .row(List.of(
+                        .withRowButtons(List.of(
                                 Button.newButton()
                                         .label(Emoji.BACK + "Назад")
                                         .payload("command", "back")
@@ -126,11 +126,11 @@ public class ChoseResourceCommand extends Command {
                                         .create()
                             )
                         )
-                        .build();
+                        .create();
                 break;
             case "sell":
                 keyboard = Keyboard.newKeyboard()
-                        .row(List.of(
+                        .withRowButtons(List.of(
                                 Button.newButton()
                                         .label("1k")
                                         .payload("command", "sell_resource_amount")
@@ -161,7 +161,7 @@ public class ChoseResourceCommand extends Command {
                                         .create()
                             )
                         )
-                        .row(List.of(
+                        .withRowButtons(List.of(
                                 Button.newButton()
                                         .label("100k")
                                         .payload("command", "sell_resource_amount")
@@ -191,7 +191,7 @@ public class ChoseResourceCommand extends Command {
                                         .color(Color.WHITE)
                                         .create()                                )
                         )
-                        .row(List.of(
+                        .withRowButtons(List.of(
                                 Button.newButton()
                                         .label("10kk")
                                         .payload("command", "sell_resource_amount")
@@ -214,7 +214,7 @@ public class ChoseResourceCommand extends Command {
                                         .color(Color.WHITE)
                                         .create()
                         ))
-                        .row(List.of(
+                        .withRowButtons(List.of(
                                 Button.newButton()
                                         .label(Emoji.BACK + "Назад")
                                         .payload("command", "back")
@@ -228,7 +228,7 @@ public class ChoseResourceCommand extends Command {
                                         .create()
                             )
                         )
-                        .build();
+                        .create();
                 break;
         }
 

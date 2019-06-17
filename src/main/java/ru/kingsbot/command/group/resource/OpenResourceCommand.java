@@ -25,7 +25,7 @@ public class OpenResourceCommand extends Command {
             return;
         }
         keyboard = Keyboard.newKeyboard()
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton().label(Emoji.PLUS + "Добавить рабочего").payload("command", "citizen_resource")
                                 .payload("resource", payload.get("resource"))
                                 .payload("action", "put")
@@ -39,7 +39,7 @@ public class OpenResourceCommand extends Command {
                                 .color(Color.WHITE)
                                 .create()
                 ))
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.FIND + "Найти")
                                 .payload("command", "find_resource")
@@ -59,7 +59,7 @@ public class OpenResourceCommand extends Command {
                                 .create()
                     )
                 )
-                .build();
+                .create();
         StringBuilder sb = new StringBuilder();
         Resource resource = null;
         switch(payload.get("resource")) {

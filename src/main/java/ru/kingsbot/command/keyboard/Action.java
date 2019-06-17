@@ -1,31 +1,24 @@
 package ru.kingsbot.command.keyboard;
 
-import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.Map;
+import lombok.Getter;
 
 public class Action {
 
     @SerializedName(value = "type")
     private String type = "text";
 
+    @Getter
     @SerializedName(value = "label")
     private String label;
 
+    @Getter
     @SerializedName(value = "payload")
     private String payload;
 
-    public Action(String label, Map<String, String> payload) {
+    public Action(String label, String payload) {
         this.label = label;
-        this.payload = new Gson().toJson(payload);
+        this.payload = payload;
     }
 
-    public String getLabel() {
-        return label;
-    }
-
-    public String getPayload() {
-        return payload;
-    }
 }

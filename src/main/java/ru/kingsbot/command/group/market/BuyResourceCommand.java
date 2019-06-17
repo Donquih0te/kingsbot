@@ -19,7 +19,7 @@ public class BuyResourceCommand extends Command {
     public BuyResourceCommand() {
         super("buy_resource");
         keyboard = Keyboard.newKeyboard()
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.FOOD + "Еда")
                                 .payload("command", "chose_resource")
@@ -35,7 +35,7 @@ public class BuyResourceCommand extends Command {
                                 .color(Color.WHITE)
                                 .create()
                 ))
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.STONE + "Камень")
                                 .payload("command", "chose_resource")
@@ -51,7 +51,7 @@ public class BuyResourceCommand extends Command {
                                 .color(Color.WHITE)
                                 .create()
                 ))
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.BACK + "Назад")
                                 .payload("command", "back")
@@ -64,7 +64,7 @@ public class BuyResourceCommand extends Command {
                                 .color(Color.BLUE)
                                 .create()
                 ))
-                .build();
+                .create();
     }
 
     @Override

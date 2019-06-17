@@ -19,14 +19,14 @@ public class Tutorial {
         this.player = player;
         playerService = Bot.getInstance().getPlayerService();
         keyboard = Keyboard.newKeyboard()
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label("Создать королевство")
                                 .payload("command", "start")
                                 .color(Color.BLUE)
                                 .create()
                 ))
-                .build();
+                .create();
     }
 
     public void start() {

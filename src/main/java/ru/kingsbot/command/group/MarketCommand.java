@@ -16,7 +16,7 @@ public class MarketCommand extends Command {
     public MarketCommand() {
         super("market");
         keyboard = Keyboard.newKeyboard()
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.PLUS + "Купить")
                                 .payload("command", "buy_resource")
@@ -28,14 +28,14 @@ public class MarketCommand extends Command {
                                 .color(Color.WHITE)
                                 .create()
                 ))
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label("Главная")
                                 .payload("command", "info")
                                 .color(Color.BLUE)
                                 .create()
                 ))
-                .build();
+                .create();
     }
 
     @Override

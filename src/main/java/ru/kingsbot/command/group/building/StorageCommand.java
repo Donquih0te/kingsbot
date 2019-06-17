@@ -18,7 +18,7 @@ public class StorageCommand extends Command {
     public StorageCommand() {
         super("storage");
         keyboard = Keyboard.newKeyboard()
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.CITIZEN + "Улучшить")
                                 .payload("command", "upgrade_building")
@@ -26,7 +26,7 @@ public class StorageCommand extends Command {
                                 .color(Color.GREEN)
                                 .create()
                 ))
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.BACK + "Назад")
                                 .payload("command", "back")
@@ -40,7 +40,7 @@ public class StorageCommand extends Command {
                                 .create()
                         )
                 )
-                .build();
+                .create();
     }
 
     @Override

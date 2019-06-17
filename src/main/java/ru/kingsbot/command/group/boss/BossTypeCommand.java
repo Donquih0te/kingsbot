@@ -23,7 +23,7 @@ public class BossTypeCommand extends Command {
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
         Utils.checkSignature(payload.get("key"), player.getId(), name);
         keyboard = Keyboard.newKeyboard()
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.ARMORY + "Бой")
                                 .payload("command", "boss_attack")
@@ -36,7 +36,7 @@ public class BossTypeCommand extends Command {
                                 .color(Color.BLUE)
                                 .create()
                 ))
-                .build();
+                .create();
 
         Boss boss = bot.getBossMap().getBoss(payload.get("boss"));
         if(boss == null) {

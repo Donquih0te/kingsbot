@@ -25,7 +25,7 @@ public class BuyWarriorCommand extends Command {
         }
 
         keyboard = Keyboard.newKeyboard()
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label("100")
                                 .payload("command", "buy_warrior_amount")
@@ -55,7 +55,7 @@ public class BuyWarriorCommand extends Command {
                                 .color(Color.WHITE)
                                 .create()
                 ))
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label("10k")
                                 .payload("command", "buy_warrior_amount")
@@ -85,7 +85,7 @@ public class BuyWarriorCommand extends Command {
                                 .color(Color.WHITE)
                                 .create()
                 ))
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.BACK + "Назад")
                                 .payload("command", "back")
@@ -99,7 +99,7 @@ public class BuyWarriorCommand extends Command {
                                 .create()
                     )
                 )
-                .build();
+                .create();
 
         playerService.sendMessage(peerId, "Выберите количество", keyboard);
     }

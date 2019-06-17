@@ -1,29 +1,28 @@
 package ru.kingsbot.command.keyboard;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@ToString
+@EqualsAndHashCode
 public class Button {
 
+    @Getter
     @SerializedName(value = "action")
     private Action action;
 
+    @Getter
     @SerializedName(value = "color")
     private String color;
 
-    public Button(Action action, Color color) {
+    public Button(Action action, String color) {
         this.action = action;
-        this.color = color.toString();
-    }
-
-    public Action getAction() {
-        return action;
-    }
-
-    public String getColor() {
-        return color;
+        this.color = color;
     }
 
     public static Builder newButton() {
@@ -60,7 +59,7 @@ public class Button {
             if(color == null) {
                 color = Color.WHITE;
             }
-            return new Button(new Action(label, payload), color);
+            return new Button(new Action(label, payload.toString()), color.toString());
         }
 
     }

@@ -13,10 +13,6 @@ public enum Color {
         this.value = value;
     }
 
-    public String getRealColor() {
-        return value;
-    }
-
     @Override
     public String toString() {
         return value;

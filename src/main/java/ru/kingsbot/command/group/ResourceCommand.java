@@ -18,7 +18,7 @@ public class ResourceCommand extends Command {
     public ResourceCommand() {
         super("resource");
         keyboard = Keyboard.newKeyboard()
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.FOOD + "Ферма")
                                 .payload("command", "open_resource")
@@ -32,7 +32,7 @@ public class ResourceCommand extends Command {
                                 .color(Color.WHITE)
                                 .create()
                 ))
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.IRON + "Железный рудник")
                                 .payload("command", "open_resource")
@@ -46,7 +46,7 @@ public class ResourceCommand extends Command {
                                 .color(Color.WHITE)
                                 .create()
                 ))
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.WOOD + "Лес")
                                 .payload("command", "open_resource")
@@ -59,7 +59,7 @@ public class ResourceCommand extends Command {
                                 .color(Color.BLUE)
                                 .create()
                 ))
-                .build();
+                .create();
     }
 
     @Override

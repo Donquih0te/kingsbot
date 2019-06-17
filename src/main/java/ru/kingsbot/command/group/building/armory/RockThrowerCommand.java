@@ -20,7 +20,7 @@ public class RockThrowerCommand extends Command {
     public RockThrowerCommand() {
         super("rock_thrower");
         keyboard = Keyboard.newKeyboard()
-                .row(new LinkedList<>(List.of(
+                .withRowButtons(new LinkedList<>(List.of(
                         Button.newButton()
                                 .label(Emoji.PLUS + "Создать")
                                 .payload("command", "buy_warrior")
@@ -35,7 +35,7 @@ public class RockThrowerCommand extends Command {
                                 .create()
                         ))
                 )
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.BACK + "Назад")
                                 .payload("command", "back")
@@ -48,7 +48,7 @@ public class RockThrowerCommand extends Command {
                                 .color(Color.BLUE)
                                 .create()
                 ))
-                .build();
+                .create();
     }
 
     @Override

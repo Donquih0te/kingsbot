@@ -16,7 +16,7 @@ public class BossCommand extends Command {
     public BossCommand() {
         super("boss");
         keyboard = Keyboard.newKeyboard()
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.KRIEG + "Криг")
                                 .payload("command", "boss_type")
@@ -36,14 +36,14 @@ public class BossCommand extends Command {
                                 .color(Color.WHITE)
                                 .create()
                 ))
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label("Главная")
                                 .payload("command", "info")
                                 .color(Color.BLUE)
                                 .create()
                 ))
-                .build();
+                .create();
     }
 
     @Override

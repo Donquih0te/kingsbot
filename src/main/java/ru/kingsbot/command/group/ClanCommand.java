@@ -41,7 +41,7 @@ public class ClanCommand extends Command {
                 Player target = playerService.getById(player.getClanRequest());
                 Clan clan = target.getClan();
                 sb.append(Emoji.ACCEPT).append("Приглашение на вступление в клан <").append(clan.getName()).append(">\n");
-                builder.row(List.of(
+                builder.withRowButtons(List.of(
                         Button.newButton()
                                 .label("Прнять")
                                 .payload("command", "clan_request")
@@ -72,7 +72,7 @@ public class ClanCommand extends Command {
                     .collect(Collectors.joining(", "));
             sb.append(collect);
         }
-        builder.row(List.of(
+        builder.withRowButtons(List.of(
                 Button.newButton()
                         .label(Emoji.MARK + "Команды")
                         .payload("command", "clan_commands")
@@ -89,7 +89,7 @@ public class ClanCommand extends Command {
                         .color(Color.BLUE)
                         .create()
         ));
-        keyboard = builder.build();
+        keyboard = builder.create();
         playerService.sendMessage(peerId, sb.toString(), keyboard);
     }
 }

@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import ru.kingsbot.utils.Emoji;
 
 import java.util.List;
-import java.util.Map;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Keyboards {
@@ -18,48 +17,38 @@ public class Keyboards {
 
     public static void init() {
         groupKeyboard = Keyboard.newKeyboard()
-                .row(List.of(
-                        new Button(new Action(Emoji.INFO + "Инфо", Map.of("command", "info")), Color.GREEN),
-                        new Button(new Action(Emoji.BUILDINGS + "Строения", Map.of("command", "building")), Color.WHITE),
-                        new Button(new Action(Emoji.RESOURCES + "Ресурсы", Map.of("command", "resource")), Color.WHITE)
+                .withRowButtons(0, List.of(
+                        Button.newButton().label(Emoji.INFO + "Инфо").color(Color.GREEN).payload("command", "info").create(),
+                        Button.newButton().label(Emoji.BUILDINGS + "Строения").color(Color.WHITE).payload("command", "building").create(),
+                        Button.newButton().label(Emoji.RESOURCES + "Ресурсы").color(Color.WHITE).payload("command", "resource").create()
                 ))
-                .row(List.of(
-                        new Button(new Action(Emoji.AGE + "Эпоха", Map.of("command", "age")), Color.WHITE),
-                        new Button(new Action(Emoji.ARMY + "Армия", Map.of("command", "army")), Color.WHITE),
-                        new Button(new Action(Emoji.CLAN + "Клан", Map.of("command", "clan")), Color.WHITE)
+                .withRowButtons(1, List.of(
+                        Button.newButton().label(Emoji.AGE + "Эпоха").color(Color.WHITE).payload("command", "age").create(),
+                        Button.newButton().label(Emoji.ARMY + "Армия").color(Color.WHITE).payload("command", "army").create(),
+                        Button.newButton().label(Emoji.CLAN + "Клан").color(Color.WHITE).payload("command", "clan").create()
                 ))
-                .row(List.of(
-                        new Button(new Action(Emoji.MARKET + "Рынок", Map.of("command", "market")), Color.WHITE),
-                        new Button(new Action(Emoji.BOSS + "Босс", Map.of("command", "boss")), Color.WHITE),
-                        new Button(new Action(Emoji.TOP + "Топ", Map.of("command", "top")), Color.WHITE)
+                .withRowButtons(2, List.of(
+                        Button.newButton().label(Emoji.MARKET + "Рынок").color(Color.WHITE).payload("command", "market").create(),
+                        Button.newButton().label(Emoji.BOSS + "Босс").color(Color.WHITE).payload("command", "boss").create(),
+                        Button.newButton().label(Emoji.TOP + "Топ").color(Color.WHITE).payload("command", "top").create()
                 ))
-                .row(List.of(
-                        Button.newButton()
-                                .label("Друзья")
-                                .payload("command", "friend")
-                                .color(Color.WHITE)
-                                .create(),
-                        Button.newButton()
-                                .label("Помощь")
-                                .payload("command", "help")
-                                .color(Color.GREEN)
-                                .create()
+                .withRowButtons(3, List.of(
+                        Button.newButton().label("Друзья").color(Color.WHITE).payload("command", "friend").create(),
+                        Button.newButton().label("Помощь").color(Color.GREEN).payload("command", "help").create()
                 ))
-                .build();
+                .create();
 
         chatKeyboard = Keyboard.newKeyboard()
-                .row(List.of(
-                        new Button(new Action(Emoji.INFO + "Инфо", Map.of("command", "info")), Color.GREEN),
-                        new Button(new Action(Emoji.ROCK_THROWER + "Охота", Map.of("command", "hunting")), Color.WHITE),
-                        new Button(new Action(Emoji.ARMY + "Набег", Map.of("command", "raid")), Color.WHITE)
-                        )
-                )
-                .row(List.of(
-                        new Button(new Action(Emoji.GOLD + "Дань", Map.of("command", "tribute")), Color.WHITE),
-                        new Button(new Action(Emoji.TOP + "Топ", Map.of("command", "top")), Color.WHITE)
-                        )
-                )
-                .build();
+                .withRowButtons(List.of(
+                        Button.newButton().label(Emoji.INFO + "Инфо").color(Color.GREEN).payload("command", "info").create(),
+                        Button.newButton().label(Emoji.ROCK_THROWER + "Охота").color(Color.WHITE).payload("command", "hunting").create(),
+                        Button.newButton().label(Emoji.ARMY + "Набег").color(Color.WHITE).payload("command", "raid").create()
+                ))
+                .withRowButtons(List.of(
+                        Button.newButton().label(Emoji.GOLD + "Дань").color(Color.GREEN).payload("command", "tribute").create(),
+                        Button.newButton().label(Emoji.TOP + "Топ").color(Color.WHITE).payload("command", "top").create()
+                ))
+                .create();
     }
 
 }

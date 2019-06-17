@@ -1,6 +1,7 @@
 package ru.kingsbot;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import ru.kingsbot.client.LongPool;
@@ -62,7 +63,7 @@ public class Bot {
         instance = this;
         this.dataPath = dataPath;
 
-        gson = new Gson();
+        gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
         // Checking the configuration files. If them does not exists then create default
         try {

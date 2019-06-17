@@ -16,7 +16,7 @@ public class BuildingCommand extends Command {
     public BuildingCommand() {
         super("building");
         keyboard = Keyboard.newKeyboard()
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.CAPITOL + "Капитолий")
                                 .payload("command", "capitol")
@@ -33,7 +33,7 @@ public class BuildingCommand extends Command {
                                 .color(Color.WHITE)
                                 .create()
                 ))
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.PROTECTION + "Защита")
                                 .payload("command", "protection")
@@ -45,7 +45,7 @@ public class BuildingCommand extends Command {
                                 .color(Color.BLUE)
                                 .create()
                 ))
-                .build();
+                .create();
     }
 
     @Override

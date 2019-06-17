@@ -19,7 +19,7 @@ public class CitizenCommand extends Command {
     public CitizenCommand() {
         super("citizen");
         keyboard = Keyboard.newKeyboard()
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.PLUS + "Создать")
                                 .payload("command", "create_citizen")
@@ -31,7 +31,7 @@ public class CitizenCommand extends Command {
                                 .color(Color.WHITE)
                                 .create()
                 ))
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.BACK + "Назад")
                                 .payload("command", "back")
@@ -44,7 +44,7 @@ public class CitizenCommand extends Command {
                                 .color(Color.BLUE)
                                 .create()
                 ))
-                .build();
+                .create();
     }
 
     @Override
