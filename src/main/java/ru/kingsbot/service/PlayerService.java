@@ -13,16 +13,14 @@ import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.clan.Clan;
 import ru.kingsbot.repository.PlayerRepository;
 import ru.kingsbot.utils.JsonUtil;
+import ru.kingsbot.utils.Utils;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 @Log4j2
 public class PlayerService {
-
-    private static final Random RANDOM = new Random();
 
     private final PlayerRepository repository = new PlayerRepository();
     private final TransportClient transportClient;
@@ -79,7 +77,7 @@ public class PlayerService {
         String peerId = peerIds.stream().map(Object::toString).collect(Collectors.joining(","));
         ApiRequest.Builder builder = ApiRequest.newApiRequest()
                 .method("messages.send")
-                .param("random_id", RANDOM.nextInt(Integer.MAX_VALUE))
+                .param("random_id", Utils.RANDOM.nextInt(Integer.MAX_VALUE))
                 .param("peer_id", peerId)
                 .param("message", message);
 

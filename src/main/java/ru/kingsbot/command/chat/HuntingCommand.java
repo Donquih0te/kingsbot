@@ -14,8 +14,6 @@ import java.util.*;
 
 public class HuntingCommand extends Command {
 
-    private static final Random RANDOM = new Random();
-
     private static final int TIMESTAMP = 60 * 15;
     private final SimpleDateFormat formatter = new SimpleDateFormat("mm мин ss сек");
 
@@ -39,7 +37,7 @@ public class HuntingCommand extends Command {
         Capitol capitol = player.getCapitol();
         if(!players.containsKey(player.getId()) || players.get(player.getId()) <= currentTime) {
             if(capitol.getFreeCitizensAmount() > 0) {
-                int i = RANDOM.nextInt(list.size() - 1);
+                int i = Utils.RANDOM.nextInt(list.size() - 1);
                 player.addExperience(1);
                 if(player.getCurrentExperience().intValue() == player.getMaxExperience().intValue()) {
                     player.levelUp();
@@ -49,7 +47,7 @@ public class HuntingCommand extends Command {
                 if(i < 4) {
                     int max = 1000 * level * freeCitizens;
                     int min = 200 * level * freeCitizens;
-                    int amount = RANDOM.nextInt(max - min) + min;
+                    int amount = Utils.RANDOM.nextInt(max - min) + min;
                     sb.append(Utils.createLink(player)).append(", ").append(list.get(i)).append(" Это принесло тебе ")
                             .append(NumberConverter.toString(amount)).append(Emoji.FOOD).append("\n\n");
                     player.getStorage().addFood(amount);
