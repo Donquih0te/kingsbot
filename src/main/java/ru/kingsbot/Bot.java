@@ -82,7 +82,7 @@ public class Bot {
 
         // Creating the database connection
         HibernateUtil.build();
-        playerService = new PlayerService(gson, transportClient);
+        playerService = new PlayerService(transportClient);
         marketService = new MarketService();
         //donateService = new DonateService();
         conversationService = new ConversationService();

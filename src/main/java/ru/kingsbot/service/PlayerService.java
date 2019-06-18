@@ -1,6 +1,5 @@
 package ru.kingsbot.service;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -23,13 +22,9 @@ public class PlayerService {
 
     private final PlayerRepository repository = new PlayerRepository();
     private final TransportClient transportClient;
-    private final Gson gson;
-    private JsonParser parser;
 
-    public PlayerService(Gson gson, TransportClient transportClient) {
-        this.gson = gson;
+    public PlayerService(TransportClient transportClient) {
         this.transportClient = transportClient;
-        parser = new JsonParser();
     }
 
     public void savePlayer(Player player) {
@@ -85,23 +80,25 @@ public class PlayerService {
                 .param("message", message);
 
         if(keyboard != null) {
-            builder.param("keyboard", gson.toJson(keyboard));
+            builder.param("keyboard", keyboard.toString());
         }
         transportClient.sendVkApiRequest(builder.build());
     }
 
+    // Will be removed in the next update
+    @Deprecated
     public void validateName(Player player) {
         if(player.getId() < 0) {
             return;
         }
         ApiRequest request = ApiRequest.newApiRequest()
-                .method("users.toHttp")
+                .method("users.get")
                 .param("user_ids", player.getId())
                 .build();
 
         String result = transportClient.sendVkApiRequest(request);
 
-        JsonObject json = parser.parse(result).getAsJsonObject();
+        JsonObject json = new JsonParser().parse(result).getAsJsonObject();
         if(!json.has("response")) {
             log.error("Impossible to set player name\nJson:" + result);
             return;
