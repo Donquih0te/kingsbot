@@ -1,18 +1,15 @@
 package ru.kingsbot.command.group.resource;
 
-import ru.kingsbot.utils.Emoji;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Capitol;
 import ru.kingsbot.entity.resource.*;
+import ru.kingsbot.utils.Emoji;
 import ru.kingsbot.utils.Utils;
 
 import java.util.Map;
-import java.util.Random;
 
 public class FindResourceCommand extends Command {
-
-    private static final Random RANDOM = new Random();
 
     public FindResourceCommand() {
         super("find_resource");
@@ -32,7 +29,7 @@ public class FindResourceCommand extends Command {
                 resource = player.getFoodResource();
                 if(resource.isMined()) {
                     capitol.addFreeCitizens(resource.getCitizensAmount());
-                    player.setFoodResource(new Food(RANDOM.nextInt(500_000 * capitol.getLevel() - 100_000 * capitol.getLevel()) + 100_000 * capitol.getLevel()));
+                    player.setFoodResource(new Food(Utils.RANDOM.nextInt(500_000 * capitol.getLevel() - 100_000 * capitol.getLevel()) + 100_000 * capitol.getLevel()));
                     sb.append(Emoji.MARK).append("Найдена новая ферма для добычи еды\n")
                             .append("Твои рабочие вернулись со старой фермы. Теперь ты можешь отправить их работать на новую\n\n")
                             .append("Рабочих на добыче: 0/")
@@ -47,7 +44,7 @@ public class FindResourceCommand extends Command {
                 resource = player.getGoldResource();
                 if(resource.isMined()) {
                     capitol.addFreeCitizens(resource.getCitizensAmount());
-                    player.setGoldResource(new Gold(RANDOM.nextInt(500_000 * capitol.getLevel() - 100_000 * capitol.getLevel()) + 100_000 * capitol.getLevel()));
+                    player.setGoldResource(new Gold(Utils.RANDOM.nextInt(500_000 * capitol.getLevel() - 100_000 * capitol.getLevel()) + 100_000 * capitol.getLevel()));
                     sb.append(Emoji.MARK).append("Найден новый золотой рудник для добычи золота\n")
                             .append("Твои рабочие вернулись со старого рудника. Теперь ты можешь отправить их работать на новый\n")
                             .append("Рабочих на добыче: 0/")
@@ -61,7 +58,7 @@ public class FindResourceCommand extends Command {
                 resource = player.getIronResource();
                 if(resource.isMined()) {
                     capitol.addFreeCitizens(resource.getCitizensAmount());
-                    player.setIronResource(new Iron(RANDOM.nextInt(500_000 * capitol.getLevel() - 100_000 * capitol.getLevel()) + 100_000 * capitol.getLevel()));
+                    player.setIronResource(new Iron(Utils.RANDOM.nextInt(500_000 * capitol.getLevel() - 100_000 * capitol.getLevel()) + 100_000 * capitol.getLevel()));
                     sb.append(Emoji.MARK).append("Найден новый железный рудник для добычи железа\n")
                             .append("Твои рабочие вернулись со старого рудника. Теперь ты можешь отправить их работать на новый\n")
                             .append("Рабочих на добыче: 0/")
@@ -75,7 +72,7 @@ public class FindResourceCommand extends Command {
                 resource = player.getStoneResource();
                 if(resource.isMined()) {
                     capitol.addFreeCitizens(resource.getCitizensAmount());
-                    player.setStoneResource(new Stone(RANDOM.nextInt(500_000 * capitol.getLevel() - 100_000 * capitol.getLevel()) + 100_000 * capitol.getLevel()));
+                    player.setStoneResource(new Stone(Utils.RANDOM.nextInt(500_000 * capitol.getLevel() - 100_000 * capitol.getLevel()) + 100_000 * capitol.getLevel()));
                     sb.append(Emoji.MARK).append("Найдена новая каменная шахта для добычи камня\n")
                             .append("Твои рабочие вернулись со старой шахты. Теперь ты можешь отправить их работать на новую\n")
                             .append("Рабочих на добыче: 0/")
@@ -89,7 +86,7 @@ public class FindResourceCommand extends Command {
                 resource = player.getWoodResource();
                 if(resource.isMined()) {
                     capitol.addFreeCitizens(resource.getCitizensAmount());
-                    player.setWoodResource(new Wood(RANDOM.nextInt(500_000 * capitol.getLevel() - 100_000 * capitol.getLevel()) + 100_000 * capitol.getLevel()));
+                    player.setWoodResource(new Wood(Utils.RANDOM.nextInt(500_000 * capitol.getLevel() - 100_000 * capitol.getLevel()) + 100_000 * capitol.getLevel()));
                     sb.append(Emoji.MARK).append("Найден новый лес для добычи дерева\n")
                             .append("Твои рабочие вернулись со старого леса. Теперь ты можешь отправить их работать на новый\n")
                             .append("Рабочих на добыче: 0/")
