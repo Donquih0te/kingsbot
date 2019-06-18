@@ -1,6 +1,8 @@
 package ru.kingsbot.game;
 
+import lombok.extern.log4j.Log4j2;
 import ru.kingsbot.Bot;
+import ru.kingsbot.client.exception.InvalidResponseException;
 import ru.kingsbot.command.keyboard.Button;
 import ru.kingsbot.command.keyboard.Color;
 import ru.kingsbot.command.keyboard.Keyboard;
@@ -9,6 +11,7 @@ import ru.kingsbot.service.PlayerService;
 
 import java.util.List;
 
+@Log4j2
 public class Tutorial {
 
     private final Player player;
@@ -31,7 +34,12 @@ public class Tutorial {
 
     public void start() {
         player.setTutorial(true);
-        playerService.validateName(player);
+        try {
+            playerService.validateName(player);
+        } catch (InvalidResponseException e) {
+            log.error(e.getVkError().getErrorMessage(), e);
+            throw new RuntimeException(e.getVkError().getErrorMessage());
+        }
         StringBuilder sb = new StringBuilder();
         sb.append("На протяжении тысячелетий судьба человечества зависела от деяний отдельных людей.\n")
                 .append("В каждом обществе был человек, который стоит во главе этого общества.\n")

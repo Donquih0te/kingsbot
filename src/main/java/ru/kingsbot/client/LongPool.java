@@ -1,22 +1,21 @@
 package ru.kingsbot.client;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import lombok.extern.log4j.Log4j2;
 import ru.kingsbot.Bot;
 import ru.kingsbot.client.exception.InvalidResponseException;
 import ru.kingsbot.client.objects.VkError;
 import ru.kingsbot.client.objects.longpool.LongPoolServer;
-import ru.kingsbot.client.objects.longpool.response.LongPoolResponse;
-import ru.kingsbot.client.objects.longpool.response.LongPoolUpdate;
-import ru.kingsbot.client.objects.longpool.response.LongPoolUpdateObject;
+import ru.kingsbot.client.objects.longpool.responses.LongPoolResponse;
+import ru.kingsbot.client.objects.longpool.responses.LongPoolUpdate;
+import ru.kingsbot.client.objects.longpool.responses.LongPoolUpdateObject;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.command.TextCommandParser;
 import ru.kingsbot.command.keyboard.Keyboards;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.game.Tutorial;
 import ru.kingsbot.service.PlayerService;
+import ru.kingsbot.utils.JsonUtil;
 
 import java.util.List;
 import java.util.Map;
@@ -33,17 +32,13 @@ public class LongPool {
     private TextCommandParser commandParser;
     private PlayerService playerService;
 
-    private JsonParser parser;
-    private Gson gson;
-
     private LongPoolServer longPoolServer;
 
     public LongPool(Bot bot, TransportClient transportClient, Integer groupId) {
         this.bot = bot;
         this.transportClient = transportClient;
         this.groupId = groupId;
-        parser = new JsonParser();
-        gson = new Gson();
+
         playerService = bot.getPlayerService();
         commandParser = new TextCommandParser(bot);
     }
@@ -55,14 +50,13 @@ public class LongPool {
                 .build();
         String response = transportClient.sendVkApiRequest(request);
 
-        JsonObject element = parser.parse(response).getAsJsonObject();
-        if(element.has("error")) {
-            VkError error = gson.fromJson(element.get("error"), VkError.class);
+        JsonObject element = JsonUtil.PARSER.parse(response).getAsJsonObject();
+        if(!element.has("response")) {
+            VkError error = JsonUtil.GSON.fromJson(element.get("error"), VkError.class);
             throw new InvalidResponseException(error);
         }
-        if(element.has("response")) {
-            longPoolServer = gson.fromJson(element.get("response"), LongPoolServer.class);
-        }
+
+        longPoolServer = JsonUtil.GSON.fromJson(element.get("response"), LongPoolServer.class);
     }
 
     public void run() {
@@ -78,7 +72,7 @@ public class LongPool {
             String url = longPoolServer.getServer() + "?act=a_check&key=" + longPoolServer.getKey() + "&ts=" + longPoolServer.getTs() + "&wait=5";
             String body = transportClient.sendGetRequest(url);
 
-            JsonObject jsonObject = parser.parse(body).getAsJsonObject();
+            JsonObject jsonObject = JsonUtil.PARSER.parse(body).getAsJsonObject();
             if(jsonObject.has("failed")) {
                 switch(jsonObject.get("failed").getAsString()) {
 
@@ -103,7 +97,7 @@ public class LongPool {
                 continue;
             }
 
-            longPoolResponse = gson.fromJson(jsonObject, LongPoolResponse.class);
+            longPoolResponse = JsonUtil.GSON.fromJson(jsonObject, LongPoolResponse.class);
             System.out.println(longPoolResponse);
             longPoolServer.setTs(longPoolResponse.getTs());
 

@@ -1,7 +1,5 @@
 package ru.kingsbot;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import ru.kingsbot.client.LongPool;
@@ -52,9 +50,6 @@ public class Bot {
     private BossAttackMap bossAttackMap;
 
     @Getter
-    private Gson gson;
-
-    @Getter
     private String dataPath;
 
     @Getter
@@ -63,8 +58,6 @@ public class Bot {
     public Bot(String dataPath) {
         instance = this;
         this.dataPath = dataPath;
-
-        gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
         // Checking the configuration files. If them does not exists then create default
         try {

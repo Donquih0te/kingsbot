@@ -1,4 +1,4 @@
-package ru.kingsbot.client.objects.longpool.response;
+package ru.kingsbot.client.objects.longpool.responses;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.EqualsAndHashCode;

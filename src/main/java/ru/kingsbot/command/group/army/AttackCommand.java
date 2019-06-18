@@ -36,10 +36,6 @@ public class AttackCommand extends Command {
             if(target == null) {
                 sb.append(Emoji.RED_EXCLAMATION_MARK).append("Противников не найдено, попробуй позже");
             }else{
-                if(target.getFirstName() == null) {
-                    playerService.validateName(target);
-                }
-
                 PlayerAttack attack = new PlayerAttack(player, target);
                 attack.doAttack();
 
