@@ -1,2 +1,6 @@
-rootProject.name = 'civ'
+rootProject.name = 'vk-sdk'
+include 'api'
+include 'examples'
+include 'examples:kingsbot'
+findProject(':examples:kingsbot')?.name = 'kingsbot'
 

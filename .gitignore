@@ -13,7 +13,7 @@ out
 
 *.jar
 *.sql
+/src
 
 
-/application.properties
-/hibernate.properties
+/*.properties
