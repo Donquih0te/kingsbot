@@ -1,10 +1,10 @@
 package ru.kingsbot.command.group.building;
 
-import ru.kingsbot.Emoji;
-import ru.kingsbot.api.keyboard.Button;
-import ru.kingsbot.api.keyboard.Color;
-import ru.kingsbot.api.keyboard.Keyboard;
+import ru.kingsbot.utils.Emoji;
 import ru.kingsbot.command.Command;
+import ru.kingsbot.command.keyboard.Button;
+import ru.kingsbot.command.keyboard.Color;
+import ru.kingsbot.command.keyboard.Keyboard;
 import ru.kingsbot.entity.Citizen;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Capitol;
@@ -20,7 +20,7 @@ public class CapitolCommand extends Command {
     public CapitolCommand() {
         super("capitol");
         keyboard = Keyboard.newKeyboard()
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label("Улучшить" + Emoji.CITIZEN)
                                 .payload("command", "upgrade_building")
@@ -33,7 +33,7 @@ public class CapitolCommand extends Command {
                                 .color(Color.WHITE)
                                 .create()
                 ))
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.BACK + "Назад")
                                 .payload("command", "back")
@@ -47,7 +47,7 @@ public class CapitolCommand extends Command {
                                 .create()
                     )
                 )
-                .build();
+                .create();
     }
 
     @Override

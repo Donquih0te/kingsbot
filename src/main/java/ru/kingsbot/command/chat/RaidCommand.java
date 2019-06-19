@@ -1,11 +1,11 @@
 package ru.kingsbot.command.chat;
 
-import ru.kingsbot.Emoji;
-import ru.kingsbot.api.keyboard.Keyboards;
 import ru.kingsbot.command.Command;
+import ru.kingsbot.command.keyboard.Keyboards;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Capitol;
 import ru.kingsbot.entity.building.Storage;
+import ru.kingsbot.utils.Emoji;
 import ru.kingsbot.utils.NumberConverter;
 import ru.kingsbot.utils.Utils;
 
@@ -14,11 +14,9 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 public class RaidCommand extends Command {
 
-    private static final Random RANDOM = new Random();
     private static final int TIMESTAMP = 20 * 60;
 
     private final SimpleDateFormat formatter = new SimpleDateFormat("mm мин ss сек");
@@ -46,9 +44,9 @@ public class RaidCommand extends Command {
 
                 int max = 1000 * level * freeCitizens;
                 int min = 200 * level * freeCitizens;
-                int goldAmount = RANDOM.nextInt(max - min) + min;
-                int ironAmount = RANDOM.nextInt(max - min) + min;
-                int woodAmount = RANDOM.nextInt(max - min) + min;
+                int goldAmount = Utils.RANDOM.nextInt(max - min) + min;
+                int ironAmount = Utils.RANDOM.nextInt(max - min) + min;
+                int woodAmount = Utils.RANDOM.nextInt(max - min) + min;
                 storage.addGold(goldAmount);
                 storage.addIron(ironAmount);
                 storage.addWood(woodAmount);

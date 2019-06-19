@@ -1,8 +1,8 @@
 package ru.kingsbot.command.group;
 
-import ru.kingsbot.Emoji;
-import ru.kingsbot.api.keyboard.Keyboards;
+import ru.kingsbot.utils.Emoji;
 import ru.kingsbot.command.Command;
+import ru.kingsbot.command.keyboard.Keyboards;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Capitol;
 import ru.kingsbot.entity.building.Storage;
@@ -19,9 +19,6 @@ public class InfoCommand extends Command {
 
     @Override
     public void execute(Player player, Integer peerId, Map<String, String> payload) {
-        if(player.getFirstName() == null) {
-            playerService.validateName(player);
-        }
         if(player.updateResources()) {
             playerService.update(player);
         }

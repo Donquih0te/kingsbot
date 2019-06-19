@@ -1,35 +1,32 @@
 package ru.kingsbot.service;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import lombok.extern.log4j.Log4j2;
-import ru.kingsbot.api.ApiRequest;
-import ru.kingsbot.api.TransportClient;
-import ru.kingsbot.api.keyboard.Keyboard;
+import ru.kingsbot.client.ApiRequest;
+import ru.kingsbot.client.TransportClient;
+import ru.kingsbot.client.exception.InvalidResponseException;
+import ru.kingsbot.client.objects.VkError;
+import ru.kingsbot.client.objects.users.User;
+import ru.kingsbot.command.keyboard.Keyboard;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.clan.Clan;
 import ru.kingsbot.repository.PlayerRepository;
+import ru.kingsbot.utils.JsonUtil;
+import ru.kingsbot.utils.Utils;
 
 import java.util.List;
-import java.util.Random;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Log4j2
 public class PlayerService {
 
-    private static final Random RANDOM = new Random();
-
     private final PlayerRepository repository = new PlayerRepository();
     private final TransportClient transportClient;
-    private final Gson gson;
-    private JsonParser parser;
 
-    public PlayerService(Gson gson, TransportClient transportClient) {
-        this.gson = gson;
+    public PlayerService(TransportClient transportClient) {
         this.transportClient = transportClient;
-        parser = new JsonParser();
     }
 
     public void savePlayer(Player player) {
@@ -80,36 +77,39 @@ public class PlayerService {
         String peerId = peerIds.stream().map(Object::toString).collect(Collectors.joining(","));
         ApiRequest.Builder builder = ApiRequest.newApiRequest()
                 .method("messages.send")
-                .param("random_id", RANDOM.nextInt(Integer.MAX_VALUE))
+                .param("random_id", Utils.RANDOM.nextInt(Integer.MAX_VALUE))
                 .param("peer_id", peerId)
                 .param("message", message);
 
         if(keyboard != null) {
-            builder.param("keyboard", gson.toJson(keyboard));
+            builder.param("keyboard", keyboard.toString());
         }
         transportClient.sendVkApiRequest(builder.build());
     }
 
-    public void validateName(Player player) {
-        if(player.getId() < 0) {
-            return;
-        }
+
+    public void validateName(Player player) throws InvalidResponseException {
         ApiRequest request = ApiRequest.newApiRequest()
-                .method("users.toHttp")
+                .method("users.get")
                 .param("user_ids", player.getId())
                 .build();
 
         String result = transportClient.sendVkApiRequest(request);
 
-        JsonObject json = parser.parse(result).getAsJsonObject();
+        JsonObject json = JsonUtil.PARSER.parse(result).getAsJsonObject();
         if(!json.has("response")) {
-            log.error("Impossible to set player name\nJson:" + result);
-            return;
+            VkError error = JsonUtil.GSON.fromJson(json.get("error"), VkError.class);
+            throw new InvalidResponseException(error);
         }
-        JsonArray response = json.get("response").getAsJsonArray();
-        JsonObject item = response.get(0).getAsJsonObject();
-        player.setFirstName(item.get("first_name").getAsString());
-        player.setLastName(item.get("last_name").getAsString());
+
+        List<User> response = JsonUtil.GSON.fromJson(json.get("response"), new TypeToken<List<User>>(){}.getType());
+        Optional<User> first = response.stream().filter(user -> (user.getId().compareTo(player.getId()) == 0)).findFirst();
+
+        first.ifPresent(user -> {
+            player.setFirstName(user.getFirstName());
+            player.setLastName(user.getLastName());
+        });
+
     }
 
 }

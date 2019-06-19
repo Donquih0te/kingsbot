@@ -1,6 +1,7 @@
 package ru.kingsbot.entity.market;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "food_cost")

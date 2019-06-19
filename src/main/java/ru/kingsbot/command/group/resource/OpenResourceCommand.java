@@ -1,10 +1,10 @@
 package ru.kingsbot.command.group.resource;
 
-import ru.kingsbot.Emoji;
-import ru.kingsbot.api.keyboard.Button;
-import ru.kingsbot.api.keyboard.Color;
-import ru.kingsbot.api.keyboard.Keyboard;
+import ru.kingsbot.utils.Emoji;
 import ru.kingsbot.command.Command;
+import ru.kingsbot.command.keyboard.Button;
+import ru.kingsbot.command.keyboard.Color;
+import ru.kingsbot.command.keyboard.Keyboard;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.resource.Resource;
 import ru.kingsbot.utils.Utils;
@@ -25,7 +25,7 @@ public class OpenResourceCommand extends Command {
             return;
         }
         keyboard = Keyboard.newKeyboard()
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton().label(Emoji.PLUS + "Добавить рабочего").payload("command", "citizen_resource")
                                 .payload("resource", payload.get("resource"))
                                 .payload("action", "put")
@@ -39,7 +39,7 @@ public class OpenResourceCommand extends Command {
                                 .color(Color.WHITE)
                                 .create()
                 ))
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.FIND + "Найти")
                                 .payload("command", "find_resource")
@@ -59,7 +59,7 @@ public class OpenResourceCommand extends Command {
                                 .create()
                     )
                 )
-                .build();
+                .create();
         StringBuilder sb = new StringBuilder();
         Resource resource = null;
         switch(payload.get("resource")) {

@@ -1,10 +1,10 @@
 package ru.kingsbot.command.group;
 
-import ru.kingsbot.Emoji;
-import ru.kingsbot.api.keyboard.Button;
-import ru.kingsbot.api.keyboard.Color;
-import ru.kingsbot.api.keyboard.Keyboard;
+import ru.kingsbot.utils.Emoji;
 import ru.kingsbot.command.Command;
+import ru.kingsbot.command.keyboard.Button;
+import ru.kingsbot.command.keyboard.Color;
+import ru.kingsbot.command.keyboard.Keyboard;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.utils.Utils;
 
@@ -16,7 +16,7 @@ public class BuildingCommand extends Command {
     public BuildingCommand() {
         super("building");
         keyboard = Keyboard.newKeyboard()
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.CAPITOL + "Капитолий")
                                 .payload("command", "capitol")
@@ -33,7 +33,7 @@ public class BuildingCommand extends Command {
                                 .color(Color.WHITE)
                                 .create()
                 ))
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.PROTECTION + "Защита")
                                 .payload("command", "protection")
@@ -45,7 +45,7 @@ public class BuildingCommand extends Command {
                                 .color(Color.BLUE)
                                 .create()
                 ))
-                .build();
+                .create();
     }
 
     @Override

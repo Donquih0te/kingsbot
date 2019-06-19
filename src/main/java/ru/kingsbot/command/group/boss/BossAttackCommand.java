@@ -1,17 +1,16 @@
 package ru.kingsbot.command.group.boss;
 
-import ru.kingsbot.Emoji;
-import ru.kingsbot.api.keyboard.Action;
-import ru.kingsbot.api.keyboard.Button;
-import ru.kingsbot.api.keyboard.Color;
-import ru.kingsbot.api.keyboard.Keyboard;
-import ru.kingsbot.attack.BossAttack;
-import ru.kingsbot.attack.BossAttackMap;
-import ru.kingsbot.boss.Boss;
 import ru.kingsbot.command.Command;
+import ru.kingsbot.command.keyboard.Button;
+import ru.kingsbot.command.keyboard.Color;
+import ru.kingsbot.command.keyboard.Keyboard;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Storage;
 import ru.kingsbot.entity.clan.Clan;
+import ru.kingsbot.game.attack.BossAttack;
+import ru.kingsbot.game.attack.BossAttackMap;
+import ru.kingsbot.game.boss.Boss;
+import ru.kingsbot.utils.Emoji;
 import ru.kingsbot.utils.NumberConverter;
 import ru.kingsbot.utils.Utils;
 
@@ -84,8 +83,11 @@ public class BossAttackCommand extends Command {
                         bossAttack.setRewarded(true);
                     }
                     sb.append("\n\nАтаковать еще раз?");
-                    builder.row(List.of(
-                            new Button(new Action(Emoji.ARMORY + "Атаковать", Map.of("command", "boss_attack", "boss", payload.get("boss"))), Color.WHITE)
+                    builder.withRowButtons(List.of(
+                            Button.newButton().label(Emoji.ARMORY + "Атаковать").color(Color.WHITE)
+                                    .payload("command", "boss_attack").payload("boss", payload.get("boss"))
+                                    .create()
+
                     ));
                 }else{
                     if(bossAttack.isLose()) {
@@ -129,7 +131,7 @@ public class BossAttackCommand extends Command {
                     sb.append(Emoji.INFO).append("Ты атаковал босса ").append(boss.getCustomName()).append("\n\n")
                             .append("HP: ").append(boss.getMaxHp()).append(Emoji.HEARTH).append("\n\n")
                             .append(Emoji.RED_EXCLAMATION_MARK).append("Чтобы нанести урон выбери войска и атакуй");
-                    builder.row(List.of(
+                    builder.withRowButtons(List.of(
                             Button.newButton()
                                     .label(Emoji.CLUBMAN + "Воин")
                                     .payload("command", "add_damage")
@@ -148,14 +150,14 @@ public class BossAttackCommand extends Command {
                 sb.append(Emoji.RED_EXCLAMATION_MARK).append("Нельзя атаковать боссов без клана");
             }
         }
-        builder.row(List.of(
+        builder.withRowButtons(List.of(
                 Button.newButton()
                         .label("Главная")
                         .payload("command", "info")
                         .color(Color.BLUE)
                         .create()
         ));
-        keyboard = builder.build();
+        keyboard = builder.create();
         playerService.sendMessage(peerId, sb.toString(), keyboard);
     }
 }

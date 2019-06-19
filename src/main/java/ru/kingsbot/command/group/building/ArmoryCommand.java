@@ -1,10 +1,10 @@
 package ru.kingsbot.command.group.building;
 
-import ru.kingsbot.Emoji;
-import ru.kingsbot.api.keyboard.Button;
-import ru.kingsbot.api.keyboard.Color;
-import ru.kingsbot.api.keyboard.Keyboard;
+import ru.kingsbot.utils.Emoji;
 import ru.kingsbot.command.Command;
+import ru.kingsbot.command.keyboard.Button;
+import ru.kingsbot.command.keyboard.Color;
+import ru.kingsbot.command.keyboard.Keyboard;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Armory;
 import ru.kingsbot.entity.building.Storage;
@@ -40,7 +40,7 @@ public class ArmoryCommand extends Command {
                     .append(NumberConverter.toString(armory.getWoodCost())).append(Emoji.WOOD)
                     .append(armory.getWoodCost() <= storage.getWood() ? " ✔" : " ❌").append("\n");
             keyboard = Keyboard.newKeyboard()
-                    .row(List.of(
+                    .withRowButtons(List.of(
                             Button.newButton()
                                     .label(Emoji.PLUS + "Купить")
                                     .payload("command", "buy_building")
@@ -48,7 +48,7 @@ public class ArmoryCommand extends Command {
                                     .color(Color.WHITE)
                                     .create()
                     ))
-                    .row(List.of(
+                    .withRowButtons(List.of(
                             Button.newButton()
                                     .label(Emoji.BACK + "Назад")
                                     .payload("command", "back")
@@ -61,7 +61,7 @@ public class ArmoryCommand extends Command {
                                     .color(Color.BLUE)
                                     .create()
                     ))
-                    .build();
+                    .create();
         }else{
             sb.append("Улучшить:\n")
                     .append(NumberConverter.toString(armory.getGoldUpgradeCost())).append(Emoji.GOLD)
@@ -73,7 +73,7 @@ public class ArmoryCommand extends Command {
                     .append(NumberConverter.toString(armory.getWoodUpgradeCost())).append(Emoji.WOOD)
                     .append(armory.getWoodUpgradeCost() <= storage.getWood() ? " ✔" : " ❌").append("\n\n");
             keyboard = Keyboard.newKeyboard()
-                    .row(new LinkedList<>(List.of(
+                    .withRowButtons(new LinkedList<>(List.of(
                             Button.newButton()
                                     .label("Улучшить" + Emoji.CITIZEN)
                                     .payload("command", "upgrade_building")
@@ -82,7 +82,7 @@ public class ArmoryCommand extends Command {
                                     .create()
                             ))
                     )
-                    .row(List.of(
+                    .withRowButtons(List.of(
                             Button.newButton()
                                     .label(Emoji.BACK + "Назад")
                                     .payload("command", "back")
@@ -96,7 +96,7 @@ public class ArmoryCommand extends Command {
                                     .create()
                         )
                     )
-                    .build();
+                    .create();
 
             switch(player.getAge()) {
                 case PREHISTORIC:

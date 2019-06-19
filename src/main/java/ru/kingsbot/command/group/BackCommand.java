@@ -5,7 +5,6 @@ import ru.kingsbot.entity.Player;
 
 import java.util.Collections;
 import java.util.Map;
-import java.util.Optional;
 
 public class BackCommand extends Command {
 
@@ -20,7 +19,7 @@ public class BackCommand extends Command {
         }
         player.updateResources();
         playerService.update(player);
-        Optional<Command> next = bot.getCommandMap().getCommand(payload.get("next"));
-        next.ifPresent(cmd -> cmd.execute(player, peerId, Collections.emptyMap()));
+        Command next = bot.getCommandMap().getCommand(payload.get("next"));
+        next.execute(player, peerId, Collections.emptyMap());
     }
 }

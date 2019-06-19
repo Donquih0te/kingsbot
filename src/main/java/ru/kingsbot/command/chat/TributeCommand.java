@@ -1,11 +1,11 @@
 package ru.kingsbot.command.chat;
 
-import ru.kingsbot.Emoji;
-import ru.kingsbot.api.keyboard.Keyboards;
 import ru.kingsbot.command.Command;
+import ru.kingsbot.command.keyboard.Keyboards;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Capitol;
 import ru.kingsbot.entity.building.Storage;
+import ru.kingsbot.utils.Emoji;
 import ru.kingsbot.utils.NumberConverter;
 import ru.kingsbot.utils.Utils;
 
@@ -14,11 +14,9 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 public class TributeCommand extends Command {
 
-    private static final Random RANDOM = new Random();
     private static final int TIMESTAMP = 20 * 60;
 
     private final SimpleDateFormat formatter = new SimpleDateFormat("mm мин ss сек");
@@ -38,7 +36,7 @@ public class TributeCommand extends Command {
         if(!players.containsKey(player.getId()) || players.get(player.getId()) <= currentTime) {
             int max = 2500 * player.getLevel() * capitol.getLevel();
             int min = 1000 * player.getLevel() * capitol.getLevel();
-            int amount = RANDOM.nextInt(max - min) + min;
+            int amount = Utils.RANDOM.nextInt(max - min) + min;
             storage.addGold(amount);
 
             player.addExperience(1);

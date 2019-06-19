@@ -1,10 +1,10 @@
 package ru.kingsbot.command.group.market;
 
-import ru.kingsbot.Emoji;
-import ru.kingsbot.api.keyboard.Button;
-import ru.kingsbot.api.keyboard.Color;
-import ru.kingsbot.api.keyboard.Keyboard;
+import ru.kingsbot.utils.Emoji;
 import ru.kingsbot.command.Command;
+import ru.kingsbot.command.keyboard.Button;
+import ru.kingsbot.command.keyboard.Color;
+import ru.kingsbot.command.keyboard.Keyboard;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Storage;
 import ru.kingsbot.entity.market.Market;
@@ -19,7 +19,7 @@ public class SellResourceCommand extends Command {
     public SellResourceCommand() {
         super("sell_resource");
         keyboard = Keyboard.newKeyboard()
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.FOOD + "Еда")
                                 .payload("command", "chose_resource")
@@ -35,7 +35,7 @@ public class SellResourceCommand extends Command {
                                 .color(Color.WHITE)
                                 .create()
                 ))
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.STONE + "Камень")
                                 .payload("command", "chose_resource")
@@ -52,7 +52,7 @@ public class SellResourceCommand extends Command {
                                 .create()
                         )
                 )
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.BACK + "Назад")
                                 .payload("command", "back")
@@ -63,7 +63,7 @@ public class SellResourceCommand extends Command {
                                 .color(Color.BLUE)
                                 .create()
                 ))
-                .build();
+                .create();
     }
 
     @Override

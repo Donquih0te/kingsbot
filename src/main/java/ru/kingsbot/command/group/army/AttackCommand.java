@@ -1,9 +1,9 @@
 package ru.kingsbot.command.group.army;
 
-import ru.kingsbot.Emoji;
-import ru.kingsbot.attack.PlayerAttack;
+import ru.kingsbot.utils.Emoji;
 import ru.kingsbot.command.Command;
 import ru.kingsbot.entity.Player;
+import ru.kingsbot.game.attack.PlayerAttack;
 import ru.kingsbot.utils.Utils;
 
 import java.text.SimpleDateFormat;
@@ -36,10 +36,6 @@ public class AttackCommand extends Command {
             if(target == null) {
                 sb.append(Emoji.RED_EXCLAMATION_MARK).append("Противников не найдено, попробуй позже");
             }else{
-                if(target.getFirstName() == null) {
-                    playerService.validateName(target);
-                }
-
                 PlayerAttack attack = new PlayerAttack(player, target);
                 attack.doAttack();
 

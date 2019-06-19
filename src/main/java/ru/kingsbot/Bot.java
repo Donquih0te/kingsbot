@@ -1,16 +1,17 @@
 package ru.kingsbot;
 
-import com.google.gson.Gson;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
-import org.apache.logging.log4j.core.config.Property;
-import ru.kingsbot.api.LongPool;
-import ru.kingsbot.api.TransportClient;
-import ru.kingsbot.api.keyboard.Keyboards;
-import ru.kingsbot.attack.BossAttackMap;
-import ru.kingsbot.boss.BossMap;
+import ru.kingsbot.client.LongPool;
+import ru.kingsbot.client.TransportClient;
 import ru.kingsbot.command.CommandMap;
-import ru.kingsbot.service.*;
+import ru.kingsbot.command.keyboard.Keyboards;
+import ru.kingsbot.game.attack.BossAttackMap;
+import ru.kingsbot.game.boss.BossMap;
+import ru.kingsbot.service.ConversationService;
+import ru.kingsbot.service.DonateService;
+import ru.kingsbot.service.MarketService;
+import ru.kingsbot.service.PlayerService;
 import ru.kingsbot.utils.HibernateUtil;
 import ru.kingsbot.utils.Utils;
 
@@ -18,12 +19,12 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.Properties;
 
 @Log4j2
 public class Bot {
 
+    private static final String VERSION = "1.0.0-beta";
     private static final String API_VERSION = "5.95";
 
     private static volatile Bot instance;
@@ -49,9 +50,6 @@ public class Bot {
     private BossAttackMap bossAttackMap;
 
     @Getter
-    private Gson gson;
-
-    @Getter
     private String dataPath;
 
     @Getter
@@ -60,8 +58,6 @@ public class Bot {
     public Bot(String dataPath) {
         instance = this;
         this.dataPath = dataPath;
-
-        gson = new Gson();
 
         // Checking the configuration files. If them does not exists then create default
         try {
@@ -74,16 +70,18 @@ public class Bot {
 
         // Initializing and starting the http-request executor
         this.initTransportClient();
-        transportClient.start();
+
+        Keyboards.init();
 
         // Creating the database connection
         HibernateUtil.build();
-        playerService = new PlayerService(gson, transportClient);
+        playerService = new PlayerService(transportClient);
         marketService = new MarketService();
         //donateService = new DonateService();
         conversationService = new ConversationService();
 
         longPool = new LongPool(this, transportClient, groupId);
+
         bossMap = new BossMap();
         bossAttackMap = new BossAttackMap();
         commandMap = new CommandMap();
@@ -94,7 +92,8 @@ public class Bot {
     }
 
     public void run() {
-        Keyboards.init();
+        commandMap.loadDefaultCommands();
+        transportClient.start();
         longPool.run();
     }
 
@@ -110,8 +109,6 @@ public class Bot {
                 throw new FileNotFoundException(String.format("The %s file doesn't exists in classpath", fileName));
             }
             try {
-                List<String> lines = Files.readAllLines(appPropPath);
-                Files.createFile(appPropPath);
                 Files.copy(inputStream, appPropPath);
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -128,7 +125,7 @@ public class Bot {
             log.error(e.getMessage(), e);
         }
 
-        groupId = Utils.parseInt(prop.getProperty("groupId"));
+        groupId = Utils.parseInt(prop.getProperty("group_id"));
 
         String token = prop.getProperty("token");
 

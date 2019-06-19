@@ -1,10 +1,10 @@
 package ru.kingsbot.command.group;
 
-import ru.kingsbot.Emoji;
-import ru.kingsbot.api.keyboard.Button;
-import ru.kingsbot.api.keyboard.Color;
-import ru.kingsbot.api.keyboard.Keyboard;
+import ru.kingsbot.utils.Emoji;
 import ru.kingsbot.command.Command;
+import ru.kingsbot.command.keyboard.Button;
+import ru.kingsbot.command.keyboard.Color;
+import ru.kingsbot.command.keyboard.Keyboard;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.clan.Clan;
 import ru.kingsbot.utils.NumberConverter;
@@ -41,7 +41,7 @@ public class ClanCommand extends Command {
                 Player target = playerService.getById(player.getClanRequest());
                 Clan clan = target.getClan();
                 sb.append(Emoji.ACCEPT).append("Приглашение на вступление в клан <").append(clan.getName()).append(">\n");
-                builder.row(List.of(
+                builder.withRowButtons(List.of(
                         Button.newButton()
                                 .label("Прнять")
                                 .payload("command", "clan_request")
@@ -72,7 +72,7 @@ public class ClanCommand extends Command {
                     .collect(Collectors.joining(", "));
             sb.append(collect);
         }
-        builder.row(List.of(
+        builder.withRowButtons(List.of(
                 Button.newButton()
                         .label(Emoji.MARK + "Команды")
                         .payload("command", "clan_commands")
@@ -89,7 +89,7 @@ public class ClanCommand extends Command {
                         .color(Color.BLUE)
                         .create()
         ));
-        keyboard = builder.build();
+        keyboard = builder.create();
         playerService.sendMessage(peerId, sb.toString(), keyboard);
     }
 }

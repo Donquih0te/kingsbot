@@ -31,10 +31,18 @@ import java.util.Optional;
 
 public class CommandMap {
 
-    private Map<String, Command> commands = new HashMap<>();
-    private Map<String, Command> chatCommands = new HashMap<>();
+    private static final String DEFAULT_GROUP_COMMAND_NAME = "info";
+    private static final String DEFAULT_CHAT_COMMAND_NAME = "info";
 
-    public CommandMap() {
+    // Default group commands.  Key(Command name), Value(Command)
+    private final Map<String, Command> commands = new HashMap<>();
+
+    // Default chat commands.  Key(Command name), Value(Command)
+    private final Map<String, Command> chatCommands = new HashMap<>();
+
+    public CommandMap() {}
+
+    public void loadDefaultCommands() {
         setDefaultCommands();
         setChatCommands();
     }
@@ -113,12 +121,12 @@ public class CommandMap {
         chatCommands.put("top", new TopCommand());
     }
 
-    public Optional<Command> getCommand(String name) {
-        return Optional.ofNullable(commands.get(name));
+    public Command getCommand(String name) {
+        return Optional.of(commands.get(name)).orElseGet(() -> commands.get(DEFAULT_GROUP_COMMAND_NAME));
     }
 
-    public Optional<Command> getChatCommand(String name) {
-        return Optional.ofNullable(chatCommands.get(name));
+    public Command getChatCommand(String name) {
+        return Optional.of(chatCommands.get(name)).orElseGet(() -> chatCommands.get(DEFAULT_CHAT_COMMAND_NAME));
     }
 
 }

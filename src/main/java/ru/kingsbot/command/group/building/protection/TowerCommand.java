@@ -1,10 +1,10 @@
 package ru.kingsbot.command.group.building.protection;
 
-import ru.kingsbot.Emoji;
-import ru.kingsbot.api.keyboard.Button;
-import ru.kingsbot.api.keyboard.Color;
-import ru.kingsbot.api.keyboard.Keyboard;
+import ru.kingsbot.utils.Emoji;
 import ru.kingsbot.command.Command;
+import ru.kingsbot.command.keyboard.Button;
+import ru.kingsbot.command.keyboard.Color;
+import ru.kingsbot.command.keyboard.Keyboard;
 import ru.kingsbot.entity.Player;
 import ru.kingsbot.entity.building.Storage;
 import ru.kingsbot.entity.building.Tower;
@@ -20,7 +20,7 @@ public class TowerCommand extends Command {
     public TowerCommand() {
         super("tower");
         keyboard = Keyboard.newKeyboard()
-                .row(new LinkedList<>(List.of(
+                .withRowButtons(new LinkedList<>(List.of(
                         Button.newButton()
                                 .label(Emoji.PLUS + "Купить")
                                 .payload("command", "buy_protection_building")
@@ -35,7 +35,7 @@ public class TowerCommand extends Command {
                                 .create()
                         ))
                 )
-                .row(List.of(
+                .withRowButtons(List.of(
                         Button.newButton()
                                 .label(Emoji.BACK + "Назад")
                                 .payload("command", "back")
@@ -48,7 +48,7 @@ public class TowerCommand extends Command {
                                 .color(Color.BLUE)
                                 .create()
                 ))
-                .build();
+                .create();
     }
 
     @Override

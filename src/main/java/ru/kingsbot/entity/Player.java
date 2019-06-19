@@ -8,10 +8,12 @@ import ru.kingsbot.entity.boss.BossInfo;
 import ru.kingsbot.entity.building.*;
 import ru.kingsbot.entity.clan.Clan;
 import ru.kingsbot.entity.resource.*;
+import ru.kingsbot.utils.Utils;
 
 import javax.persistence.*;
 import java.time.Instant;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "player")
@@ -233,11 +235,11 @@ public class Player {
         wall = new Wall(id);
         tower = new Tower(id);
         army = new Army(id);
-        foodResource = new Food(new Random().nextInt(500_000 * capitol.getLevel() - 100_000 * capitol.getLevel()) + 100_000 * capitol.getLevel());
-        goldResource = new Gold(new Random().nextInt(500_000 * capitol.getLevel() - 100_000 * capitol.getLevel()) + 100_000 * capitol.getLevel());
-        ironResource = new Iron(new Random().nextInt(500_000 * capitol.getLevel() - 100_000 * capitol.getLevel()) + 100_000 * capitol.getLevel());
-        stoneResource = new Stone(new Random().nextInt(500_000 * capitol.getLevel() - 100_000 * capitol.getLevel()) + 100_000 * capitol.getLevel());
-        woodResource = new Wood(new Random().nextInt(500_000 * capitol.getLevel() - 100_000 * capitol.getLevel()) + 100_000 * capitol.getLevel());
+        foodResource = new Food(Utils.RANDOM.nextInt(500_000 * capitol.getLevel() - 100_000 * capitol.getLevel()) + 100_000 * capitol.getLevel());
+        goldResource = new Gold(Utils.RANDOM.nextInt(500_000 * capitol.getLevel() - 100_000 * capitol.getLevel()) + 100_000 * capitol.getLevel());
+        ironResource = new Iron(Utils.RANDOM.nextInt(500_000 * capitol.getLevel() - 100_000 * capitol.getLevel()) + 100_000 * capitol.getLevel());
+        stoneResource = new Stone(Utils.RANDOM.nextInt(500_000 * capitol.getLevel() - 100_000 * capitol.getLevel()) + 100_000 * capitol.getLevel());
+        woodResource = new Wood(Utils.RANDOM.nextInt(500_000 * capitol.getLevel() - 100_000 * capitol.getLevel()) + 100_000 * capitol.getLevel());
         bossInfo = new BossInfo(id);
         perk = new Perk(id);
         tutorial = false;
