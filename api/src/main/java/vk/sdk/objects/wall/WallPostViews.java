@@ -1,15 +1,18 @@
 package vk.sdk.objects.wall;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 /**
  *  Информация о просмотрах записи.
  */
 @ToString
 @EqualsAndHashCode
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class WallPostViews {
 
     /**
@@ -17,6 +20,6 @@ public class WallPostViews {
      */
     @Getter
     @SerializedName("count")
-    private Integer count;
+    Integer count;
 
 }

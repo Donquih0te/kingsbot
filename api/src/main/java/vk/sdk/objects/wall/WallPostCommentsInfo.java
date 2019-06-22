@@ -1,9 +1,11 @@
 package vk.sdk.objects.wall;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 import vk.sdk.objects.utils.BoolInt;
 
 /**
@@ -11,6 +13,7 @@ import vk.sdk.objects.utils.BoolInt;
  */
 @ToString
 @EqualsAndHashCode
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class WallPostCommentsInfo {
 
     /**
@@ -18,7 +21,7 @@ public class WallPostCommentsInfo {
      */
     @Getter
     @SerializedName("count")
-    private Integer count;
+    Integer count;
 
     /**
      *  Информация о том, может ли текущий пользователь комментировать запись
@@ -26,27 +29,27 @@ public class WallPostCommentsInfo {
      */
     @Getter
     @SerializedName("can_post")
-    private BoolInt canPost;
+    BoolInt canPost;
 
     /**
      *  Информация о том, могут ли сообщества комментировать запись.
      */
     @Getter
     @SerializedName("groups_can_post")
-    private BoolInt groupsCanPost;
+    BoolInt groupsCanPost;
 
     /**
      *  Может ли текущий пользователь закрыть комментарии к записи.
      */
     @Getter
     @SerializedName("can_close")
-    private boolean canClose;
+    boolean canClose;
 
     /**
      *  Может ли текущий пользователь открыть комментарии к записи.
      */
     @Getter
     @SerializedName("can_open")
-    private boolean canOpen;
+    boolean canOpen;
 
 }

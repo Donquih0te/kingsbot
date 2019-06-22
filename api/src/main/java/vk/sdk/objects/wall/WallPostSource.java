@@ -1,9 +1,11 @@
 package vk.sdk.objects.wall;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 import vk.sdk.objects.wall.enums.PostSourceData;
 import vk.sdk.objects.wall.enums.PostSourcePlatform;
 import vk.sdk.objects.wall.enums.PostSourceType;
@@ -13,6 +15,7 @@ import vk.sdk.objects.wall.enums.PostSourceType;
  */
 @ToString
 @EqualsAndHashCode
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class WallPostSource {
 
     /**
@@ -26,7 +29,7 @@ public class WallPostSource {
      */
     @Getter
     @SerializedName("type")
-    private PostSourceType type;
+    PostSourceType type;
 
     /**
      *  Название платформы, если оно доступно.
@@ -37,7 +40,7 @@ public class WallPostSource {
      */
     @Getter
     @SerializedName("platform")
-    private PostSourcePlatform platform;
+    PostSourcePlatform platform;
 
     /**
      *  Тип действия (только для type = vk или widget).
@@ -50,13 +53,13 @@ public class WallPostSource {
      */
     @Getter
     @SerializedName("data")
-    private PostSourceData data;
+    PostSourceData data;
 
     /**
      *  URL ресурса, с которого была опубликована запись.
      */
     @Getter
     @SerializedName("url")
-    private String url;
+    String url;
 
 }
