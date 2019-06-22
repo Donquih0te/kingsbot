@@ -95,13 +95,11 @@ public class WallPost {
     private WallPostLikesInfo likes;
 
     /**
-     *  Информация о репостах записи («Рассказать друзьям»)
-     *
-     * TODO: create RepostWallPost object
+     *  Информация о репостах записи («Рассказать друзьям»).
      */
     @Getter
     @SerializedName("reposts")
-    private Object reposts;
+    private WallPostRepostsInfo reposts;
 
     /**
      *  Информация о просмотрах записи.
