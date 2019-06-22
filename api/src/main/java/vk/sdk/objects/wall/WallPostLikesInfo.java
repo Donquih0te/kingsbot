@@ -11,7 +11,7 @@ import vk.sdk.objects.utils.BoolInt;
 /**
  *  Информация о лайках к записи.
  */
-@ToString
+@ToString(doNotUseGetters = true)
 @EqualsAndHashCode
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class WallPostLikesInfo {

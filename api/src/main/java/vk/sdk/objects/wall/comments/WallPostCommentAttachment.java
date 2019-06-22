@@ -37,7 +37,7 @@ import java.util.Optional;
  *  access_key нужно добавить к строковому id объекта через символ подчеркивания:
  *      123456_654312_6d103522bc13b790c5
  */
-@ToString
+@ToString(doNotUseGetters = true)
 @EqualsAndHashCode
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class WallPostCommentAttachment {

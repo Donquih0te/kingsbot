@@ -10,7 +10,7 @@ import lombok.experimental.FieldDefaults;
 /**
  *  Объект, описывающий способ размещения записи на стене.
  */
-@ToString
+@ToString(doNotUseGetters = true)
 @EqualsAndHashCode
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class WallPostSource {
