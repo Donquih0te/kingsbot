@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.ToString;
 import vk.sdk.objects.utils.BoolInt;
 import vk.sdk.objects.wall.enums.FriendsOnly;
+import vk.sdk.objects.wall.enums.PostType;
 
 import java.util.List;
 
@@ -109,12 +110,13 @@ public class WallPost {
     private WallPostViews views;
 
     /**
-     *  Тип записи, может принимать следующие значения:
+     *  Тип записи.
+     *  Может принимать следующие значения:
      *  post, copy, reply, postpone, suggest.
      */
     @Getter
     @SerializedName("post_type")
-    private String postType;
+    private PostType postType;
 
     /**
      *  Информация о способе размещения записи.
