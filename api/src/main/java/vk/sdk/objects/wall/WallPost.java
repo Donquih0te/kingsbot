@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import vk.sdk.objects.utils.BoolInt;
-import vk.sdk.objects.wall.enums.FriendsOnly;
+import vk.sdk.objects.utils.YesParam;
 import vk.sdk.objects.wall.enums.PostType;
 
 import java.util.List;
@@ -82,7 +82,7 @@ public class WallPost {
      */
     @Getter
     @SerializedName("friends_only")
-    FriendsOnly friendsOnly;
+    YesParam friendsOnly;
 
     /**
      *  Информация о комментариях к записи.
@@ -188,7 +188,7 @@ public class WallPost {
      */
     @Getter
     @SerializedName("is_pinned")
-    BoolInt isPinned;
+    YesParam isPinned;
 
     /**
      *  Информация о том, содержит ли запись отметку "реклама" (1 — да, 0 — нет).
