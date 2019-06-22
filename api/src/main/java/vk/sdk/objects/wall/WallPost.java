@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import vk.sdk.objects.utils.BoolInt;
+import vk.sdk.objects.wall.enums.FriendsOnly;
 
 import java.util.List;
 
@@ -77,7 +78,7 @@ public class WallPost {
      */
     @Getter
     @SerializedName("friends_only")
-    private Integer friendsOnly;
+    private FriendsOnly friendsOnly;
 
     /**
      *  Информация о комментариях к записи.
