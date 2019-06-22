@@ -38,7 +38,7 @@ import java.util.Optional;
  *      123456_654312_6d103522bc13b790c5
  */
 @ToString(doNotUseGetters = true)
-@EqualsAndHashCode
+@EqualsAndHashCode(doNotUseGetters = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class WallPostCommentAttachment {
 

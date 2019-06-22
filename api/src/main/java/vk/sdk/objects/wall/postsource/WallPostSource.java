@@ -13,7 +13,7 @@ import java.net.URL;
  *  Объект, описывающий способ размещения записи на стене.
  */
 @ToString(doNotUseGetters = true)
-@EqualsAndHashCode
+@EqualsAndHashCode(doNotUseGetters = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class WallPostSource {
 

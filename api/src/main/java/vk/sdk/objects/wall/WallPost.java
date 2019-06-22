@@ -17,7 +17,7 @@ import java.util.List;
  *  Объект, описывающий запись на стене пользователя или сообщества.
  */
 @ToString(doNotUseGetters = true)
-@EqualsAndHashCode
+@EqualsAndHashCode(doNotUseGetters = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class WallPost {
 

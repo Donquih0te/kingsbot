@@ -13,7 +13,7 @@ import java.util.List;
  *  Информация о вложенной ветке комментариев.
  */
 @ToString(doNotUseGetters = true)
-@EqualsAndHashCode
+@EqualsAndHashCode(doNotUseGetters = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class WallPostCommentsThreadInfo {
 

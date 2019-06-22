@@ -13,7 +13,7 @@ import java.net.URL;
  * Объект содержит информацию о сообществе ВКонтакте.
  */
 @ToString(doNotUseGetters = true)
-@EqualsAndHashCode
+@EqualsAndHashCode(doNotUseGetters = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Group {
 

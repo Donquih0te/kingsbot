@@ -12,7 +12,7 @@ import vk.sdk.objects.utils.BoolInt;
  *  Информация о репостах записи («Рассказать друзьям»).
  */
 @ToString(doNotUseGetters = true)
-@EqualsAndHashCode
+@EqualsAndHashCode(doNotUseGetters = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class WallPostRepostsInfo {
 
