@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
+import java.net.URL;
+
 /**
  *  Объект, описывающий способ размещения записи на стене.
  */
@@ -57,6 +59,6 @@ public class WallPostSource {
      */
     @Getter
     @SerializedName("url")
-    String url;
+    URL url;
 
 }

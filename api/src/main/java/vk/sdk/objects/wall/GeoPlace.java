@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
+import java.net.URL;
+
 /**
  *  Объект, описывающий местоположение.
  */
@@ -55,7 +57,7 @@ public class GeoPlace {
      */
     @Getter
     @SerializedName("icon")
-    String icon;
+    URL icon;
 
     /**
      *  Число отметок в этом месте.
