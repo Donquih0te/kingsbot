@@ -12,7 +12,7 @@ import java.util.List;
 /**
  *  Объект, описывающий комментарий к записи.
  */
-@ToString
+@ToString(doNotUseGetters = true)
 @EqualsAndHashCode
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class WallPostComment {

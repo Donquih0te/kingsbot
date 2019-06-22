@@ -10,7 +10,7 @@ import lombok.experimental.FieldDefaults;
 /**
  * Объект содержит информацию о сообществе ВКонтакте.
  */
-@ToString
+@ToString(doNotUseGetters = true)
 @EqualsAndHashCode
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Group {

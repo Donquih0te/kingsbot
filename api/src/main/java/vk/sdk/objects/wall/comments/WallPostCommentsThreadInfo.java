@@ -12,7 +12,7 @@ import java.util.List;
 /**
  *  Информация о вложенной ветке комментариев.
  */
-@ToString
+@ToString(doNotUseGetters = true)
 @EqualsAndHashCode
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class WallPostCommentsThreadInfo {
