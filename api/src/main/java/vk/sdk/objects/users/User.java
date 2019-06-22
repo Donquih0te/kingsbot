@@ -11,7 +11,7 @@ import lombok.experimental.FieldDefaults;
  * Объект содержит информацию о пользователе ВКонтакте.
  */
 @ToString(doNotUseGetters = true)
-@EqualsAndHashCode
+@EqualsAndHashCode(doNotUseGetters = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class User {
 

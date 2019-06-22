@@ -13,7 +13,7 @@ import java.net.URL;
  *  Объект, описывающий местоположение.
  */
 @ToString(doNotUseGetters = true)
-@EqualsAndHashCode
+@EqualsAndHashCode(doNotUseGetters = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class GeoPlace {
 

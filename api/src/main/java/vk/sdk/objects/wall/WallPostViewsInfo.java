@@ -11,7 +11,7 @@ import lombok.experimental.FieldDefaults;
  *  Информация о просмотрах записи.
  */
 @ToString(doNotUseGetters = true)
-@EqualsAndHashCode
+@EqualsAndHashCode(doNotUseGetters = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class WallPostViewsInfo {
 
