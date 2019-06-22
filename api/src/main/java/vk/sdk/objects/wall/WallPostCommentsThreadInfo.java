@@ -1,9 +1,11 @@
 package vk.sdk.objects.wall;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 import java.util.List;
 
@@ -12,6 +14,7 @@ import java.util.List;
  */
 @ToString
 @EqualsAndHashCode
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class WallPostCommentsThreadInfo {
 
     /**
@@ -19,7 +22,7 @@ public class WallPostCommentsThreadInfo {
      */
     @Getter
     @SerializedName("count")
-    private Integer count;
+    Integer count;
 
     /**
      *  Массив объектов комментариев к записи.
@@ -27,27 +30,27 @@ public class WallPostCommentsThreadInfo {
      */
     @Getter
     @SerializedName("items")
-    private List<WallPostComment> items;
+    List<WallPostComment> items;
 
     /**
      *  Может ли текущий пользователь оставлять комментарии в этой ветке.
      */
     @Getter
     @SerializedName("can_post")
-    private boolean canPost;
+    boolean canPost;
 
     /**
      *  Нужно ли отображать кнопку «ответить» в ветке.
      */
     @Getter
     @SerializedName("show_reply_button")
-    private boolean showReplyButton;
+    boolean showReplyButton;
 
     /**
      *  Могут ли сообщества оставлять комментарии в ветке.
      */
     @Getter
     @SerializedName("groups_can_post")
-    private boolean groupsCanPost;
+    boolean groupsCanPost;
 
 }

@@ -1,15 +1,18 @@
 package vk.sdk.objects.wall;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 /**
  *  Объект, описывающий местоположение.
  */
 @ToString
 @EqualsAndHashCode
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class GeoPlace {
 
     /**
@@ -17,83 +20,83 @@ public class GeoPlace {
      */
     @Getter
     @SerializedName("id")
-    private Integer id;
+    Integer id;
 
     /**
      *  Название места.
      */
     @Getter
     @SerializedName("title")
-    private String title;
+    String title;
 
     /**
      *  Географическая широта, заданная в градусах (от -90 до 90).
      */
     @Getter
     @SerializedName("latitude")
-    private Integer latitude;
+    Integer latitude;
 
     /**
      *  Географическая долгота, заданная в градусах (от -90 до 90).
      */
     @Getter
     @SerializedName("longitude")
-    private Integer longitude;
+    Integer longitude;
 
     /**
      *  Дата создания места в UnixTime.
      */
     @Getter
     @SerializedName("created")
-    private Long created;
+    Long created;
 
     /**
      *  Иконка места, URL изображения.
      */
     @Getter
     @SerializedName("icon")
-    private String icon;
+    String icon;
 
     /**
      *  Число отметок в этом месте.
      */
     @Getter
     @SerializedName("checkins")
-    private Integer checkins;
+    Integer checkins;
 
     /**
      *  Дата обновления места в UnixTime.
      */
     @Getter
     @SerializedName("updated")
-    private Long updated;
+    Long updated;
 
     /**
      *  Тип места.
      */
     @Getter
     @SerializedName("type")
-    private Integer type;
+    Integer type;
 
     /**
      *  Идентификатор страны.
      */
     @Getter
     @SerializedName("country")
-    private Integer country;
+    Integer country;
 
     /**
      *  Идентификатор города.
      */
     @Getter
     @SerializedName("city")
-    private Integer city;
+    Integer city;
 
     /**
      *  Адрес места.
      */
     @Getter
     @SerializedName("address")
-    private String address;
+    String address;
 
 }

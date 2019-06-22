@@ -1,15 +1,18 @@
 package vk.sdk.objects.users;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 /**
  * Объект содержит информацию о пользователе ВКонтакте.
  */
 @ToString
 @EqualsAndHashCode
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class User {
 
     /**
@@ -17,21 +20,21 @@ public class User {
      */
     @Getter
     @SerializedName("id")
-    private Integer id;
+    Integer id;
 
     /**
      *  Имя пользователя.
      */
     @Getter
     @SerializedName("first_name")
-    private String firstName;
+    String firstName;
 
     /**
      *  Фамилия пользователя.
      */
     @Getter
     @SerializedName("last_name")
-    private String lastName;
+    String lastName;
 
     /**
      *  Поле возвращается, если страница пользователя удалена или заблокирована, содержит значение deleted или banned.
@@ -39,14 +42,14 @@ public class User {
      */
     @Getter
     @SerializedName("deactivated")
-    private String deactivated;
+    String deactivated;
 
     /**
      *  Скрыт ли профиль пользователя настройками приватности.
      */
     @Getter
     @SerializedName("is_closed")
-    private boolean isClosed;
+    boolean isClosed;
 
     /**
      *  Может ли текущий пользователь видеть профиль при is_closed = 1
@@ -54,6 +57,6 @@ public class User {
      */
     @Getter
     @SerializedName("can_access_closed")
-    private boolean canAccessClosed;
+    boolean canAccessClosed;
 
 }

@@ -1,9 +1,11 @@
 package vk.sdk.objects.wall;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 import vk.sdk.objects.utils.BoolInt;
 import vk.sdk.objects.wall.enums.FriendsOnly;
 import vk.sdk.objects.wall.enums.PostType;
@@ -15,6 +17,7 @@ import java.util.List;
  */
 @ToString
 @EqualsAndHashCode
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class WallPost {
 
     /**
@@ -22,21 +25,21 @@ public class WallPost {
      */
     @Getter
     @SerializedName("id")
-    private Integer id;
+    Integer id;
 
     /**
      *  Идентификатор владельца стены, на которой размещена запись.
      */
     @Getter
     @SerializedName("owner_id")
-    private Integer ownerId;
+    Integer ownerId;
 
     /**
      *  Идентификатор автора записи (от чьего имени опубликована запись).
      */
     @Getter
     @SerializedName("from_id")
-    private Integer fromId;
+    Integer fromId;
 
     /**
      *  Идентификатор администратора, который опубликовал запись
@@ -44,70 +47,70 @@ public class WallPost {
      */
     @Getter
     @SerializedName("created_by")
-    private Integer createdBy;
+    Integer createdBy;
 
     /**
      *  Время публикации записи в формате UnixTime.
      */
     @Getter
     @SerializedName("date")
-    private Long date;
+    Long date;
 
     /**
      *  Текст записи.
      */
     @Getter
     @SerializedName("text")
-    private String text;
+    String text;
 
     /**
      *  Идентификатор владельца записи, в ответ на которую была оставлена текущая.
      */
     @Getter
     @SerializedName("reply_owner_id")
-    private Integer replyOwnerId;
+    Integer replyOwnerId;
 
     /**
      *  Идентификатор записи, в ответ на которую была оставлена текущая.
      */
     @Getter
     @SerializedName("reply_post_id")
-    private Integer replyPostId;
+    Integer replyPostId;
 
     /**
      *  1, если запись была создана с опцией «Только для друзей».
      */
     @Getter
     @SerializedName("friends_only")
-    private FriendsOnly friendsOnly;
+    FriendsOnly friendsOnly;
 
     /**
      *  Информация о комментариях к записи.
      */
     @Getter
     @SerializedName("comments")
-    private WallPostCommentsInfo comments;
+    WallPostCommentsInfo comments;
 
     /**
      *  Информация о лайках к записи.
      */
     @Getter
     @SerializedName("likes")
-    private WallPostLikesInfo likes;
+    WallPostLikesInfo likes;
 
     /**
      *  Информация о репостах записи («Рассказать друзьям»).
      */
     @Getter
     @SerializedName("reposts")
-    private WallPostRepostsInfo reposts;
+    WallPostRepostsInfo reposts;
 
     /**
      *  Информация о просмотрах записи.
      */
     @Getter
     @SerializedName("views")
-    private WallPostViews views;
+    WallPostViews views;
 
     /**
      *  Тип записи.
@@ -116,7 +119,7 @@ public class WallPost {
      */
     @Getter
     @SerializedName("post_type")
-    private PostType postType;
+    PostType postType;
 
     /**
      *  Информация о способе размещения записи.
@@ -124,7 +127,7 @@ public class WallPost {
      */
     @Getter
     @SerializedName("post_source")
-    private WallPostSource postSource;
+    WallPostSource postSource;
 
     /**
      *  Медиавложения записи (фотографии, ссылки и т.п.)
@@ -133,21 +136,21 @@ public class WallPost {
      */
     @Getter
     @SerializedName("attachments")
-    private Object attachments;
+    Object attachments;
 
     /**
      *  Информация о местоположении.
      */
     @Getter
     @SerializedName("geo")
-    private Geo geo;
+    Geo geo;
 
     /**
      *  Идентификатор автора, если запись была опубликована от имени сообщества и подписана пользователем;
      */
     @Getter
     @SerializedName("signer_id")
-    private Integer signerId;
+    Integer signerId;
 
     /**
      *  Массив, содержащий историю репостов для записи.
@@ -156,28 +159,28 @@ public class WallPost {
      */
     @Getter
     @SerializedName("copy_history")
-    private List<Object> copyHistory;
+    List<Object> copyHistory;
 
     /**
      *  Информация о том, может ли текущий пользователь закрепить запись (1 — может, 0 — не может).
      */
     @Getter
     @SerializedName("can_pin")
-    private BoolInt canPin;
+    BoolInt canPin;
 
     /**
      *  Информация о том, может ли текущий пользователь удалить запись (1 — может, 0 — не может).
      */
     @Getter
     @SerializedName("can_delete")
-    private BoolInt canDelete;
+    BoolInt canDelete;
 
     /**
      *  Информация о том, может ли текущий пользователь редактировать запись (1 — может, 0 — не может).
      */
     @Getter
     @SerializedName("can_edit")
-    private BoolInt canEdit;
+    BoolInt canEdit;
 
     /**
      *  Информация о том, что запись закреплена.
@@ -185,20 +188,20 @@ public class WallPost {
      */
     @Getter
     @SerializedName("is_pinned")
-    private BoolInt isPinned;
+    BoolInt isPinned;
 
     /**
      *  Информация о том, содержит ли запись отметку "реклама" (1 — да, 0 — нет).
      */
     @Getter
     @SerializedName("marked_as_ads")
-    private BoolInt markedAsAds;
+    BoolInt markedAsAds;
 
     /**
      *  true, если объект добавлен в закладки у текущего пользователя.
      */
     @Getter
     @SerializedName("is_favorite")
-    private boolean isFavorite;
+    boolean isFavorite;
 
 }

@@ -1,9 +1,11 @@
 package vk.sdk.objects.wall;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 import vk.sdk.objects.utils.BoolInt;
 
 /**
@@ -11,6 +13,7 @@ import vk.sdk.objects.utils.BoolInt;
  */
 @ToString
 @EqualsAndHashCode
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class WallPostLikesInfo {
 
     /**
@@ -18,7 +21,7 @@ public class WallPostLikesInfo {
      */
     @Getter
     @SerializedName("count")
-    private Integer count;
+    Integer count;
 
     /**
      *  Наличие отметки «Мне нравится» от текущего пользователя
@@ -26,7 +29,7 @@ public class WallPostLikesInfo {
      */
     @Getter
     @SerializedName("user_likes")
-    private BoolInt userLikes;
+    BoolInt userLikes;
 
     /**
      *  Информация о том, может ли текущий пользователь поставить отметку «Мне нравится»
@@ -34,7 +37,7 @@ public class WallPostLikesInfo {
      */
     @Getter
     @SerializedName("can_like")
-    private BoolInt canLike;
+    BoolInt canLike;
 
     /**
      *  Информация о том, может ли текущий пользователь сделать репост записи
@@ -42,6 +45,6 @@ public class WallPostLikesInfo {
      */
     @Getter
     @SerializedName("can_publish")
-    private BoolInt canPublish;
+    BoolInt canPublish;
 
 }

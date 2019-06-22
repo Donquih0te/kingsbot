@@ -1,9 +1,11 @@
 package vk.sdk.objects.wall;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 import vk.sdk.objects.utils.BoolInt;
 
 /**
@@ -11,6 +13,7 @@ import vk.sdk.objects.utils.BoolInt;
  */
 @ToString
 @EqualsAndHashCode
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class WallPostRepostsInfo {
 
     /**
@@ -18,7 +21,7 @@ public class WallPostRepostsInfo {
      */
     @Getter
     @SerializedName("count")
-    private Integer count;
+    Integer count;
 
     /**
      *  Наличие репоста от текущего пользователя
@@ -26,6 +29,6 @@ public class WallPostRepostsInfo {
      */
     @Getter
     @SerializedName("user_reposted")
-    private BoolInt userReposted;
+    BoolInt userReposted;
 
 }

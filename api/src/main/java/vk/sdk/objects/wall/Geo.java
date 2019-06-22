@@ -1,15 +1,18 @@
 package vk.sdk.objects.wall;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 /**
  *  Информация о местоположении.
  */
 @ToString
 @EqualsAndHashCode
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Geo {
 
     /**
@@ -17,20 +20,20 @@ public class Geo {
      */
     @Getter
     @SerializedName("type")
-    private String type;
+    String type;
 
     /**
      *  Координаты места.
      */
     @Getter
     @SerializedName("coordinates")
-    private String coordinates;
+    String coordinates;
 
     /**
      *  Описание места (если оно добавлено).
      */
     @Getter
     @SerializedName("place")
-    private GeoPlace place;
+    GeoPlace place;
 
 }

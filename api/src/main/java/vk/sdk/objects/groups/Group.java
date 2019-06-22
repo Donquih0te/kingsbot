@@ -1,15 +1,18 @@
 package vk.sdk.objects.groups;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 /**
  * Объект содержит информацию о сообществе ВКонтакте.
  */
 @ToString
 @EqualsAndHashCode
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Group {
 
     /**
@@ -17,21 +20,21 @@ public class Group {
      */
     @Getter
     @SerializedName("id")
-    private Integer id;
+    Integer id;
 
     /**
      *  Название сообщества.
      */
     @Getter
     @SerializedName("name")
-    private String name;
+    String name;
 
     /**
      *  Короткий адрес.
      */
     @Getter
     @SerializedName("screen_name")
-    private String screenName;
+    String screenName;
 
     /**
      *  Является ли сообщество закрытым.
@@ -42,7 +45,7 @@ public class Group {
      */
     @Getter
     @SerializedName("is_closed")
-    private Integer isClosed;
+    Integer isClosed;
 
     /**
      *  Возвращается в случае, если сообщество удалено или заблокировано.
@@ -52,7 +55,7 @@ public class Group {
      */
     @Getter
     @SerializedName("deactivated")
-    private String deactivated;
+    String deactivated;
 
     /**
      *  Информация о том, является ли текущий пользователь руководителем.
@@ -62,7 +65,7 @@ public class Group {
      */
     @Getter
     @SerializedName("is_admin")
-    private Integer isAdmin;
+    Integer isAdmin;
 
     /**
      *  Уровень полномочий текущего пользователя (если is_admin = 1):
@@ -72,7 +75,7 @@ public class Group {
      */
     @Getter
     @SerializedName("admin_level")
-    private Integer adminLevel;
+    Integer adminLevel;
 
     /**
      *  Информация о том, является ли текущий пользователь участником.
@@ -82,7 +85,7 @@ public class Group {
      */
     @Getter
     @SerializedName("is_member")
-    private Integer isMember;
+    Integer isMember;
 
     /**
      *  Информация о том, является ли текущий пользователь рекламодателем.
@@ -92,7 +95,7 @@ public class Group {
      */
     @Getter
     @SerializedName("is_advertiser")
-    private Integer isAdvertiser;
+    Integer isAdvertiser;
 
     /**
      *  Идентификатор пользователя, который отправил приглашение в сообщество.
@@ -100,7 +103,7 @@ public class Group {
      */
     @Getter
     @SerializedName("invited_by")
-    private Integer invitedBy;
+    Integer invitedBy;
 
     /**
      *  Тип сообщества:
@@ -110,27 +113,27 @@ public class Group {
      */
     @Getter
     @SerializedName("type")
-    private String type;
+    String type;
 
     /**
      *  URL главной фотографии с размером 50x50px.
      */
     @Getter
     @SerializedName("photo_50")
-    private String photo50;
+    String photo50;
 
     /**
      *	URL главной фотографии с размером 100x100px.
      */
     @Getter
     @SerializedName("photo_100")
-    private String photo100;
+    String photo100;
 
     /**
      *  URL главной фотографии в максимальном размере.
      */
     @Getter
     @SerializedName("photo_200")
-    private String photo200;
+    String photo200;
 
 }
