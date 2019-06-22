@@ -4,6 +4,7 @@ build/*
 gradle
 gradle/*
 out
+out/*
 
 .gradle
 .gradle/*
