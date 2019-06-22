@@ -13,7 +13,7 @@ import lombok.experimental.FieldDefaults;
 @ToString
 @EqualsAndHashCode
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class WallPostViews {
+public class WallPostViewsInfo {
 
     /**
      *  Число просмотров записи.

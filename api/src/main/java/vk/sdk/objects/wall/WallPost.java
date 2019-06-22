@@ -111,7 +111,7 @@ public class WallPost {
      */
     @Getter
     @SerializedName("views")
-    WallPostViews views;
+    WallPostViewsInfo views;
 
     /**
      *  Тип записи.
