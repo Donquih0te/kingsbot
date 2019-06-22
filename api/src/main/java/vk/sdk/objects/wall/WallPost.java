@@ -120,12 +120,11 @@ public class WallPost {
 
     /**
      *  Информация о способе размещения записи.
-     *
-     *  TODO: create PostSource object
+     *  Поле возвращается только для Standalone-приложений с ключом доступа, полученным в Implicit Flow.
      */
     @Getter
     @SerializedName("post_source")
-    private Object postSource;
+    private WallPostSource postSource;
 
     /**
      *  Медиавложения записи (фотографии, ссылки и т.п.)
