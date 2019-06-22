@@ -1,6 +1,6 @@
 package vk.sdk.objects.utils;
 
-public enum BoolInt implements Enum {
+public enum BoolInt implements EnumParam {
 
     NO(0),
     YES(1);

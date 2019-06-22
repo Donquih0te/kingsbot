@@ -1,6 +1,6 @@
 package vk.sdk.objects.utils;
 
-public interface Enum {
+public interface EnumParam {
 
     public String getValue();
 
