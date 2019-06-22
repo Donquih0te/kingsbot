@@ -1,4 +1,4 @@
-package vk.sdk.objects.wall;
+package vk.sdk.objects.wall.comments;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.AccessLevel;

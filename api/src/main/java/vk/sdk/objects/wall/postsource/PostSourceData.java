@@ -1,17 +1,17 @@
-package vk.sdk.objects.wall.enums;
+package vk.sdk.objects.wall.postsource;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import vk.sdk.objects.utils.EnumParam;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public enum PostSourceType implements EnumParam {
+public enum PostSourceData implements EnumParam {
 
-    VK("vk"),
-    WIDGET("widget"),
-    API("api"),
-    RSS("rss"),
-    SMS("sms");
+    PROFILE_ACTIVE("profile_active"),
+    PROFILE_PHOTO("profile_photo"),
+    COMMENTS("comments"),
+    LIKE("like"),
+    POOL("pool");
 
     private String value;
 
