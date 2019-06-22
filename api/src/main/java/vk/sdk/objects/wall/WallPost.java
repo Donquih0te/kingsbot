@@ -136,13 +136,11 @@ public class WallPost {
     private Object attachments;
 
     /**
-     *  Информация о местоположении
-     *
-     *  TODO: create object Geo
+     *  Информация о местоположении.
      */
     @Getter
     @SerializedName("geo")
-    private Object geo;
+    private Geo geo;
 
     /**
      *  Идентификатор автора, если запись была опубликована от имени сообщества и подписана пользователем;
