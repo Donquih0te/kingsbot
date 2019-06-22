@@ -12,7 +12,7 @@ import java.util.List;
  */
 @ToString
 @EqualsAndHashCode
-public class WallComment {
+public class WallPostComment {
 
     /**
      *  Идентификатор комментария.
@@ -74,11 +74,9 @@ public class WallComment {
 
     /**
      *  Информация о вложенной ветке комментариев.
-     *
-     *  TODO: create CommentThread object
      */
     @Getter
     @SerializedName("thread")
-    private Object thread;
+    private WallPostCommentsThreadInfo thread;
 
 }
