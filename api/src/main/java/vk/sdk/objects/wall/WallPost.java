@@ -81,12 +81,10 @@ public class WallPost {
 
     /**
      *  Информация о комментариях к записи.
-     *
-     *  TODO: create wall comment object
      */
     @Getter
     @SerializedName("comments")
-    private Object comments;
+    private WallPostCommentsInfo comments;
 
     /**
      *  Информация о лайках к записи.
