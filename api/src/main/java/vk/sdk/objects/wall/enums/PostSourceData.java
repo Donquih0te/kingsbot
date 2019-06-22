@@ -1,7 +1,10 @@
 package vk.sdk.objects.wall.enums;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import vk.sdk.objects.utils.EnumParam;
 
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum PostSourceData implements EnumParam {
 
     PROFILE_ACTIVE("profile_active"),
@@ -11,10 +14,6 @@ public enum PostSourceData implements EnumParam {
     POOL("pool");
 
     private String value;
-
-    public PostSourceData(String value) {
-        this.value = value;
-    }
 
     @Override
     public String getValue() {
