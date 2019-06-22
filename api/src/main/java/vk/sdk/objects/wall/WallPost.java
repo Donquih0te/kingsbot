@@ -8,7 +8,8 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import vk.sdk.objects.utils.BoolInt;
 import vk.sdk.objects.utils.YesParam;
-import vk.sdk.objects.wall.enums.PostType;
+import vk.sdk.objects.wall.comments.WallPostCommentsInfo;
+import vk.sdk.objects.wall.postsource.WallPostSource;
 
 import java.util.List;
 

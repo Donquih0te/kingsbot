@@ -1,4 +1,4 @@
-package vk.sdk.objects.wall;
+package vk.sdk.objects.wall.postsource;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.AccessLevel;
@@ -6,9 +6,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
-import vk.sdk.objects.wall.enums.PostSourceData;
-import vk.sdk.objects.wall.enums.PostSourcePlatform;
-import vk.sdk.objects.wall.enums.PostSourceType;
 
 /**
  *  Объект, описывающий способ размещения записи на стене.

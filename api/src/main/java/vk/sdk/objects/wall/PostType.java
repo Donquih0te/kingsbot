@@ -1,15 +1,17 @@
-package vk.sdk.objects.wall.enums;
+package vk.sdk.objects.wall;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import vk.sdk.objects.utils.EnumParam;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public enum PostSourcePlatform implements EnumParam {
+public enum PostType implements EnumParam {
 
-    ANDROID("android"),
-    IPHONE("iphone"),
-    WPHONE("wphone");
+    POST("post"),
+    COPY("copy"),
+    REPLY("reply"),
+    POSTPONE("postpone"),
+    SUGGEST("suggest");
 
     private String value;
 
@@ -17,4 +19,5 @@ public enum PostSourcePlatform implements EnumParam {
     public String getValue() {
         return value;
     }
+
 }
