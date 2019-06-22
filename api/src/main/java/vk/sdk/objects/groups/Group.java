@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
+import java.net.URL;
+
 /**
  * Объект содержит информацию о сообществе ВКонтакте.
  */
@@ -120,20 +122,20 @@ public class Group {
      */
     @Getter
     @SerializedName("photo_50")
-    String photo50;
+    URL photo50;
 
     /**
      *	URL главной фотографии с размером 100x100px.
      */
     @Getter
     @SerializedName("photo_100")
-    String photo100;
+    URL photo100;
 
     /**
      *  URL главной фотографии в максимальном размере.
      */
     @Getter
     @SerializedName("photo_200")
-    String photo200;
+    URL photo200;
 
 }
