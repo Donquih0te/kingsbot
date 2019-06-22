@@ -103,12 +103,10 @@ public class WallPost {
 
     /**
      *  Информация о просмотрах записи.
-     *
-     *  TODO: create View object
      */
     @Getter
     @SerializedName("views")
-    private Object views;
+    private WallPostViews views;
 
     /**
      *  Тип записи, может принимать следующие значения:
