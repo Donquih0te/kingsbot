@@ -7,7 +7,7 @@ repositories {
 }
 
 dependencies {
-    compile project(':vk-sdk.api')
+    compile project(':api')
 
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: log4jVersion
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: log4jVersion
