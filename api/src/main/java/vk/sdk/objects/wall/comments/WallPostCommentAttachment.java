@@ -8,6 +8,7 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import vk.sdk.objects.photos.Photo;
 import vk.sdk.objects.photos.PostedPhoto;
+import vk.sdk.objects.videos.Video;
 
 import java.util.Optional;
 
@@ -66,11 +67,11 @@ public class WallPostCommentAttachment {
     Optional<PostedPhoto> postedPhoto;
 
     /**
-     *
+     *  Видеозапись.
      */
     @Getter
     @JsonProperty("video")
-    Optional<Object> video;
+    Optional<Video> video;
 
     /**
      *
