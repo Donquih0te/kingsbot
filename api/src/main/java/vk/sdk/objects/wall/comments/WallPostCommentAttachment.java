@@ -9,7 +9,7 @@ import lombok.experimental.FieldDefaults;
 import vk.sdk.objects.audio.Audio;
 import vk.sdk.objects.photos.Photo;
 import vk.sdk.objects.photos.PostedPhoto;
-import vk.sdk.objects.videos.Video;
+import vk.sdk.objects.video.Video;
 
 import java.util.Optional;
 

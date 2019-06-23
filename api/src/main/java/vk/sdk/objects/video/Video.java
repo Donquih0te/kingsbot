@@ -1,4 +1,4 @@
-package vk.sdk.objects.videos;
+package vk.sdk.objects.video;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
