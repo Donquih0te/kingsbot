@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
+import vk.sdk.objects.photos.Photo;
 
 import java.util.Optional;
 
@@ -50,11 +51,11 @@ public class WallPostCommentAttachment {
     WallPostCommentAttachmentType type;
 
     /**
-     *
+     *  Фотография.
      */
     @Getter
     @JsonProperty("photo")
-    Optional<Object> photo;
+    Optional<Photo> photo;
 
     /**
      *
