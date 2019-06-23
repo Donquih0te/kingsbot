@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
+import vk.sdk.objects.audio.Audio;
 import vk.sdk.objects.photos.Photo;
 import vk.sdk.objects.photos.PostedPhoto;
 import vk.sdk.objects.videos.Video;
@@ -74,11 +75,11 @@ public class WallPostCommentAttachment {
     Optional<Video> video;
 
     /**
-     *
+     *  Аудиозапись.
      */
     @Getter
     @JsonProperty("audio")
-    Optional<Object> audio;
+    Optional<Audio> audio;
 
     /**
      *
