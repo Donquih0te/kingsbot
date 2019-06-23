@@ -1,6 +1,6 @@
 package vk.sdk.objects.wall.comments;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -21,42 +21,42 @@ public class WallPostComment {
      *  Идентификатор комментария.
      */
     @Getter
-    @SerializedName("id")
+    @JsonProperty("id")
     Integer id;
 
     /**
      *  Идентификатор автора комментария.
      */
     @Getter
-    @SerializedName("from_id")
+    @JsonProperty("from_id")
     Integer fromId;
 
     /**
      *  Дата создания комментария в формате UnixTime.
      */
     @Getter
-    @SerializedName("date")
+    @JsonProperty("date")
     Long date;
 
     /**
      *  Текст комментария.
      */
     @Getter
-    @SerializedName("text")
+    @JsonProperty("text")
     String text;
 
     /**
      *  Идентификатор пользователя или сообщества, в ответ которому оставлен текущий комментарий (если применимо).
      */
     @Getter
-    @SerializedName("reply_to_user")
+    @JsonProperty("reply_to_user")
     Integer replyToUser;
 
     /**
      *  Идентификатор комментария, в ответ на который оставлен текущий (если применимо).
      */
     @Getter
-    @SerializedName("reply_to_comment")
+    @JsonProperty("reply_to_comment")
     Integer replyToComment;
 
     /**
@@ -65,21 +65,21 @@ public class WallPostComment {
      *  TODO: create WallCommentAttachment objects to any type of attachments
      */
     @Getter
-    @SerializedName("attachments")
+    @JsonProperty("attachments")
     List<Object> attachments;
 
     /**
      *  Массив идентификаторов родительских комментариев.
      */
     @Getter
-    @SerializedName("parents_stack")
+    @JsonProperty("parents_stack")
     List<Integer> parentsStack;
 
     /**
      *  Информация о вложенной ветке комментариев.
      */
     @Getter
-    @SerializedName("thread")
+    @JsonProperty("thread")
     WallPostCommentsThreadInfo thread;
 
 }

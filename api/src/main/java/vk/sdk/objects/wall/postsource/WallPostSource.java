@@ -1,6 +1,6 @@
 package vk.sdk.objects.wall.postsource;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -27,7 +27,7 @@ public class WallPostSource {
      *      sms — запись создана посредством отправки SMS-сообщения на специальный номер.
      */
     @Getter
-    @SerializedName("type")
+    @JsonProperty("type")
     PostSourceType type;
 
     /**
@@ -38,7 +38,7 @@ public class WallPostSource {
      *      wphone.
      */
     @Getter
-    @SerializedName("platform")
+    @JsonProperty("platform")
     PostSourcePlatform platform;
 
     /**
@@ -51,14 +51,14 @@ public class WallPostSource {
      *      poll — виджет опросов (для type = widget);
      */
     @Getter
-    @SerializedName("data")
+    @JsonProperty("data")
     PostSourceData data;
 
     /**
      *  URL ресурса, с которого была опубликована запись.
      */
     @Getter
-    @SerializedName("url")
+    @JsonProperty("url")
     URL url;
 
 }

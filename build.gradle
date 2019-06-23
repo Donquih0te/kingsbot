@@ -22,7 +22,7 @@ subprojects {
     ext {
         log4jVersion = '2.11.2'
         httpClientVersion = '4.1.4'
-        gsonVersion = '2.8.5'
+        jacksonVersion = '2.9.9'
         lombokVersion = '1.18.8'
         junitVersion = '4.12'
     }

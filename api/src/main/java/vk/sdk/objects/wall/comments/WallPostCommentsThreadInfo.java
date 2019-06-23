@@ -1,6 +1,6 @@
 package vk.sdk.objects.wall.comments;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -21,7 +21,7 @@ public class WallPostCommentsThreadInfo {
      *  Количество комментариев в ветке.
      */
     @Getter
-    @SerializedName("count")
+    @JsonProperty("count")
     Integer count;
 
     /**
@@ -29,28 +29,28 @@ public class WallPostCommentsThreadInfo {
      *  (только для метода wall.getComments).
      */
     @Getter
-    @SerializedName("items")
+    @JsonProperty("items")
     List<WallPostComment> items;
 
     /**
      *  Может ли текущий пользователь оставлять комментарии в этой ветке.
      */
     @Getter
-    @SerializedName("can_post")
+    @JsonProperty("can_post")
     boolean canPost;
 
     /**
      *  Нужно ли отображать кнопку «ответить» в ветке.
      */
     @Getter
-    @SerializedName("show_reply_button")
+    @JsonProperty("show_reply_button")
     boolean showReplyButton;
 
     /**
      *  Могут ли сообщества оставлять комментарии в ветке.
      */
     @Getter
-    @SerializedName("groups_can_post")
+    @JsonProperty("groups_can_post")
     boolean groupsCanPost;
 
 }

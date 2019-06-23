@@ -1,6 +1,6 @@
 package vk.sdk.objects.groups;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -21,21 +21,21 @@ public class Group {
      * 	Идентификатор сообщества.
      */
     @Getter
-    @SerializedName("id")
+    @JsonProperty("id")
     Integer id;
 
     /**
      *  Название сообщества.
      */
     @Getter
-    @SerializedName("name")
+    @JsonProperty("name")
     String name;
 
     /**
      *  Короткий адрес.
      */
     @Getter
-    @SerializedName("screen_name")
+    @JsonProperty("screen_name")
     String screenName;
 
     /**
@@ -46,7 +46,7 @@ public class Group {
      *      2 — частное.
      */
     @Getter
-    @SerializedName("is_closed")
+    @JsonProperty("is_closed")
     Integer isClosed;
 
     /**
@@ -56,7 +56,7 @@ public class Group {
      *      banned — сообщество заблокировано;
      */
     @Getter
-    @SerializedName("deactivated")
+    @JsonProperty("deactivated")
     String deactivated;
 
     /**
@@ -66,7 +66,7 @@ public class Group {
      *      0 — не является.
      */
     @Getter
-    @SerializedName("is_admin")
+    @JsonProperty("is_admin")
     Integer isAdmin;
 
     /**
@@ -76,7 +76,7 @@ public class Group {
      *      3 — администратор.
      */
     @Getter
-    @SerializedName("admin_level")
+    @JsonProperty("admin_level")
     Integer adminLevel;
 
     /**
@@ -86,7 +86,7 @@ public class Group {
      *      0 — не является.
      */
     @Getter
-    @SerializedName("is_member")
+    @JsonProperty("is_member")
     Integer isMember;
 
     /**
@@ -96,7 +96,7 @@ public class Group {
      *      0 — не является.
      */
     @Getter
-    @SerializedName("is_advertiser")
+    @JsonProperty("is_advertiser")
     Integer isAdvertiser;
 
     /**
@@ -104,7 +104,7 @@ public class Group {
      *  Поле возвращается только для метода groups.getInvites.
      */
     @Getter
-    @SerializedName("invited_by")
+    @JsonProperty("invited_by")
     Integer invitedBy;
 
     /**
@@ -114,28 +114,28 @@ public class Group {
      *      event — мероприятие.
      */
     @Getter
-    @SerializedName("type")
+    @JsonProperty("type")
     String type;
 
     /**
      *  URL главной фотографии с размером 50x50px.
      */
     @Getter
-    @SerializedName("photo_50")
+    @JsonProperty("photo_50")
     URL photo50;
 
     /**
      *	URL главной фотографии с размером 100x100px.
      */
     @Getter
-    @SerializedName("photo_100")
+    @JsonProperty("photo_100")
     URL photo100;
 
     /**
      *  URL главной фотографии в максимальном размере.
      */
     @Getter
-    @SerializedName("photo_200")
+    @JsonProperty("photo_200")
     URL photo200;
 
 }

@@ -1,6 +1,6 @@
 package vk.sdk.objects.wall;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -20,7 +20,7 @@ public class WallPostLikesInfo {
      *  Число пользователей, которым понравилась запись.
      */
     @Getter
-    @SerializedName("count")
+    @JsonProperty("count")
     Integer count;
 
     /**
@@ -28,7 +28,7 @@ public class WallPostLikesInfo {
      *  (1 — есть, 0 — нет)
      */
     @Getter
-    @SerializedName("user_likes")
+    @JsonProperty("user_likes")
     BoolInt userLikes;
 
     /**
@@ -36,7 +36,7 @@ public class WallPostLikesInfo {
      *  (1 — может, 0 — не может)
      */
     @Getter
-    @SerializedName("can_like")
+    @JsonProperty("can_like")
     BoolInt canLike;
 
     /**
@@ -44,7 +44,7 @@ public class WallPostLikesInfo {
      *  (1 — может, 0 — не может)
      */
     @Getter
-    @SerializedName("can_publish")
+    @JsonProperty("can_publish")
     BoolInt canPublish;
 
 }

@@ -1,6 +1,6 @@
 package vk.sdk.objects.wall;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -20,7 +20,7 @@ public class WallPostRepostsInfo {
      *  Число пользователей, скопировавших запись.
      */
     @Getter
-    @SerializedName("count")
+    @JsonProperty("count")
     Integer count;
 
     /**
@@ -28,7 +28,7 @@ public class WallPostRepostsInfo {
      *  (1 — есть, 0 — нет)
      */
     @Getter
-    @SerializedName("user_reposted")
+    @JsonProperty("user_reposted")
     BoolInt userReposted;
 
 }
