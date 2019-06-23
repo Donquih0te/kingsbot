@@ -1,6 +1,6 @@
 package vk.sdk.objects.wall;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -19,7 +19,7 @@ public class WallPostViewsInfo {
      *  Число просмотров записи.
      */
     @Getter
-    @SerializedName("count")
+    @JsonProperty("count")
     Integer count;
 
 }

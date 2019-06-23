@@ -1,6 +1,6 @@
 package vk.sdk.objects.users;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -19,21 +19,21 @@ public class User {
      *  Идентификатор пользователя.
      */
     @Getter
-    @SerializedName("id")
+    @JsonProperty("id")
     Integer id;
 
     /**
      *  Имя пользователя.
      */
     @Getter
-    @SerializedName("first_name")
+    @JsonProperty("first_name")
     String firstName;
 
     /**
      *  Фамилия пользователя.
      */
     @Getter
-    @SerializedName("last_name")
+    @JsonProperty("last_name")
     String lastName;
 
     /**
@@ -41,14 +41,14 @@ public class User {
      *  В этом случае опциональные поля не возвращаются.
      */
     @Getter
-    @SerializedName("deactivated")
+    @JsonProperty("deactivated")
     String deactivated;
 
     /**
      *  Скрыт ли профиль пользователя настройками приватности.
      */
     @Getter
-    @SerializedName("is_closed")
+    @JsonProperty("is_closed")
     boolean isClosed;
 
     /**
@@ -56,7 +56,7 @@ public class User {
      *  (например, он есть в друзьях).
      */
     @Getter
-    @SerializedName("can_access_closed")
+    @JsonProperty("can_access_closed")
     boolean canAccessClosed;
 
 }

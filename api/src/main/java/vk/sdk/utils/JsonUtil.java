@@ -1,15 +1,17 @@
 package vk.sdk.utils;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonParser;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class JsonUtil {
 
-    public static final Gson GSON = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+    public static final ObjectMapper MAPPER;
 
-    public static final JsonParser JSON_PARSER = new JsonParser();
+    static {
+        MAPPER = new ObjectMapper();
+        MAPPER.registerModule(new Jdk8Module());
+    }
 
 }

@@ -1,6 +1,6 @@
 package vk.sdk.objects.wall;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -19,21 +19,21 @@ public class Geo {
      *  Тип места.
      */
     @Getter
-    @SerializedName("type")
+    @JsonProperty("type")
     String type;
 
     /**
      *  Координаты места.
      */
     @Getter
-    @SerializedName("coordinates")
+    @JsonProperty("coordinates")
     String coordinates;
 
     /**
      *  Описание места (если оно добавлено).
      */
     @Getter
-    @SerializedName("place")
+    @JsonProperty("place")
     GeoPlace place;
 
 }

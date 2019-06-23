@@ -1,6 +1,6 @@
 package vk.sdk.objects.wall;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -21,84 +21,84 @@ public class GeoPlace {
      *  Идентификатор места.
      */
     @Getter
-    @SerializedName("id")
+    @JsonProperty("id")
     Integer id;
 
     /**
      *  Название места.
      */
     @Getter
-    @SerializedName("title")
+    @JsonProperty("title")
     String title;
 
     /**
      *  Географическая широта, заданная в градусах (от -90 до 90).
      */
     @Getter
-    @SerializedName("latitude")
+    @JsonProperty("latitude")
     Integer latitude;
 
     /**
      *  Географическая долгота, заданная в градусах (от -90 до 90).
      */
     @Getter
-    @SerializedName("longitude")
+    @JsonProperty("longitude")
     Integer longitude;
 
     /**
      *  Дата создания места в UnixTime.
      */
     @Getter
-    @SerializedName("created")
+    @JsonProperty("created")
     Long created;
 
     /**
      *  Иконка места, URL изображения.
      */
     @Getter
-    @SerializedName("icon")
+    @JsonProperty("icon")
     URL icon;
 
     /**
      *  Число отметок в этом месте.
      */
     @Getter
-    @SerializedName("checkins")
+    @JsonProperty("checkins")
     Integer checkins;
 
     /**
      *  Дата обновления места в UnixTime.
      */
     @Getter
-    @SerializedName("updated")
+    @JsonProperty("updated")
     Long updated;
 
     /**
      *  Тип места.
      */
     @Getter
-    @SerializedName("type")
+    @JsonProperty("type")
     Integer type;
 
     /**
      *  Идентификатор страны.
      */
     @Getter
-    @SerializedName("country")
+    @JsonProperty("country")
     Integer country;
 
     /**
      *  Идентификатор города.
      */
     @Getter
-    @SerializedName("city")
+    @JsonProperty("city")
     Integer city;
 
     /**
      *  Адрес места.
      */
     @Getter
-    @SerializedName("address")
+    @JsonProperty("address")
     String address;
 
 }

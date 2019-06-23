@@ -1,6 +1,6 @@
 package vk.sdk.objects.wall.comments;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -46,126 +46,126 @@ public class WallPostCommentAttachment {
      *  Тип вложения.
      */
     @Getter
-    @SerializedName("type")
+    @JsonProperty("type")
     WallPostCommentAttachmentType type;
 
     /**
      *
      */
     @Getter
-    @SerializedName("photo")
+    @JsonProperty("photo")
     Optional<Object> photo;
 
     /**
      *
      */
     @Getter
-    @SerializedName("posted_photo")
+    @JsonProperty("posted_photo")
     Optional<Object> postedPhoto;
 
     /**
      *
      */
     @Getter
-    @SerializedName("video")
+    @JsonProperty("video")
     Optional<Object> video;
 
     /**
      *
      */
     @Getter
-    @SerializedName("audio")
+    @JsonProperty("audio")
     Optional<Object> audio;
 
     /**
      *
      */
     @Getter
-    @SerializedName("doc")
+    @JsonProperty("doc")
     Optional<Object> doc;
 
     /**
      *
      */
     @Getter
-    @SerializedName("graffity")
+    @JsonProperty("graffity")
     Optional<Object> graffity;
 
     /**
      *
      */
     @Getter
-    @SerializedName("link")
+    @JsonProperty("link")
     Optional<Object> link;
 
     /**
      *
      */
     @Getter
-    @SerializedName("note")
+    @JsonProperty("note")
     Optional<Object> note;
 
     /**
      *
      */
     @Getter
-    @SerializedName("app")
+    @JsonProperty("app")
     Optional<Object> app;
 
     /**
      *
      */
     @Getter
-    @SerializedName("poll")
+    @JsonProperty("poll")
     Optional<Object> poll;
 
     /**
      *
      */
     @Getter
-    @SerializedName("page")
+    @JsonProperty("page")
     Optional<Object> page;
 
     /**
      *
      */
     @Getter
-    @SerializedName("album")
+    @JsonProperty("album")
     Optional<Object> album;
 
     /**
      *
      */
     @Getter
-    @SerializedName("photos_list")
+    @JsonProperty("photos_list")
     Optional<Object> photosList;
 
     /**
      *
      */
     @Getter
-    @SerializedName("market")
+    @JsonProperty("market")
     Optional<Object> market;
 
     /**
      *
      */
     @Getter
-    @SerializedName("market_album")
+    @JsonProperty("market_album")
     Optional<Object> marketAlbum;
 
     /**
      *
      */
     @Getter
-    @SerializedName("sticker")
+    @JsonProperty("sticker")
     Optional<Object> sticker;
 
     /**
      *
      */
     @Getter
-    @SerializedName("prettyCards")
+    @JsonProperty("prettyCards")
     Optional<Object> prettyCards;
 
 }

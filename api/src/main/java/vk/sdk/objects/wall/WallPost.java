@@ -1,6 +1,6 @@
 package vk.sdk.objects.wall;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -25,21 +25,21 @@ public class WallPost {
      *  Идентификатор записи.
      */
     @Getter
-    @SerializedName("id")
+    @JsonProperty("id")
     Integer id;
 
     /**
      *  Идентификатор владельца стены, на которой размещена запись.
      */
     @Getter
-    @SerializedName("owner_id")
+    @JsonProperty("owner_id")
     Integer ownerId;
 
     /**
      *  Идентификатор автора записи (от чьего имени опубликована запись).
      */
     @Getter
-    @SerializedName("from_id")
+    @JsonProperty("from_id")
     Integer fromId;
 
     /**
@@ -47,70 +47,70 @@ public class WallPost {
      *  (возвращается только для сообществ при запросе с ключом доступа администратора).
      */
     @Getter
-    @SerializedName("created_by")
+    @JsonProperty("created_by")
     Integer createdBy;
 
     /**
      *  Время публикации записи в формате UnixTime.
      */
     @Getter
-    @SerializedName("date")
+    @JsonProperty("date")
     Long date;
 
     /**
      *  Текст записи.
      */
     @Getter
-    @SerializedName("text")
+    @JsonProperty("text")
     String text;
 
     /**
      *  Идентификатор владельца записи, в ответ на которую была оставлена текущая.
      */
     @Getter
-    @SerializedName("reply_owner_id")
+    @JsonProperty("reply_owner_id")
     Integer replyOwnerId;
 
     /**
      *  Идентификатор записи, в ответ на которую была оставлена текущая.
      */
     @Getter
-    @SerializedName("reply_post_id")
+    @JsonProperty("reply_post_id")
     Integer replyPostId;
 
     /**
      *  1, если запись была создана с опцией «Только для друзей».
      */
     @Getter
-    @SerializedName("friends_only")
+    @JsonProperty("friends_only")
     YesParam friendsOnly;
 
     /**
      *  Информация о комментариях к записи.
      */
     @Getter
-    @SerializedName("comments")
+    @JsonProperty("comments")
     WallPostCommentsInfo comments;
 
     /**
      *  Информация о лайках к записи.
      */
     @Getter
-    @SerializedName("likes")
+    @JsonProperty("likes")
     WallPostLikesInfo likes;
 
     /**
      *  Информация о репостах записи («Рассказать друзьям»).
      */
     @Getter
-    @SerializedName("reposts")
+    @JsonProperty("reposts")
     WallPostRepostsInfo reposts;
 
     /**
      *  Информация о просмотрах записи.
      */
     @Getter
-    @SerializedName("views")
+    @JsonProperty("views")
     WallPostViewsInfo views;
 
     /**
@@ -119,7 +119,7 @@ public class WallPost {
      *  post, copy, reply, postpone, suggest.
      */
     @Getter
-    @SerializedName("post_type")
+    @JsonProperty("post_type")
     PostType postType;
 
     /**
@@ -127,7 +127,7 @@ public class WallPost {
      *  Поле возвращается только для Standalone-приложений с ключом доступа, полученным в Implicit Flow.
      */
     @Getter
-    @SerializedName("post_source")
+    @JsonProperty("post_source")
     WallPostSource postSource;
 
     /**
@@ -136,21 +136,21 @@ public class WallPost {
      *  TODO: create object Attachment
      */
     @Getter
-    @SerializedName("attachments")
+    @JsonProperty("attachments")
     Object attachments;
 
     /**
      *  Информация о местоположении.
      */
     @Getter
-    @SerializedName("geo")
+    @JsonProperty("geo")
     Geo geo;
 
     /**
      *  Идентификатор автора, если запись была опубликована от имени сообщества и подписана пользователем;
      */
     @Getter
-    @SerializedName("signer_id")
+    @JsonProperty("signer_id")
     Integer signerId;
 
     /**
@@ -159,28 +159,28 @@ public class WallPost {
      *  Каждый из объектов массива, в свою очередь, является объектом-записью стандартного формата.
      */
     @Getter
-    @SerializedName("copy_history")
+    @JsonProperty("copy_history")
     List<Object> copyHistory;
 
     /**
      *  Информация о том, может ли текущий пользователь закрепить запись (1 — может, 0 — не может).
      */
     @Getter
-    @SerializedName("can_pin")
+    @JsonProperty("can_pin")
     BoolInt canPin;
 
     /**
      *  Информация о том, может ли текущий пользователь удалить запись (1 — может, 0 — не может).
      */
     @Getter
-    @SerializedName("can_delete")
+    @JsonProperty("can_delete")
     BoolInt canDelete;
 
     /**
      *  Информация о том, может ли текущий пользователь редактировать запись (1 — может, 0 — не может).
      */
     @Getter
-    @SerializedName("can_edit")
+    @JsonProperty("can_edit")
     BoolInt canEdit;
 
     /**
@@ -188,21 +188,21 @@ public class WallPost {
      *  Если не закреплена, то параметр отсутствует.
      */
     @Getter
-    @SerializedName("is_pinned")
+    @JsonProperty("is_pinned")
     YesParam isPinned;
 
     /**
      *  Информация о том, содержит ли запись отметку "реклама" (1 — да, 0 — нет).
      */
     @Getter
-    @SerializedName("marked_as_ads")
+    @JsonProperty("marked_as_ads")
     BoolInt markedAsAds;
 
     /**
      *  true, если объект добавлен в закладки у текущего пользователя.
      */
     @Getter
-    @SerializedName("is_favorite")
+    @JsonProperty("is_favorite")
     boolean isFavorite;
 
 }
