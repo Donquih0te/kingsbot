@@ -10,6 +10,7 @@ import vk.sdk.objects.audio.Audio;
 import vk.sdk.objects.docs.Doc;
 import vk.sdk.objects.docs.Graffity;
 import vk.sdk.objects.link.Link;
+import vk.sdk.objects.note.Note;
 import vk.sdk.objects.photos.Photo;
 import vk.sdk.objects.photos.PostedPhoto;
 import vk.sdk.objects.video.Video;
@@ -106,11 +107,11 @@ public class WallPostCommentAttachment {
     Optional<Link> link;
 
     /**
-     *
+     *  Заметка.
      */
     @Getter
     @JsonProperty("note")
-    Optional<Object> note;
+    Optional<Note> note;
 
     /**
      *
