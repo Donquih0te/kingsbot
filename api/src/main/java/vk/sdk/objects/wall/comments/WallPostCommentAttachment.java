@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
+import vk.sdk.objects.app.App;
 import vk.sdk.objects.audio.Audio;
 import vk.sdk.objects.docs.Doc;
 import vk.sdk.objects.docs.Graffity;
@@ -114,11 +115,11 @@ public class WallPostCommentAttachment {
     Optional<Note> note;
 
     /**
-     *
+     *  Приложение.
      */
     @Getter
     @JsonProperty("app")
-    Optional<Object> app;
+    Optional<App> app;
 
     /**
      *
