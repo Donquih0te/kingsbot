@@ -1,4 +1,4 @@
-package vk.sdk.objects.note;
+package vk.sdk.objects.notes;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
