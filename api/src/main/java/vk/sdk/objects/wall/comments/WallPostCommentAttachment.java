@@ -14,6 +14,7 @@ import vk.sdk.objects.link.Link;
 import vk.sdk.objects.notes.Note;
 import vk.sdk.objects.photos.Photo;
 import vk.sdk.objects.photos.PostedPhoto;
+import vk.sdk.objects.polls.Pool;
 import vk.sdk.objects.video.Video;
 
 import java.util.Optional;
@@ -122,11 +123,11 @@ public class WallPostCommentAttachment {
     Optional<App> app;
 
     /**
-     *
+     *  Опрос.
      */
     @Getter
     @JsonProperty("poll")
-    Optional<Object> poll;
+    Optional<Pool> poll;
 
     /**
      *
