@@ -14,6 +14,7 @@ import vk.sdk.objects.link.Link;
 import vk.sdk.objects.notes.Note;
 import vk.sdk.objects.pages.WikiPage;
 import vk.sdk.objects.photos.Photo;
+import vk.sdk.objects.photos.PhotoAlbum;
 import vk.sdk.objects.photos.PostedPhoto;
 import vk.sdk.objects.polls.Pool;
 import vk.sdk.objects.video.Video;
@@ -138,11 +139,11 @@ public class WallPostCommentAttachment {
     Optional<WikiPage> page;
 
     /**
-     *
+     *  Альбом с фотографиями.
      */
     @Getter
     @JsonProperty("album")
-    Optional<Object> album;
+    Optional<PhotoAlbum> album;
 
     /**
      *
