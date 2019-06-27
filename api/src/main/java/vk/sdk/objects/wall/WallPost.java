@@ -132,12 +132,10 @@ public class WallPost {
 
     /**
      *  Медиавложения записи (фотографии, ссылки и т.п.)
-     *
-     *  TODO: create object Attachment
      */
     @Getter
     @JsonProperty("attachments")
-    Object attachments;
+    WallPostAttachment attachments;
 
     /**
      *  Информация о местоположении.

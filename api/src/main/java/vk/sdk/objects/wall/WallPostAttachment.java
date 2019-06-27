@@ -1,4 +1,4 @@
-package vk.sdk.objects.wall.comments;
+package vk.sdk.objects.wall;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
@@ -18,7 +18,9 @@ import vk.sdk.objects.photos.PhotoAlbum;
 import vk.sdk.objects.photos.PostedPhoto;
 import vk.sdk.objects.polls.Pool;
 import vk.sdk.objects.video.Video;
+import vk.sdk.objects.wall.comments.WallPostCommentAttachmentType;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -52,7 +54,7 @@ import java.util.Optional;
 @ToString(doNotUseGetters = true)
 @EqualsAndHashCode(doNotUseGetters = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class WallPostCommentAttachment {
+public class WallPostAttachment {
 
     /**
      *  Тип вложения.
@@ -146,11 +148,13 @@ public class WallPostCommentAttachment {
     Optional<PhotoAlbum> album;
 
     /**
-     *
+     *  Массив из строк, содержащих идентификаторы фотографий.
+     *  Сами фотографии дублируются в виде приложенных объектов фотографий, однако этот список необходим в случае,
+     *  если фотографий использовано больше максимального количества возвращаемых вложений (10).
      */
     @Getter
     @JsonProperty("photos_list")
-    Optional<Object> photosList;
+    List<String> photosList;
 
     /**
      *
