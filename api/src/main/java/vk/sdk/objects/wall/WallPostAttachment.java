@@ -11,6 +11,7 @@ import vk.sdk.objects.audio.Audio;
 import vk.sdk.objects.docs.Doc;
 import vk.sdk.objects.docs.Graffity;
 import vk.sdk.objects.link.Link;
+import vk.sdk.objects.market.Product;
 import vk.sdk.objects.notes.Note;
 import vk.sdk.objects.pages.WikiPage;
 import vk.sdk.objects.photos.Photo;
@@ -157,11 +158,11 @@ public class WallPostAttachment {
     List<String> photosList;
 
     /**
-     *
+     *  Товар.
      */
     @Getter
     @JsonProperty("market")
-    Optional<Object> market;
+    Optional<Product> market;
 
     /**
      *

@@ -1,4 +1,4 @@
-package vk.sdk.objects.link;
+package vk.sdk.objects.market;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
@@ -6,21 +6,24 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
-import vk.sdk.objects.market.ProductPrice;
 
-/**
- *  Объект, описывающий информацию о продукте.
- */
 @ToString(doNotUseGetters = true)
 @EqualsAndHashCode(doNotUseGetters = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class LinkProduct {
+public class ProductCategorySection {
 
     /**
-     *  Описание товара.
+     *  Идентификатор секции.
      */
     @Getter
-    @JsonProperty("price")
-    ProductPrice price;
+    @JsonProperty("id")
+    Integer id;
+
+    /**
+     *  Название секции.
+     */
+    @Getter
+    @JsonProperty("name")
+    String name;
 
 }
