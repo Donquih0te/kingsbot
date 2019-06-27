@@ -12,6 +12,7 @@ import vk.sdk.objects.docs.Doc;
 import vk.sdk.objects.docs.Graffity;
 import vk.sdk.objects.link.Link;
 import vk.sdk.objects.notes.Note;
+import vk.sdk.objects.pages.WikiPage;
 import vk.sdk.objects.photos.Photo;
 import vk.sdk.objects.photos.PostedPhoto;
 import vk.sdk.objects.polls.Pool;
@@ -130,11 +131,11 @@ public class WallPostCommentAttachment {
     Optional<Pool> poll;
 
     /**
-     *
+     *  Вики-страница.
      */
     @Getter
     @JsonProperty("page")
-    Optional<Object> page;
+    Optional<WikiPage> page;
 
     /**
      *
