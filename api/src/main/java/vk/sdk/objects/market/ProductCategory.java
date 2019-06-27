@@ -1,4 +1,4 @@
-package vk.sdk.objects.link;
+package vk.sdk.objects.market;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
@@ -8,25 +8,32 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 /**
- *  Объект, описывающий информацию о валюте.
+ *  Объект, описывающий категорию товара.
  */
 @ToString(doNotUseGetters = true)
 @EqualsAndHashCode(doNotUseGetters = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class LinkProductPriceCurrency {
+public class ProductCategory {
 
     /**
-     *  Идентификатор валюты.
+     *  Идентификатор категории.
      */
     @Getter
     @JsonProperty("id")
     Integer id;
 
     /**
-     *  Буквенное обозначение валюты.
+     *  Название категории.
      */
     @Getter
     @JsonProperty("name")
     String name;
+
+    /**
+     *  Секция.
+     */
+    @Getter
+    @JsonProperty("section")
+    ProductCategorySection section;
 
 }

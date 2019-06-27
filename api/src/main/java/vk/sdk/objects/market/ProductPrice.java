@@ -1,4 +1,4 @@
-package vk.sdk.objects.link;
+package vk.sdk.objects.market;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
@@ -13,7 +13,7 @@ import lombok.experimental.FieldDefaults;
 @ToString(doNotUseGetters = true)
 @EqualsAndHashCode(doNotUseGetters = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class LinkProductPrice {
+public class ProductPrice {
 
     /**
      *  Целочисленное значение цены, умноженное на 100.
@@ -27,7 +27,7 @@ public class LinkProductPrice {
      */
     @Getter
     @JsonProperty("currency")
-    LinkProductPriceCurrency currency;
+    ProductPriceCurrency currency;
 
     /**
      *  Строка с локализованной ценой и валютой.
