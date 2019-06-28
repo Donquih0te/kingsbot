@@ -12,6 +12,7 @@ import vk.sdk.objects.docs.Doc;
 import vk.sdk.objects.docs.Graffity;
 import vk.sdk.objects.link.Link;
 import vk.sdk.objects.market.Product;
+import vk.sdk.objects.market.ProductAlbum;
 import vk.sdk.objects.notes.Note;
 import vk.sdk.objects.pages.WikiPage;
 import vk.sdk.objects.photos.Photo;
@@ -165,11 +166,11 @@ public class WallPostAttachment {
     Optional<Product> market;
 
     /**
-     *
+     *  Подборка товаров.
      */
     @Getter
     @JsonProperty("market_album")
-    Optional<Object> marketAlbum;
+    Optional<ProductAlbum> marketAlbum;
 
     /**
      *
