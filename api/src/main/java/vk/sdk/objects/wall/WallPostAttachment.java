@@ -13,6 +13,7 @@ import vk.sdk.objects.docs.Graffity;
 import vk.sdk.objects.link.Link;
 import vk.sdk.objects.market.Product;
 import vk.sdk.objects.market.ProductAlbum;
+import vk.sdk.objects.messages.PrettyCard;
 import vk.sdk.objects.messages.Sticker;
 import vk.sdk.objects.notes.Note;
 import vk.sdk.objects.pages.WikiPage;
@@ -181,10 +182,10 @@ public class WallPostAttachment {
     Optional<Sticker> sticker = Optional.empty();
 
     /**
-     *
+     *  Массив элементов-карточек.
      */
     @Getter
     @JsonProperty("prettyCards")
-    Optional<Object> prettyCards = Optional.empty();
+    List<PrettyCard> prettyCards = Collections.emptyList();
 
 }

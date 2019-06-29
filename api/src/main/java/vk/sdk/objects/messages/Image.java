@@ -15,7 +15,7 @@ import java.net.URL;
 @ToString(doNotUseGetters = true)
 @EqualsAndHashCode(doNotUseGetters = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class StickerImage {
+public class Image {
 
     /**
      *  URL копии изображения.

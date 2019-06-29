@@ -38,13 +38,13 @@ public class Sticker {
      */
     @Getter
     @JsonProperty("images")
-    List<StickerImage> images = Collections.emptyList();
+    List<Image> images = Collections.emptyList();
 
     /**
      *  Изображения для стикера (с непрозрачным фоном).
      */
     @Getter
     @JsonProperty("images_with_background")
-    List<StickerImage> imagesWithBackground = Collections.emptyList();
+    List<Image> imagesWithBackground = Collections.emptyList();
 
 }
