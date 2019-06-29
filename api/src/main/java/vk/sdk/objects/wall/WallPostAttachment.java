@@ -13,6 +13,7 @@ import vk.sdk.objects.docs.Graffity;
 import vk.sdk.objects.link.Link;
 import vk.sdk.objects.market.Product;
 import vk.sdk.objects.market.ProductAlbum;
+import vk.sdk.objects.messages.Sticker;
 import vk.sdk.objects.notes.Note;
 import vk.sdk.objects.pages.WikiPage;
 import vk.sdk.objects.photos.Photo;
@@ -173,11 +174,11 @@ public class WallPostAttachment {
     Optional<ProductAlbum> marketAlbum = Optional.empty();
 
     /**
-     *
+     *  Стикер.
      */
     @Getter
     @JsonProperty("sticker")
-    Optional<Object> sticker = Optional.empty();
+    Optional<Sticker> sticker = Optional.empty();
 
     /**
      *
