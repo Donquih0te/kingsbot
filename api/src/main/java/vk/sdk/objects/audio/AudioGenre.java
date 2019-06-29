@@ -1,14 +1,21 @@
 package vk.sdk.objects.audio;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+<<<<<<< HEAD
 import lombok.AccessLevel;
+=======
+>>>>>>> modularity
 import lombok.AllArgsConstructor;
 import vk.sdk.objects.utils.EnumParam;
 
 /**
  *  Жанр аудиозаписи.
  */
+<<<<<<< HEAD
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+=======
+@AllArgsConstructor
+>>>>>>> modularity
 public enum AudioGenre implements EnumParam {
 
     @JsonProperty("1")
@@ -80,5 +87,8 @@ public enum AudioGenre implements EnumParam {
     public String getValue() {
         return value.toString();
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> modularity
 }

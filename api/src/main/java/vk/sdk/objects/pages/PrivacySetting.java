@@ -1,11 +1,18 @@
 package vk.sdk.objects.pages;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+<<<<<<< HEAD
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import vk.sdk.objects.utils.EnumParam;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+=======
+import lombok.AllArgsConstructor;
+import vk.sdk.objects.utils.EnumParam;
+
+@AllArgsConstructor
+>>>>>>> modularity
 public enum PrivacySetting implements EnumParam {
 
     /**

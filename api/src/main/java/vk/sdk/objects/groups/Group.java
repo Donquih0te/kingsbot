@@ -8,7 +8,10 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 import java.net.URL;
+<<<<<<< HEAD
 import java.util.Optional;
+=======
+>>>>>>> modularity
 
 /**
  * Объект содержит информацию о сообществе ВКонтакте.
@@ -58,7 +61,11 @@ public class Group {
      */
     @Getter
     @JsonProperty("deactivated")
+<<<<<<< HEAD
     Optional<String> deactivated = Optional.empty();
+=======
+    String deactivated;
+>>>>>>> modularity
 
     /**
      *  Информация о том, является ли текущий пользователь руководителем.
@@ -78,7 +85,11 @@ public class Group {
      */
     @Getter
     @JsonProperty("admin_level")
+<<<<<<< HEAD
     Optional<Integer> adminLevel = Optional.empty();
+=======
+    Integer adminLevel;
+>>>>>>> modularity
 
     /**
      *  Информация о том, является ли текущий пользователь участником.
@@ -106,7 +117,11 @@ public class Group {
      */
     @Getter
     @JsonProperty("invited_by")
+<<<<<<< HEAD
     Optional<Integer> invitedBy = Optional.empty();
+=======
+    Integer invitedBy;
+>>>>>>> modularity
 
     /**
      *  Тип сообщества:

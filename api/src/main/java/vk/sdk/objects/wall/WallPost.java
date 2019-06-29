@@ -11,9 +11,13 @@ import vk.sdk.objects.utils.YesParam;
 import vk.sdk.objects.wall.comments.WallPostCommentsInfo;
 import vk.sdk.objects.wall.postsource.WallPostSource;
 
+<<<<<<< HEAD
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+=======
+import java.util.List;
+>>>>>>> modularity
 
 /**
  *  Объект, описывающий запись на стене пользователя или сообщества.
@@ -50,7 +54,11 @@ public class WallPost {
      */
     @Getter
     @JsonProperty("created_by")
+<<<<<<< HEAD
     Optional<Integer> createdBy = Optional.empty();
+=======
+    Integer createdBy;
+>>>>>>> modularity
 
     /**
      *  Время публикации записи в формате UnixTime.
@@ -85,7 +93,11 @@ public class WallPost {
      */
     @Getter
     @JsonProperty("friends_only")
+<<<<<<< HEAD
     Optional<YesParam> friendsOnly = Optional.empty();
+=======
+    YesParam friendsOnly;
+>>>>>>> modularity
 
     /**
      *  Информация о комментариях к записи.
@@ -130,14 +142,22 @@ public class WallPost {
      */
     @Getter
     @JsonProperty("post_source")
+<<<<<<< HEAD
     Optional<WallPostSource> postSource = Optional.empty();
+=======
+    WallPostSource postSource;
+>>>>>>> modularity
 
     /**
      *  Медиавложения записи (фотографии, ссылки и т.п.)
      */
     @Getter
     @JsonProperty("attachments")
+<<<<<<< HEAD
     List<WallPostAttachment> attachments = Collections.emptyList();
+=======
+    WallPostAttachment attachments;
+>>>>>>> modularity
 
     /**
      *  Информация о местоположении.
@@ -151,7 +171,11 @@ public class WallPost {
      */
     @Getter
     @JsonProperty("signer_id")
+<<<<<<< HEAD
     Optional<Integer> signerId = Optional.empty();
+=======
+    Integer signerId;
+>>>>>>> modularity
 
     /**
      *  Массив, содержащий историю репостов для записи.
@@ -160,7 +184,11 @@ public class WallPost {
      */
     @Getter
     @JsonProperty("copy_history")
+<<<<<<< HEAD
     List<Object> copyHistory = Collections.emptyList();
+=======
+    List<Object> copyHistory;
+>>>>>>> modularity
 
     /**
      *  Информация о том, может ли текущий пользователь закрепить запись (1 — может, 0 — не может).
@@ -189,7 +217,11 @@ public class WallPost {
      */
     @Getter
     @JsonProperty("is_pinned")
+<<<<<<< HEAD
     Optional<YesParam> isPinned = Optional.empty();
+=======
+    YesParam isPinned;
+>>>>>>> modularity
 
     /**
      *  Информация о том, содержит ли запись отметку "реклама" (1 — да, 0 — нет).

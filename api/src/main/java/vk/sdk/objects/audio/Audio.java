@@ -66,14 +66,22 @@ public class Audio {
      */
     @Getter
     @JsonProperty("lyrics_id")
+<<<<<<< HEAD
     Optional<Integer> lyricsId = Optional.empty();
+=======
+    Optional<Integer> lyricsId;
+>>>>>>> modularity
 
     /**
      *  Идентификатор альбома, в котором находится аудиозапись (если присвоен).
      */
     @Getter
     @JsonProperty("album_id")
+<<<<<<< HEAD
     Optional<Integer> albumId = Optional.empty();
+=======
+    Optional<Integer> albumId;
+>>>>>>> modularity
 
     /**
      *  Идентификатор жанра.
@@ -95,13 +103,21 @@ public class Audio {
      */
     @Getter
     @JsonProperty("no_search")
+<<<<<<< HEAD
     Optional<YesParam> noSearch = Optional.empty();
+=======
+    Optional<YesParam> noSearch;
+>>>>>>> modularity
 
     /**
      *  Вернет 1, если аудио в высоком качестве.
      */
     @Getter
     @JsonProperty("is_hq")
+<<<<<<< HEAD
     Optional<YesParam> isHighQuality = Optional.empty();
+=======
+    Optional<YesParam> isHighQuality;
+>>>>>>> modularity
 
 }

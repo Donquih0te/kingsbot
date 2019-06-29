@@ -1,8 +1,16 @@
 package vk.sdk.objects.utils;
 
+<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+=======
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+public enum BoolInt implements EnumParam {
+>>>>>>> modularity
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum BoolInt implements EnumParam {
