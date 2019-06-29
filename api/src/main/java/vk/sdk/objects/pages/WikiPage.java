@@ -108,28 +108,28 @@ public class WikiPage {
      */
     @Getter
     @JsonProperty("parent")
-    Optional<String> parent;
+    Optional<String> parent = Optional.empty();
 
     /**
      *  Заголовок второй родительской страницы для навигации, если есть
      */
     @Getter
     @JsonProperty("parent2")
-    Optional<String> parent2;
+    Optional<String> parent2 = Optional.empty();
 
     /**
      *  Текст страницы в вики-формате, если был запрошен.
      */
     @Getter
     @JsonProperty("source")
-    Optional<String> source;
+    Optional<String> source = Optional.empty();
 
     /**
      *  Текст страницы в html-формате, если был запрошен.
      */
     @Getter
     @JsonProperty("html")
-    Optional<String> html;
+    Optional<String> html = Optional.empty();
 
     /**
      *  Адрес страницы для отображения вики-страницы.

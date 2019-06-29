@@ -1,10 +1,11 @@
 package vk.sdk.objects.photos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import vk.sdk.objects.utils.EnumParam;
 
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum PhotoSizeType implements EnumParam {
 
     /**
@@ -79,7 +80,7 @@ public enum PhotoSizeType implements EnumParam {
     @JsonProperty("w")
     W("w");
 
-    private String value;
+    private final String value;
 
     @Override
     public String getValue() {

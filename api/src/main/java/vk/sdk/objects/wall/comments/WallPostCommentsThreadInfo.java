@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -30,7 +31,7 @@ public class WallPostCommentsThreadInfo {
      */
     @Getter
     @JsonProperty("items")
-    List<WallPostComment> items;
+    List<WallPostComment> items = Collections.emptyList();
 
     /**
      *  Может ли текущий пользователь оставлять комментарии в этой ветке.

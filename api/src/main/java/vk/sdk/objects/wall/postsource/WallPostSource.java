@@ -8,6 +8,7 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 import java.net.URL;
+import java.util.Optional;
 
 /**
  *  Объект, описывающий способ размещения записи на стене.
@@ -39,7 +40,7 @@ public class WallPostSource {
      */
     @Getter
     @JsonProperty("platform")
-    PostSourcePlatform platform;
+    Optional<PostSourcePlatform> platform = Optional.empty();
 
     /**
      *  Тип действия (только для type = vk или widget).
@@ -52,7 +53,7 @@ public class WallPostSource {
      */
     @Getter
     @JsonProperty("data")
-    PostSourceData data;
+    Optional<PostSourceData> data = Optional.empty();
 
     /**
      *  URL ресурса, с которого была опубликована запись.

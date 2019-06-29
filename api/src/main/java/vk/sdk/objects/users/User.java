@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Optional;
+
 /**
  * Объект содержит информацию о пользователе ВКонтакте.
  */
@@ -39,10 +41,12 @@ public class User {
     /**
      *  Поле возвращается, если страница пользователя удалена или заблокирована, содержит значение deleted или banned.
      *  В этом случае опциональные поля не возвращаются.
+     *
+     *  TODO: enum
      */
     @Getter
     @JsonProperty("deactivated")
-    String deactivated;
+    Optional<String> deactivated;
 
     /**
      *  Скрыт ли профиль пользователя настройками приватности.
@@ -57,6 +61,8 @@ public class User {
      */
     @Getter
     @JsonProperty("can_access_closed")
-    boolean canAccessClosed;
+    Optional<Boolean> canAccessClosed = Optional.empty();
+
+    // TODO: add optional fields
 
 }

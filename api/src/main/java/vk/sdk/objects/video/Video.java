@@ -28,35 +28,35 @@ import java.util.Optional;
 public class Video {
 
     /**
-     *  идентификатор видеозаписи.
+     *  Идентификатор видеозаписи.
      */
     @Getter
     @JsonProperty("id")
     Integer id;
 
     /**
-     *  идентификатор владельца видеозаписи.
+     *  Идентификатор владельца видеозаписи.
      */
     @Getter
     @JsonProperty("owner_id")
     Integer ownerId;
 
     /**
-     *  название видеозаписи.
+     *  Название видеозаписи.
      */
     @Getter
     @JsonProperty("title")
     String title;
 
     /**
-     *  текст описания видеозаписи.
+     *  Текст описания видеозаписи.
      */
     @Getter
     @JsonProperty("description")
     String description;
 
     /**
-     *  длительность ролика в секундах.
+     *  Длительность ролика в секундах.
      */
     @Getter
     @JsonProperty("duration")
@@ -81,21 +81,21 @@ public class Video {
      */
     @Getter
     @JsonProperty("photo_640")
-    Optional<URL> photo640;
+    Optional<URL> photo640 = Optional.empty();
 
     /**
      *  URL изображения-обложки ролика с размером 800x450 px (если размер есть).
      */
     @Getter
     @JsonProperty("photo_800")
-    Optional<URL> photo800;
+    Optional<URL> photo800 = Optional.empty();
 
     /**
      *  URL изображения-обложки ролика с размером до 1280 px по ширине (если размер есть).
      */
     @Getter
     @JsonProperty("photo_1280")
-    Optional<URL> photo1280;
+    Optional<URL> photo1280 = Optional.empty();
 
     /**
      *  URL изображения первого кадра ролика с размером 130x98 px.
@@ -116,45 +116,45 @@ public class Video {
      */
     @Getter
     @JsonProperty("first_frame_640")
-    Optional<URL> firstFrame640;
+    Optional<URL> firstFrame640 = Optional.empty();
 
     /**
      *  URL изображения первого кадра ролика с размером 800x450 px (если размер есть).
      */
     @Getter
     @JsonProperty("first_frame_800")
-    Optional<URL> firstFrame800;
+    Optional<URL> firstFrame800 = Optional.empty();
 
     /**
      *  URL изображения первого кадра ролика с шириной до 1028 px (если размер есть).
      */
     @Getter
     @JsonProperty("first_frame_1280")
-    Optional<URL> firstFrame1280;
+    Optional<URL> firstFrame1280 = Optional.empty();
 
     /**
-     *  дата создания видеозаписи в формате UnixTime.
+     *  Дата создания видеозаписи в формате UnixTime.
      */
     @Getter
     @JsonProperty("date")
     Long date;
 
     /**
-     *  дата добавления видеозаписи пользователем или группой в формате UnixTime.
+     *  Дата добавления видеозаписи пользователем или группой в формате UnixTime.
      */
     @Getter
     @JsonProperty("adding_date")
     Long addingDate;
 
     /**
-     *  количество просмотров видеозаписи.
+     *  Количество просмотров видеозаписи.
      */
     @Getter
     @JsonProperty("views")
     Integer views;
 
     /**
-     *  количество комментариев к видеозаписи.
+     *  Количество комментариев к видеозаписи.
      */
     @Getter
     @JsonProperty("comments")
@@ -169,18 +169,18 @@ public class Video {
     URL player;
 
     /**
-     *  название платформы (для видеозаписей, добавленных с внешних сайтов).
+     *  Название платформы (для видеозаписей, добавленных с внешних сайтов).
      */
     @Getter
     @JsonProperty("platform")
-    String platform;
+    Optional<String> platform = Optional.empty();
 
     /**
-     *  поле возвращается, если пользователь может редактировать видеозапись, всегда содержит 1.
+     *  Поле возвращается, если пользователь может редактировать видеозапись, всегда содержит 1.
      */
     @Getter
     @JsonProperty("can_edit")
-    Optional<YesParam> canEdit;
+    Optional<YesParam> canEdit = Optional.empty();
 
     /**
      *  1, если пользователь может добавить видеозапись к себе.
@@ -190,43 +190,44 @@ public class Video {
     BoolInt canAdd;
 
     /**
-     *  поле возвращается, если видеозапись приватная (например, была загружена в личное сообщение), всегда содержит 1.
+     *  Поле возвращается, если видеозапись приватная (например, была загружена в личное сообщение), всегда содержит 1.
      */
     @Getter
     @JsonProperty("is_private")
-    Optional<YesParam> isPrivate;
+    Optional<YesParam> isPrivate = Optional.empty();
 
     /**
-     *  ключ доступа к объекту.
+     *  Ключ доступа к объекту.
      */
     @Getter
     @JsonProperty("access_key")
     String accessKey;
 
     /**
-     *  поле возвращается в том случае, если видеоролик находится в процессе обработки, всегда содержит 1.
+     *  Поле возвращается в том случае, если видеоролик находится в процессе обработки, всегда содержит 1.
      */
     @Getter
     @JsonProperty("processing")
-    Optional<YesParam> processing;
+    Optional<YesParam> processing = Optional.empty();
 
     /**
-     *  поле возвращается в том случае, если видеозапись является прямой трансляцией, всегда содержит 1.
+     *  Поле возвращается в том случае, если видеозапись является прямой трансляцией, всегда содержит 1.
      *  Обратите внимание, в этом случае в поле duration содержится значение 0.
      */
     @Getter
     @JsonProperty("live")
-    Optional<YesParam> live;
+    Optional<YesParam> live = Optional.empty();
 
     /**
-     *  (для live = 1). Поле свидетельствует о том, что трансляция скоро начнётся.
+     *  Поле свидетельствует о том, что трансляция скоро начнётся.
+     *  (для live = 1)
      */
     @Getter
     @JsonProperty("upcoming")
-    Optional<YesParam> upcoming;
+    Optional<YesParam> upcoming = Optional.empty();
 
     /**
-     *  true, если объект добавлен в закладки у текущего пользователя.
+     *  True, если объект добавлен в закладки у текущего пользователя.
      */
     @Getter
     @JsonProperty("is_favorite")

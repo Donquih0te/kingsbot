@@ -66,7 +66,7 @@ public class Note {
      */
     @Getter
     @JsonProperty("read_comments")
-    Optional<Integer> readComments;
+    Optional<Integer> readComments = Optional.empty();
 
     /**
      *  URL страницы для отображения заметки.

@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Optional;
+
 /**
  *  Информация о местоположении.
  */
@@ -34,6 +36,6 @@ public class Geo {
      */
     @Getter
     @JsonProperty("place")
-    GeoPlace place;
+    Optional<GeoPlace> place = Optional.empty();
 
 }

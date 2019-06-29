@@ -1,10 +1,11 @@
 package vk.sdk.objects.link;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import vk.sdk.objects.utils.EnumParam;
 
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum LinkButtonActionType implements EnumParam {
 
     @JsonProperty("open_url")

@@ -10,6 +10,7 @@ import vk.sdk.objects.photos.Photo;
 import vk.sdk.objects.utils.BoolInt;
 
 import java.net.URL;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -91,12 +92,20 @@ public class Product {
     @JsonProperty("is_favorite")
     boolean isFavorite;
 
+
+    /**********************************************************************
+     *
+     *  Далее идут опциональные поля, задаваемые параметром extended = 1
+     *
+     *//////////////////////////////////////////////////////////////////////
+
+
     /**
      *  Изображения товара.
      */
     @Getter
     @JsonProperty("photos")
-    Optional<List<Photo>> photos;
+    List<Photo> photos = Collections.emptyList();
 
     /**
      *  Возможность комментировать товар для текущего пользователя
@@ -104,7 +113,7 @@ public class Product {
      */
     @Getter
     @JsonProperty("can_comment")
-    Optional<BoolInt> canComment;
+    Optional<BoolInt> canComment = Optional.empty();
 
     /**
      *  Возможность сделать репост товара для текущего пользователя
@@ -112,27 +121,27 @@ public class Product {
      */
     @Getter
     @JsonProperty("can_repost")
-    Optional<BoolInt> canRepost;
+    Optional<BoolInt> canRepost = Optional.empty();
 
     /**
      *  Информация об отметках «Мне нравится».
      */
     @Getter
     @JsonProperty("likes")
-    Optional<ProductLikes> likes;
+    Optional<ProductLikes> likes = Optional.empty();
 
     /**
      *  Ссылка на товар во внешних ресурсах.
      */
     @Getter
     @JsonProperty("url")
-    Optional<URL> url;
+    Optional<URL> url = Optional.empty();
 
     /**
      *  Текст на кнопке товара.
      */
     @Getter
     @JsonProperty("button_title")
-    Optional<ProductButtonTitle> buttonTittle;
+    Optional<ProductButtonTitle> buttonTittle = Optional.empty();
 
 }

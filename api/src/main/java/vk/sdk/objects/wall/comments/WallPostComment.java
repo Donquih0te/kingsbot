@@ -8,6 +8,7 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  *  Объект, описывающий комментарий к записи.
@@ -50,14 +51,14 @@ public class WallPostComment {
      */
     @Getter
     @JsonProperty("reply_to_user")
-    Integer replyToUser;
+    Optional<Integer> replyToUser = Optional.empty();
 
     /**
      *  Идентификатор комментария, в ответ на который оставлен текущий (если применимо).
      */
     @Getter
     @JsonProperty("reply_to_comment")
-    Integer replyToComment;
+    Optional<Integer> replyToComment = Optional.empty();
 
     /**
      *  Медиавложения комментария (фотографии, ссылки и т.п.)

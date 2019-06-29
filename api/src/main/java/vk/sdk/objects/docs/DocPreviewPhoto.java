@@ -8,6 +8,7 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import vk.sdk.objects.photos.PhotoSize;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -23,6 +24,6 @@ public class DocPreviewPhoto {
      */
     @Getter
     @JsonProperty("sizes")
-    List<PhotoSize> sizes;
+    List<PhotoSize> sizes = Collections.emptyList();
 
 }

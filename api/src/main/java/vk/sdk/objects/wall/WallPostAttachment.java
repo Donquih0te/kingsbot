@@ -20,8 +20,8 @@ import vk.sdk.objects.photos.PhotoAlbum;
 import vk.sdk.objects.photos.PostedPhoto;
 import vk.sdk.objects.polls.Pool;
 import vk.sdk.objects.video.Video;
-import vk.sdk.objects.wall.comments.WallPostCommentAttachmentType;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,91 +63,91 @@ public class WallPostAttachment {
      */
     @Getter
     @JsonProperty("type")
-    WallPostCommentAttachmentType type;
+    WallPostAttachmentType type;
 
     /**
      *  Фотография.
      */
     @Getter
     @JsonProperty("photo")
-    Optional<Photo> photo;
+    Optional<Photo> photo = Optional.empty();
 
     /**
      *  Фотография, загруженная напрямую.
      */
     @Getter
     @JsonProperty("posted_photo")
-    Optional<PostedPhoto> postedPhoto;
+    Optional<PostedPhoto> postedPhoto = Optional.empty();
 
     /**
      *  Видеозапись.
      */
     @Getter
     @JsonProperty("video")
-    Optional<Video> video;
+    Optional<Video> video = Optional.empty();
 
     /**
      *  Аудиозапись.
      */
     @Getter
     @JsonProperty("audio")
-    Optional<Audio> audio;
+    Optional<Audio> audio = Optional.empty();
 
     /**
      *  Документ.
      */
     @Getter
     @JsonProperty("doc")
-    Optional<Doc> doc;
+    Optional<Doc> doc = Optional.empty();
 
     /**
      *  Граффити.
      */
     @Getter
     @JsonProperty("graffity")
-    Optional<Graffity> graffity;
+    Optional<Graffity> graffity = Optional.empty();
 
     /**
      *  Ссылка.
      */
     @Getter
     @JsonProperty("link")
-    Optional<Link> link;
+    Optional<Link> link = Optional.empty();
 
     /**
      *  Заметка.
      */
     @Getter
     @JsonProperty("note")
-    Optional<Note> note;
+    Optional<Note> note = Optional.empty();
 
     /**
      *  Приложение.
      */
     @Getter
     @JsonProperty("app")
-    Optional<App> app;
+    Optional<App> app = Optional.empty();
 
     /**
      *  Опрос.
      */
     @Getter
     @JsonProperty("poll")
-    Optional<Pool> poll;
+    Optional<Pool> poll = Optional.empty();
 
     /**
      *  Вики-страница.
      */
     @Getter
     @JsonProperty("page")
-    Optional<WikiPage> page;
+    Optional<WikiPage> page = Optional.empty();
 
     /**
      *  Альбом с фотографиями.
      */
     @Getter
     @JsonProperty("album")
-    Optional<PhotoAlbum> album;
+    Optional<PhotoAlbum> album = Optional.empty();
 
     /**
      *  Массив из строк, содержащих идентификаторы фотографий.
@@ -156,34 +156,34 @@ public class WallPostAttachment {
      */
     @Getter
     @JsonProperty("photos_list")
-    List<String> photosList;
+    List<String> photosList = Collections.emptyList();
 
     /**
      *  Товар.
      */
     @Getter
     @JsonProperty("market")
-    Optional<Product> market;
+    Optional<Product> market = Optional.empty();
 
     /**
      *  Подборка товаров.
      */
     @Getter
     @JsonProperty("market_album")
-    Optional<ProductAlbum> marketAlbum;
+    Optional<ProductAlbum> marketAlbum = Optional.empty();
 
     /**
      *
      */
     @Getter
     @JsonProperty("sticker")
-    Optional<Object> sticker;
+    Optional<Object> sticker = Optional.empty();
 
     /**
      *
      */
     @Getter
     @JsonProperty("prettyCards")
-    Optional<Object> prettyCards;
+    Optional<Object> prettyCards = Optional.empty();
 
 }
