@@ -201,7 +201,7 @@ public class Video {
      */
     @Getter
     @JsonProperty("access_key")
-    String accessKey;
+    Optional<String> accessKey = Optional.empty();
 
     /**
      *  Поле возвращается в том случае, если видеоролик находится в процессе обработки, всегда содержит 1.
