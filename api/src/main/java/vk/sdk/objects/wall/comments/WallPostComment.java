@@ -6,7 +6,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
+import vk.sdk.objects.wall.WallPostAttachment;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,19 +64,17 @@ public class WallPostComment {
 
     /**
      *  Медиавложения комментария (фотографии, ссылки и т.п.)
-     *
-     *  TODO: create WallCommentAttachment objects to any type of attachments
      */
     @Getter
     @JsonProperty("attachments")
-    List<Object> attachments;
+    List<WallPostAttachment> attachments = Collections.emptyList();
 
     /**
      *  Массив идентификаторов родительских комментариев.
      */
     @Getter
     @JsonProperty("parents_stack")
-    List<Integer> parentsStack;
+    List<Integer> parentsStack = Collections.emptyList();
 
     /**
      *  Информация о вложенной ветке комментариев.

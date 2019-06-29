@@ -59,7 +59,7 @@ public enum WallPostAttachmentType implements EnumParam {
     @JsonProperty("pretty_cards")
     PRETTY_CARDS("pretty_cards");
 
-    private String value;
+    private final String value;
 
     @Override
     public String getValue() {
