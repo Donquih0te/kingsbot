@@ -85,7 +85,7 @@ public class WallPost {
      */
     @Getter
     @JsonProperty("friends_only")
-    Optional<YesParam> friendsOnly;
+    Optional<YesParam> friendsOnly = Optional.empty();
 
     /**
      *  Информация о комментариях к записи.
@@ -130,14 +130,14 @@ public class WallPost {
      */
     @Getter
     @JsonProperty("post_source")
-    Optional<WallPostSource> postSource;
+    Optional<WallPostSource> postSource = Optional.empty();
 
     /**
      *  Медиавложения записи (фотографии, ссылки и т.п.)
      */
     @Getter
     @JsonProperty("attachments")
-    WallPostAttachment attachments;
+    List<WallPostAttachment> attachments = Collections.emptyList();
 
     /**
      *  Информация о местоположении.
