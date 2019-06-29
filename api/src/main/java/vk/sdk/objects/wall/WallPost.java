@@ -199,7 +199,7 @@ public class WallPost {
     BoolInt markedAsAds;
 
     /**
-     *  true, если объект добавлен в закладки у текущего пользователя.
+     *  True, если объект добавлен в закладки у текущего пользователя.
      */
     @Getter
     @JsonProperty("is_favorite")
