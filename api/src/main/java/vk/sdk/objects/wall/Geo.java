@@ -7,11 +7,8 @@ import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
-<<<<<<< HEAD
 import java.util.Optional;
 
-=======
->>>>>>> modularity
 /**
  *  Информация о местоположении.
  */
@@ -39,10 +36,6 @@ public class Geo {
      */
     @Getter
     @JsonProperty("place")
-<<<<<<< HEAD
     Optional<GeoPlace> place = Optional.empty();
-=======
-    GeoPlace place;
->>>>>>> modularity
 
 }

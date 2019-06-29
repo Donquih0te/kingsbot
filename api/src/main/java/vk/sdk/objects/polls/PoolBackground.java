@@ -8,10 +8,7 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import vk.sdk.objects.photos.PhotoSize;
 
-<<<<<<< HEAD
 import java.util.Collections;
-=======
->>>>>>> modularity
 import java.util.List;
 import java.util.Optional;
 
@@ -43,11 +40,7 @@ public class PoolBackground {
      */
     @Getter
     @JsonProperty("angel")
-<<<<<<< HEAD
     Optional<Integer> angel = Optional.empty();
-=======
-    Optional<Integer> angel;
->>>>>>> modularity
 
     /**
      *  HEX-код замещающего цвета (без #).
@@ -62,11 +55,7 @@ public class PoolBackground {
      */
     @Getter
     @JsonProperty("width")
-<<<<<<< HEAD
     Optional<Integer> width = Optional.empty();
-=======
-    Optional<Integer> width;
->>>>>>> modularity
 
     /**
      *  Высота плитки паттерна.
@@ -74,11 +63,7 @@ public class PoolBackground {
      */
     @Getter
     @JsonProperty("height")
-<<<<<<< HEAD
     Optional<Integer> height = Optional.empty();
-=======
-    Optional<Integer> height;
->>>>>>> modularity
 
     /**
      *  Изображение плитки паттерна.
@@ -86,11 +71,7 @@ public class PoolBackground {
      */
     @Getter
     @JsonProperty("images")
-<<<<<<< HEAD
     List<PhotoSize> images = Collections.emptyList();
-=======
-    List<PhotoSize> images;
->>>>>>> modularity
 
     /**
      *  Точки градиента.
@@ -98,10 +79,6 @@ public class PoolBackground {
      */
     @Getter
     @JsonProperty("points")
-<<<<<<< HEAD
     List<PoolBackgroundPoint> points = Collections.emptyList();
-=======
-    List<PoolBackgroundPoint> points;
->>>>>>> modularity
 
 }

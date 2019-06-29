@@ -8,10 +8,7 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import vk.sdk.objects.photos.Photo;
 
-<<<<<<< HEAD
 import java.util.Collections;
-=======
->>>>>>> modularity
 import java.util.List;
 
 /**
@@ -62,11 +59,7 @@ public class Pool {
      */
     @Getter
     @JsonProperty("answers")
-<<<<<<< HEAD
     List<PoolAnswer> answers = Collections.emptyList();
-=======
-    List<PoolAnswer> answers;
->>>>>>> modularity
 
     /**
      *  Является ли опрос анонимным.
@@ -87,11 +80,7 @@ public class Pool {
      */
     @Getter
     @JsonProperty("answer_ids")
-<<<<<<< HEAD
     List<Integer> answerIds = Collections.emptyList();
-=======
-    List<Integer> answerIds;
->>>>>>> modularity
 
     /**
      *  Дата завершения опроса в UnixTime.
@@ -169,10 +158,6 @@ public class Pool {
      */
     @Getter
     @JsonProperty("friends")
-<<<<<<< HEAD
     List<Integer> friends = Collections.emptyList();
-=======
-    List<Integer> friends;
->>>>>>> modularity
 
 }

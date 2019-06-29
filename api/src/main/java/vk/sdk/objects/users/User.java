@@ -6,11 +6,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
-<<<<<<< HEAD
 
 import java.util.Optional;
-=======
->>>>>>> modularity
 
 /**
  * Объект содержит информацию о пользователе ВКонтакте.
@@ -49,11 +46,7 @@ public class User {
      */
     @Getter
     @JsonProperty("deactivated")
-<<<<<<< HEAD
     Optional<String> deactivated;
-=======
-    String deactivated;
->>>>>>> modularity
 
     /**
      *  Скрыт ли профиль пользователя настройками приватности.
@@ -68,12 +61,8 @@ public class User {
      */
     @Getter
     @JsonProperty("can_access_closed")
-<<<<<<< HEAD
     Optional<Boolean> canAccessClosed = Optional.empty();
 
     // TODO: add optional fields
-=======
-    boolean canAccessClosed;
->>>>>>> modularity
 
 }

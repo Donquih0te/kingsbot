@@ -10,10 +10,7 @@ import vk.sdk.objects.photos.Photo;
 import vk.sdk.objects.utils.BoolInt;
 
 import java.net.URL;
-<<<<<<< HEAD
 import java.util.Collections;
-=======
->>>>>>> modularity
 import java.util.List;
 import java.util.Optional;
 
@@ -95,7 +92,6 @@ public class Product {
     @JsonProperty("is_favorite")
     boolean isFavorite;
 
-<<<<<<< HEAD
 
     /**********************************************************************
      *
@@ -104,18 +100,12 @@ public class Product {
      *//////////////////////////////////////////////////////////////////////
 
 
-=======
->>>>>>> modularity
     /**
      *  Изображения товара.
      */
     @Getter
     @JsonProperty("photos")
-<<<<<<< HEAD
     List<Photo> photos = Collections.emptyList();
-=======
-    Optional<List<Photo>> photos;
->>>>>>> modularity
 
     /**
      *  Возможность комментировать товар для текущего пользователя
@@ -123,11 +113,7 @@ public class Product {
      */
     @Getter
     @JsonProperty("can_comment")
-<<<<<<< HEAD
     Optional<BoolInt> canComment = Optional.empty();
-=======
-    Optional<BoolInt> canComment;
->>>>>>> modularity
 
     /**
      *  Возможность сделать репост товара для текущего пользователя
@@ -135,43 +121,27 @@ public class Product {
      */
     @Getter
     @JsonProperty("can_repost")
-<<<<<<< HEAD
     Optional<BoolInt> canRepost = Optional.empty();
-=======
-    Optional<BoolInt> canRepost;
->>>>>>> modularity
 
     /**
      *  Информация об отметках «Мне нравится».
      */
     @Getter
     @JsonProperty("likes")
-<<<<<<< HEAD
     Optional<ProductLikes> likes = Optional.empty();
-=======
-    Optional<ProductLikes> likes;
->>>>>>> modularity
 
     /**
      *  Ссылка на товар во внешних ресурсах.
      */
     @Getter
     @JsonProperty("url")
-<<<<<<< HEAD
     Optional<URL> url = Optional.empty();
-=======
-    Optional<URL> url;
->>>>>>> modularity
 
     /**
      *  Текст на кнопке товара.
      */
     @Getter
     @JsonProperty("button_title")
-<<<<<<< HEAD
     Optional<ProductButtonTitle> buttonTittle = Optional.empty();
-=======
-    Optional<ProductButtonTitle> buttonTittle;
->>>>>>> modularity
 
 }

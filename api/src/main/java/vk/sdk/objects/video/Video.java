@@ -28,55 +28,35 @@ import java.util.Optional;
 public class Video {
 
     /**
-<<<<<<< HEAD
      *  Идентификатор видеозаписи.
-=======
-     *  идентификатор видеозаписи.
->>>>>>> modularity
      */
     @Getter
     @JsonProperty("id")
     Integer id;
 
     /**
-<<<<<<< HEAD
      *  Идентификатор владельца видеозаписи.
-=======
-     *  идентификатор владельца видеозаписи.
->>>>>>> modularity
      */
     @Getter
     @JsonProperty("owner_id")
     Integer ownerId;
 
     /**
-<<<<<<< HEAD
      *  Название видеозаписи.
-=======
-     *  название видеозаписи.
->>>>>>> modularity
      */
     @Getter
     @JsonProperty("title")
     String title;
 
     /**
-<<<<<<< HEAD
      *  Текст описания видеозаписи.
-=======
-     *  текст описания видеозаписи.
->>>>>>> modularity
      */
     @Getter
     @JsonProperty("description")
     String description;
 
     /**
-<<<<<<< HEAD
      *  Длительность ролика в секундах.
-=======
-     *  длительность ролика в секундах.
->>>>>>> modularity
      */
     @Getter
     @JsonProperty("duration")
@@ -101,33 +81,21 @@ public class Video {
      */
     @Getter
     @JsonProperty("photo_640")
-<<<<<<< HEAD
     Optional<URL> photo640 = Optional.empty();
-=======
-    Optional<URL> photo640;
->>>>>>> modularity
 
     /**
      *  URL изображения-обложки ролика с размером 800x450 px (если размер есть).
      */
     @Getter
     @JsonProperty("photo_800")
-<<<<<<< HEAD
     Optional<URL> photo800 = Optional.empty();
-=======
-    Optional<URL> photo800;
->>>>>>> modularity
 
     /**
      *  URL изображения-обложки ролика с размером до 1280 px по ширине (если размер есть).
      */
     @Getter
     @JsonProperty("photo_1280")
-<<<<<<< HEAD
     Optional<URL> photo1280 = Optional.empty();
-=======
-    Optional<URL> photo1280;
->>>>>>> modularity
 
     /**
      *  URL изображения первого кадра ролика с размером 130x98 px.
@@ -148,72 +116,45 @@ public class Video {
      */
     @Getter
     @JsonProperty("first_frame_640")
-<<<<<<< HEAD
     Optional<URL> firstFrame640 = Optional.empty();
-=======
-    Optional<URL> firstFrame640;
->>>>>>> modularity
 
     /**
      *  URL изображения первого кадра ролика с размером 800x450 px (если размер есть).
      */
     @Getter
     @JsonProperty("first_frame_800")
-<<<<<<< HEAD
     Optional<URL> firstFrame800 = Optional.empty();
-=======
-    Optional<URL> firstFrame800;
->>>>>>> modularity
 
     /**
      *  URL изображения первого кадра ролика с шириной до 1028 px (если размер есть).
      */
     @Getter
     @JsonProperty("first_frame_1280")
-<<<<<<< HEAD
     Optional<URL> firstFrame1280 = Optional.empty();
 
     /**
      *  Дата создания видеозаписи в формате UnixTime.
-=======
-    Optional<URL> firstFrame1280;
-
-    /**
-     *  дата создания видеозаписи в формате UnixTime.
->>>>>>> modularity
      */
     @Getter
     @JsonProperty("date")
     Long date;
 
     /**
-<<<<<<< HEAD
      *  Дата добавления видеозаписи пользователем или группой в формате UnixTime.
-=======
-     *  дата добавления видеозаписи пользователем или группой в формате UnixTime.
->>>>>>> modularity
      */
     @Getter
     @JsonProperty("adding_date")
     Long addingDate;
 
     /**
-<<<<<<< HEAD
      *  Количество просмотров видеозаписи.
-=======
-     *  количество просмотров видеозаписи.
->>>>>>> modularity
      */
     @Getter
     @JsonProperty("views")
     Integer views;
 
     /**
-<<<<<<< HEAD
      *  Количество комментариев к видеозаписи.
-=======
-     *  количество комментариев к видеозаписи.
->>>>>>> modularity
      */
     @Getter
     @JsonProperty("comments")
@@ -228,7 +169,6 @@ public class Video {
     URL player;
 
     /**
-<<<<<<< HEAD
      *  Название платформы (для видеозаписей, добавленных с внешних сайтов).
      */
     @Getter
@@ -241,20 +181,6 @@ public class Video {
     @Getter
     @JsonProperty("can_edit")
     Optional<YesParam> canEdit = Optional.empty();
-=======
-     *  название платформы (для видеозаписей, добавленных с внешних сайтов).
-     */
-    @Getter
-    @JsonProperty("platform")
-    String platform;
-
-    /**
-     *  поле возвращается, если пользователь может редактировать видеозапись, всегда содержит 1.
-     */
-    @Getter
-    @JsonProperty("can_edit")
-    Optional<YesParam> canEdit;
->>>>>>> modularity
 
     /**
      *  1, если пользователь может добавить видеозапись к себе.
@@ -264,7 +190,6 @@ public class Video {
     BoolInt canAdd;
 
     /**
-<<<<<<< HEAD
      *  Поле возвращается, если видеозапись приватная (например, была загружена в личное сообщение), всегда содержит 1.
      */
     @Getter
@@ -287,35 +212,10 @@ public class Video {
 
     /**
      *  Поле возвращается в том случае, если видеозапись является прямой трансляцией, всегда содержит 1.
-=======
-     *  поле возвращается, если видеозапись приватная (например, была загружена в личное сообщение), всегда содержит 1.
-     */
-    @Getter
-    @JsonProperty("is_private")
-    Optional<YesParam> isPrivate;
-
-    /**
-     *  ключ доступа к объекту.
-     */
-    @Getter
-    @JsonProperty("access_key")
-    String accessKey;
-
-    /**
-     *  поле возвращается в том случае, если видеоролик находится в процессе обработки, всегда содержит 1.
-     */
-    @Getter
-    @JsonProperty("processing")
-    Optional<YesParam> processing;
-
-    /**
-     *  поле возвращается в том случае, если видеозапись является прямой трансляцией, всегда содержит 1.
->>>>>>> modularity
      *  Обратите внимание, в этом случае в поле duration содержится значение 0.
      */
     @Getter
     @JsonProperty("live")
-<<<<<<< HEAD
     Optional<YesParam> live = Optional.empty();
 
     /**
@@ -328,19 +228,6 @@ public class Video {
 
     /**
      *  True, если объект добавлен в закладки у текущего пользователя.
-=======
-    Optional<YesParam> live;
-
-    /**
-     *  (для live = 1). Поле свидетельствует о том, что трансляция скоро начнётся.
-     */
-    @Getter
-    @JsonProperty("upcoming")
-    Optional<YesParam> upcoming;
-
-    /**
-     *  true, если объект добавлен в закладки у текущего пользователя.
->>>>>>> modularity
      */
     @Getter
     @JsonProperty("is_favorite")

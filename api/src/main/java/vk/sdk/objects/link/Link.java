@@ -38,11 +38,7 @@ public class Link {
      */
     @Getter
     @JsonProperty("caption")
-<<<<<<< HEAD
     Optional<String> caption = Optional.empty();
-=======
-    Optional<String> caption;
->>>>>>> modularity
 
     /**
      *  Описание ссылки.
@@ -56,7 +52,6 @@ public class Link {
      */
     @Getter
     @JsonProperty("photo")
-<<<<<<< HEAD
     Optional<Photo> photo = Optional.empty();
 
     /**
@@ -66,28 +61,13 @@ public class Link {
     @Getter
     @JsonProperty("product")
     Optional<LinkProduct> product = Optional.empty();
-=======
-    Optional<Photo> photo;
-
-    /**
-     *  Информация о продукте (если имеется).
-     *  Поле возвращается для ссылок на магазины, например, Aliexpress.
-     */
-    @Getter
-    @JsonProperty("product")
-    Optional<LinkProduct> product;
->>>>>>> modularity
 
     /**
      *  Информация о кнопке для перехода (если имеется).
      */
     @Getter
     @JsonProperty("button")
-<<<<<<< HEAD
     Optional<LinkButton> button = Optional.empty();
-=======
-    Optional<LinkButton> button;
->>>>>>> modularity
 
     /**
      *  Идентификатор вики-страницы с контентом для предпросмотра содержимого страницы.
