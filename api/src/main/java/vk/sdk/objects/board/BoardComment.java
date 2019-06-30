@@ -8,6 +8,7 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import vk.sdk.objects.base.Attachment;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,7 +53,7 @@ public class BoardComment {
      */
     @Getter
     @JsonProperty("attachments")
-    List<Attachment> attachments;
+    List<Attachment> attachments = Collections.emptyList();
 
     /**
      *  Информация об отметках «Мне нравится» текущего комментария.
@@ -60,6 +61,6 @@ public class BoardComment {
      */
     @Getter
     @JsonProperty("likes")
-    Optional<BoardCommentLikesInfo> likes;
+    Optional<BoardCommentLikesInfo> likes = Optional.empty();
 
 }

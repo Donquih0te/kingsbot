@@ -11,6 +11,7 @@ import vk.sdk.objects.utils.BoolInt;
 import vk.sdk.objects.utils.YesParam;
 
 import java.net.URL;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -269,7 +270,7 @@ public class App {
      */
     @Getter
     @JsonProperty("screenshots")
-    List<Photo> screenshots;
+    List<Photo> screenshots = Collections.emptyList();
 
     /**
      *  1, если у пользователя включены уведомления из этого приложения.
