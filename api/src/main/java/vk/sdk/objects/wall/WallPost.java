@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
+import vk.sdk.objects.base.Attachment;
 import vk.sdk.objects.utils.BoolInt;
 import vk.sdk.objects.utils.YesParam;
 import vk.sdk.objects.wall.comments.WallPostCommentsInfo;
@@ -137,7 +138,7 @@ public class WallPost {
      */
     @Getter
     @JsonProperty("attachments")
-    List<WallPostAttachment> attachments = Collections.emptyList();
+    List<Attachment> attachments = Collections.emptyList();
 
     /**
      *  Информация о местоположении.

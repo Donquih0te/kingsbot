@@ -1,4 +1,4 @@
-package vk.sdk.objects.wall;
+package vk.sdk.objects.base;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import vk.sdk.objects.utils.EnumParam;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public enum WallPostAttachmentType implements EnumParam {
+public enum AttachmentType implements EnumParam {
 
     @JsonProperty("photo")
     PHOTO("photo"),

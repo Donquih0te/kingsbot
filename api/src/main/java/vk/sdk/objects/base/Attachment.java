@@ -1,4 +1,4 @@
-package vk.sdk.objects.wall;
+package vk.sdk.objects.base;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
@@ -58,14 +58,14 @@ import java.util.Optional;
 @ToString(doNotUseGetters = true)
 @EqualsAndHashCode(doNotUseGetters = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class WallPostAttachment {
+public class Attachment {
 
     /**
      *  Тип вложения.
      */
     @Getter
     @JsonProperty("type")
-    WallPostAttachmentType type;
+    AttachmentType type;
 
     /**
      *  Фотография.

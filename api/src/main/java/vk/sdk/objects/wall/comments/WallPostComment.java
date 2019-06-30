@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
-import vk.sdk.objects.wall.WallPostAttachment;
+import vk.sdk.objects.base.Attachment;
 
 import java.util.Collections;
 import java.util.List;
@@ -67,7 +67,7 @@ public class WallPostComment {
      */
     @Getter
     @JsonProperty("attachments")
-    List<WallPostAttachment> attachments = Collections.emptyList();
+    List<Attachment> attachments = Collections.emptyList();
 
     /**
      *  Массив идентификаторов родительских комментариев.
