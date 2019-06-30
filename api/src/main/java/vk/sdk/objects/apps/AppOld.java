@@ -15,7 +15,7 @@ import java.net.URL;
 @ToString(doNotUseGetters = true)
 @EqualsAndHashCode(doNotUseGetters = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class App {
+public class AppOld {
 
     /**
      *  Идентификатор приложения.

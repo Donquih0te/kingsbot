@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
-import vk.sdk.objects.apps.App;
+import vk.sdk.objects.apps.AppOld;
 import vk.sdk.objects.audio.Audio;
 import vk.sdk.objects.docs.Doc;
 import vk.sdk.objects.docs.Graffity;
@@ -128,7 +128,7 @@ public class Attachment {
      */
     @Getter
     @JsonProperty("app")
-    Optional<App> app = Optional.empty();
+    Optional<AppOld> app = Optional.empty();
 
     /**
      *  Опрос.
