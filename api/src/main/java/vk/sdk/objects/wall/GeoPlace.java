@@ -36,14 +36,14 @@ public class GeoPlace {
      */
     @Getter
     @JsonProperty("latitude")
-    Integer latitude;
+    Float latitude;
 
     /**
      *  Географическая долгота, заданная в градусах (от -90 до 90).
      */
     @Getter
     @JsonProperty("longitude")
-    Integer longitude;
+    Float longitude;
 
     /**
      *  Дата создания места в UnixTime.
