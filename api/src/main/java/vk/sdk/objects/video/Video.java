@@ -105,6 +105,13 @@ public class Video {
     URL firstFrame130;
 
     /**
+     *  URL изображения первого кадра ролика с размером 160x120 px (если размер есть).
+     */
+    @Getter
+    @JsonProperty("first_frame_160")
+    Optional<URL> firstFrame160;
+
+    /**
      *  URL изображения первого кадра ролика с размером 320x240 px.
      */
     @Getter
