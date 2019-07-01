@@ -13,6 +13,7 @@ import vk.sdk.objects.docs.Graffity;
 import vk.sdk.objects.link.Link;
 import vk.sdk.objects.market.Product;
 import vk.sdk.objects.market.ProductAlbum;
+import vk.sdk.objects.messages.Gift;
 import vk.sdk.objects.messages.PrettyCard;
 import vk.sdk.objects.messages.Sticker;
 import vk.sdk.objects.notes.Note;
@@ -22,6 +23,8 @@ import vk.sdk.objects.photos.PhotoAlbum;
 import vk.sdk.objects.photos.PostedPhoto;
 import vk.sdk.objects.polls.Pool;
 import vk.sdk.objects.video.Video;
+import vk.sdk.objects.wall.WallPost;
+import vk.sdk.objects.wall.comments.WallPostComment;
 
 import java.util.Collections;
 import java.util.List;
@@ -175,11 +178,32 @@ public class Attachment {
     Optional<ProductAlbum> marketAlbum = Optional.empty();
 
     /**
+     *  Запись на стене.
+     */
+    @Getter
+    @JsonProperty("wall")
+    Optional<WallPost> wall = Optional.empty();
+
+    /**
+     *  Комментарий к записи на стене.
+     */
+    @Getter
+    @JsonProperty("wall_reply")
+    Optional<WallPostComment> wallReply = Optional.empty();
+
+    /**
      *  Стикер.
      */
     @Getter
     @JsonProperty("sticker")
     Optional<Sticker> sticker = Optional.empty();
+
+    /**
+     *  Подарок.
+     */
+    @Getter
+    @JsonProperty("gift")
+    Optional<Gift> gift = Optional.empty();
 
     /**
      *  Массив элементов-карточек.

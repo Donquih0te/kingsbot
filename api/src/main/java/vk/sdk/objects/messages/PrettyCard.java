@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
+import vk.sdk.objects.base.Image;
 import vk.sdk.objects.link.LinkButton;
 
 import java.net.URL;

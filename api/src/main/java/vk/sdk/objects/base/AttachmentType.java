@@ -29,6 +29,12 @@ public enum AttachmentType implements EnumParam {
     @JsonProperty("link")
     LINK("link"),
 
+    @JsonProperty("wall")
+    WALL("wall"),
+
+    @JsonProperty("wall_reply")
+    WALL_REPLY("wall_reply"),
+
     @JsonProperty("note")
     NOTE("note"),
 
@@ -55,6 +61,9 @@ public enum AttachmentType implements EnumParam {
 
     @JsonProperty("sticker")
     STICKER("sticker"),
+
+    @JsonProperty("gift")
+    GIFT("gift"),
 
     @JsonProperty("pretty_cards")
     PRETTY_CARDS("pretty_cards");

@@ -1,5 +1,6 @@
 package vk.sdk.objects.wall;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
@@ -33,9 +34,10 @@ public class WallPost {
 
     /**
      *  Идентификатор владельца стены, на которой размещена запись.
+     *  Во вложении вместо поля owner_id возвращается to_id.
      */
     @Getter
-    @JsonProperty("owner_id")
+    @JsonAlias({"owner_id", "to_id"})
     Integer ownerId;
 
     /**

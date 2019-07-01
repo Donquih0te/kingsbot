@@ -35,6 +35,20 @@ public class WallPostComment {
     Integer fromId;
 
     /**
+     *  Идентификатор записи, к которой оставлен комментарий.
+     */
+    @Getter
+    @JsonProperty("post_id")
+    Optional<Integer> postId = Optional.empty();
+
+    /**
+     *  Идентификатор владельца стены, на которой оставлен комментарий.
+     */
+    @Getter
+    @JsonProperty("owner_id")
+    Optional<Integer> ownerId = Optional.empty();
+
+    /**
      *  Дата создания комментария в формате UnixTime.
      */
     @Getter
