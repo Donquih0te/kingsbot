@@ -39,7 +39,7 @@ public class GeoPlace {
     Float latitude;
 
     /**
-     *  Географическая долгота, заданная в градусах (от -90 до 90).
+     *  Географическая долгота, заданная в градусах (от -180 до 180).
      */
     @Getter
     @JsonProperty("longitude")
