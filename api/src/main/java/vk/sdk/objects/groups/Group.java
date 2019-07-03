@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
+import vk.sdk.objects.utils.BoolInt;
 
 import java.net.URL;
 import java.util.Optional;
@@ -48,7 +49,7 @@ public class Group {
      */
     @Getter
     @JsonProperty("is_closed")
-    Integer isClosed;
+    GroupAccessType isClosed;
 
     /**
      *  Возвращается в случае, если сообщество удалено или заблокировано.
@@ -58,51 +59,60 @@ public class Group {
      */
     @Getter
     @JsonProperty("deactivated")
-    Optional<String> deactivated = Optional.empty();
+    Optional<GroupDeactivationType> deactivated = Optional.empty();
 
     /**
      *  Информация о том, является ли текущий пользователь руководителем.
      *  Возможные значения:
      *      1 — является;
      *      0 — не является.
+     *
+     *  Требуется scope = groups.
      */
     @Getter
     @JsonProperty("is_admin")
-    Integer isAdmin;
+    Optional<BoolInt> isAdmin = Optional.empty();
 
     /**
      *  Уровень полномочий текущего пользователя (если is_admin = 1):
      *      1 — модератор;
      *      2 — редактор;
      *      3 — администратор.
+     *
+     *  Требуется scope = groups.
      */
     @Getter
     @JsonProperty("admin_level")
-    Optional<Integer> adminLevel = Optional.empty();
+    Optional<GroupUserAuthorityLevel> adminLevel = Optional.empty();
 
     /**
      *  Информация о том, является ли текущий пользователь участником.
      *  Возможные значения:
      *      1 — является;
      *      0 — не является.
+     *
+     *  Требуется scope = groups.
      */
     @Getter
     @JsonProperty("is_member")
-    Integer isMember;
+    Optional<BoolInt> isMember = Optional.empty();
 
     /**
      *  Информация о том, является ли текущий пользователь рекламодателем.
      *  Возможные значения:
      *      1 — является;
      *      0 — не является.
+     *
+     *  Требуется scope = groups.
      */
     @Getter
     @JsonProperty("is_advertiser")
-    Integer isAdvertiser;
+    Optional<BoolInt> isAdvertiser = Optional.empty();
 
     /**
      *  Идентификатор пользователя, который отправил приглашение в сообщество.
      *  Поле возвращается только для метода "groups.getInvites".
+     *  Требуется scope = groups.
      */
     @Getter
     @JsonProperty("invited_by")
@@ -116,7 +126,7 @@ public class Group {
      */
     @Getter
     @JsonProperty("type")
-    String type;
+    GroupType type;
 
     /**
      *  URL главной фотографии с размером 50x50px.
