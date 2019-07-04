@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import vk.sdk.objects.utils.BoolInt;
+import vk.sdk.objects.utils.DeactivationType;
 
 import java.net.URL;
 import java.util.Collections;
@@ -61,7 +62,7 @@ public class Group {
      */
     @Getter
     @JsonProperty("deactivated")
-    Optional<GroupDeactivationType> deactivated = Optional.empty();
+    Optional<DeactivationType> deactivated = Optional.empty();
 
     /**
      *  Информация о том, является ли текущий пользователь руководителем.

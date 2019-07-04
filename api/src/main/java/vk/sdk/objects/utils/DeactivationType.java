@@ -1,12 +1,11 @@
-package vk.sdk.objects.groups;
+package vk.sdk.objects.utils;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import vk.sdk.objects.utils.EnumParam;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public enum GroupDeactivationType implements EnumParam {
+public enum DeactivationType implements EnumParam {
 
     @JsonProperty("banned")
     BANNED("banned"),

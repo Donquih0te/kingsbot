@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
+import vk.sdk.objects.utils.DeactivationType;
 
 import java.util.Optional;
 
@@ -41,12 +42,10 @@ public class User {
     /**
      *  Поле возвращается, если страница пользователя удалена или заблокирована, содержит значение deleted или banned.
      *  В этом случае опциональные поля не возвращаются.
-     *
-     *  TODO: enum
      */
     @Getter
     @JsonProperty("deactivated")
-    Optional<String> deactivated;
+    Optional<DeactivationType> deactivated;
 
     /**
      *  Скрыт ли профиль пользователя настройками приватности.
